@@ -2,6 +2,24 @@
 
 **Last updated: 2026-07-11 (Session 31 — play-test fixes: writhe animation, keeper-name swap, head-number H2, HEADER ball-contact.)**
 
+## SESSION 31h (2026-07-11) — Linux release + FIRST PUSH TO GITHUB
+
+- **Linux release:** added a `Linux` preset to `game/export_presets.cfg`, exported
+  `build/linux/{OpenSWOS.x86_64, OpenSWOS.pck, data_OpenSwos_linuxbsd_x86_64/}`,
+  packaged `build/OpenSWOS-linux-x86_64-2026-07-11.zip` (59 MB) with a Linux README
+  (chmod +x note). Structurally identical to the verified Windows build; not runtime-
+  tested (no Linux env on this machine).
+- **First real push (user-authorised):** committed the whole project — 199 files,
+  ~162k insertions, commit 6f7cfc8 — and pushed `main` to `github.com/angree/openswos`
+  (private). Pre-push audit: `git add` dry-run + staged-set scan confirmed ZERO
+  proprietary/build files (gitignore holds). Author = `angree <angree@wp.pl>` (matches
+  the repo's existing 2 commits). Stray `player_model_*.glb` gitignored.
+  NOTE: contributions count retroactively once the repo is made public, PROVIDED
+  the author email used (angree@wp.pl — matching the repo's git config + existing
+  commits) is verified on the GitHub account.
+- Release .zips live in build/ (gitignored) — NOT attached to a GitHub Release yet
+  (offered; awaiting user decision on public/release).
+
 ## SESSION 31g (2026-07-11) — fullscreen + first runnable Windows release (#209, #210)
 
 - **Fullscreen (#209):** 3 display modes — Windowed / FullscreenFill (nearest, fills, thin
