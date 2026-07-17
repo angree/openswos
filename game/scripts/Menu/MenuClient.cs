@@ -915,6 +915,11 @@ public sealed partial class MenuClient
         _textKeysDown.Clear();
         foreach (Key k in kTextKeys) if (Input.IsPhysicalKeyPressed(k)) _textKeysDown.Add(k);
         _dirty = true;
+        // Android/mobile: pop the on-screen keyboard so text can actually be
+        // typed. No-op on desktop (feature absent).
+        if (DisplayServer.HasFeature(DisplayServer.Feature.VirtualKeyboard))
+            DisplayServer.VirtualKeyboardShow(_textInput.Text.ToString(), new Rect2I(),
+                DisplayServer.VirtualKeyboardType.Default, _textInput.MaxLen);
     }
 
     private void EndTextInput()
@@ -923,6 +928,37 @@ public sealed partial class MenuClient
         _textInputScreen = null;
         _textKeysDown.Clear();
         _dirty = true;
+        if (DisplayServer.HasFeature(DisplayServer.Feature.VirtualKeyboard))
+            DisplayServer.VirtualKeyboardHide();
+    }
+
+    /// <summary>Feed a key event (Android soft keyboard / IME) into the active text field.
+    /// Returns true if consumed. Called only on mobile platforms by Main._UnhandledInput;
+    /// desktop keeps using the frame-polled TickTextInput path.</summary>
+    public bool FeedTextInputEvent(Godot.InputEventKey ev)
+    {
+        if (_textInput is null) return false;
+        var ti = _textInput;
+        Key kc = ev.Keycode != Key.None ? ev.Keycode : ev.PhysicalKeycode;
+        // Editing / control keys route through the existing HandleTextKey path.
+        if (kc == Key.Enter || kc == Key.KpEnter || kc == Key.Escape ||
+            kc == Key.Backspace || kc == Key.Left || kc == Key.Right)
+        { HandleTextKey(ti, kc); return true; }
+        // Printable soft-keyboard chars usually arrive as Unicode with Keycode==None.
+        long uni = ev.Unicode;
+        if (uni > 0)
+        {
+            char c = char.ToUpperInvariant((char)uni);
+            if ((c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == ' ' || c == '-')
+            {
+                if (ti.Text.Length < ti.MaxLen) { ti.Text.Append(c); _dirty = true; }
+                return true;
+            }
+        }
+        // Hardware-keyboard fallback (keycode present, no unicode).
+        if ((kc >= Key.A && kc <= Key.Z) || (kc >= Key.Key0 && kc <= Key.Key9) || kc == Key.Space || kc == Key.Minus)
+        { HandleTextKey(ti, kc); return true; }
+        return false;
     }
 
     private void TickTextInput()

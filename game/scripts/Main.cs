@@ -253,6 +253,8 @@ public partial class Main : Node2D
     // only ContentScaleStretch flips Fractional<->Integer.
     private enum DisplayMode { Windowed, FullscreenFill, FullscreenInteger }
     private DisplayMode _displayMode = DisplayMode.Windowed;
+    // Small-screen / handheld (R36S 640x480) mode — detected once in _Ready.
+    private bool _smallScreen;
     // Which fullscreen mode Alt+Enter restores; seeded from a persisted fullscreen
     // mode if any, else Fill.
     private DisplayMode _lastFullscreenMode = DisplayMode.FullscreenFill;
@@ -320,9 +322,30 @@ public partial class Main : Node2D
 
         LoadSettings();
 
+        // --- Small-screen / handheld (R36S 640x480) detection ---
+        bool smallByArg = false;
+        foreach (var a in OS.GetCmdlineArgs()) if (a == "--small-screen") smallByArg = true;
+        bool smallByScreen = false;
+        if (DisplayServer.GetName() != "headless")
+        {
+            var scr = DisplayServer.ScreenGetSize();
+            if (scr.X > 0 && scr.X <= 720 && scr.Y > 0 && scr.Y <= 576) smallByScreen = true;
+        }
+        _smallScreen = smallByArg || smallByScreen;
+        if (_smallScreen)
+        {
+            OpenSwos.Menu.MenuTheme.SmallScreen = true;
+            // Native handhelds -> fullscreen fill; the --small-screen flag on a desktop -> 640x480 window for testing.
+            _displayMode = smallByScreen ? DisplayMode.FullscreenFill : DisplayMode.Windowed;
+        }
+
         // Apply the persisted display mode now that the Window exists (no-op &
         // safe under --headless; see ApplyDisplayMode's headless guard).
         ApplyDisplayMode();
+
+        // Desktop --small-screen test path: give it an actual 640x480 window with fill scaling.
+        if (_smallScreen && !smallByScreen && DisplayServer.GetName() != "headless")
+            DisplayServer.WindowSetSize(new Vector2I(640, 480));
 
         // Initialise SwosVm memory layer (Phase B port target) — populates ball
         // physics constants from swos.asm data section so ported updateBall() can
@@ -4871,7 +4894,14 @@ public partial class Main : Node2D
         if (Input.IsActionPressed("ui_right")) p1dx++;
         if (Input.IsActionPressed("ui_up")) p1dy--;
         if (Input.IsActionPressed("ui_down")) p1dy++;
-        bool p1Fire = Input.IsActionPressed("ui_accept");
+        // Gamepad (device 0) — additive; harmless when no pad present. Handhelds (R36S) map here.
+        const float kJoyDeadzone = 0.4f;
+        if (Input.GetJoyAxis(0, JoyAxis.LeftX) < -kJoyDeadzone || Input.IsJoyButtonPressed(0, JoyButton.DpadLeft))  p1dx = -1;
+        if (Input.GetJoyAxis(0, JoyAxis.LeftX) >  kJoyDeadzone || Input.IsJoyButtonPressed(0, JoyButton.DpadRight)) p1dx =  1;
+        if (Input.GetJoyAxis(0, JoyAxis.LeftY) < -kJoyDeadzone || Input.IsJoyButtonPressed(0, JoyButton.DpadUp))    p1dy = -1;
+        if (Input.GetJoyAxis(0, JoyAxis.LeftY) >  kJoyDeadzone || Input.IsJoyButtonPressed(0, JoyButton.DpadDown))  p1dy =  1;
+        bool p1PadFire = Input.IsJoyButtonPressed(0, JoyButton.A);
+        bool p1Fire = Input.IsActionPressed("ui_accept") || p1PadFire;
         bool p1FireTriggered = Input.IsActionJustPressed("ui_accept");
         int p1Dir = AxisToSwosDirection(p1dx, p1dy);
         OpenSwos.Sim.Port.InputControls.SetJoystickState(
@@ -4897,7 +4927,12 @@ public partial class Main : Node2D
         if (Input.IsKeyPressed(Key.D)) p2dx++;
         if (Input.IsKeyPressed(Key.W)) p2dy--;
         if (Input.IsKeyPressed(Key.S)) p2dy++;
-        bool p2Fire = Input.IsKeyPressed(Key.Shift);
+        // Gamepad (device 1) — additive; harmless when no pad present.
+        if (Input.GetJoyAxis(1, JoyAxis.LeftX) < -kJoyDeadzone || Input.IsJoyButtonPressed(1, JoyButton.DpadLeft))  p2dx = -1;
+        if (Input.GetJoyAxis(1, JoyAxis.LeftX) >  kJoyDeadzone || Input.IsJoyButtonPressed(1, JoyButton.DpadRight)) p2dx =  1;
+        if (Input.GetJoyAxis(1, JoyAxis.LeftY) < -kJoyDeadzone || Input.IsJoyButtonPressed(1, JoyButton.DpadUp))    p2dy = -1;
+        if (Input.GetJoyAxis(1, JoyAxis.LeftY) >  kJoyDeadzone || Input.IsJoyButtonPressed(1, JoyButton.DpadDown))  p2dy =  1;
+        bool p2Fire = Input.IsKeyPressed(Key.Shift) || Input.IsJoyButtonPressed(1, JoyButton.A);
         int p2Dir = AxisToSwosDirection(p2dx, p2dy);
         OpenSwos.Sim.Port.InputControls.SetJoystickState(
             OpenSwos.Sim.Port.InputControls.kPlayer2, p2Dir, p2Fire, false);
@@ -7121,6 +7156,13 @@ public partial class Main : Node2D
     public override void _UnhandledInput(InputEvent e)
     {
         if (e is not InputEventKey k || !k.Pressed || k.Echo) return;
+
+        // Mobile-only: forward physical key events into the active menu's text field
+        // (soft keyboard). Strict no-op on desktop (OS.HasFeature("mobile") == false).
+        if (_menuClient is not null && OS.HasFeature("mobile"))
+        {
+            if (_menuClient.FeedTextInputEvent(k)) { GetViewport().SetInputAsHandled(); return; }
+        }
 
         if (k.Keycode == Key.F11)
         {

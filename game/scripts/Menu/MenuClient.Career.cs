@@ -2308,9 +2308,12 @@ public sealed partial class MenuClient
             // Overlay the 3-letter code centered on the flag's lower half (white
             // glyphs, 1px black outline). The flag rect spans rowY-1 .. rowY+7,
             // so rowY+2 sits the x1 text across the lower portion.
-            int fw = tex.GetWidth();   // menu-space px (<= FlagW)
-            int centerX = flagX + fw / 2;
-            FinePrintTextCentered(s, PlayerNationNames.Code(nation), centerX, rowY + 2);
+            if (!MenuTheme.SmallScreen)
+            {
+                int fw = tex.GetWidth();   // menu-space px (<= FlagW)
+                int centerX = flagX + fw / 2;
+                FinePrintTextCentered(s, PlayerNationNames.Code(nation), centerX, rowY + 2);
+            }
         }
     }
 

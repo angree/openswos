@@ -23,6 +23,10 @@ namespace OpenSwos.Menu;
 // algorithms, our own constants).
 public static class MenuTheme
 {
+    // Set true at boot for <=720x576 handhelds (R36S). Hides x1 fine-print flag
+    // codes; other layout unchanged.
+    public static bool SmallScreen;
+
     // ---- named button styles -------------------------------------------------
     // Each screen entry picks a style; the style decides its gradient family,
     // frame colours and text colour. Kept small and semantic so screens read

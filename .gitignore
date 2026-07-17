@@ -63,6 +63,7 @@ tools/wikidata-ages/raw_players.csv
 
 # Root-level research dumps (screenshots contain original-derived graphics)
 /_research/
+game/menu_shots/
 
 # ── Copyright-sensitive dev artifacts — NEVER commit ─────────────────────────
 # Decoded original SWOS graphics, reverse-engineered original sources, original
