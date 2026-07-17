@@ -1,6 +1,36 @@
 # RESUME HERE — Phase B port progress
 
-**Last updated: 2026-07-16 (Session 33: FULL in-match AUDIO shipped — SFX + crowd + chants + English commentary. Still next: #216 dashboard redesign.)**
+**Last updated: 2026-07-17 (Session 33d-h: fatigue+energy bars, post-match injuries, menu music/backdrop/icon, multi-platform v0.2 release, Android touch (emulator-verified), clock-length wiring, RANDOM pitch, stamina-gap flatten. Still next: #237 pre-match lineup in FRIENDLY, #238 transfer-offer detail, #216 dashboard redesign.)**
+
+## SESSION 33d-h (2026-07-17) — fatigue tuning + platforms + polish
+- **In-match fatigue** (`game/scripts/Sim/Port/PlayerEnergy.cs`, OPTIONAL/OpenTTD-style,
+  gated `EffectEnabled`, integer-only/deterministic). Energy in sprite-slot padding
+  (OffEnergy 110, OffEnergyAcc 112, OffStamina 114; Max 4096). Effects per USER spec:
+  speed -1/-2/-3 pts at <50/<25/<10% (SpeedStep), shot power -1 at <10% (ShotPenalty →
+  PlayerActions), injury risk x2 at <20% (InjuryRiskDoubled → PlayerTackle). Energy bar
+  under player number (Main.cs UpdateEnergyBars, Y = Pos.Y-11); OPTIONS ENERGY BAR shows
+  "N/A" + locked when PLAYER FATIGUE off.
+- **STAMINA-GAP FLATTEN (final tune)**: user saw weak-team (Zagłębie, low stamina) vs
+  strong-team (Arsenal) remaining-energy diverge ~2-2.5x by 30 min. Flattened so
+  stamina-1-vs-7 is well under 2x: drain divisor `(kStaminaFloor 29 + stamina) * 8`
+  (ratio 288/240 = **1.20x**, was (8+s)*23 = 1.87x); start-energy penalty `(7-s)*24`
+  (gap 144/4096 ≈ 3.5%, was *64). Mid-stamina drain still ≈ the /2.3 the user approved.
+- **Clock length wired**: `GameTime.TimeDeltaOverride` (set in Main.cs from SecondsPerHalf,
+  `clamp(2700/secondsPerHalf,1,70)`) — half-length OPTIONS now actually drives clock pace
+  (was "mecz się wlecze"). **RANDOM pitch** default (`_pitchRandom`, rolled per match) —
+  career was always pitch 1.
+- **Post-match injuries persist** (career): InjurySeverity carried out, lowered fitness/
+  status like original — root cause was inGameTeamPlayerOffsets stride 54 vs 61 + rebase.
+- Menu: BY GRZEGORZ KORYCKI on HOME, CAREER entry w/ shimmer, 3-col list picker (>5 items),
+  backdrop `data/openswos_bg.png`, app icon `data/openswos_icon.png`, CUSTOM menu music
+  (2 bundled Suno MP3s — NOT SWOS data), OPTIONS 2 pages, text-entry DOWN→OK for gamepads.
+- **v0.2 multi-platform release** (GitHub, single Latest, zero dev tags): Win/Linux/macOS/
+  Linux-ARM64 (R36S, 640×480, flags w/o codes, `handheld` feature auto-selects)/Android.
+  Android: expand-viewport + black bars, touch overlay (pad in letterbox, corner toggle,
+  menu tap-nav) — VERIFIED on real AVD (`-gpu host`), see memory android-emulator-verification.
+  macOS/Android/R36S marked UNTESTED. **Binaries are PRE these tuning edits — rebuild+refresh
+  release once user confirms fatigue/clock/pitch feel good.**
+- Verified: build 0/0, --competition-test PASSED.
 
 ## SESSION 33 (2026-07-16) — in-match sound system (#226 DONE)
 - Source of truth: `external/swos-port/docs/SWOS/sound.txt` + `src/audio/*` (paraphrased, cited).

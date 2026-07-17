@@ -34,9 +34,15 @@ public static class PlayerEnergy
     // over divisor (8+stamina); the user asked for that ÷ 2.3. We keep integer
     // math by scaling BOTH sides ×10 and folding 2.3 into the divisor (×23):
     // effort 100, divisor (8+stamina)×23  →  rate = 100/((8+s)×23) = (10/(8+s))/2.3.
-    private const int kMoveEffort    = 100;  // outfield (was 10, ×10 for the /2.3 scale)
-    private const int kKeeperEffort  = 20;   // keeper drains ~5x slower (was 2, ×10)
-    private const int kDivisorScale  = 23;   // folds the ÷2.3 into the integer divisor
+    private const int kMoveEffort    = 100;  // outfield
+    private const int kKeeperEffort  = 20;   // keeper drains ~5x slower
+    // Stamina→drain flattening. divisor = (kStaminaFloor + stamina) * kDivisorScale.
+    // The FLOOR (29) dominates so a stamina-1 player drains only ~1.2x faster than
+    // stamina-7 (was (8+stamina)*23 → 1.87x, which felt like 2-2.5x in game once
+    // the lower start + compounding were added). Mid-stamina rate ≈ the /2.3 the
+    // user approved: 100/((29+4)*8)=0.38.
+    private const int kStaminaFloor  = 29;
+    private const int kDivisorScale  = 8;
 
     // Reset before a new match's team load. Energy itself is (re)seeded per
     // player by SeedSlot during TeamDataLoader.WritePlayerInfos.
@@ -51,7 +57,7 @@ public static class PlayerEnergy
         int s = System.Math.Clamp(stamina, 0, 7);
         int fc = System.Math.Clamp(fatigueCarry, 0, 100);
         // Carried fatigue and low stamina reduce starting freshness; floor 40%.
-        int initial = Max - fc * (Max * 6 / 10) / 100 - (7 - s) * 64;
+        int initial = Max - fc * (Max * 6 / 10) / 100 - (7 - s) * 24;
         initial = System.Math.Clamp(initial, Max * 4 / 10, Max);
         int b = OpenSwos.SwosVm.PlayerSprite.Base(globalSlot);
         OpenSwos.SwosVm.Memory.WriteWord(b + OpenSwos.SwosVm.PlayerSprite.OffEnergy, initial);
@@ -72,7 +78,7 @@ public static class PlayerEnergy
         int effort = keeper ? kKeeperEffort : kMoveEffort;
 
         int stamina = OpenSwos.SwosVm.Memory.ReadByte(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffStamina);
-        int divisor = (8 + System.Math.Clamp(stamina, 0, 7)) * kDivisorScale;   // ×23 folds the /2.3 scale
+        int divisor = (kStaminaFloor + System.Math.Clamp(stamina, 0, 7)) * kDivisorScale;   // flattened stamina spread
 
         int acc = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergyAcc) + effort;
         int energy = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
