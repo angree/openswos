@@ -30,11 +30,12 @@ public static class PlayerEnergy
     public static bool EffectEnabled;
 
     // Per-tick effort added to the drain accumulator while a player is moving.
-    // Calibrated so a full ~90-game-minute match leaves an active outfielder
-    // around 40-55% (was 10/2 — that drained to 30-40% by minute 15, way too
-    // fast; user report). ~5x gentler.
-    private const int kMoveEffort   = 2;   // outfield
-    private const int kKeeperEffort = 1;   // keeper: drains slower still
+    // Calibrated so a busy outfielder in a full 90-game-minute match ends around
+    // 20-30% (some visibly gassed), while a fixture that barely moves stays high.
+    // History: 10 = far too fast (30-40% by min 15); 2 = far too gentle (>65% at
+    // min 82). 6 is the middle ground.
+    private const int kMoveEffort   = 6;   // outfield
+    private const int kKeeperEffort = 2;   // keeper: drains much slower
 
     // Reset before a new match's team load. Energy itself is (re)seeded per
     // player by SeedSlot during TeamDataLoader.WritePlayerInfos.
@@ -83,13 +84,22 @@ public static class PlayerEnergy
     // Speed-step reduction for a tired player, using the port's one-skill-point
     // speed step (46, per the kPlayerSpeedsGameInProgress table stride in
     // PlayerActions.cs). Caller multiplies by 46 and subtracts from newSpeed.
-    // Returns 0 above 50% energy, 1 below 50%, 2 below 20%.
+    // Finer, harsher curve than the old 3-tier version so a near-empty player
+    // visibly labours (a speed-7 sprinter on an empty tank drops ~4 skill points
+    // to speed-3 pace):
+    //   >70%   -> 0   (fresh)
+    //   50-70% -> 1   (-46,  ~1 speed pt)
+    //   35-50% -> 2   (-92,  ~2 pts)
+    //   20-35% -> 3   (-138, ~3 pts)
+    //   <20%   -> 4   (-184, ~4 pts — labouring)
     public static int SpeedStep(int spriteAddr)
     {
         int energy = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
-        if (energy > Max / 2) return 0;
-        if (energy > Max / 5) return 1;
-        return 2;
+        if (energy > Max * 70 / 100) return 0;
+        if (energy > Max * 50 / 100) return 1;
+        if (energy > Max * 35 / 100) return 2;
+        if (energy > Max * 20 / 100) return 3;
+        return 4;
     }
 
     public static int ReadEnergy(int globalSlot)
