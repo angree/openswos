@@ -328,13 +328,22 @@ public static class GameTime
     }
 
     // gameTime.cpp:127-132.
+    // Menu HALF LENGTH override (set once per match by Main from SecondsPerHalf).
+    // The original had only 4 fixed lengths (gameLengthInGame 0-3 → the table);
+    // our menu offers 6 real-time presets. When >0 this value is used as timeDelta
+    // instead of the table entry, so a 45-game-minute half takes exactly the
+    // chosen real seconds. 0 = fall back to the faithful table. Deterministic:
+    // set before InitGameVariables and never changed mid-match.
+    public static int TimeDeltaOverride = 0;
+
     private static void InitTimeDelta()
     {
         int gameLengthInGame = Memory.ReadSignedWord(Memory.Addr.gameLengthInGame);
         // assert(gameLengthInGame <= 3)
         if (gameLengthInGame < 0) gameLengthInGame = 0;
         if (gameLengthInGame > 3) gameLengthInGame = 3;
-        Memory.WriteDword(Memory.Addr.gt_timeDelta, kGameLenSecondsTable[gameLengthInGame]);
+        int td = TimeDeltaOverride > 0 ? TimeDeltaOverride : kGameLenSecondsTable[gameLengthInGame];
+        Memory.WriteDword(Memory.Addr.gt_timeDelta, td);
     }
 
     // gameTime.cpp:134-137.

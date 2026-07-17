@@ -411,7 +411,13 @@ public partial class Main : Node2D
         bool smallByArg = false;
         foreach (var a in OS.GetCmdlineArgs()) if (a == "--small-screen") smallByArg = true;
         bool smallByScreen = false;
-        if (DisplayServer.GetName() != "headless")
+        // The Linux ARM64 build is tagged "handheld" (export_presets.cfg) — it ships
+        // ONLY to R36S-class devices, so force small-screen there UNCONDITIONALLY
+        // (ArkOS/Rocknix can report a desktop-sized virtual screen, so the size probe
+        // below is unreliable on the actual hardware).
+        bool handheldBuild = OS.HasFeature("handheld");
+        if (handheldBuild) smallByScreen = true;
+        else if (DisplayServer.GetName() != "headless")
         {
             var scr = DisplayServer.ScreenGetSize();
             if (scr.X > 0 && scr.X <= 720 && scr.Y > 0 && scr.Y <= 576) smallByScreen = true;
@@ -4896,6 +4902,13 @@ public partial class Main : Node2D
         // boot, but that ran ONCE; this runs PER MATCH. A future re-entry
         // path (cancel-to-menu, second-leg start, replay restart) will land
         // here without a fresh Memory.Init and need the per-match scrub.
+        // Wire the menu HALF LENGTH into the clock BEFORE InitGameVariables (which
+        // calls InitTimeDelta). timeDelta = 2700 / SecondsPerHalf makes a full
+        // 45-game-minute half take exactly SecondsPerHalf real seconds at 70 Hz —
+        // the menu length setting used to be ignored (clock ran at a fixed pace).
+        OpenSwos.Sim.Port.GameTime.TimeDeltaOverride =
+            System.Math.Clamp(2700 / System.Math.Max(1, SecondsPerHalf), 1, 70);
+
         OpenSwos.Sim.Port.GameTime.InitGameVariables();
 
         // 3a. Load the per-team data (PlayerInfo records, names, shotChanceTable,
@@ -6593,9 +6606,9 @@ public partial class Main : Node2D
             // Use the port world-X (same source the head-number sprite centres on
             // via nx + PitchOffsetX) so the 8px bar sits over the player.
             float bodyX = OpenSwos.SwosVm.PlayerSprite.XPixels(slot) + PitchOffsetX;
-            // -9 (was -13): lowered ~4 render px so the bar clears the head-number
-            // sprite it used to overlap (user report).
-            bar.Position = new Vector2(bodyX, pl.Position.Y - 9);
+            // -11: midpoint between the original -13 (too high, overlapped the
+            // number) and -9 (too low) — user asked to split the difference.
+            bar.Position = new Vector2(bodyX, pl.Position.Y - 11);
             bar.ZIndex = pl.ZIndex + 3;
             bar.Visible = true;
         }

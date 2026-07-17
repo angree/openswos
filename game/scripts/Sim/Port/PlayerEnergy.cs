@@ -30,8 +30,11 @@ public static class PlayerEnergy
     public static bool EffectEnabled;
 
     // Per-tick effort added to the drain accumulator while a player is moving.
-    private const int kMoveEffort  = 10;   // outfield
-    private const int kKeeperShift = 2;    // keeper effort = kMoveEffort >> 2 = 2
+    // Calibrated so a full ~90-game-minute match leaves an active outfielder
+    // around 40-55% (was 10/2 — that drained to 30-40% by minute 15, way too
+    // fast; user report). ~5x gentler.
+    private const int kMoveEffort   = 2;   // outfield
+    private const int kKeeperEffort = 1;   // keeper: drains slower still
 
     // Reset before a new match's team load. Energy itself is (re)seeded per
     // player by SeedSlot during TeamDataLoader.WritePlayerInfos.
@@ -64,7 +67,7 @@ public static class PlayerEnergy
 
         int gslot = (spriteAddr - OpenSwos.SwosVm.PlayerSprite.SpritePoolBase) / OpenSwos.SwosVm.PlayerSprite.SlotStride;
         bool keeper = gslot == OpenSwos.SwosVm.PlayerSprite.SlotGoalie1 || gslot == OpenSwos.SwosVm.PlayerSprite.SlotGoalie2;
-        int effort = keeper ? (kMoveEffort >> kKeeperShift) : kMoveEffort;
+        int effort = keeper ? kKeeperEffort : kMoveEffort;
 
         int stamina = OpenSwos.SwosVm.Memory.ReadByte(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffStamina);
         int divisor = 8 + System.Math.Clamp(stamina, 0, 7);   // 8..15: fitter drains slower
