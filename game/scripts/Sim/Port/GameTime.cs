@@ -33,8 +33,14 @@ public static class GameTime
     // pitchConstants.h:3-4.
     public const int kPitchCenterY = 449;
 
-    // gameTime.cpp:81-82 — ticks per game-second per platform.
-    public const int kPcTicksPerGameSecond    = 70;
+    // Ticks per game-second (accumulator refill). The GENUINE PC SWS.EXE refills
+    // secondsSwitchAccumulator with 54, NOT 70 — see swos.asm:97838
+    // (`add secondsSwitchAccumulator, 54`). 54 is the Amiga 50 Hz constant left
+    // unchanged in the PC port, which is why the real PC clock ran fast. zlatkok's
+    // C++ rewrite (swos-port/src/game/gameTime.cpp:81 kPcTicksPerGameSeconds=70)
+    // deviated to make the "N MIN" label literal; we restore the authentic 54 so
+    // the in-play clock feels exactly like the original (user pick 2026-07-18).
+    public const int kPcTicksPerGameSecond    = 54;
     public const int kAmigaTicksPerGameSecond = 49;
 
     // gameTime.cpp:183-184 — penalty-area Y bounds for last-minute prolong check.

@@ -346,13 +346,19 @@ public partial class Main : Node2D
     // so no separate prev-flags are needed here.
 
     private int PitchId => _availablePitches.Count > 0 ? _availablePitches[_pitchSlot] : 1;
-    // Match length presets (seconds per half). Default 30 s for fast iteration.
-    // Real seconds per half. 1/2/3/5/8/10 minutes — the original's gameplay
-    // options offered 3/5/(7)/10 MINS (gameplayOptionsMenu); we add the shorter
-    // 1-2 min for quick games and 8 as a mid-step (user pick, 2026-07-10).
+    // Match length presets = TOTAL real seconds for the WHOLE match (both halves),
+    // matching the original SWOS gameplay-options semantics: the length setting is
+    // the whole game, split into two equal halves. Verified against the port's
+    // kGameLenSecondsTable {30,18,12,9}: at 70 Hz timeDelta=30 → 3 min TOTAL match
+    // (shortest), timeDelta=9 → 10 min TOTAL (longest). 1/2/3/5/8/10 minutes — the
+    // original offered 3/5/(7)/10 MINS; we add 1-2 min quick games + 8 as a mid-step.
+    // (Was mis-treated as seconds-PER-HALF → matches ran 2× too long, user report.)
     private static readonly int[] MatchLengthPresets = { 60, 120, 180, 300, 480, 600 };
     private int _matchLengthSlot = 2;  // default 3 MIN — the original's default
-    private int SecondsPerHalf => MatchLengthPresets[_matchLengthSlot];
+    private int TotalMatchSeconds => MatchLengthPresets[_matchLengthSlot];
+    // Each of the 2 halves is half the total. timeDelta = 2700 / SecondsPerHalf so
+    // a 45-game-minute half takes exactly this many real seconds at 70 Hz.
+    private int SecondsPerHalf => System.Math.Max(1, TotalMatchSeconds / 2);
 
     private enum Difficulty { Easy, Normal, Hard }
     private Difficulty _difficulty = Difficulty.Normal;
@@ -409,6 +415,9 @@ public partial class Main : Node2D
         // the SWOS port path is hard-wired to ONE GameLoop.Tick() per physics tick.
         Engine.PhysicsTicksPerSecond = 70;
 
+        // Load translation tables (res://data/i18n/*.tsv) BEFORE settings, so the
+        // persisted language index in settings resolves against loaded tables.
+        OpenSwos.Menu.Loc.LoadAll();
         LoadSettings();
 
         // --- Small-screen / handheld (R36S 640x480) detection ---
@@ -4284,11 +4293,11 @@ public partial class Main : Node2D
             OpponentMode.Demo => "Demo  (AI vs AI — autoplay)",
             _ => "?",
         };
-        // Each preset gives 45 in-game minutes per half, just compressed into less
-        // real time (matches SWOS gameLength setting, see gameTime.cpp:128-132).
-        string lengthTag = SecondsPerHalf < 60
-            ? $"{SecondsPerHalf} s real (45 game-min/half)"
-            : $"{SecondsPerHalf / 60} min real (45 game-min/half)";
+        // Preset = TOTAL real time for the whole match (both halves), matching the
+        // original SWOS gameLength setting (see gameTime.cpp:128-132).
+        string lengthTag = TotalMatchSeconds < 60
+            ? $"{TotalMatchSeconds} s real (whole match)"
+            : $"{TotalMatchSeconds / 60} min real (whole match)";
         string speedTag = $"x{_gameSpeedScale.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)}";
         // Difficulty + physics slots removed (task #183): difficulty only fed the
         // abandoned legacy AiSim, and the port is now the sole gameplay path.
@@ -6329,6 +6338,11 @@ public partial class Main : Node2D
             if (_menuBackground is not null) _menuBackground.Visible = false;
             if (_menuBgSprite is not null) _menuBgSprite.Visible = true;
             if (_menuClient is not null) _menuClient.Active = true;
+            // Hide the FULL TIME result panel — otherwise its last full-time
+            // sprites (scoreline + "FULL TIME" + scorer lines) stay Visible and
+            // bleed through under the HOME menu (UpdateSwosPortHud, the only other
+            // caller of SetResultPanelVisible, doesn't run in the menu state).
+            SetResultPanelVisible(false);
             return;
         }
 
@@ -8281,6 +8295,13 @@ public partial class Main : Node2D
             var mTouchOv = System.Text.RegularExpressions.Regex.Match(text,
                 "\"touchOverlay\"\\s*:\\s*(true|false)");
             if (mTouchOv.Success) _touchOverlayOn = mTouchOv.Groups[1].Value == "true";
+            // UI language (2-letter code, e.g. "en"/"pl"); default English.
+            var mLang = System.Text.RegularExpressions.Regex.Match(text,
+                "\"language\"\\s*:\\s*\"([a-z]{2})\"");
+            if (mLang.Success)
+                for (int li = 0; li < OpenSwos.Menu.Loc.Languages.Length; li++)
+                    if (OpenSwos.Menu.Loc.Languages[li].Code == mLang.Groups[1].Value)
+                    { OpenSwos.Menu.Loc.Current = li; break; }
             // Display mode: "windowed" / "fill" / "integer" (default windowed).
             // A persisted fullscreen mode also seeds _lastFullscreenMode so
             // Alt+Enter restores what the player last used.
@@ -8370,6 +8391,7 @@ public partial class Main : Node2D
                     OpenSwos.Audio.MenuMusic.MusicSource.Off => "off",
                     _ => "amiga",
                 }) + "\"" +
+                ",\"language\":\"" + OpenSwos.Menu.Loc.CurrentCode + "\"" +
                 "}";
             f.StoreString(json);
         }

@@ -89,8 +89,8 @@ public partial class Main : OpenSwos.Menu.IMenuHost
     // Cycle is: RANDOM (default) then each available pitch. RANDOM rolls a fresh
     // ground at every kick-off (RollRandomPitch, called from match init).
     string OpenSwos.Menu.IMenuHost.PitchLabel =>
-        _availablePitches.Count == 0 ? "(NONE)"
-        : _pitchRandom ? "RANDOM"
+        _availablePitches.Count == 0 ? OpenSwos.Menu.Loc.Tr("val.pitch_none", "(NONE)")
+        : _pitchRandom ? OpenSwos.Menu.Loc.Tr("val.pitch_random", "RANDOM")
         : $"SWCPICH{PitchId}  ({_pitchSlot + 1}/{_availablePitches.Count})";
 
     void OpenSwos.Menu.IMenuHost.StepPitch(int delta)
@@ -108,9 +108,9 @@ public partial class Main : OpenSwos.Menu.IMenuHost
     // ---- opponent ------------------------------------------------------------
     string OpenSwos.Menu.IMenuHost.OpponentLabel => _opponentMode switch
     {
-        OpponentMode.Ai => "AI",
-        OpponentMode.Player2 => "PLAYER 2  (WASD)",
-        OpponentMode.Demo => "DEMO  (AI V AI)",
+        OpponentMode.Ai => OpenSwos.Menu.Loc.Tr("val.opponent_ai", "AI"),
+        OpponentMode.Player2 => OpenSwos.Menu.Loc.Tr("val.opponent_player2", "PLAYER 2  (WASD)"),
+        OpponentMode.Demo => OpenSwos.Menu.Loc.Tr("val.opponent_demo", "DEMO  (AI V AI)"),
         _ => "?",
     };
 
@@ -119,7 +119,7 @@ public partial class Main : OpenSwos.Menu.IMenuHost
 
     // ---- length --------------------------------------------------------------
     string OpenSwos.Menu.IMenuHost.LengthLabel =>
-        SecondsPerHalf < 60 ? $"{SecondsPerHalf}S REAL  (45 MIN)" : $"{SecondsPerHalf / 60} MIN REAL  (45 MIN)";
+        TotalMatchSeconds < 60 ? $"{TotalMatchSeconds}S REAL  (WHOLE MATCH)" : $"{TotalMatchSeconds / 60} MIN REAL  (WHOLE MATCH)";
 
     void OpenSwos.Menu.IMenuHost.StepLength(int delta)
     {
@@ -353,8 +353,10 @@ public partial class Main : OpenSwos.Menu.IMenuHost
     {
         get
         {
-            string name = _soundSource == OpenSwos.Audio.MatchAudio.SoundSource.Amiga ? "AMIGA" : "PC";
-            return SoundSourceAvailable(_soundSource) ? name : name + " (N/A)";
+            string name = _soundSource == OpenSwos.Audio.MatchAudio.SoundSource.Amiga
+                ? OpenSwos.Menu.Loc.Tr("val.sound_amiga", "AMIGA")
+                : OpenSwos.Menu.Loc.Tr("val.sound_pc", "PC");
+            return SoundSourceAvailable(_soundSource) ? name : name + " (" + OpenSwos.Menu.Loc.Tr("common.na", "N/A") + ")";
         }
     }
 
@@ -395,14 +397,14 @@ public partial class Main : OpenSwos.Menu.IMenuHost
     };
     private static string MenuMusicName(OpenSwos.Audio.MenuMusic.MusicSource s) => s switch
     {
-        OpenSwos.Audio.MenuMusic.MusicSource.Amiga => "AMIGA",
-        OpenSwos.Audio.MenuMusic.MusicSource.Pc => "PC",
-        OpenSwos.Audio.MenuMusic.MusicSource.Custom => "CUSTOM",
-        _ => "OFF",
+        OpenSwos.Audio.MenuMusic.MusicSource.Amiga => OpenSwos.Menu.Loc.Tr("val.sound_amiga", "AMIGA"),
+        OpenSwos.Audio.MenuMusic.MusicSource.Pc => OpenSwos.Menu.Loc.Tr("val.sound_pc", "PC"),
+        OpenSwos.Audio.MenuMusic.MusicSource.Custom => OpenSwos.Menu.Loc.Tr("val.music_custom", "CUSTOM"),
+        _ => OpenSwos.Menu.Loc.Tr("val.music_off", "OFF"),
     };
     string OpenSwos.Menu.IMenuHost.MenuMusicLabel
     {
-        get { string n = MenuMusicName(_menuMusic); return MenuMusicSourceAvailable(_menuMusic) ? n : n + " (N/A)"; }
+        get { string n = MenuMusicName(_menuMusic); return MenuMusicSourceAvailable(_menuMusic) ? n : n + " (" + OpenSwos.Menu.Loc.Tr("common.na", "N/A") + ")"; }
     }
     void OpenSwos.Menu.IMenuHost.StepMenuMusic(int delta)
     {
@@ -438,6 +440,9 @@ public partial class Main : OpenSwos.Menu.IMenuHost
     string OpenSwos.Menu.IMenuHost.DisplayModeLabel => DisplayModeToLabel(_displayMode);
 
     void OpenSwos.Menu.IMenuHost.CycleDisplayMode() => CycleDisplayModeInternal();
+
+    // Persist the UI language after the user picks it in OPTIONS.
+    void OpenSwos.Menu.IMenuHost.OnLanguageChanged() => SaveSettings();
 
     // ---- team-config data ----------------------------------------------------
     OpenSwos.Assets.TeamRecord OpenSwos.Menu.IMenuHost.Team(int idx)

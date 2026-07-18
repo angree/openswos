@@ -1,0 +1,434 @@
+key	sw
+# COMMON
+common.back	RUDI
+common.continue	ENDELEA
+common.cancel	GHAIRI
+common.ok	SAWA
+common.on	WASHA
+common.off	ZIMA
+common.na	HAIPO
+common.none	HAKUNA
+common.versus	V
+common.page	UKURASA
+common.previous_page	UKURASA NYUMA
+common.next_page	UKURASA MBELE
+common.no_career_data	HAKUNA DATA YA KAZI
+common.no_squad_data	HAKUNA DATA YA KIKOSI
+common.player_not_available	MCHEZAJI HAYUPO
+common.player	MCHEZAJI
+common.budget	BAJETI
+common.sort	PANGA
+common.sort_by	PANGA KWA
+common.value	THAMANI
+common.skill	UJUZI
+common.age	UMRI
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	NAF
+col.team	TIMU
+col.name	JINA
+col.number	NA
+col.number_hash	#
+col.p	M
+col.w	U
+col.d	S
+col.l	K
+col.gf	MF
+col.ga	MD
+col.pts	PTS
+col.skl	UJZ
+col.skill	UJUZI
+col.pot	UWZ
+col.sta	NGV
+col.form	F
+col.fit	AFY
+col.val	THM
+col.nat	TAI
+col.club	KLB
+col.price	BEI
+col.spec	UTA
+col.quality	U
+col.wage	MSH
+col.fee	ADA
+col.amount	KIASI
+col.exp	MUD
+col.skill_row	PS NY PG KC DH KA MZ
+# HOME
+home.title	O P E N   S W O S
+home.play_match	CHEZA MECHI
+home.competitions	MASHINDANO
+home.multiplayer	WACHEZAJI WENGI
+home.team_setup	MPANGILIO TIMU
+home.options	MIPANGILIO
+home.career	KAZI
+home.exit	TOKA
+home.credit	NA GRZEGORZ KORYCKI
+home.continue_prefix	ENDELEA:
+# QUIT
+quit.title	TOKA
+quit.are_you_sure	UNA UHAKIKA?
+quit.quit_to_windows	TOKA KWENDA WINDOWS
+quit.return_to_game	RUDI KWENYE MCHEZO
+# FRIENDLY
+friendly.title	MECHI YA KIRAFIKI
+friendly.home	NYUMBANI
+friendly.away	UGENINI
+friendly.swap_teams	BADILISHA TIMU
+friendly.pitch	UWANJA
+friendly.opponent	MPINZANI
+friendly.half_length	UREFU KIPINDI
+friendly.game_speed	KASI YA MCHEZO
+friendly.kick_off	ANZA MECHI
+friendly.context	KIRAFIKI
+# VERSUS
+versus.play	CHEZA
+versus.view_result	ONA MATOKEO
+# STADIUM
+stadium.title	TIMU
+stadium.kick_off	ANZA MECHI
+stadium.edit_lineup	HARIRI KIKOSI
+# OPTIONS
+opt.title	MIPANGILIO
+opt.page	UKURASA
+opt.language	LUGHA
+opt.half_length	UREFU KIPINDI
+opt.game_speed	KASI YA MCHEZO
+opt.opponent	MPINZANI
+opt.pitch	UWANJA
+opt.skill_scaling	UPIMAJI UJUZI
+opt.skill_scaling_hint	UPIMAJI UJUZI KWA BEI HALISI YA SWOS
+opt.all_teams_equal	TIMU ZOTE SAWA
+opt.all_teams_equal_hint	SAWAZISHA NGUVU ZA TIMU ZA WACHEZAJI
+opt.pre_match_menus	MENYU KABLA YA MECHI
+opt.player_fatigue	UCHOVU WA MCHEZAJI
+opt.energy_bar	UPAU WA NGUVU
+opt.music	MUZIKI
+opt.music_hint	MUZIKI WA AMIGA / PC / MAALUM
+opt.sound	SAUTI
+opt.sound_hint	SAUTI ZA MECHI ZA PC AU AMIGA
+opt.display	ONYESHO
+opt.display_hint	F11 HUBADILI  ALT+ENTER SKRINI NZIMA
+# OPTION VALUES
+val.pitch_none	(HAKUNA)
+val.pitch_random	NASIBU
+val.opponent_ai	AI
+val.opponent_player2	MCHEZAJI 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	MAALUM
+val.music_off	ZIMA
+val.length_whole_match_seconds	%dS HALISI  (MECHI NZIMA)
+val.length_whole_match_minutes	%d DAK HALISI  (MECHI NZIMA)
+val.display_windowed	DIRISHANI
+val.display_full_fill	JAZA NZIMA
+val.display_full_integer	NZIMA KAMILI
+# LOCAL MULTIPLAYER
+mp.title	WACHEZAJI WA HAPO
+mp.controls_hint	MCHEZAJI 1: MISHALE+SPACE   MCHEZAJI 2: WASD+SHIFT
+mp.start	ANZA MECHI YA WACHEZAJI 2
+# PICKERS
+pick.continent	BARA
+pick.country	NCHI
+pick.your_team	TIMU YAKO
+pick.all_countries	NCHI ZOTE
+pick.all	ZOTE
+pick.select_country	CHAGUA NCHI
+pick.select_continent	CHAGUA BARA
+pick.select_your_team	CHAGUA TIMU YAKO
+pick.home_team	TIMU YA NYUMBANI
+pick.away_team	TIMU YA UGENINI
+pick.nothing_to_choose	HAKUNA CHA KUCHAGUA
+pick.item	KIPENGELE
+pick.more_down	ZAIDI v
+# DRAW CEREMONY
+draw.title_suffix	KURA
+# PLAY AGAIN
+playagain.title	MWISHO WA MECHI
+playagain.play_again	CHEZA TENA
+playagain.exit	TOKA
+# COMPETITIONS HUB
+comp.title	MASHINDANO
+comp.new_league	LIGI MPYA
+comp.new_cup	KOMBE JIPYA
+comp.new_tournament	MICHUANO MIPYA
+comp.preset_competition	MASHINDANO TAYARI
+comp.new_career	KAZI MPYA
+comp.load_game	PAKIA MCHEZO
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	LIGI MPYA
+setup.cup_title	KOMBE JIPYA
+setup.tournament_title	MICHUANO MIPYA
+setup.size	IDADI
+setup.teams_suffix	TIMU
+setup.entrants	WASHIRIKI
+setup.entrants_same_division	DIVISHENI MOJA
+setup.entrants_same_nation	TAIFA MOJA
+setup.entrants_random	NASIBU
+setup.rounds	RAUNDI
+setup.rounds_single	MOJA
+setup.rounds_double	MARA MBILI
+setup.groups	MAKUNDI
+setup.groups_of_4_suffix	MAKUNDI YA 4
+setup.create_league	TENGENEZA LIGI
+setup.create_cup	TENGENEZA KOMBE
+setup.create_tournament	TENGENEZA MICHUANO
+# CAREER SETUP
+career.title	KAZI MPYA
+career.blurb_seasons	LIGI NA KOMBE LA NDANI KILA MSIMU
+career.blurb_promotion	SHINDA LIGI UPANDE, MALIZA MWISHO USHUKE
+career.start	ANZA KAZI
+# MANAGER NAME ENTRY
+mgr.title	JINA LA MENEJA
+mgr.hint	ANDIKA JINA   KUSHOTO/KULIA CHEO   ENTER SAWA   ESC GHAIRI
+mgr.title_row	CHEO
+mgr.title_mr	BW
+mgr.title_ms	BI
+mgr.default_name	MCHEZAJI
+# COMPETITION DASHBOARD
+dash.play_next_match	CHEZA MECHI IJAYO
+dash.continue	ENDELEA
+dash.next_season	MSIMU UJAO
+dash.table	JEDWALI
+dash.fixtures	RATIBA
+dash.squad	KIKOSI
+dash.lineup	KIKOSI ANZA
+dash.transfers	USAJILI
+dash.staff	WAFANYAKAZI
+dash.scouting	UPELELEZI
+dash.record	REKODI
+dash.save_as	HIFADHI KAMA
+dash.retire	STAAFU
+dash.abandon	ACHANA
+dash.management_record	REKODI YA UONGOZI
+dash.status_retired	AMESTAAFU
+dash.status_champions	MABINGWA:
+dash.status_eliminated	AMETOLEWA
+dash.offers_prefix	MAOFA
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	MECHI IJAYO
+result.title	MWISHO WA MECHI
+result.label	MATOKEO
+# MANAGEMENT RECORD
+mrec.title	REKODI YA UONGOZI
+mrec.title_of_prefix	REKODI YA UONGOZI YA
+mrec.career_over	KAZI IMEISHA
+mrec.season	MSIMU
+mrec.div	DIV
+mrec.trophies	VIKOMBE
+mrec.none_yet	BADO HAKUNA
+mrec.history	HISTORIA
+mrec.first_season	MSIMU WA KWANZA UNAENDELEA
+# RETIRE CONFIRM
+retire.title	STAAFU
+retire.prompt	STAAFU KUTOKA UONGOZINI?
+retire.confirm	STAAFU
+# PRESET COMPETITIONS
+preset.title	MASHINDANO TAYARI
+preset.blurb	MASHINDANO HALISI YENYE TAARIFA HALISI
+preset.european_cup	KOMBE LA ULAYA
+preset.uefa_cup	KOMBE LA UEFA
+preset.cup_winners_cup	KOMBE LA WASHINDI WA KOMBE
+preset.world_cup	KOMBE LA DUNIA
+preset.european_championship	UBINGWA WA ULAYA
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	TIMU MTOANO
+preset.groups_then_knockout_suffix	MAKUNDI YA 4 KISHA MTOANO
+preset.create	TENGENEZA
+# SAVE AS / LOAD GAME
+save.title	HIFADHI KAMA
+save.hint	ANDIKA JINA LA NAFASI   ENTER SAWA   ESC GHAIRI
+save.saved_as_prefix	IMEHIFADHIWA KAMA
+load.title	PAKIA MCHEZO
+load.delete_mode	HALI YA KUFUTA
+load.no_saved_games	HAKUNA MICHEZO ILIYOHIFADHIWA
+# STANDINGS / FIXTURES
+table.title	JEDWALI
+table.group	KUNDI
+fixtures.title	RATIBA
+# TEAM SETUP
+teamcfg.title	MPANGILIO TIMU
+teamcfg.team	TIMU
+teamcfg.team_home_prefix	NYUMBANI
+teamcfg.team_away_prefix	UGENINI
+teamcfg.switch_home_away	BADILI NYUMBANI / UGENINI
+teamcfg.coach	KOCHI
+# COMPETITION ENGINE
+stage.league	LIGI
+stage.group_prefix	KUNDI
+stage.final	FAINALI
+stage.semi_final	NUSU FAINALI
+stage.quarter_final	ROBO FAINALI
+stage.round_of_16	RAUNDI YA 16
+stage.round_of_32	RAUNDI YA 32
+stage.round_of_prefix	RAUNDI YA
+stage.cup_prefix	KOMBE
+round.league_round	LIGI - RAUNDI
+round.competition_complete	MASHINDANO YAMEKAMILIKA
+round.no_fixtures	HAKUNA RATIBA
+status.no_player_team	HAKUNA TIMU YA MCHEZAJI
+status.you_are_champion	WEWE NI BINGWA
+status.you_are_prefix	WEWE NI
+status.you_are_unplaced	HUJAPANGWA
+status.you_were_eliminated	UMETOLEWA
+status.you_are_through	UMEPITA RAUNDI IJAYO
+status.you_are_in_prefix	UPO KATIKA
+status.you_are_in_the_prefix	UPO KATIKA
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	MSHINDI
+season.cup_runner_up	MSHINDI WA PILI
+season.cup_out_in_prefix	TOKA
+season.cup_out	TOKA
+season.trophy_league	MSIMU %d MABINGWA WA LIGI
+season.trophy_cup	MSIMU %d WASHINDI WA KOMBE
+season.history_line	S%d: LIGI %s, KOMBE %s
+season.history_retired	S%d: AMESTAAFU
+fixture.penalties_mark	P
+# CAREER SQUAD
+squad.title_suffix	KIKOSI
+squad.default_club	KLABU
+squad.player_action	HATUA YA MCHEZAJI
+squad.no_player_selected	HAKUNA MCHEZAJI ALIYECHAGULIWA
+squad.fit_injured	JRH
+# PLAYER ACTION
+paction.value_prefix	THAMANI
+paction.time_to_negotiate	MUDA WA KUJADILI
+paction.take_off_list	ONDOA KWENYE ORODHA
+paction.put_on_list	WEKA KWENYE ORODHA YA USAJILI
+paction.give_free_transfer	TOA BURE
+paction.off_list_prefix	NJE YA ORODHA
+paction.listed_prefix	KWENYE ORODHA
+paction.list_full_prefix	ORODHA IMEJAA (KIWANGO
+# FREE TRANSFER
+free.title	USAJILI WA BURE
+free.confirm_prompt	ACHIA %s BURE?
+free.release	ACHIA
+free.released_prefix	AMEACHIWA
+free.squad_too_small	KIKOSI KIDOGO SANA
+free.release_failed	KUACHIA KUMESHINDIKANA
+# LINEUP EDITOR
+lineup.title	KIKOSI CHA TIMU
+lineup.auto	OTOMATIKI
+lineup.hint	JUU/CHINI MSTARI   BONYEZA CHAGUA/BADILI   ESC RUDI
+lineup.picked_prefix	IMECHAGULIWA
+lineup.picked_swap_hint	- BONYEZA MSTARI KUBADILI
+lineup.unmarked_prefix	IMEONDOLEWA
+lineup.slot_not_available	NAFASI HAIPO
+lineup.goal_needs_keeper	NAFASI YA GOLI INAHITAJI KIPA
+lineup.swapped_prefix	IMEBADILISHWA
+lineup.swapped_and	NA
+lineup.auto_restored	KIKOSI OTOMATIKI KIMERUDISHWA
+lineup.auto_label	KIKOSI OTOMATIKI
+lineup.custom_label	KIKOSI MAALUM
+lineup.slot	NAFASI
+lineup.slot_gk	GK
+lineup.slot_sub	MBD
+# STAFF
+staff.title	WAFANYAKAZI
+staff.coach	KOCHI
+staff.fire_selected	FUKUZA ALIYECHAGULIWA
+staff.hire_coach	AJIRI KOCHI
+staff.training_focus	LENGO LA MAZOEZI
+staff.no_coach_selected	HAKUNA KOCHI ALIYECHAGULIWA
+staff.no_coaches	HAKUNA MAKOCHI
+# FIRE COACH
+firecoach.title	FUKUZA KOCHI
+firecoach.coach_not_available	KOCHI HAYUPO
+firecoach.severance_prefix	FIDIA
+firecoach.fire	FUKUZA
+firecoach.fired_prefix	AMEFUKUZWA
+# HIRE COACH
+hire.title	AJIRI KOCHI
+hire.candidate	MGOMBEA
+hire.hire	AJIRI
+hire.hired_prefix	AMEAJIRIWA
+# TRAINING FOCUS
+focus.title	LENGO LA MAZOEZI
+focus.toggle	BADILI LENGO
+focus.removed_prefix	AMEONDOLEWA
+focus.focused_prefix	AMELENGWA
+focus.max_prefix	KIWANGO
+focus.max_suffix	WACHEZAJI WA LENGO
+focus.mark	*
+# SCOUTING
+scout.title	UPELELEZI
+scout.scout_player	PELELEZA MCHEZAJI
+scout.improve_prefix	BORESHA UPELELEZI
+scout.maxed	UPELELEZI KIWANGO CHA JUU
+scout.unavailable	UPELELEZI HAUPO
+scout.quality_prefix	UBORA WA UPELELEZI
+scout.no_watched	HAKUNA WACHEZAJI WANAOFUATILIWA
+scout.scout_selected	PELELEZA ALIYECHAGULIWA
+scout.scout_prefix	PELELEZA
+scout.scouted_prefix	AMEPELELEZWA
+scout.cost_prefix	GHARAMA
+scout.no_players_available	HAKUNA WACHEZAJI
+# TRANSFER MARKET
+market.title	SOKO LA USAJILI
+market.max_price	BEI YA JUU
+market.buy_selected	NUNUA ALIYECHAGULIWA
+market.no_player_selected	HAKUNA MCHEZAJI ALIYECHAGULIWA
+market.free_agent	HURU
+market.club_fallback_prefix	KLABU
+market.price_any	YOYOTE
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	NUNUA MCHEZAJI
+buy.asking_prefix	BEI
+buy.your_bid	ZABUNI YAKO
+buy.make_bid	TOA ZABUNI
+buy.club_unwilling	KLABU HAITAKI KUNUNUA WACHEZAJI
+buy.no_time	HAKUNA MUDA ZAIDI WA KUJADILI
+buy.enter_a_bid	WEKA ZABUNI
+buy.not_enough_money	PESA HAZITOSHI
+buy.bought_prefix	AMENUNULIWA
+buy.squad_full	KIKOSI KIMEJAA
+buy.transfer_failed	USAJILI UMESHINDIKANA
+buy.counter_prefix	WANATAKA
+buy.rejected	ZABUNI NDOGO - IMEKATALIWA
+# INCOMING OFFERS
+offers.title	OFA ZA USAJILI
+offers.no_offers	HAKUNA OFA
+offers.offer	OFA
+offers.accept	KUBALI
+offers.demand_more	DAI ZAIDI
+offers.reject	KATAA
+offers.header_negotiate_prefix	MUDA WA KUJADILI
+offers.header_sells	MAUZO
+offers.not_available	OFA HAIPO
+offers.sold_prefix	AMEUZWA
+offers.sold_for	KWA
+offers.squad_too_small	KIKOSI KIDOGO SANA
+offers.accept_failed	KUKUBALI KUMESHINDIKANA
+offers.improved_prefix	IMEPANDA HADI
+offers.withdrawn	OFA IMEONDOLEWA
+offers.refused	WANAKATAA KULIPA ZAIDI
+offers.rejected	OFA IMEKATALIWA
+# MATCH HUD / OVERLAYS
+hud.half_time	MAPUMZIKO
+hud.full_time	MWISHO WA MECHI
+hud.penalties	PENALTI
+hud.paused	IMESIMAMISHWA
+hud.pause_resume_hint	space  endelea
+hud.pause_quit_hint	ESC    toka kwenye menyu
+hud.goal	BAO!
+hud.throw_in	KURUSHA NDANI
+hud.corner	KONA
+hud.goal_kick	MTEKO WA GOLI
+hud.press_space	bonyeza space
+hud.team_home_fallback	NYUMBANI
+hud.team_away_fallback	UGENINI
+goal.type_penalty	(PEN)
+goal.type_own_goal	(OG)

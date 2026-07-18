@@ -1,0 +1,434 @@
+key	ms
+# COMMON
+common.back	KEMBALI
+common.continue	TERUSKAN
+common.cancel	BATAL
+common.ok	OK
+common.on	HIDUP
+common.off	MATI
+common.na	N/A
+common.none	TIADA
+common.versus	V
+common.page	HAL
+common.previous_page	HAL SEBELUM
+common.next_page	HAL BERIKUT
+common.no_career_data	TIADA DATA KERJAYA
+common.no_squad_data	TIADA DATA SKUAD
+common.player_not_available	PEMAIN TIADA
+common.player	PEMAIN
+common.budget	BAJET
+common.sort	SUSUN
+common.sort_by	SUSUN IKUT
+common.value	NILAI
+common.skill	KEMAHIRAN
+common.age	UMUR
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POS
+col.team	PSK
+col.name	NAMA
+col.number	NO
+col.number_hash	#
+col.p	P
+col.w	M
+col.d	S
+col.l	K
+col.gf	GM
+col.ga	GT
+col.pts	MT
+col.skl	KMH
+col.skill	KMH
+col.pot	POT
+col.sta	STA
+col.form	F
+col.fit	FIT
+col.val	NLI
+col.nat	NEG
+col.club	KELAB
+col.price	HRG
+col.spec	PKR
+col.quality	K
+col.wage	GAJI
+col.fee	FI
+col.amount	JML
+col.exp	TMT
+col.skill_row	HT TK TB KP KW LJ PN
+# HOME
+home.title	O P E N   S W O S
+home.play_match	MAIN PERLAWANAN
+home.competitions	PERTANDINGAN
+home.multiplayer	MULTIPLAYER
+home.team_setup	TETAPAN PASUKAN
+home.options	PILIHAN
+home.career	KERJAYA
+home.exit	KELUAR
+home.credit	OLEH GRZEGORZ KORYCKI
+home.continue_prefix	SAMBUNG:
+# QUIT
+quit.title	KELUAR
+quit.are_you_sure	ANDA PASTI?
+quit.quit_to_windows	KELUAR KE WINDOWS
+quit.return_to_game	KEMBALI KE PERMAINAN
+# FRIENDLY
+friendly.title	PERLAWANAN MESRA
+friendly.home	TUAN RUMAH
+friendly.away	PELAWAT
+friendly.swap_teams	TUKAR PASUKAN
+friendly.pitch	PADANG
+friendly.opponent	LAWAN
+friendly.half_length	TEMPOH SEPARUH
+friendly.game_speed	KELAJUAN PERMAINAN
+friendly.kick_off	SEPAK MULA
+friendly.context	MESRA
+# VERSUS
+versus.play	MAIN
+versus.view_result	LIHAT KEPUTUSAN
+# STADIUM
+stadium.title	PASUKAN
+stadium.kick_off	SEPAK MULA
+stadium.edit_lineup	UBAH BARISAN
+# OPTIONS
+opt.title	PILIHAN
+opt.page	HAL
+opt.language	BAHASA
+opt.half_length	TEMPOH SEPARUH
+opt.game_speed	KELAJUAN PERMAINAN
+opt.opponent	LAWAN
+opt.pitch	PADANG
+opt.skill_scaling	SKALA KEMAHIRAN
+opt.skill_scaling_hint	SKALA KEMAHIRAN HARGA PEMAIN SWOS SEBENAR
+opt.all_teams_equal	SEMUA PASUKAN SAMA
+opt.all_teams_equal_hint	SAMAKAN KEKUATAN PASUKAN PEMAIN
+opt.pre_match_menus	MENU PRA PERLAWANAN
+opt.player_fatigue	KELETIHAN PEMAIN
+opt.energy_bar	BAR TENAGA
+opt.music	MUZIK
+opt.music_hint	MUZIK MENU AMIGA / PC / TERSUAI
+opt.sound	BUNYI
+opt.sound_hint	BUNYI PERLAWANAN PC ATAU AMIGA
+opt.display	PAPARAN
+opt.display_hint	F11 KITAR  ALT+ENTER TOGOL SKRIN PENUH
+# OPTION VALUES
+val.pitch_none	(TIADA)
+val.pitch_random	RAWAK
+val.opponent_ai	AI
+val.opponent_player2	PEMAIN 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	TERSUAI
+val.music_off	MATI
+val.length_whole_match_seconds	%dS SEBENAR  (SELURUH PERLAWANAN)
+val.length_whole_match_minutes	%d MIN SEBENAR  (SELURUH PERLAWANAN)
+val.display_windowed	TETINGKAP
+val.display_full_fill	ISI PENUH
+val.display_full_integer	INTEGER PENUH
+# LOCAL MULTIPLAYER
+mp.title	MULTIPLAYER SETEMPAT
+mp.controls_hint	PEMAIN 1: ANAK PANAH+SPACE   PEMAIN 2: WASD+SHIFT
+mp.start	MULA PERLAWANAN 2 PEMAIN
+# PICKERS
+pick.continent	BENUA
+pick.country	NEGARA
+pick.your_team	PASUKAN ANDA
+pick.all_countries	SEMUA NEGARA
+pick.all	SEMUA
+pick.select_country	PILIH NEGARA
+pick.select_continent	PILIH BENUA
+pick.select_your_team	PILIH PASUKAN ANDA
+pick.home_team	PASUKAN TUAN RUMAH
+pick.away_team	PASUKAN PELAWAT
+pick.nothing_to_choose	TIADA PILIHAN
+pick.item	ITEM
+pick.more_down	LAGI v
+# DRAW CEREMONY
+draw.title_suffix	CABUTAN
+# PLAY AGAIN
+playagain.title	MASA PENUH
+playagain.play_again	MAIN LAGI
+playagain.exit	KELUAR
+# COMPETITIONS HUB
+comp.title	PERTANDINGAN
+comp.new_league	LIGA BARU
+comp.new_cup	PIALA BARU
+comp.new_tournament	KEJOHANAN BARU
+comp.preset_competition	PERTANDINGAN SEDIA ADA
+comp.new_career	KERJAYA BARU
+comp.load_game	MUAT PERMAINAN
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	LIGA BARU
+setup.cup_title	PIALA BARU
+setup.tournament_title	KEJOHANAN BARU
+setup.size	SAIZ
+setup.teams_suffix	PASUKAN
+setup.entrants	PESERTA
+setup.entrants_same_division	DIVISYEN SAMA
+setup.entrants_same_nation	NEGARA SAMA
+setup.entrants_random	RAWAK
+setup.rounds	PUSINGAN
+setup.rounds_single	SEKALI
+setup.rounds_double	DUA KALI
+setup.groups	KUMPULAN
+setup.groups_of_4_suffix	KUMPULAN 4
+setup.create_league	CIPTA LIGA
+setup.create_cup	CIPTA PIALA
+setup.create_tournament	CIPTA KEJOHANAN
+# CAREER SETUP
+career.title	KERJAYA BARU
+career.blurb_seasons	LIGA DAN PIALA TEMPATAN SETIAP MUSIM
+career.blurb_promotion	MENANG LIGA UNTUK NAIK, DUDUK AKHIR TURUN
+career.start	MULA KERJAYA
+# MANAGER NAME ENTRY
+mgr.title	NAMA PENGURUS
+mgr.hint	TAIP NAMA   KIRI/KANAN GELARAN   ENTER OK   ESC BATAL
+mgr.title_row	GELARAN
+mgr.title_mr	EN
+mgr.title_ms	CIK
+mgr.default_name	PEMAIN
+# COMPETITION DASHBOARD
+dash.play_next_match	MAIN SETERUSNYA
+dash.continue	TERUSKAN
+dash.next_season	MUSIM SETERUSNYA
+dash.table	JADUAL
+dash.fixtures	PERLAWANAN
+dash.squad	SKUAD
+dash.lineup	BARISAN
+dash.transfers	PEMINDAHAN
+dash.staff	KAKITANGAN
+dash.scouting	TINJAUAN
+dash.record	REKOD
+dash.save_as	SIMPAN SEBAGAI
+dash.retire	BERSARA
+dash.abandon	TINGGALKAN
+dash.management_record	REKOD PENGURUSAN
+dash.status_retired	BERSARA
+dash.status_champions	JUARA:
+dash.status_eliminated	TERSINGKIR
+dash.offers_prefix	TAWARAN
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	PERLAWANAN SETERUSNYA
+result.title	MASA PENUH
+result.label	KEPUTUSAN
+# MANAGEMENT RECORD
+mrec.title	REKOD PENGURUSAN
+mrec.title_of_prefix	REKOD PENGURUSAN OLEH
+mrec.career_over	KERJAYA TAMAT
+mrec.season	MUSIM
+mrec.div	DIV
+mrec.trophies	TROFI
+mrec.none_yet	BELUM ADA
+mrec.history	SEJARAH
+mrec.first_season	MUSIM PERTAMA BERLANGSUNG
+# RETIRE CONFIRM
+retire.title	BERSARA
+retire.prompt	BERSARA DARI PENGURUSAN?
+retire.confirm	BERSARA
+# PRESET COMPETITIONS
+preset.title	PERTANDINGAN SEDIA ADA
+preset.blurb	PERTANDINGAN SEBENAR DENGAN PESERTA SEBENAR
+preset.european_cup	PIALA EROPAH
+preset.uefa_cup	PIALA UEFA
+preset.cup_winners_cup	PIALA PEMENANG PIALA
+preset.world_cup	PIALA DUNIA
+preset.european_championship	KEJOHANAN EROPAH
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	PASUKAN KALAH MATI
+preset.groups_then_knockout_suffix	KUMPULAN 4 KEMUDIAN KALAH MATI
+preset.create	CIPTA
+# SAVE AS / LOAD GAME
+save.title	SIMPAN SEBAGAI
+save.hint	TAIP NAMA SLOT   ENTER OK   ESC BATAL
+save.saved_as_prefix	DISIMPAN SEBAGAI
+load.title	MUAT PERMAINAN
+load.delete_mode	MOD PADAM
+load.no_saved_games	TIADA SIMPANAN
+# STANDINGS / FIXTURES
+table.title	JADUAL
+table.group	KUMPULAN
+fixtures.title	PERLAWANAN
+# TEAM SETUP
+teamcfg.title	TETAPAN PASUKAN
+teamcfg.team	PASUKAN
+teamcfg.team_home_prefix	TUAN RUMAH
+teamcfg.team_away_prefix	PELAWAT
+teamcfg.switch_home_away	TUKAR RUMAH / PELAWAT
+teamcfg.coach	JURULATIH
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	KUMPULAN
+stage.final	AKHIR
+stage.semi_final	SEPARUH AKHIR
+stage.quarter_final	SUKU AKHIR
+stage.round_of_16	PUSINGAN 16
+stage.round_of_32	PUSINGAN 32
+stage.round_of_prefix	PUSINGAN
+stage.cup_prefix	PIALA
+round.league_round	LIGA - PUSINGAN
+round.competition_complete	PERTANDINGAN TAMAT
+round.no_fixtures	TIADA PERLAWANAN
+status.no_player_team	TIADA PASUKAN PEMAIN
+status.you_are_champion	ANDA JUARA
+status.you_are_prefix	ANDA
+status.you_are_unplaced	ANDA TIADA KEDUDUKAN
+status.you_were_eliminated	ANDA TERSINGKIR
+status.you_are_through	ANDA LAYAK KE PUSINGAN SETERUSNYA
+status.you_are_in_prefix	ANDA DALAM
+status.you_are_in_the_prefix	ANDA DI
+ord.st	ST
+ord.nd	ND
+ord.rd	RD
+ord.th	TH
+season.cup_winner	JUARA
+season.cup_runner_up	NAIB JUARA
+season.cup_out_in_prefix	TERSINGKIR DI
+season.cup_out	TERSINGKIR
+season.trophy_league	JUARA LIGA MUSIM %d
+season.trophy_cup	JUARA PIALA MUSIM %d
+season.history_line	S%d: LIGA %s, PIALA %s
+season.history_retired	S%d: BERSARA
+fixture.penalties_mark	P
+# CAREER SQUAD
+squad.title_suffix	SKUAD
+squad.default_club	KELAB
+squad.player_action	TINDAKAN PEMAIN
+squad.no_player_selected	TIADA PEMAIN DIPILIH
+squad.fit_injured	CDR
+# PLAYER ACTION
+paction.value_prefix	NILAI
+paction.time_to_negotiate	MASA RUNDING
+paction.take_off_list	KELUAR DARI SENARAI
+paction.put_on_list	MASUK SENARAI PINDAH
+paction.give_free_transfer	BERI PINDAH PERCUMA
+paction.off_list_prefix	KELUAR SENARAI
+paction.listed_prefix	DISENARAI
+paction.list_full_prefix	SENARAI PENUH (MAX
+# FREE TRANSFER
+free.title	PINDAH PERCUMA
+free.confirm_prompt	LEPASKAN %s PERCUMA?
+free.release	LEPASKAN
+free.released_prefix	DILEPASKAN
+free.squad_too_small	SKUAD TERLALU KECIL
+free.release_failed	GAGAL LEPASKAN
+# LINEUP EDITOR
+lineup.title	BARISAN PASUKAN
+lineup.auto	AUTO
+lineup.hint	ATAS/BAWAH BARIS   FIRE PILIH/TUKAR   ESC KEMBALI
+lineup.picked_prefix	DIPILIH
+lineup.picked_swap_hint	- FIRE BARIS UNTUK TUKAR
+lineup.unmarked_prefix	NYAHTANDA
+lineup.slot_not_available	SLOT TIADA
+lineup.goal_needs_keeper	SLOT GOL PERLU PENJAGA
+lineup.swapped_prefix	DITUKAR
+lineup.swapped_and	DAN
+lineup.auto_restored	BARISAN AUTO DIPULIH
+lineup.auto_label	BARISAN AUTO
+lineup.custom_label	BARISAN TERSUAI
+lineup.slot	SLOT
+lineup.slot_gk	PG
+lineup.slot_sub	GNT
+# STAFF
+staff.title	KAKITANGAN
+staff.coach	JURULATIH
+staff.fire_selected	PECAT DIPILIH
+staff.hire_coach	AMBIL JURULATIH
+staff.training_focus	FOKUS LATIHAN
+staff.no_coach_selected	TIADA JURULATIH DIPILIH
+staff.no_coaches	TIADA JURULATIH
+# FIRE COACH
+firecoach.title	PECAT JURULATIH
+firecoach.coach_not_available	JURULATIH TIADA
+firecoach.severance_prefix	PAMPASAN
+firecoach.fire	PECAT
+firecoach.fired_prefix	DIPECAT
+# HIRE COACH
+hire.title	AMBIL JURULATIH
+hire.candidate	CALON
+hire.hire	AMBIL
+hire.hired_prefix	DIAMBIL
+# TRAINING FOCUS
+focus.title	FOKUS LATIHAN
+focus.toggle	TOGOL FOKUS
+focus.removed_prefix	DIBUANG
+focus.focused_prefix	DIFOKUS
+focus.max_prefix	MAX
+focus.max_suffix	PEMAIN FOKUS
+focus.mark	*
+# SCOUTING
+scout.title	TINJAUAN
+scout.scout_player	TINJAU PEMAIN
+scout.improve_prefix	TINGKATKAN TINJAUAN
+scout.maxed	TINJAUAN MAKS
+scout.unavailable	TINJAUAN TIADA
+scout.quality_prefix	KUALITI TINJAU
+scout.no_watched	TIADA PEMAIN DIPANTAU
+scout.scout_selected	TINJAU DIPILIH
+scout.scout_prefix	TINJAU
+scout.scouted_prefix	DITINJAU
+scout.cost_prefix	KOS
+scout.no_players_available	TIADA PEMAIN
+# TRANSFER MARKET
+market.title	PASARAN PINDAH
+market.max_price	HARGA MAX
+market.buy_selected	BELI DIPILIH
+market.no_player_selected	TIADA PEMAIN DIPILIH
+market.free_agent	AGEN BEBAS
+market.club_fallback_prefix	KELAB
+market.price_any	SEMUA
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	BELI PEMAIN
+buy.asking_prefix	MINTA
+buy.your_bid	TAWARAN ANDA
+buy.make_bid	BUAT TAWARAN
+buy.club_unwilling	KELAB ENGGAN BELI PEMAIN
+buy.no_time	TIADA MASA RUNDING LAGI
+buy.enter_a_bid	MASUKKAN TAWARAN
+buy.not_enough_money	WANG TAK CUKUP
+buy.bought_prefix	DIBELI
+buy.squad_full	SKUAD PENUH
+buy.transfer_failed	PINDAH GAGAL
+buy.counter_prefix	MEREKA BALAS PADA
+buy.rejected	TAWARAN RENDAH - DITOLAK
+# INCOMING OFFERS
+offers.title	TAWARAN PINDAH
+offers.no_offers	TIADA TAWARAN
+offers.offer	TAWARAN
+offers.accept	TERIMA
+offers.demand_more	MINTA LEBIH
+offers.reject	TOLAK
+offers.header_negotiate_prefix	MASA RUNDING
+offers.header_sells	JUAL
+offers.not_available	TAWARAN TIADA
+offers.sold_prefix	DIJUAL
+offers.sold_for	PADA
+offers.squad_too_small	SKUAD TERLALU KECIL
+offers.accept_failed	GAGAL TERIMA
+offers.improved_prefix	DINAIKKAN KE
+offers.withdrawn	TAWARAN DITARIK
+offers.refused	MEREKA ENGGAN BAYAR LEBIH
+offers.rejected	TAWARAN DITOLAK
+# MATCH HUD / OVERLAYS
+hud.half_time	SEPARUH MASA
+hud.full_time	MASA PENUH
+hud.penalties	PENALTI
+hud.paused	JEDA
+hud.pause_resume_hint	space  sambung
+hud.pause_quit_hint	ESC    keluar ke menu
+hud.goal	GOL!
+hud.throw_in	LONTARAN
+hud.corner	SEPAK SUDUT
+hud.goal_kick	SEPAK GOL
+hud.press_space	tekan space
+hud.team_home_fallback	TUAN RUMAH
+hud.team_away_fallback	PELAWAT
+goal.type_penalty	(PEN)
+goal.type_own_goal	(GS)

@@ -12,11 +12,13 @@ using OpenSwos.SwosVm;
 // setup (career match OR the master OPTIONS toggle) and never toggled
 // mid-match, keeping the lockstep-netplay sim tick fully deterministic.
 //
-// INTEGER-ONLY: no float, no RNG, no engine calls. Energy lives in the
-// deterministic Memory pool (slot padding bytes 110..127, see PlayerSprite),
-// so it participates in save/replay/netplay state identically to every other
-// sprite field. Memory word reads are unsigned (Memory.ReadWord => ushort) and
-// energy is always in 0..4096, so it fits a word with room to spare.
+// INTEGER-ONLY, no float, no engine calls. Energy lives in the deterministic
+// Memory pool (slot padding bytes 110..127, see PlayerSprite), so it participates
+// in save/replay/netplay state identically to every other sprite field. Memory
+// word reads are unsigned (Memory.ReadWord => ushort) and energy is always in
+// 0..4096, so it fits a word with room to spare. The event drains at the bottom
+// use the DETERMINISTIC sim Rng (lockstep-safe — see the note there); the
+// per-tick DrainSlot is pure integer with no RNG.
 // ============================================================================
 public static class PlayerEnergy
 {
@@ -30,19 +32,19 @@ public static class PlayerEnergy
     public static bool EffectEnabled;
 
     // Per-tick effort added to the drain accumulator while a player is moving.
-    // The drain rate is (effort / divisor). The ORIGINAL fast rate was effort 10
-    // over divisor (8+stamina); the user asked for that ÷ 2.3. We keep integer
-    // math by scaling BOTH sides ×10 and folding 2.3 into the divisor (×23):
-    // effort 100, divisor (8+stamina)×23  →  rate = 100/((8+s)×23) = (10/(8+s))/2.3.
+    // The drain rate is (effort / divisor); a player loses 1 energy point each time
+    // the accumulator reaches `divisor`. effort 100 keeps the integer math coarse
+    // enough that the stamina spread below stays smooth.
     private const int kMoveEffort    = 100;  // outfield
     private const int kKeeperEffort  = 20;   // keeper drains ~5x slower
-    // Stamina→drain flattening. divisor = (kStaminaFloor + stamina) * kDivisorScale.
-    // The FLOOR (29) dominates so a stamina-1 player drains only ~1.2x faster than
-    // stamina-7 (was (8+stamina)*23 → 1.87x, which felt like 2-2.5x in game once
-    // the lower start + compounding were added). Mid-stamina rate ≈ the /2.3 the
-    // user approved: 100/((29+4)*8)=0.38.
-    private const int kStaminaFloor  = 29;
-    private const int kDivisorScale  = 8;
+    // Stamina→drain (durability). divisor = (kStaminaFloor + stamina) * kDivisorScale;
+    // higher divisor = slower drain = more durability. Tuned to the user's spec:
+    //   - stamina-7 vs stamina-1 durability ratio = 1.67:
+    //     (8+7)/(8+1) = 15/9 = 1.667.
+    //   - whole reserve ×0.9 vs the 1.40 tune (players ran out too easily-late):
+    //     mid (stamina4) (8+4)*24 = 288 vs the old (14+4)*18 = 324 → 0.89×.
+    private const int kStaminaFloor  = 8;
+    private const int kDivisorScale  = 24;
 
     // Reset before a new match's team load. Energy itself is (re)seeded per
     // player by SeedSlot during TeamDataLoader.WritePlayerInfos.
@@ -128,5 +130,46 @@ public static class PlayerEnergy
         if (globalSlot < 0 || globalSlot >= OpenSwos.SwosVm.PlayerSprite.TotalSlots) return Max;
         return OpenSwos.SwosVm.Memory.ReadWord(
             OpenSwos.SwosVm.PlayerSprite.Base(globalSlot) + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
+    }
+
+    // ---- event drains (RNG) --------------------------------------------------
+    // These consume the DETERMINISTIC sim Rng (same stream as duels/injuries), so
+    // they stay lockstep-safe: both netplay peers share the fixed per-match
+    // EffectEnabled setting, so they draw identically. Gated on EffectEnabled, so
+    // when fatigue is off the RNG stream is untouched.
+
+    // Being tackled costs a random 1..5% of the tackled player's CURRENT energy
+    // (user spec). A slide tackle takes it out of you.
+    public static void DrainOnTackle(int spriteAddr)
+    {
+        if (!EffectEnabled) return;
+        int energy = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
+        if (energy <= 0) return;
+        int pct = 1 + (Rng.NextByte() % 5);   // 1..5
+        energy = System.Math.Max(0, energy - energy * pct / 100);
+        OpenSwos.SwosVm.Memory.WriteWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy, energy);
+    }
+
+    // A keeper tires per ball caught/held: a random 1..3% of current energy (user
+    // spec). This is the keeper's main fatigue source (they barely move).
+    public static void DrainOnKeeperCatch(int spriteAddr)
+    {
+        if (!EffectEnabled) return;
+        int energy = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
+        if (energy <= 0) return;
+        int pct = 1 + (Rng.NextByte() % 3);   // 1..3
+        energy = System.Math.Max(0, energy - energy * pct / 100);
+        OpenSwos.SwosVm.Memory.WriteWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy, energy);
+    }
+
+    // Keeper save-skill penalty from fatigue (user spec): a tired keeper saves
+    // worse. -1 skill point at <=50% energy, -2 at <=20%. Gated on EffectEnabled.
+    public static int KeeperSkillPenalty(int spriteAddr)
+    {
+        if (!EffectEnabled) return 0;
+        int energy = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
+        if (energy <= Max * 20 / 100) return 2;
+        if (energy <= Max * 50 / 100) return 1;
+        return 0;
     }
 }

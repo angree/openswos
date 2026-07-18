@@ -1,0 +1,434 @@
+key	fr
+# COMMON
+common.back	RETOUR
+common.continue	CONTINUER
+common.cancel	ANNULER
+common.ok	OK
+common.on	OUI
+common.off	NON
+common.na	N/D
+common.none	AUCUN
+common.versus	V
+common.page	PAGE
+common.previous_page	PAGE PRECEDENTE
+common.next_page	PAGE SUIVANTE
+common.no_career_data	AUCUNE CARRIERE
+common.no_squad_data	AUCUN EFFECTIF
+common.player_not_available	JOUEUR INDISPONIBLE
+common.player	JOUEUR
+common.budget	BUDGET
+common.sort	TRIER
+common.sort_by	TRIER PAR
+common.value	VALEUR
+common.skill	NIVEAU
+common.age	AGE
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POS
+col.team	EQUIPE
+col.name	NOM
+col.number	NO
+col.number_hash	#
+col.p	J
+col.w	G
+col.d	N
+col.l	P
+col.gf	BP
+col.ga	BC
+col.pts	PTS
+col.skl	NIV
+col.skill	NIV
+col.pot	POT
+col.sta	END
+col.form	F
+col.fit	COND
+col.val	VAL
+col.nat	NAT
+col.club	CLUB
+col.price	PRIX
+col.spec	SPEC
+col.quality	Q
+col.wage	SAL
+col.fee	FRAIS
+col.amount	MONT
+col.exp	EXP
+col.skill_row	PA TA TI TE CO VI FI
+# HOME
+home.title	O P E N   S W O S
+home.play_match	JOUER MATCH
+home.competitions	COMPETITIONS
+home.multiplayer	MULTIJOUEUR
+home.team_setup	CONFIG EQUIPE
+home.options	OPTIONS
+home.career	CARRIERE
+home.exit	QUITTER
+home.credit	PAR GRZEGORZ KORYCKI
+home.continue_prefix	CONTINUER:
+# QUIT
+quit.title	QUITTER
+quit.are_you_sure	ETES-VOUS SUR?
+quit.quit_to_windows	QUITTER VERS WINDOWS
+quit.return_to_game	RETOUR AU JEU
+# FRIENDLY
+friendly.title	MATCH AMICAL
+friendly.home	DOMICILE
+friendly.away	EXTERIEUR
+friendly.swap_teams	INVERSER EQUIPES
+friendly.pitch	TERRAIN
+friendly.opponent	ADVERSAIRE
+friendly.half_length	DUREE MI-TEMPS
+friendly.game_speed	VITESSE JEU
+friendly.kick_off	COUP D'ENVOI
+friendly.context	AMICAL
+# VERSUS
+versus.play	JOUER
+versus.view_result	VOIR RESULTAT
+# STADIUM
+stadium.title	EQUIPES
+stadium.kick_off	COUP D'ENVOI
+stadium.edit_lineup	MODIF COMPO
+# OPTIONS
+opt.title	OPTIONS
+opt.page	PAGE
+opt.language	LANGUE
+opt.half_length	DUREE MI-TEMPS
+opt.game_speed	VITESSE JEU
+opt.opponent	ADVERSAIRE
+opt.pitch	TERRAIN
+opt.skill_scaling	ECHELLE NIVEAU
+opt.skill_scaling_hint	ECHELLE NIVEAU PRIX JOUEUR SWOS FIDELE
+opt.all_teams_equal	EQUIPES EGALES
+opt.all_teams_equal_hint	EGALISE LA FORCE DES EQUIPES JOUEUR
+opt.pre_match_menus	MENUS AVANT MATCH
+opt.player_fatigue	FATIGUE JOUEUR
+opt.energy_bar	BARRE ENERGIE
+opt.music	MUSIQUE
+opt.music_hint	MUSIQUE MENU AMIGA / PC / PERSO
+opt.sound	SON
+opt.sound_hint	SONS DE MATCH PC OU AMIGA
+opt.display	AFFICHAGE
+opt.display_hint	F11 DEFILE  ALT+ENTER PLEIN ECRAN
+# OPTION VALUES
+val.pitch_none	(AUCUN)
+val.pitch_random	ALEATOIRE
+val.opponent_ai	IA
+val.opponent_player2	JOUEUR 2  (WASD)
+val.opponent_demo	DEMO  (IA V IA)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	PERSO
+val.music_off	AUCUNE
+val.length_whole_match_seconds	%dS REEL  (MATCH ENTIER)
+val.length_whole_match_minutes	%d MIN REEL  (MATCH ENTIER)
+val.display_windowed	FENETRE
+val.display_full_fill	PLEIN ETIRE
+val.display_full_integer	PLEIN ENTIER
+# LOCAL MULTIPLAYER
+mp.title	MULTIJOUEUR LOCAL
+mp.controls_hint	JOUEUR 1: FLECHES+ESPACE   JOUEUR 2: WASD+MAJ
+mp.start	LANCER MATCH 2 JOUEURS
+# PICKERS
+pick.continent	CONTINENT
+pick.country	PAYS
+pick.your_team	VOTRE EQUIPE
+pick.all_countries	TOUS LES PAYS
+pick.all	TOUS
+pick.select_country	CHOISIR PAYS
+pick.select_continent	CHOISIR CONTINENT
+pick.select_your_team	CHOISIR EQUIPE
+pick.home_team	EQUIPE DOMICILE
+pick.away_team	EQUIPE EXTERIEUR
+pick.nothing_to_choose	RIEN A CHOISIR
+pick.item	ELEMENT
+pick.more_down	PLUS v
+# DRAW CEREMONY
+draw.title_suffix	TIRAGE
+# PLAY AGAIN
+playagain.title	FIN DU MATCH
+playagain.play_again	REJOUER
+playagain.exit	QUITTER
+# COMPETITIONS HUB
+comp.title	COMPETITIONS
+comp.new_league	NOUVELLE LIGUE
+comp.new_cup	NOUVELLE COUPE
+comp.new_tournament	NOUVEAU TOURNOI
+comp.preset_competition	COMPETITION PREDEFINIE
+comp.new_career	NOUVELLE CARRIERE
+comp.load_game	CHARGER PARTIE
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NOUVELLE LIGUE
+setup.cup_title	NOUVELLE COUPE
+setup.tournament_title	NOUVEAU TOURNOI
+setup.size	TAILLE
+setup.teams_suffix	EQUIPES
+setup.entrants	PARTICIPANTS
+setup.entrants_same_division	MEME DIVISION
+setup.entrants_same_nation	MEME NATION
+setup.entrants_random	ALEATOIRE
+setup.rounds	TOURS
+setup.rounds_single	SIMPLE
+setup.rounds_double	DOUBLE
+setup.groups	GROUPES
+setup.groups_of_4_suffix	GROUPES DE 4
+setup.create_league	CREER LIGUE
+setup.create_cup	CREER COUPE
+setup.create_tournament	CREER TOURNOI
+# CAREER SETUP
+career.title	NOUVELLE CARRIERE
+career.blurb_seasons	LIGUE ET COUPE NATIONALE CHAQUE SAISON
+career.blurb_promotion	GAGNEZ LA LIGUE POUR MONTER, DERNIER ET VOUS DESCENDEZ
+career.start	DEBUTER CARRIERE
+# MANAGER NAME ENTRY
+mgr.title	NOM DU MANAGER
+mgr.hint	TAPEZ NOM   GAUCHE/DROITE TITRE   ENTREE OK   ECHAP ANNULER
+mgr.title_row	TITRE
+mgr.title_mr	M
+mgr.title_ms	MME
+mgr.default_name	JOUEUR
+# COMPETITION DASHBOARD
+dash.play_next_match	JOUER PROCHAIN MATCH
+dash.continue	CONTINUER
+dash.next_season	SAISON SUIVANTE
+dash.table	CLASSEMENT
+dash.fixtures	CALENDRIER
+dash.squad	EFFECTIF
+dash.lineup	COMPO
+dash.transfers	TRANSFERTS
+dash.staff	STAFF
+dash.scouting	RECRUTEMENT
+dash.record	BILAN
+dash.save_as	SAUVER SOUS
+dash.retire	RETRAITE
+dash.abandon	ABANDONNER
+dash.management_record	BILAN MANAGER
+dash.status_retired	RETRAITE
+dash.status_champions	CHAMPIONS:
+dash.status_eliminated	ELIMINE
+dash.offers_prefix	OFFRES
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	PROCHAIN MATCH
+result.title	FIN DU MATCH
+result.label	RESULTAT
+# MANAGEMENT RECORD
+mrec.title	BILAN MANAGER
+mrec.title_of_prefix	BILAN MANAGER DE
+mrec.career_over	CARRIERE TERMINEE
+mrec.season	SAISON
+mrec.div	DIV
+mrec.trophies	TROPHEES
+mrec.none_yet	PAS ENCORE
+mrec.history	HISTORIQUE
+mrec.first_season	PREMIERE SAISON EN COURS
+# RETIRE CONFIRM
+retire.title	RETRAITE
+retire.prompt	PRENDRE SA RETRAITE?
+retire.confirm	RETRAITE
+# PRESET COMPETITIONS
+preset.title	COMPETITION PREDEFINIE
+preset.blurb	VRAIES COMPETITIONS AVEC LEURS VRAIES EQUIPES
+preset.european_cup	COUPE D'EUROPE
+preset.uefa_cup	COUPE UEFA
+preset.cup_winners_cup	COUPE DES COUPES
+preset.world_cup	COUPE DU MONDE
+preset.european_championship	CHAMPIONNAT D'EUROPE
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	EQUIPES ELIMINATION
+preset.groups_then_knockout_suffix	GROUPES DE 4 PUIS ELIMINATION
+preset.create	CREER
+# SAVE AS / LOAD GAME
+save.title	SAUVER SOUS
+save.hint	TAPEZ NOM   ENTREE OK   ECHAP ANNULER
+save.saved_as_prefix	SAUVE SOUS
+load.title	CHARGER PARTIE
+load.delete_mode	MODE SUPPRESSION
+load.no_saved_games	AUCUNE SAUVEGARDE
+# STANDINGS / FIXTURES
+table.title	CLASSEMENT
+table.group	GROUPE
+fixtures.title	CALENDRIER
+# TEAM SETUP
+teamcfg.title	CONFIG EQUIPE
+teamcfg.team	EQUIPE
+teamcfg.team_home_prefix	DOM
+teamcfg.team_away_prefix	EXT
+teamcfg.switch_home_away	CHANGER DOM / EXT
+teamcfg.coach	COACH
+# COMPETITION ENGINE
+stage.league	LIGUE
+stage.group_prefix	GROUPE
+stage.final	FINALE
+stage.semi_final	DEMI-FINALE
+stage.quarter_final	QUART DE FINALE
+stage.round_of_16	HUITIEMES
+stage.round_of_32	SEIZIEMES
+stage.round_of_prefix	TOUR DE
+stage.cup_prefix	COUPE
+round.league_round	LIGUE - JOURNEE
+round.competition_complete	COMPETITION TERMINEE
+round.no_fixtures	AUCUN MATCH
+status.no_player_team	AUCUNE EQUIPE JOUEUR
+status.you_are_champion	VOUS ETES CHAMPION
+status.you_are_prefix	VOUS ETES
+status.you_are_unplaced	VOUS N'ETES PAS CLASSE
+status.you_were_eliminated	VOUS ETES ELIMINE
+status.you_are_through	VOUS PASSEZ AU TOUR SUIVANT
+status.you_are_in_prefix	VOUS ETES DANS
+status.you_are_in_the_prefix	VOUS ETES EN
+ord.st	ER
+ord.nd	E
+ord.rd	E
+ord.th	E
+season.cup_winner	VAINQUEUR
+season.cup_runner_up	FINALISTE
+season.cup_out_in_prefix	SORTI EN
+season.cup_out	SORTI
+season.trophy_league	CHAMPION DE LIGUE SAISON %d
+season.trophy_cup	VAINQUEUR COUPE SAISON %d
+season.history_line	S%d: LIGUE %s, COUPE %s
+season.history_retired	S%d: RETRAITE
+fixture.penalties_mark	T
+# CAREER SQUAD
+squad.title_suffix	EFFECTIF
+squad.default_club	CLUB
+squad.player_action	ACTION JOUEUR
+squad.no_player_selected	AUCUN JOUEUR CHOISI
+squad.fit_injured	BLE
+# PLAYER ACTION
+paction.value_prefix	VALEUR
+paction.time_to_negotiate	TEMPS DE NEGO
+paction.take_off_list	RETIRER DE LISTE
+paction.put_on_list	METTRE SUR LISTE
+paction.give_free_transfer	TRANSFERT LIBRE
+paction.off_list_prefix	HORS LISTE
+paction.listed_prefix	LISTE
+paction.list_full_prefix	LISTE PLEINE (MAX
+# FREE TRANSFER
+free.title	TRANSFERT LIBRE
+free.confirm_prompt	LIBERER %s GRATUITEMENT?
+free.release	LIBERER
+free.released_prefix	LIBERE
+free.squad_too_small	EFFECTIF TROP PETIT
+free.release_failed	LIBERATION ECHOUEE
+# LINEUP EDITOR
+lineup.title	COMPO EQUIPE
+lineup.auto	AUTO
+lineup.hint	HAUT/BAS LIGNE   TIR CHOIX/ECHANGE   ECHAP RETOUR
+lineup.picked_prefix	CHOISI
+lineup.picked_swap_hint	- TIREZ UNE LIGNE POUR ECHANGER
+lineup.unmarked_prefix	DEMARQUE
+lineup.slot_not_available	PLACE INDISPONIBLE
+lineup.goal_needs_keeper	PLACE BUT EXIGE UN GARDIEN
+lineup.swapped_prefix	ECHANGE
+lineup.swapped_and	ET
+lineup.auto_restored	COMPO AUTO RETABLIE
+lineup.auto_label	COMPO AUTO
+lineup.custom_label	COMPO PERSO
+lineup.slot	PLACE
+lineup.slot_gk	GB
+lineup.slot_sub	REMP
+# STAFF
+staff.title	STAFF
+staff.coach	COACH
+staff.fire_selected	VIRER CHOISI
+staff.hire_coach	ENGAGER COACH
+staff.training_focus	FOCUS ENTRAIN
+staff.no_coach_selected	AUCUN COACH CHOISI
+staff.no_coaches	AUCUN COACH
+# FIRE COACH
+firecoach.title	VIRER COACH
+firecoach.coach_not_available	COACH INDISPONIBLE
+firecoach.severance_prefix	INDEMNITE
+firecoach.fire	VIRER
+firecoach.fired_prefix	VIRE
+# HIRE COACH
+hire.title	ENGAGER COACH
+hire.candidate	CANDIDAT
+hire.hire	ENGAGER
+hire.hired_prefix	ENGAGE
+# TRAINING FOCUS
+focus.title	FOCUS ENTRAIN
+focus.toggle	BASCULER FOCUS
+focus.removed_prefix	RETIRE
+focus.focused_prefix	FOCUS
+focus.max_prefix	MAX
+focus.max_suffix	JOUEURS FOCUS
+focus.mark	*
+# SCOUTING
+scout.title	RECRUTEMENT
+scout.scout_player	OBSERVER JOUEUR
+scout.improve_prefix	AMELIORER RECRUT
+scout.maxed	RECRUT AU MAX
+scout.unavailable	RECRUT INDISPONIBLE
+scout.quality_prefix	QUALITE RECRUT
+scout.no_watched	AUCUN JOUEUR SUIVI
+scout.scout_selected	OBSERVER CHOISI
+scout.scout_prefix	OBSERVER
+scout.scouted_prefix	OBSERVE
+scout.cost_prefix	COUT
+scout.no_players_available	AUCUN JOUEUR DISPO
+# TRANSFER MARKET
+market.title	MARCHE TRANSFERTS
+market.max_price	PRIX MAX
+market.buy_selected	ACHETER CHOISI
+market.no_player_selected	AUCUN JOUEUR CHOISI
+market.free_agent	LIBRE
+market.club_fallback_prefix	CLUB
+market.price_any	TOUS
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	ACHETER JOUEUR
+buy.asking_prefix	DEMANDE
+buy.your_bid	VOTRE OFFRE
+buy.make_bid	FAIRE OFFRE
+buy.club_unwilling	CLUB NE VEUT PAS ACHETER
+buy.no_time	PLUS DE TEMPS POUR NEGOCIER
+buy.enter_a_bid	ENTREZ UNE OFFRE
+buy.not_enough_money	PAS ASSEZ D'ARGENT
+buy.bought_prefix	ACHETE
+buy.squad_full	EFFECTIF PLEIN
+buy.transfer_failed	TRANSFERT ECHOUE
+buy.counter_prefix	CONTRE-OFFRE A
+buy.rejected	OFFRE TROP BASSE - REFUSEE
+# INCOMING OFFERS
+offers.title	OFFRES TRANSFERT
+offers.no_offers	AUCUNE OFFRE
+offers.offer	OFFRE
+offers.accept	ACCEPTER
+offers.demand_more	EXIGER PLUS
+offers.reject	REFUSER
+offers.header_negotiate_prefix	TEMPS DE NEGO
+offers.header_sells	VENTES
+offers.not_available	OFFRE INDISPONIBLE
+offers.sold_prefix	VENDU
+offers.sold_for	POUR
+offers.squad_too_small	EFFECTIF TROP PETIT
+offers.accept_failed	ACCEPT ECHOUEE
+offers.improved_prefix	AMELIOREE A
+offers.withdrawn	OFFRE RETIREE
+offers.refused	ILS REFUSENT DE PAYER PLUS
+offers.rejected	OFFRE REFUSEE
+# MATCH HUD / OVERLAYS
+hud.half_time	MI-TEMPS
+hud.full_time	FIN DU MATCH
+hud.penalties	TIRS AU BUT
+hud.paused	PAUSE
+hud.pause_resume_hint	espace  reprendre
+hud.pause_quit_hint	echap    quitter au menu
+hud.goal	BUT!
+hud.throw_in	TOUCHE
+hud.corner	CORNER
+hud.goal_kick	SIX METRES
+hud.press_space	espace
+hud.team_home_fallback	DOMICILE
+hud.team_away_fallback	EXTERIEUR
+goal.type_penalty	(PEN)
+goal.type_own_goal	(CSC)

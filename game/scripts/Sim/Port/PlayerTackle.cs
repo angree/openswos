@@ -1012,6 +1012,11 @@ public static class PlayerTackle
             injuryAlreadyInjured = true;
         }
 
+        // OpenSWOS fatigue: being tackled costs the fouled player (A1) a random
+        // 1..5% of their current energy — fires once here, at tackle resolution
+        // (gated on EffectEnabled inside). User spec.
+        PlayerEnergy.DrainOnTackle(A1);
+
     // l_not_injured:
         // 14513-14527 — roll Rand against A5[D1]. Carry-clear (Rand >= thr) → skip.
         D0 = (short)Rng.NextByte();

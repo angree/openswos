@@ -1,0 +1,434 @@
+key	de
+# COMMON
+common.back	ZURUECK
+common.continue	WEITER
+common.cancel	ABBRECHEN
+common.ok	OK
+common.on	AN
+common.off	AUS
+common.na	N/V
+common.none	KEINE
+common.versus	V
+common.page	SEITE
+common.previous_page	VORHERIGE SEITE
+common.next_page	NAECHSTE SEITE
+common.no_career_data	KEINE KARRIEREDATEN
+common.no_squad_data	KEINE KADERDATEN
+common.player_not_available	SPIELER NICHT VERFUEGBAR
+common.player	SPIELER
+common.budget	BUDGET
+common.sort	SORTIEREN
+common.sort_by	SORTIEREN NACH
+common.value	WERT
+common.skill	STAERKE
+common.age	ALTER
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POS
+col.team	TEAM
+col.name	NAME
+col.number	NR
+col.number_hash	#
+col.p	SP
+col.w	S
+col.d	U
+col.l	N
+col.gf	TF
+col.ga	TG
+col.pts	PKT
+col.skl	SKL
+col.skill	STK
+col.pot	POT
+col.sta	AUS
+col.form	F
+col.fit	FIT
+col.val	WRT
+col.nat	NAT
+col.club	VER
+col.price	PRS
+col.spec	SPZ
+col.quality	Q
+col.wage	LOHN
+col.fee	GEB
+col.amount	BTR
+col.exp	ABL
+col.skill_row	PA TK SC KB KO TE AB
+# HOME
+home.title	O P E N   S W O S
+home.play_match	SPIELEN
+home.competitions	WETTBEWERBE
+home.multiplayer	MEHRSPIELER
+home.team_setup	TEAM ANSICHT
+home.options	OPTIONEN
+home.career	KARRIERE
+home.exit	BEENDEN
+home.credit	VON GRZEGORZ KORYCKI
+home.continue_prefix	WEITER:
+# QUIT
+quit.title	BEENDEN
+quit.are_you_sure	SICHER?
+quit.quit_to_windows	ZU WINDOWS BEENDEN
+quit.return_to_game	ZURUECK ZUM SPIEL
+# FRIENDLY
+friendly.title	FREUNDSCHAFTSSPIEL
+friendly.home	HEIM
+friendly.away	GAST
+friendly.swap_teams	TEAMS TAUSCHEN
+friendly.pitch	PLATZ
+friendly.opponent	GEGNER
+friendly.half_length	HALBZEITLAENGE
+friendly.game_speed	SPIELTEMPO
+friendly.kick_off	ANSTOSS
+friendly.context	FREUNDSCHAFT
+# VERSUS
+versus.play	SPIELEN
+versus.view_result	ERGEBNIS ANSEHEN
+# STADIUM
+stadium.title	TEAMS
+stadium.kick_off	ANSTOSS
+stadium.edit_lineup	AUFSTELLUNG BEARBEITEN
+# OPTIONS
+opt.title	OPTIONEN
+opt.page	SEITE
+opt.language	SPRACHE
+opt.half_length	HALBZEITLAENGE
+opt.game_speed	SPIELTEMPO
+opt.opponent	GEGNER
+opt.pitch	PLATZ
+opt.skill_scaling	STAERKE-SKALIERUNG
+opt.skill_scaling_hint	ORIGINALGETREUE SWOS SPIELERPREIS-SKALIERUNG
+opt.all_teams_equal	ALLE TEAMS GLEICH
+opt.all_teams_equal_hint	GLEICHT DIE STAERKE DER SPIELERTEAMS AN
+opt.pre_match_menus	VORSPIEL-MENUES
+opt.player_fatigue	SPIELER-ERMUEDUNG
+opt.energy_bar	ENERGIELEISTE
+opt.music	MUSIK
+opt.music_hint	AMIGA / PC / EIGENE MENUEMUSIK
+opt.sound	TON
+opt.sound_hint	PC- ODER AMIGA-SPIELGERAEUSCHE
+opt.display	ANZEIGE
+opt.display_hint	F11 WECHSELT  ALT+ENTER VOLLBILD
+# OPTION VALUES
+val.pitch_none	(KEINE)
+val.pitch_random	ZUFALL
+val.opponent_ai	KI
+val.opponent_player2	SPIELER 2  (WASD)
+val.opponent_demo	DEMO  (KI V KI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	EIGENE
+val.music_off	AUS
+val.length_whole_match_seconds	%dS ECHT  (GANZES SPIEL)
+val.length_whole_match_minutes	%d MIN ECHT  (GANZES SPIEL)
+val.display_windowed	FENSTER
+val.display_full_fill	VOLLBILD FUELLEN
+val.display_full_integer	VOLLBILD GANZZAHL
+# LOCAL MULTIPLAYER
+mp.title	LOKALER MEHRSPIELER
+mp.controls_hint	SPIELER 1: PFEILE+LEER   SPIELER 2: WASD+SHIFT
+mp.start	2-SPIELER-SPIEL STARTEN
+# PICKERS
+pick.continent	KONTINENT
+pick.country	LAND
+pick.your_team	DEIN TEAM
+pick.all_countries	ALLE LAENDER
+pick.all	ALLE
+pick.select_country	LAND WAEHLEN
+pick.select_continent	KONTINENT WAEHLEN
+pick.select_your_team	DEIN TEAM WAEHLEN
+pick.home_team	HEIMTEAM
+pick.away_team	GASTTEAM
+pick.nothing_to_choose	NICHTS ZUR AUSWAHL
+pick.item	EINTRAG
+pick.more_down	MEHR v
+# DRAW CEREMONY
+draw.title_suffix	AUSLOSUNG
+# PLAY AGAIN
+playagain.title	SPIELENDE
+playagain.play_again	NOCHMAL SPIELEN
+playagain.exit	BEENDEN
+# COMPETITIONS HUB
+comp.title	WETTBEWERBE
+comp.new_league	NEUE LIGA
+comp.new_cup	NEUER POKAL
+comp.new_tournament	NEUES TURNIER
+comp.preset_competition	VORGABE-WETTBEWERB
+comp.new_career	NEUE KARRIERE
+comp.load_game	SPIEL LADEN
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NEUE LIGA
+setup.cup_title	NEUER POKAL
+setup.tournament_title	NEUES TURNIER
+setup.size	GROESSE
+setup.teams_suffix	TEAMS
+setup.entrants	TEILNEHMER
+setup.entrants_same_division	GLEICHE LIGA
+setup.entrants_same_nation	GLEICHES LAND
+setup.entrants_random	ZUFALL
+setup.rounds	RUNDEN
+setup.rounds_single	EINFACH
+setup.rounds_double	DOPPELT
+setup.groups	GRUPPEN
+setup.groups_of_4_suffix	4ER-GRUPPEN
+setup.create_league	LIGA ERSTELLEN
+setup.create_cup	POKAL ERSTELLEN
+setup.create_tournament	TURNIER ERSTELLEN
+# CAREER SETUP
+career.title	NEUE KARRIERE
+career.blurb_seasons	LIGA UND POKAL IN JEDER SAISON
+career.blurb_promotion	LIGA GEWINNEN STEIGT AUF, LETZTER STEIGT AB
+career.start	KARRIERE STARTEN
+# MANAGER NAME ENTRY
+mgr.title	MANAGERNAME
+mgr.hint	NAME TIPPEN   LINKS/RECHTS TITEL   ENTER OK   ESC ABBRECHEN
+mgr.title_row	TITEL
+mgr.title_mr	HR
+mgr.title_ms	FR
+mgr.default_name	SPIELER
+# COMPETITION DASHBOARD
+dash.play_next_match	NAECHSTES SPIEL
+dash.continue	WEITER
+dash.next_season	NAECHSTE SAISON
+dash.table	TABELLE
+dash.fixtures	SPIELPLAN
+dash.squad	KADER
+dash.lineup	AUFSTELLUNG
+dash.transfers	TRANSFERS
+dash.staff	STAB
+dash.scouting	SCOUTING
+dash.record	BILANZ
+dash.save_as	SPEICHERN ALS
+dash.retire	RUECKTRITT
+dash.abandon	AUFGEBEN
+dash.management_record	MANAGER-BILANZ
+dash.status_retired	ZURUECKGETRETEN
+dash.status_champions	MEISTER:
+dash.status_eliminated	AUSGESCHIEDEN
+dash.offers_prefix	ANGEBOTE
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	NAECHSTES SPIEL
+result.title	SPIELENDE
+result.label	ERGEBNIS
+# MANAGEMENT RECORD
+mrec.title	MANAGER-BILANZ
+mrec.title_of_prefix	MANAGER-BILANZ VON
+mrec.career_over	KARRIERE VORBEI
+mrec.season	SAISON
+mrec.div	LIGA
+mrec.trophies	TROPHAEEN
+mrec.none_yet	NOCH KEINE
+mrec.history	VERLAUF
+mrec.first_season	ERSTE SAISON LAEUFT
+# RETIRE CONFIRM
+retire.title	RUECKTRITT
+retire.prompt	VOM MANAGEMENT ZURUECKTRETEN?
+retire.confirm	RUECKTRITT
+# PRESET COMPETITIONS
+preset.title	VORGABE-WETTBEWERB
+preset.blurb	ECHTE WETTBEWERBE MIT ECHTEN TEILNEHMERN
+preset.european_cup	EUROPAPOKAL
+preset.uefa_cup	UEFA-POKAL
+preset.cup_winners_cup	POKALSIEGER-CUP
+preset.world_cup	WELTMEISTERSCHAFT
+preset.european_championship	EUROPAMEISTERSCHAFT
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	TEAM K.O.
+preset.groups_then_knockout_suffix	4ER-GRUPPEN DANN K.O.
+preset.create	ERSTELLEN
+# SAVE AS / LOAD GAME
+save.title	SPEICHERN ALS
+save.hint	SLOT-NAME TIPPEN   ENTER OK   ESC ABBRECHEN
+save.saved_as_prefix	GESPEICHERT ALS
+load.title	SPIEL LADEN
+load.delete_mode	LOESCHMODUS
+load.no_saved_games	KEINE SPEICHERSTAENDE
+# STANDINGS / FIXTURES
+table.title	TABELLE
+table.group	GRUPPE
+fixtures.title	SPIELPLAN
+# TEAM SETUP
+teamcfg.title	TEAM ANSICHT
+teamcfg.team	TEAM
+teamcfg.team_home_prefix	HEIM
+teamcfg.team_away_prefix	GAST
+teamcfg.switch_home_away	HEIM / GAST WECHSELN
+teamcfg.coach	TRAINER
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	GRUPPE
+stage.final	FINALE
+stage.semi_final	HALBFINALE
+stage.quarter_final	VIERTELFINALE
+stage.round_of_16	ACHTELFINALE
+stage.round_of_32	SECHZEHNTELFINALE
+stage.round_of_prefix	RUNDE DER
+stage.cup_prefix	POKAL
+round.league_round	LIGA - RUNDE
+round.competition_complete	WETTBEWERB BEENDET
+round.no_fixtures	KEINE SPIELE
+status.no_player_team	KEIN SPIELERTEAM
+status.you_are_champion	DU BIST MEISTER
+status.you_are_prefix	DU BIST
+status.you_are_unplaced	DU BIST UNPLATZIERT
+status.you_were_eliminated	DU BIST AUSGESCHIEDEN
+status.you_are_through	DU BIST EINE RUNDE WEITER
+status.you_are_in_prefix	DU BIST IN
+status.you_are_in_the_prefix	DU BIST IM
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	SIEGER
+season.cup_runner_up	FINALIST
+season.cup_out_in_prefix	RAUS IN
+season.cup_out	RAUS
+season.trophy_league	SAISON %d LIGAMEISTER
+season.trophy_cup	SAISON %d POKALSIEGER
+season.history_line	S%d: LIGA %s, POKAL %s
+season.history_retired	S%d: RUECKTRITT
+fixture.penalties_mark	E
+# CAREER SQUAD
+squad.title_suffix	KADER
+squad.default_club	VEREIN
+squad.player_action	SPIELERAKTION
+squad.no_player_selected	KEIN SPIELER GEWAEHLT
+squad.fit_injured	VERL
+# PLAYER ACTION
+paction.value_prefix	WERT
+paction.time_to_negotiate	VERHANDLUNGSZEIT
+paction.take_off_list	VON LISTE NEHMEN
+paction.put_on_list	AUF TRANSFERLISTE
+paction.give_free_transfer	ABLOESEFREI ABGEBEN
+paction.off_list_prefix	VON LISTE
+paction.listed_prefix	GELISTET
+paction.list_full_prefix	LISTE VOLL (MAX
+# FREE TRANSFER
+free.title	ABLOESEFREI
+free.confirm_prompt	%s ABLOESEFREI ABGEBEN?
+free.release	ABGEBEN
+free.released_prefix	ABGEGEBEN
+free.squad_too_small	KADER ZU KLEIN
+free.release_failed	ABGABE FEHLGESCHLAGEN
+# LINEUP EDITOR
+lineup.title	TEAM-AUFSTELLUNG
+lineup.auto	AUTO
+lineup.hint	HOCH/RUNTER REIHE   FEUER WAEHLEN/TAUSCH   ESC ZURUECK
+lineup.picked_prefix	GEWAEHLT
+lineup.picked_swap_hint	- REIHE FEUERN ZUM TAUSCH
+lineup.unmarked_prefix	ABGEWAEHLT
+lineup.slot_not_available	PLATZ NICHT VERFUEGBAR
+lineup.goal_needs_keeper	TORPLATZ BRAUCHT TORWART
+lineup.swapped_prefix	GETAUSCHT
+lineup.swapped_and	UND
+lineup.auto_restored	AUTO-AUFSTELLUNG ZURUECK
+lineup.auto_label	AUTO-AUFSTELLUNG
+lineup.custom_label	EIGENE AUFSTELLUNG
+lineup.slot	PLATZ
+lineup.slot_gk	TW
+lineup.slot_sub	ERS
+# STAFF
+staff.title	STAB
+staff.coach	TRAINER
+staff.fire_selected	GEWAEHLTEN ENTLASSEN
+staff.hire_coach	TRAINER HOLEN
+staff.training_focus	TRAININGSFOKUS
+staff.no_coach_selected	KEIN TRAINER GEWAEHLT
+staff.no_coaches	KEINE TRAINER
+# FIRE COACH
+firecoach.title	TRAINER ENTLASSEN
+firecoach.coach_not_available	TRAINER NICHT VERFUEGBAR
+firecoach.severance_prefix	ABFINDUNG
+firecoach.fire	ENTLASSEN
+firecoach.fired_prefix	ENTLASSEN
+# HIRE COACH
+hire.title	TRAINER HOLEN
+hire.candidate	KANDIDAT
+hire.hire	HOLEN
+hire.hired_prefix	GEHOLT
+# TRAINING FOCUS
+focus.title	TRAININGSFOKUS
+focus.toggle	FOKUS UMSCHALTEN
+focus.removed_prefix	ENTFERNT
+focus.focused_prefix	FOKUSSIERT
+focus.max_prefix	MAX
+focus.max_suffix	FOKUS-SPIELER
+focus.mark	*
+# SCOUTING
+scout.title	SCOUTING
+scout.scout_player	SPIELER SCOUTEN
+scout.improve_prefix	SCOUTING VERBESSERN
+scout.maxed	SCOUTING MAXIMAL
+scout.unavailable	SCOUTING NICHT MOEGLICH
+scout.quality_prefix	SCOUT-QUALITAET
+scout.no_watched	KEINE BEOBACHTETEN SPIELER
+scout.scout_selected	GEWAEHLTEN SCOUTEN
+scout.scout_prefix	SCOUTEN
+scout.scouted_prefix	GESCOUTET
+scout.cost_prefix	KOSTEN
+scout.no_players_available	KEINE SPIELER VERFUEGBAR
+# TRANSFER MARKET
+market.title	TRANSFERMARKT
+market.max_price	MAX PREIS
+market.buy_selected	GEWAEHLTEN KAUFEN
+market.no_player_selected	KEIN SPIELER GEWAEHLT
+market.free_agent	VEREINSLOS
+market.club_fallback_prefix	VEREIN
+market.price_any	ALLE
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	SPIELER KAUFEN
+buy.asking_prefix	FORDERUNG
+buy.your_bid	DEIN GEBOT
+buy.make_bid	GEBOT ABGEBEN
+buy.club_unwilling	VEREIN WILL KEINE SPIELER KAUFEN
+buy.no_time	KEINE VERHANDLUNGSZEIT MEHR
+buy.enter_a_bid	GEBOT EINGEBEN
+buy.not_enough_money	NICHT GENUG GELD
+buy.bought_prefix	GEKAUFT
+buy.squad_full	KADER VOLL
+buy.transfer_failed	TRANSFER FEHLGESCHLAGEN
+buy.counter_prefix	GEGENANGEBOT
+buy.rejected	GEBOT ZU NIEDRIG - ABGELEHNT
+# INCOMING OFFERS
+offers.title	TRANSFERANGEBOTE
+offers.no_offers	KEINE ANGEBOTE
+offers.offer	ANGEBOT
+offers.accept	ANNEHMEN
+offers.demand_more	MEHR FORDERN
+offers.reject	ABLEHNEN
+offers.header_negotiate_prefix	VERHANDLUNGSZEIT
+offers.header_sells	VERKAEUFE
+offers.not_available	ANGEBOT NICHT VERFUEGBAR
+offers.sold_prefix	VERKAUFT
+offers.sold_for	FUER
+offers.squad_too_small	KADER ZU KLEIN
+offers.accept_failed	ANNAHME FEHLGESCHLAGEN
+offers.improved_prefix	ERHOEHT AUF
+offers.withdrawn	ANGEBOT ZURUECKGEZOGEN
+offers.refused	SIE ZAHLEN NICHT MEHR
+offers.rejected	ANGEBOT ABGELEHNT
+# MATCH HUD / OVERLAYS
+hud.half_time	HALBZEIT
+hud.full_time	SPIELENDE
+hud.penalties	ELFMETER
+hud.paused	PAUSE
+hud.pause_resume_hint	leer  weiter
+hud.pause_quit_hint	ESC    zum menue
+hud.goal	TOR!
+hud.throw_in	EINWURF
+hud.corner	ECKE
+hud.goal_kick	ABSTOSS
+hud.press_space	leer druecken
+hud.team_home_fallback	HEIM
+hud.team_away_fallback	GAST
+goal.type_penalty	(ELF)
+goal.type_own_goal	(ET)

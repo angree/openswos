@@ -1,0 +1,434 @@
+key	hr
+# COMMON
+common.back	NAZAD
+common.continue	NASTAVI
+common.cancel	ODUSTANI
+common.ok	OK
+common.on	UKLJ
+common.off	ISKLJ
+common.na	N/D
+common.none	NEMA
+common.versus	V
+common.page	STR
+common.previous_page	PRETHODNA STR
+common.next_page	SLJEDECA STR
+common.no_career_data	NEMA PODATAKA
+common.no_squad_data	NEMA MOMCADI
+common.player_not_available	IGRAC NEDOSTUPAN
+common.player	IGRAC
+common.budget	BUDZET
+common.sort	SORTIRAJ
+common.sort_by	SORTIRAJ PO
+common.value	VRIJEDNOST
+common.skill	VJESTINA
+common.age	DOB
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POZ
+col.team	KLUB
+col.name	IME
+col.number	BR
+col.number_hash	#
+col.p	O
+col.w	P
+col.d	N
+col.l	I
+col.gf	ZG
+col.ga	PG
+col.pts	BOD
+col.skl	VJE
+col.skill	VJEST
+col.pot	POT
+col.sta	IZD
+col.form	F
+col.fit	SPR
+col.val	VRIJ
+col.nat	NAC
+col.club	KLUB
+col.price	CIJENA
+col.spec	SPEC
+col.quality	K
+col.wage	PLACA
+col.fee	NAKN
+col.amount	IZNOS
+col.exp	IST
+col.skill_row	DO OD SU GL KO BR ZA
+# HOME
+home.title	O P E N   S W O S
+home.play_match	IGRAJ MEC
+home.competitions	NATJECANJA
+home.multiplayer	VISE IGRACA
+home.team_setup	POSTAVA EKIPE
+home.options	OPCIJE
+home.career	KARIJERA
+home.exit	IZLAZ
+home.credit	AUTOR GRZEGORZ KORYCKI
+home.continue_prefix	NASTAVI:
+# QUIT
+quit.title	IZLAZ
+quit.are_you_sure	JESTE LI SIGURNI?
+quit.quit_to_windows	IZLAZ U WINDOWS
+quit.return_to_game	NATRAG U IGRU
+# FRIENDLY
+friendly.title	PRIJATELJSKI MEC
+friendly.home	DOMACIN
+friendly.away	GOST
+friendly.swap_teams	ZAMIJENI EKIPE
+friendly.pitch	TEREN
+friendly.opponent	PROTIVNIK
+friendly.half_length	TRAJANJE POLU
+friendly.game_speed	BRZINA IGRE
+friendly.kick_off	POCETAK
+friendly.context	PRIJATELJSKI
+# VERSUS
+versus.play	IGRAJ
+versus.view_result	VIDI REZULTAT
+# STADIUM
+stadium.title	EKIPE
+stadium.kick_off	POCETAK
+stadium.edit_lineup	UREDI POSTAVU
+# OPTIONS
+opt.title	OPCIJE
+opt.page	STR
+opt.language	JEZIK
+opt.half_length	TRAJANJE POLU
+opt.game_speed	BRZINA IGRE
+opt.opponent	PROTIVNIK
+opt.pitch	TEREN
+opt.skill_scaling	SKALIRANJE VJESTINE
+opt.skill_scaling_hint	VJERNO SWOS SKALIRANJE CIJENE IGRACA
+opt.all_teams_equal	SVE EKIPE JEDNAKE
+opt.all_teams_equal_hint	IZJEDNACUJE SNAGU IGRACEVIH EKIPA
+opt.pre_match_menus	IZBORNICI PRIJE MECA
+opt.player_fatigue	UMOR IGRACA
+opt.energy_bar	TRAKA ENERGIJE
+opt.music	GLAZBA
+opt.music_hint	AMIGA / PC / VLASTITA GLAZBA
+opt.sound	ZVUK
+opt.sound_hint	PC ILI AMIGA ZVUKOVI U MECU
+opt.display	PRIKAZ
+opt.display_hint	F11 MIJENJA  ALT+ENTER PUNI ZASLON
+# OPTION VALUES
+val.pitch_none	(NEMA)
+val.pitch_random	NASUMICNO
+val.opponent_ai	AI
+val.opponent_player2	IGRAC 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	VLASTITA
+val.music_off	ISKLJ
+val.length_whole_match_seconds	%dS STVARNO  (CIJELI MEC)
+val.length_whole_match_minutes	%d MIN STVARNO  (CIJELI MEC)
+val.display_windowed	U PROZORU
+val.display_full_fill	PUNI ISPUNJENO
+val.display_full_integer	PUNI CJELOBROJNI
+# LOCAL MULTIPLAYER
+mp.title	LOKALNO VISE IGRACA
+mp.controls_hint	IGRAC 1: STRELICE+RAZMAK   IGRAC 2: WASD+SHIFT
+mp.start	POKRENI MEC ZA 2 IGRACA
+# PICKERS
+pick.continent	KONTINENT
+pick.country	DRZAVA
+pick.your_team	TVOJA EKIPA
+pick.all_countries	SVE DRZAVE
+pick.all	SVE
+pick.select_country	ODABERI DRZAVU
+pick.select_continent	ODABERI KONTINENT
+pick.select_your_team	ODABERI EKIPU
+pick.home_team	DOMACA EKIPA
+pick.away_team	GOSTUJUCA EKIPA
+pick.nothing_to_choose	NEMA IZBORA
+pick.item	STAVKA
+pick.more_down	JOS v
+# DRAW CEREMONY
+draw.title_suffix	ZDRIJEB
+# PLAY AGAIN
+playagain.title	KRAJ MECA
+playagain.play_again	IGRAJ PONOVNO
+playagain.exit	IZLAZ
+# COMPETITIONS HUB
+comp.title	NATJECANJA
+comp.new_league	NOVA LIGA
+comp.new_cup	NOVI KUP
+comp.new_tournament	NOVI TURNIR
+comp.preset_competition	GOTOVA NATJECANJA
+comp.new_career	NOVA KARIJERA
+comp.load_game	UCITAJ IGRU
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NOVA LIGA
+setup.cup_title	NOVI KUP
+setup.tournament_title	NOVI TURNIR
+setup.size	VELICINA
+setup.teams_suffix	EKIPA
+setup.entrants	SUDIONICI
+setup.entrants_same_division	ISTA LIGA
+setup.entrants_same_nation	ISTA DRZAVA
+setup.entrants_random	NASUMICNO
+setup.rounds	KOLA
+setup.rounds_single	JEDNO
+setup.rounds_double	DVOSTRUKO
+setup.groups	SKUPINE
+setup.groups_of_4_suffix	SKUPINE PO 4
+setup.create_league	STVORI LIGU
+setup.create_cup	STVORI KUP
+setup.create_tournament	STVORI TURNIR
+# CAREER SETUP
+career.title	NOVA KARIJERA
+career.blurb_seasons	LIGA I DOMACI KUP SVAKU SEZONU
+career.blurb_promotion	OSVOJI LIGU ZA PROMOCIJU, ZADNJI ISPADA
+career.start	POCNI KARIJERU
+# MANAGER NAME ENTRY
+mgr.title	IME MENADZERA
+mgr.hint	UPISI IME   LIJEVO/DESNO TITULA   ENTER OK   ESC ODUSTANI
+mgr.title_row	TITULA
+mgr.title_mr	G
+mgr.title_ms	GDA
+mgr.default_name	IGRAC
+# COMPETITION DASHBOARD
+dash.play_next_match	IGRAJ SLJEDECI MEC
+dash.continue	NASTAVI
+dash.next_season	SLJEDECA SEZONA
+dash.table	TABLICA
+dash.fixtures	RASPORED
+dash.squad	MOMCAD
+dash.lineup	POSTAVA
+dash.transfers	TRANSFERI
+dash.staff	STOZER
+dash.scouting	SKAUTIRANJE
+dash.record	UCINAK
+dash.save_as	SPREMI KAO
+dash.retire	UMIROVI SE
+dash.abandon	NAPUSTI
+dash.management_record	MENADZERSKI UCINAK
+dash.status_retired	UMIROVLJEN
+dash.status_champions	PRVAK:
+dash.status_eliminated	ISPAO
+dash.offers_prefix	PONUDE
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	SLJEDECI MEC
+result.title	KRAJ MECA
+result.label	REZULTAT
+# MANAGEMENT RECORD
+mrec.title	MENADZERSKI UCINAK
+mrec.title_of_prefix	MENADZERSKI UCINAK OD
+mrec.career_over	KRAJ KARIJERE
+mrec.season	SEZONA
+mrec.div	LIGA
+mrec.trophies	TROFEJI
+mrec.none_yet	JOS NISTA
+mrec.history	POVIJEST
+mrec.first_season	PRVA SEZONA U TIJEKU
+# RETIRE CONFIRM
+retire.title	UMIROVLJENJE
+retire.prompt	PRESTATI S MENADZIRANJEM?
+retire.confirm	UMIROVI SE
+# PRESET COMPETITIONS
+preset.title	GOTOVA NATJECANJA
+preset.blurb	PRAVA NATJECANJA S PRAVIM SUDIONICIMA
+preset.european_cup	KUP PRVAKA
+preset.uefa_cup	UEFA KUP
+preset.cup_winners_cup	KUP POBJEDNIKA KUPOVA
+preset.world_cup	SVJETSKO PRVENSTVO
+preset.european_championship	EUROPSKO PRVENSTVO
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	EKIPA ISPADANJE
+preset.groups_then_knockout_suffix	SKUPINE PO 4 PA ISPADANJE
+preset.create	STVORI
+# SAVE AS / LOAD GAME
+save.title	SPREMI KAO
+save.hint	UPISI IME   ENTER OK   ESC ODUSTANI
+save.saved_as_prefix	SPREMLJENO KAO
+load.title	UCITAJ IGRU
+load.delete_mode	NACIN BRISANJA
+load.no_saved_games	NEMA SPREMLJENIH IGARA
+# STANDINGS / FIXTURES
+table.title	TABLICA
+table.group	SKUPINA
+fixtures.title	RASPORED
+# TEAM SETUP
+teamcfg.title	POSTAVA EKIPE
+teamcfg.team	EKIPA
+teamcfg.team_home_prefix	DOM
+teamcfg.team_away_prefix	GOST
+teamcfg.switch_home_away	PROMIJENI DOM / GOST
+teamcfg.coach	TRENER
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	SKUPINA
+stage.final	FINALE
+stage.semi_final	POLUFINALE
+stage.quarter_final	CETVRTFINALE
+stage.round_of_16	OSMINA FINALA
+stage.round_of_32	SESNAESTINA FINALA
+stage.round_of_prefix	RUNDA
+stage.cup_prefix	KUP
+round.league_round	LIGA - KOLO
+round.competition_complete	NATJECANJE ZAVRSENO
+round.no_fixtures	NEMA MECEVA
+status.no_player_team	NEMA IGRACEVE EKIPE
+status.you_are_champion	TI SI PRVAK
+status.you_are_prefix	TI SI
+status.you_are_unplaced	NISI RANGIRAN
+status.you_were_eliminated	ISPAO SI
+status.you_are_through	PROLAZIS U SLJEDECE KOLO
+status.you_are_in_prefix	TI SI U
+status.you_are_in_the_prefix	TI SI U
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	POBJEDNIK
+season.cup_runner_up	DOPRVAK
+season.cup_out_in_prefix	ISPAO U
+season.cup_out	ISPAO
+season.trophy_league	SEZONA %d PRVAK LIGE
+season.trophy_cup	SEZONA %d OSVAJAC KUPA
+season.history_line	S%d: LIGA %s, KUP %s
+season.history_retired	S%d: UMIROVLJEN
+fixture.penalties_mark	P
+# CAREER SQUAD
+squad.title_suffix	MOMCAD
+squad.default_club	KLUB
+squad.player_action	AKCIJA IGRACA
+squad.no_player_selected	NIJE ODABRAN IGRAC
+squad.fit_injured	OZL
+# PLAYER ACTION
+paction.value_prefix	VRIJEDNOST
+paction.time_to_negotiate	VRIJEME ZA PREGOVORE
+paction.take_off_list	SKINI S LISTE
+paction.put_on_list	STAVI NA LISTU
+paction.give_free_transfer	DAJ BESPLATNO
+paction.off_list_prefix	SKINUT S LISTE
+paction.listed_prefix	NA LISTI
+paction.list_full_prefix	LISTA PUNA (MAX
+# FREE TRANSFER
+free.title	BESPLATAN TRANSFER
+free.confirm_prompt	OTPUSTITI %s BESPLATNO?
+free.release	OTPUSTI
+free.released_prefix	OTPUSTEN
+free.squad_too_small	MOMCAD PREMALA
+free.release_failed	OTPUSTANJE NEUSPJESNO
+# LINEUP EDITOR
+lineup.title	POSTAVA EKIPE
+lineup.auto	AUTO
+lineup.hint	GORE/DOLJE RED   FIRE ODABIR/ZAMJENA   ESC NAZAD
+lineup.picked_prefix	ODABRANO
+lineup.picked_swap_hint	- FIRE RED ZA ZAMJENU
+lineup.unmarked_prefix	ODZNACENO
+lineup.slot_not_available	MJESTO NEDOSTUPNO
+lineup.goal_needs_keeper	GOL TREBA VRATARA
+lineup.swapped_prefix	ZAMIJENJENO
+lineup.swapped_and	I
+lineup.auto_restored	AUTO POSTAVA VRACENA
+lineup.auto_label	AUTO POSTAVA
+lineup.custom_label	VLASTITA POSTAVA
+lineup.slot	MJESTO
+lineup.slot_gk	VR
+lineup.slot_sub	ZAM
+# STAFF
+staff.title	STOZER
+staff.coach	TRENER
+staff.fire_selected	OTPUSTI ODABRANOG
+staff.hire_coach	ZAPOSLI TRENERA
+staff.training_focus	FOKUS TRENINGA
+staff.no_coach_selected	NIJE ODABRAN TRENER
+staff.no_coaches	NEMA TRENERA
+# FIRE COACH
+firecoach.title	OTPUSTI TRENERA
+firecoach.coach_not_available	TRENER NEDOSTUPAN
+firecoach.severance_prefix	OTPREMNINA
+firecoach.fire	OTPUSTI
+firecoach.fired_prefix	OTPUSTEN
+# HIRE COACH
+hire.title	ZAPOSLI TRENERA
+hire.candidate	KANDIDAT
+hire.hire	ZAPOSLI
+hire.hired_prefix	ZAPOSLEN
+# TRAINING FOCUS
+focus.title	FOKUS TRENINGA
+focus.toggle	PROMIJENI FOKUS
+focus.removed_prefix	UKLONJEN
+focus.focused_prefix	FOKUSIRAN
+focus.max_prefix	MAKS
+focus.max_suffix	FOKUS IGRACA
+focus.mark	*
+# SCOUTING
+scout.title	SKAUTIRANJE
+scout.scout_player	SKAUTIRAJ IGRACA
+scout.improve_prefix	POBOLJSAJ SKAUTIRANJE
+scout.maxed	SKAUTIRANJE MAX
+scout.unavailable	SKAUTIRANJE NEDOSTUPNO
+scout.quality_prefix	KVALITETA SKAUTA
+scout.no_watched	NEMA PRACENIH IGRACA
+scout.scout_selected	SKAUTIRAJ ODABRANOG
+scout.scout_prefix	SKAUTIRAJ
+scout.scouted_prefix	SKAUTIRAN
+scout.cost_prefix	TROSAK
+scout.no_players_available	NEMA DOSTUPNIH IGRACA
+# TRANSFER MARKET
+market.title	TRANSFER TRZISTE
+market.max_price	MAX CIJENA
+market.buy_selected	KUPI ODABRANOG
+market.no_player_selected	NIJE ODABRAN IGRAC
+market.free_agent	SLOBODAN IGRAC
+market.club_fallback_prefix	KLUB
+market.price_any	SVE
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	KUPI IGRACA
+buy.asking_prefix	TRAZE
+buy.your_bid	TVOJA PONUDA
+buy.make_bid	PONUDI
+buy.club_unwilling	KLUB NE ZELI KUPOVATI IGRACE
+buy.no_time	NEMA VISE VREMENA ZA PREGOVORE
+buy.enter_a_bid	UNESI PONUDU
+buy.not_enough_money	NEMA DOVOLJNO NOVCA
+buy.bought_prefix	KUPLJEN
+buy.squad_full	MOMCAD PUNA
+buy.transfer_failed	TRANSFER NEUSPJESAN
+buy.counter_prefix	PROTUPONUDA
+buy.rejected	PONUDA PRENISKA - ODBIJENO
+# INCOMING OFFERS
+offers.title	TRANSFER PONUDE
+offers.no_offers	NEMA PONUDA
+offers.offer	PONUDA
+offers.accept	PRIHVATI
+offers.demand_more	TRAZI VISE
+offers.reject	ODBIJ
+offers.header_negotiate_prefix	VRIJEME ZA PREGOVORE
+offers.header_sells	PRODAJE
+offers.not_available	PONUDA NEDOSTUPNA
+offers.sold_prefix	PRODAN
+offers.sold_for	ZA
+offers.squad_too_small	MOMCAD PREMALA
+offers.accept_failed	PRIHVACANJE NEUSPJESNO
+offers.improved_prefix	POVECANO NA
+offers.withdrawn	PONUDA POVUCENA
+offers.refused	NE ZELE PLATITI VISE
+offers.rejected	PONUDA ODBIJENA
+# MATCH HUD / OVERLAYS
+hud.half_time	POLUVRIJEME
+hud.full_time	KRAJ MECA
+hud.penalties	PENALI
+hud.paused	PAUZA
+hud.pause_resume_hint	razmak  nastavi
+hud.pause_quit_hint	ESC    izlaz u izbornik
+hud.goal	GOL!
+hud.throw_in	UBACIVANJE
+hud.corner	KORNER
+hud.goal_kick	UDARAC S VRATA
+hud.press_space	pritisni razmak
+hud.team_home_fallback	DOMACIN
+hud.team_away_fallback	GOST
+goal.type_penalty	(PEN)
+goal.type_own_goal	(AG)

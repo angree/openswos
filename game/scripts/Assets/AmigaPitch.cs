@@ -7,8 +7,9 @@ namespace OpenSwos.Assets;
 
 // Loads an Amiga pitch map (SWCPICH*.MAP). Auto-detects RNC v2 compression.
 // Produces a 672×880 palette-indexed grid + a Godot Image baked with the
-// canonical SWOS palette. Cell value 0 in the map = transparent → renders as a
-// grass-green fallback so the pitch always has a base.
+// canonical SWOS palette. Every map cell references a real tile (offset 0 == a
+// real tile, not transparent). Only palette *index* 0 inside a decoded tile
+// gets the grass-green fallback below.
 public sealed class AmigaPitch
 {
     public byte[,] Indices { get; }
@@ -33,8 +34,8 @@ public sealed class AmigaPitch
         return new AmigaPitch(pixels, Palette.SwosAmigaDefault());
     }
 
-    // Bake into a Godot Image. Pixels with palette index 0 (= cells the map didn't
-    // assign a tile to, plus any idx=0 pixels inside drawn tiles) become grass green —
+    // Bake into a Godot Image. Pixels with palette index 0 (idx=0 pixels inside
+    // drawn tiles) become grass green —
     // because in actual SWOS Amiga gameplay palette[0] is the screen-clear colour, and
     // before the pitch is drawn the screen is cleared to grass. Stand-area gaps will
     // look slightly greenish; we accept that to keep the field looking like a football

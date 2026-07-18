@@ -1,0 +1,434 @@
+key	pl
+# COMMON
+common.back	POWROT
+common.continue	DALEJ
+common.cancel	ANULUJ
+common.ok	OK
+common.on	WL
+common.off	WYL
+common.na	N/D
+common.none	BRAK
+common.versus	V
+common.page	STR
+common.previous_page	POPRZEDNIA STR
+common.next_page	NASTEPNA STR
+common.no_career_data	BRAK DANYCH KARIERY
+common.no_squad_data	BRAK DANYCH KADRY
+common.player_not_available	ZAWODNIK NIEDOSTEPNY
+common.player	ZAWODNIK
+common.budget	BUDZET
+common.sort	SORTUJ
+common.sort_by	SORTUJ WG
+common.value	WARTOSC
+common.skill	UMIEJETNOSC
+common.age	WIEK
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POZ
+col.team	DRUZYNA
+col.name	NAZWA
+col.number	NR
+col.number_hash	#
+col.p	M
+col.w	Z
+col.d	R
+col.l	P
+col.gf	BZ
+col.ga	BS
+col.pts	PKT
+col.skl	UMI
+col.skill	UMI
+col.pot	POT
+col.sta	KON
+col.form	F
+col.fit	SPR
+col.val	WAR
+col.nat	NAR
+col.club	KLUB
+col.price	CENA
+col.spec	SPEC
+col.quality	J
+col.wage	PLACA
+col.fee	OPLATA
+col.amount	KWOTA
+col.exp	WYG
+col.skill_row	PO OD ST GL KO SZ WY
+# HOME
+home.title	O P E N   S W O S
+home.play_match	ZAGRAJ MECZ
+home.competitions	ROZGRYWKI
+home.multiplayer	MULTIPLAYER
+home.team_setup	USTAW DRUZYNE
+home.options	OPCJE
+home.career	KARIERA
+home.exit	WYJSCIE
+home.credit	AUTOR GRZEGORZ KORYCKI
+home.continue_prefix	KONTYNUUJ:
+# QUIT
+quit.title	WYJSCIE
+quit.are_you_sure	NA PEWNO?
+quit.quit_to_windows	WYJDZ DO WINDOWS
+quit.return_to_game	WROC DO GRY
+# FRIENDLY
+friendly.title	MECZ TOWARZYSKI
+friendly.home	DOM
+friendly.away	WYJAZD
+friendly.swap_teams	ZAMIEN DRUZYNY
+friendly.pitch	BOISKO
+friendly.opponent	PRZECIWNIK
+friendly.half_length	DLUGOSC POLOWY
+friendly.game_speed	SZYBKOSC GRY
+friendly.kick_off	ROZPOCZNIJ
+friendly.context	TOWARZYSKI
+# VERSUS
+versus.play	GRAJ
+versus.view_result	ZOBACZ WYNIK
+# STADIUM
+stadium.title	SKLADY
+stadium.kick_off	ROZPOCZNIJ
+stadium.edit_lineup	EDYTUJ SKLAD
+# OPTIONS
+opt.title	OPCJE
+opt.page	STRONA
+opt.language	JEZYK
+opt.half_length	DLUGOSC POLOWY
+opt.game_speed	SZYBKOSC GRY
+opt.opponent	PRZECIWNIK
+opt.pitch	BOISKO
+opt.skill_scaling	SKALOWANIE UMIEJ
+opt.skill_scaling_hint	WIERNE SWOS SKALOWANIE UMIEJ WG CENY
+opt.all_teams_equal	WSZYSTKIE ROWNE
+opt.all_teams_equal_hint	WYROWNUJE SILE DRUZYN GRACZY
+opt.pre_match_menus	MENU PRZED MECZEM
+opt.player_fatigue	ZMECZENIE
+opt.energy_bar	PASEK ENERGII
+opt.music	MUZYKA
+opt.music_hint	MUZYKA MENU AMIGA / PC / WLASNA
+opt.sound	DZWIEK
+opt.sound_hint	DZWIEKI MECZU PC LUB AMIGA
+opt.display	EKRAN
+opt.display_hint	F11 ZMIENIA  ALT+ENTER PELNY EKRAN
+# OPTION VALUES
+val.pitch_none	(BRAK)
+val.pitch_random	LOSOWE
+val.opponent_ai	AI
+val.opponent_player2	GRACZ 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	WLASNA
+val.music_off	WYL
+val.length_whole_match_seconds	%dS RZECZ  (CALY MECZ)
+val.length_whole_match_minutes	%d MIN RZECZ  (CALY MECZ)
+val.display_windowed	W OKNIE
+val.display_full_fill	PELNY WYPELN
+val.display_full_integer	PELNY CALK
+# LOCAL MULTIPLAYER
+mp.title	LOKALNY MULTIPLAYER
+mp.controls_hint	GRACZ 1: STRZALKI+SPACJA   GRACZ 2: WASD+SHIFT
+mp.start	ZACZNIJ MECZ 2 GRACZY
+# PICKERS
+pick.continent	KONTYNENT
+pick.country	KRAJ
+pick.your_team	TWOJA DRUZYNA
+pick.all_countries	WSZYSTKIE KRAJE
+pick.all	WSZ
+pick.select_country	WYBIERZ KRAJ
+pick.select_continent	WYBIERZ KONTYNENT
+pick.select_your_team	WYBIERZ DRUZYNE
+pick.home_team	GOSPODARZE
+pick.away_team	GOSCIE
+pick.nothing_to_choose	BRAK WYBORU
+pick.item	POZ
+pick.more_down	WIECEJ v
+# DRAW CEREMONY
+draw.title_suffix	LOSOWANIE
+# PLAY AGAIN
+playagain.title	KONIEC MECZU
+playagain.play_again	ZAGRAJ PONOWNIE
+playagain.exit	WYJSCIE
+# COMPETITIONS HUB
+comp.title	ROZGRYWKI
+comp.new_league	NOWA LIGA
+comp.new_cup	NOWY PUCHAR
+comp.new_tournament	NOWY TURNIEJ
+comp.preset_competition	GOTOWE ROZGRYWKI
+comp.new_career	NOWA KARIERA
+comp.load_game	WCZYTAJ GRE
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NOWA LIGA
+setup.cup_title	NOWY PUCHAR
+setup.tournament_title	NOWY TURNIEJ
+setup.size	ROZMIAR
+setup.teams_suffix	DRUZYN
+setup.entrants	UCZESTNICY
+setup.entrants_same_division	TA SAMA LIGA
+setup.entrants_same_nation	TEN SAM KRAJ
+setup.entrants_random	LOSOWO
+setup.rounds	RUNDY
+setup.rounds_single	POJEDYNCZE
+setup.rounds_double	PODWOJNE
+setup.groups	GRUPY
+setup.groups_of_4_suffix	GRUPY PO 4
+setup.create_league	UTWORZ LIGE
+setup.create_cup	UTWORZ PUCHAR
+setup.create_tournament	UTWORZ TURNIEJ
+# CAREER SETUP
+career.title	NOWA KARIERA
+career.blurb_seasons	LIGA I PUCHAR KRAJOWY CO SEZON
+career.blurb_promotion	WYGRAJ LIGE BY AWANSOWAC, OSTATNI SPADA
+career.start	ZACZNIJ KARIERE
+# MANAGER NAME ENTRY
+mgr.title	IMIE MENEDZERA
+mgr.hint	WPISZ IMIE   LEWO/PRAWO TYTUL   ENTER OK   ESC ANULUJ
+mgr.title_row	TYTUL
+mgr.title_mr	PAN
+mgr.title_ms	PANI
+mgr.default_name	GRACZ
+# COMPETITION DASHBOARD
+dash.play_next_match	GRAJ NASTEPNY MECZ
+dash.continue	DALEJ
+dash.next_season	NASTEPNY SEZON
+dash.table	TABELA
+dash.fixtures	TERMINARZ
+dash.squad	KADRA
+dash.lineup	SKLAD
+dash.transfers	TRANSFERY
+dash.staff	SZTAB
+dash.scouting	SKAUTING
+dash.record	DOROBEK
+dash.save_as	ZAPISZ JAKO
+dash.retire	EMERYTURA
+dash.abandon	PORZUC
+dash.management_record	DOROBEK MENEDZERA
+dash.status_retired	EMERYTURA
+dash.status_champions	MISTRZ:
+dash.status_eliminated	ODPADL
+dash.offers_prefix	OFERTY
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	NASTEPNY MECZ
+result.title	KONIEC MECZU
+result.label	WYNIK
+# MANAGEMENT RECORD
+mrec.title	DOROBEK MENEDZERA
+mrec.title_of_prefix	DOROBEK MENEDZERA
+mrec.career_over	KONIEC KARIERY
+mrec.season	SEZON
+mrec.div	DYW
+mrec.trophies	TROFEA
+mrec.none_yet	JESZCZE BRAK
+mrec.history	HISTORIA
+mrec.first_season	PIERWSZY SEZON TRWA
+# RETIRE CONFIRM
+retire.title	EMERYTURA
+retire.prompt	ZAKONCZYC KARIERE?
+retire.confirm	ZAKONCZ
+# PRESET COMPETITIONS
+preset.title	GOTOWE ROZGRYWKI
+preset.blurb	PRAWDZIWE ROZGRYWKI Z PRAWDZIWYMI ZESPOLAMI
+preset.european_cup	PUCHAR EUROPY
+preset.uefa_cup	PUCHAR UEFA
+preset.cup_winners_cup	PUCHAR ZDOBYWCOW PUCHAROW
+preset.world_cup	MISTRZOSTWA SWIATA
+preset.european_championship	MISTRZOSTWA EUROPY
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	DRUZYN PUCHAR
+preset.groups_then_knockout_suffix	GRUPY PO 4 POTEM PUCHAR
+preset.create	UTWORZ
+# SAVE AS / LOAD GAME
+save.title	ZAPISZ JAKO
+save.hint	WPISZ NAZWE   ENTER OK   ESC ANULUJ
+save.saved_as_prefix	ZAPISANO JAKO
+load.title	WCZYTAJ GRE
+load.delete_mode	TRYB USUWANIA
+load.no_saved_games	BRAK ZAPISOW
+# STANDINGS / FIXTURES
+table.title	TABELA
+table.group	GRUPA
+fixtures.title	TERMINARZ
+# TEAM SETUP
+teamcfg.title	USTAW DRUZYNE
+teamcfg.team	DRUZYNA
+teamcfg.team_home_prefix	DOM
+teamcfg.team_away_prefix	WYJAZD
+teamcfg.switch_home_away	ZMIEN DOM / WYJAZD
+teamcfg.coach	TRENER
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	GRUPA
+stage.final	FINAL
+stage.semi_final	POLFINAL
+stage.quarter_final	CWIERCFINAL
+stage.round_of_16	1/8 FINALU
+stage.round_of_32	1/16 FINALU
+stage.round_of_prefix	RUNDA
+stage.cup_prefix	PUCHAR
+round.league_round	LIGA - KOLEJKA
+round.competition_complete	ROZGRYWKI ZAKONCZONE
+round.no_fixtures	BRAK MECZOW
+status.no_player_team	BRAK DRUZYNY GRACZA
+status.you_are_champion	JESTES MISTRZEM
+status.you_are_prefix	JESTES
+status.you_are_unplaced	BEZ MIEJSCA
+status.you_were_eliminated	ODPADLES
+status.you_are_through	AWANS DO NASTEPNEJ RUNDY
+status.you_are_in_prefix	JESTES W
+status.you_are_in_the_prefix	JESTES W
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	ZWYCIEZCA
+season.cup_runner_up	FINALISTA
+season.cup_out_in_prefix	ODPADL W
+season.cup_out	ODPADL
+season.trophy_league	SEZON %d MISTRZ LIGI
+season.trophy_cup	SEZON %d ZDOBYWCA PUCHARU
+season.history_line	S%d: LIGA %s, PUCHAR %s
+season.history_retired	S%d: EMERYTURA
+fixture.penalties_mark	K
+# CAREER SQUAD
+squad.title_suffix	KADRA
+squad.default_club	KLUB
+squad.player_action	AKCJE ZAWODNIKA
+squad.no_player_selected	BRAK ZAWODNIKA
+squad.fit_injured	URAZ
+# PLAYER ACTION
+paction.value_prefix	WARTOSC
+paction.time_to_negotiate	CZAS NEGOCJACJI
+paction.take_off_list	ZDEJMIJ Z LISTY
+paction.put_on_list	DODAJ NA LISTE TRANSFEROWA
+paction.give_free_transfer	DAJ WOLNY TRANSFER
+paction.off_list_prefix	ZDJETY Z LISTY
+paction.listed_prefix	NA LISCIE
+paction.list_full_prefix	LISTA PELNA (MAX
+# FREE TRANSFER
+free.title	WOLNY TRANSFER
+free.confirm_prompt	ZWOLNIC %s ZA DARMO?
+free.release	ZWOLNIJ
+free.released_prefix	ZWOLNIONY
+free.squad_too_small	ZA MALA KADRA
+free.release_failed	ZWOLNIENIE NIEUDANE
+# LINEUP EDITOR
+lineup.title	SKLAD DRUZYNY
+lineup.auto	AUTO
+lineup.hint	GORA/DOL WIERSZ   OGIEN WYBIERZ/ZAMIEN   ESC POWROT
+lineup.picked_prefix	WYBRANY
+lineup.picked_swap_hint	- OGIEN NA WIERSZ BY ZAMIENIC
+lineup.unmarked_prefix	ODZNACZONY
+lineup.slot_not_available	MIEJSCE NIEDOSTEPNE
+lineup.goal_needs_keeper	BRAMKA WYMAGA BRAMKARZA
+lineup.swapped_prefix	ZAMIENIONO
+lineup.swapped_and	I
+lineup.auto_restored	AUTO SKLAD PRZYWROCONY
+lineup.auto_label	AUTO SKLAD
+lineup.custom_label	WLASNY SKLAD
+lineup.slot	MIEJSCE
+lineup.slot_gk	BR
+lineup.slot_sub	REZ
+# STAFF
+staff.title	SZTAB
+staff.coach	TRENER
+staff.fire_selected	ZWOLNIJ WYBRANEGO
+staff.hire_coach	ZATRUDNIJ TRENERA
+staff.training_focus	FOKUS TRENINGU
+staff.no_coach_selected	BRAK TRENERA
+staff.no_coaches	BRAK TRENEROW
+# FIRE COACH
+firecoach.title	ZWOLNIJ TRENERA
+firecoach.coach_not_available	TRENER NIEDOSTEPNY
+firecoach.severance_prefix	ODPRAWA
+firecoach.fire	ZWOLNIJ
+firecoach.fired_prefix	ZWOLNIONY
+# HIRE COACH
+hire.title	ZATRUDNIJ TRENERA
+hire.candidate	KANDYDAT
+hire.hire	ZATRUDNIJ
+hire.hired_prefix	ZATRUDNIONY
+# TRAINING FOCUS
+focus.title	FOKUS TRENINGU
+focus.toggle	PRZELACZ FOKUS
+focus.removed_prefix	USUNIETY
+focus.focused_prefix	W FOKUSIE
+focus.max_prefix	MAX
+focus.max_suffix	ZAWODNIKOW W FOKUSIE
+focus.mark	*
+# SCOUTING
+scout.title	SKAUTING
+scout.scout_player	SKAUTUJ ZAWODNIKA
+scout.improve_prefix	ULEPSZ SKAUTING
+scout.maxed	SKAUTING MAX
+scout.unavailable	SKAUTING NIEDOSTEPNY
+scout.quality_prefix	JAKOSC SKAUTA
+scout.no_watched	BRAK OBSERWOWANYCH
+scout.scout_selected	SKAUTUJ WYBRANEGO
+scout.scout_prefix	SKAUTUJ
+scout.scouted_prefix	ZESKAUTOWANY
+scout.cost_prefix	KOSZT
+scout.no_players_available	BRAK ZAWODNIKOW
+# TRANSFER MARKET
+market.title	RYNEK TRANSFEROWY
+market.max_price	MAX CENA
+market.buy_selected	KUP WYBRANEGO
+market.no_player_selected	BRAK ZAWODNIKA
+market.free_agent	WOLNY
+market.club_fallback_prefix	KLUB
+market.price_any	DOWOLNA
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	KUP ZAWODNIKA
+buy.asking_prefix	ZADANA
+buy.your_bid	TWOJA OFERTA
+buy.make_bid	ZLOZ OFERTE
+buy.club_unwilling	KLUB NIE CHCE KUPOWAC
+buy.no_time	BRAK CZASU NA NEGOCJACJE
+buy.enter_a_bid	PODAJ OFERTE
+buy.not_enough_money	ZA MALO PIENIEDZY
+buy.bought_prefix	KUPIONO
+buy.squad_full	KADRA PELNA
+buy.transfer_failed	TRANSFER NIEUDANY
+buy.counter_prefix	KONTROFERTA
+buy.rejected	OFERTA ZA NISKA - ODRZUCONO
+# INCOMING OFFERS
+offers.title	OFERTY TRANSFEROWE
+offers.no_offers	BRAK OFERT
+offers.offer	OFERTA
+offers.accept	AKCEPTUJ
+offers.demand_more	ZADAJ WIECEJ
+offers.reject	ODRZUC
+offers.header_negotiate_prefix	CZAS NEGOCJACJI
+offers.header_sells	SPRZEDAZE
+offers.not_available	OFERTA NIEDOSTEPNA
+offers.sold_prefix	SPRZEDANO
+offers.sold_for	ZA
+offers.squad_too_small	ZA MALA KADRA
+offers.accept_failed	SPRZEDAZ NIEUDANA
+offers.improved_prefix	PODNIESIONO DO
+offers.withdrawn	OFERTA WYCOFANA
+offers.refused	NIE ZAPLACA WIECEJ
+offers.rejected	OFERTA ODRZUCONA
+# MATCH HUD / OVERLAYS
+hud.half_time	PRZERWA
+hud.full_time	KONIEC MECZU
+hud.penalties	KARNE
+hud.paused	PAUZA
+hud.pause_resume_hint	spacja  wznow
+hud.pause_quit_hint	ESC    wyjscie do menu
+hud.goal	GOL!
+hud.throw_in	WRZUT
+hud.corner	ROZNY
+hud.goal_kick	WYKOP OD BRAMKI
+hud.press_space	nacisnij spacje
+hud.team_home_fallback	GOSPODARZE
+hud.team_away_fallback	GOSCIE
+goal.type_penalty	(KARNY)
+goal.type_own_goal	(SAM)

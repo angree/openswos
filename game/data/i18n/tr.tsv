@@ -1,0 +1,434 @@
+key	tr
+# COMMON
+common.back	GERI
+common.continue	DEVAM
+common.cancel	IPTAL
+common.ok	TAMAM
+common.on	ACIK
+common.off	KAPALI
+common.na	YOK
+common.none	HICBIRI
+common.versus	V
+common.page	SAYFA
+common.previous_page	ONCEKI SAYFA
+common.next_page	SONRAKI SAYFA
+common.no_career_data	KARIYER VERISI YOK
+common.no_squad_data	KADRO VERISI YOK
+common.player_not_available	OYUNCU MEVCUT DEGIL
+common.player	OYUNCU
+common.budget	BUTCE
+common.sort	SIRALA
+common.sort_by	SIRALAMA
+common.value	DEGER
+common.skill	YETENEK
+common.age	YAS
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	SIRA
+col.team	TAKIM
+col.name	ISIM
+col.number	NO
+col.number_hash	#
+col.p	O
+col.w	G
+col.d	B
+col.l	M
+col.gf	AG
+col.ga	YG
+col.pts	P
+col.skl	YET
+col.skill	YET
+col.pot	POT
+col.sta	DAY
+col.form	F
+col.fit	KON
+col.val	DEG
+col.nat	UYR
+col.club	KULUP
+col.price	FIYAT
+col.spec	UZM
+col.quality	K
+col.wage	MAAS
+col.fee	UCRET
+col.amount	TUTAR
+col.exp	SON
+col.skill_row	PA MU SU KA KO HI BI
+# HOME
+home.title	O P E N   S W O S
+home.play_match	MAC OYNA
+home.competitions	MUSABAKALAR
+home.multiplayer	COK OYUNCULU
+home.team_setup	TAKIM AYARI
+home.options	SECENEKLER
+home.career	KARIYER
+home.exit	CIKIS
+home.credit	YAPAN GRZEGORZ KORYCKI
+home.continue_prefix	DEVAM:
+# QUIT
+quit.title	CIKIS
+quit.are_you_sure	EMIN MISINIZ?
+quit.quit_to_windows	WINDOWS'A CIK
+quit.return_to_game	OYUNA DON
+# FRIENDLY
+friendly.title	HAZIRLIK MACI
+friendly.home	EV SAHIBI
+friendly.away	DEPLASMAN
+friendly.swap_teams	TAKIMLARI DEGISTIR
+friendly.pitch	SAHA
+friendly.opponent	RAKIP
+friendly.half_length	DEVRE SURESI
+friendly.game_speed	OYUN HIZI
+friendly.kick_off	BASLAT
+friendly.context	HAZIRLIK
+# VERSUS
+versus.play	OYNA
+versus.view_result	SONUCU GOR
+# STADIUM
+stadium.title	TAKIMLAR
+stadium.kick_off	BASLAT
+stadium.edit_lineup	KADROYU DUZENLE
+# OPTIONS
+opt.title	SECENEKLER
+opt.page	SAYFA
+opt.language	DIL
+opt.half_length	DEVRE SURESI
+opt.game_speed	OYUN HIZI
+opt.opponent	RAKIP
+opt.pitch	SAHA
+opt.skill_scaling	YETENEK OLCEKLEME
+opt.skill_scaling_hint	ORIJINAL SWOS OYUNCU FIYATI YETENEK OLCEKLEMESI
+opt.all_teams_equal	TUM TAKIMLAR ESIT
+opt.all_teams_equal_hint	OYUNCU TAKIMLARININ GUCUNU ESITLER
+opt.pre_match_menus	MAC ONCESI MENULER
+opt.player_fatigue	OYUNCU YORGUNLUGU
+opt.energy_bar	ENERJI CUBUGU
+opt.music	MUZIK
+opt.music_hint	AMIGA / PC / OZEL MENU MUZIGI
+opt.sound	SES
+opt.sound_hint	PC VEYA AMIGA MAC ICI SESLERI
+opt.display	EKRAN
+opt.display_hint	F11 DEGISTIRIR  ALT+ENTER TAM EKRAN ACAR/KAPATIR
+# OPTION VALUES
+val.pitch_none	(YOK)
+val.pitch_random	RASTGELE
+val.opponent_ai	YZ
+val.opponent_player2	OYUNCU 2  (WASD)
+val.opponent_demo	DEMO  (YZ V YZ)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	OZEL
+val.music_off	KAPALI
+val.length_whole_match_seconds	%dS GERCEK  (TUM MAC)
+val.length_whole_match_minutes	%d DK GERCEK  (TUM MAC)
+val.display_windowed	PENCERE
+val.display_full_fill	TAM DOLDUR
+val.display_full_integer	TAM TAMSAYI
+# LOCAL MULTIPLAYER
+mp.title	YEREL COK OYUNCULU
+mp.controls_hint	OYUNCU 1: OKLAR+BOSLUK   OYUNCU 2: WASD+SHIFT
+mp.start	2 OYUNCULU MAC BASLAT
+# PICKERS
+pick.continent	KITA
+pick.country	ULKE
+pick.your_team	TAKIMINIZ
+pick.all_countries	TUM ULKELER
+pick.all	TUMU
+pick.select_country	ULKE SEC
+pick.select_continent	KITA SEC
+pick.select_your_team	TAKIMINIZI SEC
+pick.home_team	EV SAHIBI TAKIM
+pick.away_team	DEPLASMAN TAKIMI
+pick.nothing_to_choose	SECENEK YOK
+pick.item	OGE
+pick.more_down	DAHA v
+# DRAW CEREMONY
+draw.title_suffix	KURA
+# PLAY AGAIN
+playagain.title	MAC SONU
+playagain.play_again	TEKRAR OYNA
+playagain.exit	CIKIS
+# COMPETITIONS HUB
+comp.title	MUSABAKALAR
+comp.new_league	YENI LIG
+comp.new_cup	YENI KUPA
+comp.new_tournament	YENI TURNUVA
+comp.preset_competition	HAZIR MUSABAKA
+comp.new_career	YENI KARIYER
+comp.load_game	OYUN YUKLE
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	YENI LIG
+setup.cup_title	YENI KUPA
+setup.tournament_title	YENI TURNUVA
+setup.size	BOYUT
+setup.teams_suffix	TAKIM
+setup.entrants	KATILIMCILAR
+setup.entrants_same_division	AYNI KUME
+setup.entrants_same_nation	AYNI ULKE
+setup.entrants_random	RASTGELE
+setup.rounds	TUR
+setup.rounds_single	TEK
+setup.rounds_double	CIFT
+setup.groups	GRUPLAR
+setup.groups_of_4_suffix	4LU GRUP
+setup.create_league	LIG OLUSTUR
+setup.create_cup	KUPA OLUSTUR
+setup.create_tournament	TURNUVA OLUSTUR
+# CAREER SETUP
+career.title	YENI KARIYER
+career.blurb_seasons	HER SEZON LIG VE YERLI KUPA
+career.blurb_promotion	LIGI KAZANIP YUKSEL, SONUNCU OLUP DUS
+career.start	KARIYERE BASLA
+# MANAGER NAME ENTRY
+mgr.title	MENAJER ADI
+mgr.hint	AD YAZ   SOL/SAG UNVAN   ENTER TAMAM   ESC IPTAL
+mgr.title_row	UNVAN
+mgr.title_mr	BAY
+mgr.title_ms	BAYAN
+mgr.default_name	OYUNCU
+# COMPETITION DASHBOARD
+dash.play_next_match	SONRAKI MACI OYNA
+dash.continue	DEVAM
+dash.next_season	SONRAKI SEZON
+dash.table	PUAN DURUMU
+dash.fixtures	FIKSTUR
+dash.squad	KADRO
+dash.lineup	DIZILIS
+dash.transfers	TRANSFERLER
+dash.staff	TEKNIK EKIP
+dash.scouting	GOZLEM
+dash.record	SICIL
+dash.save_as	FARKLI KAYDET
+dash.retire	EMEKLI OL
+dash.abandon	TERK ET
+dash.management_record	YONETIM SICILI
+dash.status_retired	EMEKLI
+dash.status_champions	SAMPIYON:
+dash.status_eliminated	ELENDI
+dash.offers_prefix	TEKLIFLER
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	SONRAKI MAC
+result.title	MAC SONU
+result.label	SONUC
+# MANAGEMENT RECORD
+mrec.title	YONETIM SICILI
+mrec.title_of_prefix	YONETIM SICILI:
+mrec.career_over	KARIYER BITTI
+mrec.season	SEZON
+mrec.div	LIG
+mrec.trophies	KUPALAR
+mrec.none_yet	HENUZ YOK
+mrec.history	GECMIS
+mrec.first_season	ILK SEZON DEVAM EDIYOR
+# RETIRE CONFIRM
+retire.title	EMEKLI OL
+retire.prompt	EMEKLI OLUNSUN MU?
+retire.confirm	EMEKLI OL
+# PRESET COMPETITIONS
+preset.title	HAZIR MUSABAKA
+preset.blurb	GERCEK KADROLARIYLA GERCEK MUSABAKALAR
+preset.european_cup	AVRUPA KUPASI
+preset.uefa_cup	UEFA KUPASI
+preset.cup_winners_cup	KUPA GALIPLERI KUPASI
+preset.world_cup	DUNYA KUPASI
+preset.european_championship	AVRUPA SAMPIYONASI
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	TAKIMLI ELEME
+preset.groups_then_knockout_suffix	4LU GRUP SONRA ELEME
+preset.create	OLUSTUR
+# SAVE AS / LOAD GAME
+save.title	FARKLI KAYDET
+save.hint	SLOT ADI YAZ   ENTER TAMAM   ESC IPTAL
+save.saved_as_prefix	KAYDEDILDI:
+load.title	OYUN YUKLE
+load.delete_mode	SILME MODU
+load.no_saved_games	KAYITLI OYUN YOK
+# STANDINGS / FIXTURES
+table.title	PUAN DURUMU
+table.group	GRUP
+fixtures.title	FIKSTUR
+# TEAM SETUP
+teamcfg.title	TAKIM AYARI
+teamcfg.team	TAKIM
+teamcfg.team_home_prefix	EV
+teamcfg.team_away_prefix	DEP
+teamcfg.switch_home_away	EV / DEP DEGISTIR
+teamcfg.coach	ANTRENOR
+# COMPETITION ENGINE
+stage.league	LIG
+stage.group_prefix	GRUP
+stage.final	FINAL
+stage.semi_final	YARI FINAL
+stage.quarter_final	CEYREK FINAL
+stage.round_of_16	SON 16
+stage.round_of_32	SON 32
+stage.round_of_prefix	SON
+stage.cup_prefix	KUPA
+round.league_round	LIG - HAFTA
+round.competition_complete	MUSABAKA TAMAMLANDI
+round.no_fixtures	FIKSTUR YOK
+status.no_player_team	OYUNCU TAKIMI YOK
+status.you_are_champion	SAMPIYON OLDUNUZ
+status.you_are_prefix	SIRANIZ
+status.you_are_unplaced	SIRALANMADINIZ
+status.you_were_eliminated	ELENDINIZ
+status.you_are_through	SONRAKI TURA GECTINIZ
+status.you_are_in_prefix	BURADASINIZ:
+status.you_are_in_the_prefix	BURADASINIZ:
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	KAZANAN
+season.cup_runner_up	IKINCI
+season.cup_out_in_prefix	ELENDI:
+season.cup_out	ELENDI
+season.trophy_league	SEZON %d LIG SAMPIYONU
+season.trophy_cup	SEZON %d KUPA GALIBI
+season.history_line	S%d: LIG %s, KUPA %s
+season.history_retired	S%d: EMEKLI
+fixture.penalties_mark	P
+# CAREER SQUAD
+squad.title_suffix	KADRO
+squad.default_club	KULUP
+squad.player_action	OYUNCU ISLEMI
+squad.no_player_selected	OYUNCU SECILMEDI
+squad.fit_injured	SKT
+# PLAYER ACTION
+paction.value_prefix	DEGER
+paction.time_to_negotiate	PAZARLIK SURESI
+paction.take_off_list	LISTEDEN CIKAR
+paction.put_on_list	TRANSFER LISTESINE KOY
+paction.give_free_transfer	SERBEST BIRAK
+paction.off_list_prefix	LISTEDEN CIKTI
+paction.listed_prefix	LISTELENDI
+paction.list_full_prefix	LISTE DOLU (MAKS
+# FREE TRANSFER
+free.title	SERBEST TRANSFER
+free.confirm_prompt	%s SERBEST BIRAKILSIN MI?
+free.release	SERBEST BIRAK
+free.released_prefix	SERBEST BIRAKILDI
+free.squad_too_small	KADRO COK KUCUK
+free.release_failed	BIRAKMA BASARISIZ
+# LINEUP EDITOR
+lineup.title	TAKIM DIZILISI
+lineup.auto	OTO
+lineup.hint	YUKARI/ASAGI SATIR   ATES SEC/DEGIS   ESC GERI
+lineup.picked_prefix	SECILDI
+lineup.picked_swap_hint	- DEGISTIRMEK ICIN SATIR SEC
+lineup.unmarked_prefix	ISARET KALDIRILDI
+lineup.slot_not_available	SLOT MEVCUT DEGIL
+lineup.goal_needs_keeper	KALE SLOTU KALECI ISTER
+lineup.swapped_prefix	DEGISTIRILDI
+lineup.swapped_and	VE
+lineup.auto_restored	OTO DIZILIS GERI YUKLENDI
+lineup.auto_label	OTO DIZILIS
+lineup.custom_label	OZEL DIZILIS
+lineup.slot	SLOT
+lineup.slot_gk	KL
+lineup.slot_sub	YED
+# STAFF
+staff.title	TEKNIK EKIP
+staff.coach	ANTRENOR
+staff.fire_selected	SECILENI KOV
+staff.hire_coach	ANTRENOR TUT
+staff.training_focus	ANTRENMAN ODAGI
+staff.no_coach_selected	ANTRENOR SECILMEDI
+staff.no_coaches	ANTRENOR YOK
+# FIRE COACH
+firecoach.title	ANTRENORU KOV
+firecoach.coach_not_available	ANTRENOR MEVCUT DEGIL
+firecoach.severance_prefix	TAZMINAT
+firecoach.fire	KOV
+firecoach.fired_prefix	KOVULDU
+# HIRE COACH
+hire.title	ANTRENOR TUT
+hire.candidate	ADAY
+hire.hire	TUT
+hire.hired_prefix	TUTULDU
+# TRAINING FOCUS
+focus.title	ANTRENMAN ODAGI
+focus.toggle	ODAGI DEGISTIR
+focus.removed_prefix	KALDIRILDI
+focus.focused_prefix	ODAKLANDI
+focus.max_prefix	MAKS
+focus.max_suffix	ODAK OYUNCU
+focus.mark	*
+# SCOUTING
+scout.title	GOZLEM
+scout.scout_player	OYUNCU GOZLE
+scout.improve_prefix	GOZLEMI GELISTIR
+scout.maxed	GOZLEM MAKSIMUM
+scout.unavailable	GOZLEM YOK
+scout.quality_prefix	GOZLEM KALITESI
+scout.no_watched	IZLENEN OYUNCU YOK
+scout.scout_selected	SECILENI GOZLE
+scout.scout_prefix	GOZLE
+scout.scouted_prefix	GOZLENDI
+scout.cost_prefix	MALIYET
+scout.no_players_available	OYUNCU YOK
+# TRANSFER MARKET
+market.title	TRANSFER PIYASASI
+market.max_price	MAKS FIYAT
+market.buy_selected	SECILENI AL
+market.no_player_selected	OYUNCU SECILMEDI
+market.free_agent	SERBEST
+market.club_fallback_prefix	KULUP
+market.price_any	SINIRSIZ
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	OYUNCU AL
+buy.asking_prefix	ISTENEN
+buy.your_bid	TEKLIFINIZ
+buy.make_bid	TEKLIF VER
+buy.club_unwilling	KULUP OYUNCU ALMAK ISTEMIYOR
+buy.no_time	PAZARLIK SURESI BITTI
+buy.enter_a_bid	TEKLIF GIRIN
+buy.not_enough_money	YETERLI PARA YOK
+buy.bought_prefix	ALINDI
+buy.squad_full	KADRO DOLU
+buy.transfer_failed	TRANSFER BASARISIZ
+buy.counter_prefix	KARSI TEKLIF:
+buy.rejected	TEKLIF DUSUK - REDDEDILDI
+# INCOMING OFFERS
+offers.title	TRANSFER TEKLIFLERI
+offers.no_offers	TEKLIF YOK
+offers.offer	TEKLIF
+offers.accept	KABUL ET
+offers.demand_more	DAHA FAZLA ISTE
+offers.reject	REDDET
+offers.header_negotiate_prefix	PAZARLIK SURESI
+offers.header_sells	SATIS
+offers.not_available	TEKLIF MEVCUT DEGIL
+offers.sold_prefix	SATILDI
+offers.sold_for	BEDELI
+offers.squad_too_small	KADRO COK KUCUK
+offers.accept_failed	KABUL BASARISIZ
+offers.improved_prefix	YUKSELTILDI:
+offers.withdrawn	TEKLIF GERI CEKILDI
+offers.refused	DAHA FAZLA ODEMIYOR
+offers.rejected	TEKLIF REDDEDILDI
+# MATCH HUD / OVERLAYS
+hud.half_time	DEVRE ARASI
+hud.full_time	MAC SONU
+hud.penalties	PENALTILAR
+hud.paused	DURAKLADI
+hud.pause_resume_hint	bosluk  devam
+hud.pause_quit_hint	ESC    menuye cik
+hud.goal	GOL!
+hud.throw_in	TAC
+hud.corner	KORNER
+hud.goal_kick	KALE VURUSU
+hud.press_space	bosluga bas
+hud.team_home_fallback	EV SAHIBI
+hud.team_away_fallback	DEPLASMAN
+goal.type_penalty	(PEN)
+goal.type_own_goal	(KK)

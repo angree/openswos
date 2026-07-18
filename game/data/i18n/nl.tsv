@@ -1,0 +1,434 @@
+key	nl
+# COMMON
+common.back	TERUG
+common.continue	DOORGAAN
+common.cancel	ANNULEER
+common.ok	OK
+common.on	AAN
+common.off	UIT
+common.na	N.V.T.
+common.none	GEEN
+common.versus	V
+common.page	PAGINA
+common.previous_page	VORIGE PAGINA
+common.next_page	VOLGENDE PAGINA
+common.no_career_data	GEEN CARRIEREDATA
+common.no_squad_data	GEEN SELECTIEDATA
+common.player_not_available	SPELER NIET BESCHIKBAAR
+common.player	SPELER
+common.budget	BUDGET
+common.sort	SORTEER
+common.sort_by	SORTEER OP
+common.value	WAARDE
+common.skill	SKILL
+common.age	LEEFTIJD
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POS
+col.team	TEAM
+col.name	NAAM
+col.number	NR
+col.number_hash	#
+col.p	G
+col.w	W
+col.d	GL
+col.l	V
+col.gf	DV
+col.ga	DT
+col.pts	PT
+col.skl	SKL
+col.skill	SKILL
+col.pot	POT
+col.sta	CON
+col.form	F
+col.fit	FIT
+col.val	WRD
+col.nat	NAT
+col.club	CLUB
+col.price	PRIJS
+col.spec	SPEC
+col.quality	K
+col.wage	LOON
+col.fee	SOM
+col.amount	BEDRAG
+col.exp	EXP
+col.skill_row	PA TA SC KO CO SN AF
+# HOME
+home.title	O P E N   S W O S
+home.play_match	SPEEL MATCH
+home.competitions	COMPETITIES
+home.multiplayer	MULTIPLAYER
+home.team_setup	TEAM OVERZICHT
+home.options	OPTIES
+home.career	CARRIERE
+home.exit	AFSLUITEN
+home.credit	DOOR GRZEGORZ KORYCKI
+home.continue_prefix	DOORGAAN:
+# QUIT
+quit.title	AFSLUITEN
+quit.are_you_sure	WEET JE HET ZEKER?
+quit.quit_to_windows	AFSLUITEN NAAR WINDOWS
+quit.return_to_game	TERUG NAAR SPEL
+# FRIENDLY
+friendly.title	OEFENWEDSTRIJD
+friendly.home	THUIS
+friendly.away	UIT
+friendly.swap_teams	WISSEL TEAMS
+friendly.pitch	VELD
+friendly.opponent	TEGENSTANDER
+friendly.half_length	HELFTDUUR
+friendly.game_speed	SPELSNELHEID
+friendly.kick_off	AFTRAP
+friendly.context	OEFENPOT
+# VERSUS
+versus.play	SPEEL
+versus.view_result	BEKIJK RESULTAAT
+# STADIUM
+stadium.title	TEAMS
+stadium.kick_off	AFTRAP
+stadium.edit_lineup	WIJZIG OPSTELLING
+# OPTIONS
+opt.title	OPTIES
+opt.page	PAGINA
+opt.language	TAAL
+opt.half_length	HELFTDUUR
+opt.game_speed	SPELSNELHEID
+opt.opponent	TEGENSTANDER
+opt.pitch	VELD
+opt.skill_scaling	SKILL SCHALING
+opt.skill_scaling_hint	GETROUWE SWOS SPELERPRIJS SKILL SCHALING
+opt.all_teams_equal	ALLE TEAMS GELIJK
+opt.all_teams_equal_hint	MAAKT TEAMSTERKTE GELIJK VOOR SPELERTEAMS
+opt.pre_match_menus	VOORWEDSTRIJD MENUS
+opt.player_fatigue	SPELER VERMOEIDHEID
+opt.energy_bar	ENERGIEBALK
+opt.music	MUZIEK
+opt.music_hint	AMIGA / PC / EIGEN MENU MUZIEK
+opt.sound	GELUID
+opt.sound_hint	PC OF AMIGA WEDSTRIJDGELUIDEN
+opt.display	WEERGAVE
+opt.display_hint	F11 WISSELT  ALT+ENTER SCHAKELT VOLLEDIG SCHERM
+# OPTION VALUES
+val.pitch_none	(GEEN)
+val.pitch_random	WILLEKEURIG
+val.opponent_ai	AI
+val.opponent_player2	SPELER 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	EIGEN
+val.music_off	UIT
+val.length_whole_match_seconds	%dS ECHT  (HELE MATCH)
+val.length_whole_match_minutes	%d MIN ECHT  (HELE MATCH)
+val.display_windowed	VENSTER
+val.display_full_fill	VOLLEDIG VULLEN
+val.display_full_integer	VOLLEDIG INTEGER
+# LOCAL MULTIPLAYER
+mp.title	LOKALE MULTIPLAYER
+mp.controls_hint	SPELER 1: PIJLEN+SPATIE   SPELER 2: WASD+SHIFT
+mp.start	START 2 SPELER MATCH
+# PICKERS
+pick.continent	CONTINENT
+pick.country	LAND
+pick.your_team	JOUW TEAM
+pick.all_countries	ALLE LANDEN
+pick.all	ALLE
+pick.select_country	KIES LAND
+pick.select_continent	KIES CONTINENT
+pick.select_your_team	KIES JOUW TEAM
+pick.home_team	THUISTEAM
+pick.away_team	UITTEAM
+pick.nothing_to_choose	NIETS TE KIEZEN
+pick.item	ITEM
+pick.more_down	MEER v
+# DRAW CEREMONY
+draw.title_suffix	LOTING
+# PLAY AGAIN
+playagain.title	EINDE WEDSTRIJD
+playagain.play_again	SPEEL OPNIEUW
+playagain.exit	TERUG
+# COMPETITIONS HUB
+comp.title	COMPETITIES
+comp.new_league	NIEUWE LIGA
+comp.new_cup	NIEUWE BEKER
+comp.new_tournament	NIEUW TOERNOOI
+comp.preset_competition	VASTE COMPETITIE
+comp.new_career	NIEUWE CARRIERE
+comp.load_game	LAAD SPEL
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NIEUWE LIGA
+setup.cup_title	NIEUWE BEKER
+setup.tournament_title	NIEUW TOERNOOI
+setup.size	OMVANG
+setup.teams_suffix	TEAMS
+setup.entrants	DEELNEMERS
+setup.entrants_same_division	ZELFDE DIVISIE
+setup.entrants_same_nation	ZELFDE LAND
+setup.entrants_random	WILLEKEURIG
+setup.rounds	RONDES
+setup.rounds_single	ENKEL
+setup.rounds_double	DUBBEL
+setup.groups	GROEPEN
+setup.groups_of_4_suffix	GROEPEN VAN 4
+setup.create_league	MAAK LIGA
+setup.create_cup	MAAK BEKER
+setup.create_tournament	MAAK TOERNOOI
+# CAREER SETUP
+career.title	NIEUWE CARRIERE
+career.blurb_seasons	LIGA EN NATIONALE BEKER ELK SEIZOEN
+career.blurb_promotion	WIN DE LIGA VOOR PROMOTIE, WORD LAATSTE EN DEGRADEER
+career.start	START CARRIERE
+# MANAGER NAME ENTRY
+mgr.title	MANAGER NAAM
+mgr.hint	TYP NAAM   LINKS/RECHTS TITEL   ENTER OK   ESC ANNULEER
+mgr.title_row	TITEL
+mgr.title_mr	DHR
+mgr.title_ms	MEVR
+mgr.default_name	SPELER
+# COMPETITION DASHBOARD
+dash.play_next_match	SPEEL VOLGENDE MATCH
+dash.continue	DOORGAAN
+dash.next_season	VOLGEND SEIZOEN
+dash.table	STAND
+dash.fixtures	PROGRAMMA
+dash.squad	SELECTIE
+dash.lineup	OPSTELLING
+dash.transfers	TRANSFERS
+dash.staff	STAF
+dash.scouting	SCOUTING
+dash.record	RECORD
+dash.save_as	OPSLAAN ALS
+dash.retire	STOPPEN
+dash.abandon	OPGEVEN
+dash.management_record	MANAGEMENT RECORD
+dash.status_retired	GESTOPT
+dash.status_champions	KAMPIOEN:
+dash.status_eliminated	UITGESCHAKELD
+dash.offers_prefix	BIEDINGEN
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	VOLGENDE MATCH
+result.title	EINDE WEDSTRIJD
+result.label	RESULTAAT
+# MANAGEMENT RECORD
+mrec.title	MANAGEMENT RECORD
+mrec.title_of_prefix	MANAGEMENT RECORD VAN
+mrec.career_over	CARRIERE VOORBIJ
+mrec.season	SEIZOEN
+mrec.div	DIV
+mrec.trophies	PRIJZEN
+mrec.none_yet	NOG GEEN
+mrec.history	HISTORIE
+mrec.first_season	EERSTE SEIZOEN BEZIG
+# RETIRE CONFIRM
+retire.title	STOPPEN
+retire.prompt	STOPPEN ALS MANAGER?
+retire.confirm	STOPPEN
+# PRESET COMPETITIONS
+preset.title	VASTE COMPETITIE
+preset.blurb	ECHTE COMPETITIES MET ECHTE DEELNEMERS
+preset.european_cup	EUROPACUP
+preset.uefa_cup	UEFA CUP
+preset.cup_winners_cup	BEKERWINNAARS CUP
+preset.world_cup	WERELDBEKER
+preset.european_championship	EUROPEES KAMPIOENSCHAP
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	TEAM KNOCKOUT
+preset.groups_then_knockout_suffix	GROEPEN VAN 4 DAN KNOCKOUT
+preset.create	MAAK
+# SAVE AS / LOAD GAME
+save.title	OPSLAAN ALS
+save.hint	TYP SLOTNAAM   ENTER OK   ESC ANNULEER
+save.saved_as_prefix	OPGESLAGEN ALS
+load.title	LAAD SPEL
+load.delete_mode	VERWIJDERMODUS
+load.no_saved_games	GEEN OPGESLAGEN SPELLEN
+# STANDINGS / FIXTURES
+table.title	STAND
+table.group	GROEP
+fixtures.title	PROGRAMMA
+# TEAM SETUP
+teamcfg.title	TEAM OVERZICHT
+teamcfg.team	TEAM
+teamcfg.team_home_prefix	THUIS
+teamcfg.team_away_prefix	UIT
+teamcfg.switch_home_away	WISSEL THUIS / UIT
+teamcfg.coach	COACH
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	GROEP
+stage.final	FINALE
+stage.semi_final	HALVE FINALE
+stage.quarter_final	KWARTFINALE
+stage.round_of_16	LAATSTE 16
+stage.round_of_32	LAATSTE 32
+stage.round_of_prefix	LAATSTE
+stage.cup_prefix	BEKER
+round.league_round	LIGA - RONDE
+round.competition_complete	COMPETITIE VOLTOOID
+round.no_fixtures	GEEN WEDSTRIJDEN
+status.no_player_team	GEEN SPELERTEAM
+status.you_are_champion	JIJ BENT KAMPIOEN
+status.you_are_prefix	JIJ BENT
+status.you_are_unplaced	JIJ BENT ONGEPLAATST
+status.you_were_eliminated	JIJ BENT UITGESCHAKELD
+status.you_are_through	JIJ BENT DOOR NAAR DE VOLGENDE RONDE
+status.you_are_in_prefix	JIJ ZIT IN
+status.you_are_in_the_prefix	JIJ ZIT IN DE
+ord.st	STE
+ord.nd	DE
+ord.rd	DE
+ord.th	DE
+season.cup_winner	WINNAAR
+season.cup_runner_up	FINALIST
+season.cup_out_in_prefix	ERUIT IN
+season.cup_out	ERUIT
+season.trophy_league	SEIZOEN %d LIGAKAMPIOEN
+season.trophy_cup	SEIZOEN %d BEKERWINNAAR
+season.history_line	S%d: LIGA %s, BEKER %s
+season.history_retired	S%d: GESTOPT
+fixture.penalties_mark	P
+# CAREER SQUAD
+squad.title_suffix	SELECTIE
+squad.default_club	CLUB
+squad.player_action	SPELERACTIE
+squad.no_player_selected	GEEN SPELER GEKOZEN
+squad.fit_injured	GEB
+# PLAYER ACTION
+paction.value_prefix	WAARDE
+paction.time_to_negotiate	ONDERHANDELTIJD
+paction.take_off_list	VAN LIJST HALEN
+paction.put_on_list	OP TRANSFERLIJST
+paction.give_free_transfer	GRATIS TRANSFER GEVEN
+paction.off_list_prefix	VAN LIJST
+paction.listed_prefix	OP LIJST
+paction.list_full_prefix	LIJST VOL (MAX
+# FREE TRANSFER
+free.title	GRATIS TRANSFER
+free.confirm_prompt	%s GRATIS VRIJLATEN?
+free.release	VRIJLATEN
+free.released_prefix	VRIJGELATEN
+free.squad_too_small	SELECTIE TE KLEIN
+free.release_failed	VRIJLATEN MISLUKT
+# LINEUP EDITOR
+lineup.title	TEAM OPSTELLING
+lineup.auto	AUTO
+lineup.hint	OMHOOG/OMLAAG RIJ   VUUR KIES/WISSEL   ESC TERUG
+lineup.picked_prefix	GEKOZEN
+lineup.picked_swap_hint	- VUUR EEN RIJ OM TE WISSELEN
+lineup.unmarked_prefix	ONGEMARKEERD
+lineup.slot_not_available	SLOT NIET BESCHIKBAAR
+lineup.goal_needs_keeper	DOELSLOT VEREIST KEEPER
+lineup.swapped_prefix	GEWISSELD
+lineup.swapped_and	EN
+lineup.auto_restored	AUTO OPSTELLING HERSTELD
+lineup.auto_label	AUTO OPSTELLING
+lineup.custom_label	EIGEN OPSTELLING
+lineup.slot	SLOT
+lineup.slot_gk	GK
+lineup.slot_sub	SUB
+# STAFF
+staff.title	STAF
+staff.coach	COACH
+staff.fire_selected	ONTSLA GEKOZEN
+staff.hire_coach	HUUR COACH
+staff.training_focus	TRAININGSFOCUS
+staff.no_coach_selected	GEEN COACH GEKOZEN
+staff.no_coaches	GEEN COACHES
+# FIRE COACH
+firecoach.title	ONTSLA COACH
+firecoach.coach_not_available	COACH NIET BESCHIKBAAR
+firecoach.severance_prefix	AFKOOPSOM
+firecoach.fire	ONTSLAAN
+firecoach.fired_prefix	ONTSLAGEN
+# HIRE COACH
+hire.title	HUUR COACH
+hire.candidate	KANDIDAAT
+hire.hire	HUUR
+hire.hired_prefix	INGEHUURD
+# TRAINING FOCUS
+focus.title	TRAININGSFOCUS
+focus.toggle	FOCUS AAN/UIT
+focus.removed_prefix	VERWIJDERD
+focus.focused_prefix	GEFOCUST
+focus.max_prefix	MAX
+focus.max_suffix	FOCUS SPELERS
+focus.mark	*
+# SCOUTING
+scout.title	SCOUTING
+scout.scout_player	SCOUT SPELER
+scout.improve_prefix	VERBETER SCOUTING
+scout.maxed	SCOUTING MAX
+scout.unavailable	SCOUTING ONBESCHIKBAAR
+scout.quality_prefix	SCOUT KWALITEIT
+scout.no_watched	GEEN GEVOLGDE SPELERS
+scout.scout_selected	SCOUT GEKOZEN
+scout.scout_prefix	SCOUT
+scout.scouted_prefix	GESCOUT
+scout.cost_prefix	KOSTEN
+scout.no_players_available	GEEN SPELERS BESCHIKBAAR
+# TRANSFER MARKET
+market.title	TRANSFERMARKT
+market.max_price	MAX PRIJS
+market.buy_selected	KOOP GEKOZEN
+market.no_player_selected	GEEN SPELER GEKOZEN
+market.free_agent	TRANSFERVRIJ
+market.club_fallback_prefix	CLUB
+market.price_any	ALLE
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	KOOP SPELER
+buy.asking_prefix	VRAAGT
+buy.your_bid	JOUW BOD
+buy.make_bid	DOE BOD
+buy.club_unwilling	CLUB WIL GEEN SPELERS KOPEN
+buy.no_time	GEEN TIJD MEER OM TE ONDERHANDELEN
+buy.enter_a_bid	VOER EEN BOD IN
+buy.not_enough_money	NIET GENOEG GELD
+buy.bought_prefix	GEKOCHT
+buy.squad_full	SELECTIE VOL
+buy.transfer_failed	TRANSFER MISLUKT
+buy.counter_prefix	TEGENBOD VAN
+buy.rejected	BOD TE LAAG - AFGEWEZEN
+# INCOMING OFFERS
+offers.title	TRANSFERBIEDINGEN
+offers.no_offers	GEEN BIEDINGEN
+offers.offer	BOD
+offers.accept	ACCEPTEER
+offers.demand_more	EIS MEER
+offers.reject	AFWIJZEN
+offers.header_negotiate_prefix	ONDERHANDELTIJD
+offers.header_sells	VERKOPEN
+offers.not_available	BOD NIET BESCHIKBAAR
+offers.sold_prefix	VERKOCHT
+offers.sold_for	VOOR
+offers.squad_too_small	SELECTIE TE KLEIN
+offers.accept_failed	ACCEPTEREN MISLUKT
+offers.improved_prefix	VERHOOGD NAAR
+offers.withdrawn	BOD INGETROKKEN
+offers.refused	ZIJ WILLEN NIET MEER BETALEN
+offers.rejected	BOD AFGEWEZEN
+# MATCH HUD / OVERLAYS
+hud.half_time	RUST
+hud.full_time	EINDE
+hud.penalties	STRAFSCHOPPEN
+hud.paused	GEPAUZEERD
+hud.pause_resume_hint	spatie  hervat
+hud.pause_quit_hint	ESC    naar menu
+hud.goal	GOAL!
+hud.throw_in	INGOOI
+hud.corner	CORNER
+hud.goal_kick	DOELTRAP
+hud.press_space	druk spatie
+hud.team_home_fallback	THUIS
+hud.team_away_fallback	UIT
+goal.type_penalty	(PEN)
+goal.type_own_goal	(EG)

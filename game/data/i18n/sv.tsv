@@ -1,0 +1,434 @@
+key	sv
+# COMMON
+common.back	TILLBAKA
+common.continue	FORTSATT
+common.cancel	AVBRYT
+common.ok	OK
+common.on	PA
+common.off	AV
+common.na	-
+common.none	INGEN
+common.versus	V
+common.page	SIDA
+common.previous_page	FOREG SIDA
+common.next_page	NASTA SIDA
+common.no_career_data	INGEN KARRIARDATA
+common.no_squad_data	INGEN TRUPPDATA
+common.player_not_available	SPELARE EJ TILLGANGLIG
+common.player	SPELARE
+common.budget	BUDGET
+common.sort	SORTERA
+common.sort_by	SORTERA EFTER
+common.value	VARDE
+common.skill	SKICKL
+common.age	ALDER
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POS
+col.team	LAG
+col.name	NAMN
+col.number	NR
+col.number_hash	#
+col.p	S
+col.w	V
+col.d	O
+col.l	F
+col.gf	GM
+col.ga	IM
+col.pts	P
+col.skl	SKL
+col.skill	SKICKL
+col.pot	POT
+col.sta	KOND
+col.form	F
+col.fit	FIT
+col.val	VAR
+col.nat	NAT
+col.club	KLUBB
+col.price	PRIS
+col.spec	SPEC
+col.quality	K
+col.wage	LON
+col.fee	AVG
+col.amount	BELOPP
+col.exp	GAR
+col.skill_row	PA TA SK NI KO SN AV
+# HOME
+home.title	O P E N   S W O S
+home.play_match	SPELA MATCH
+home.competitions	TAVLINGAR
+home.multiplayer	FLERSPELARE
+home.team_setup	LAGUPPSTALLNING
+home.options	INSTALLNINGAR
+home.career	KARRIAR
+home.exit	AVSLUTA
+home.credit	AV GRZEGORZ KORYCKI
+home.continue_prefix	FORTSATT:
+# QUIT
+quit.title	AVSLUTA
+quit.are_you_sure	AR DU SAKER?
+quit.quit_to_windows	AVSLUTA TILL WINDOWS
+quit.return_to_game	ATER TILL SPEL
+# FRIENDLY
+friendly.title	TRANINGSMATCH
+friendly.home	HEMMA
+friendly.away	BORTA
+friendly.swap_teams	BYT LAG
+friendly.pitch	PLAN
+friendly.opponent	MOTSTANDARE
+friendly.half_length	HALVLEK
+friendly.game_speed	SPELHASTIGHET
+friendly.kick_off	AVSPARK
+friendly.context	TRANINGSMATCH
+# VERSUS
+versus.play	SPELA
+versus.view_result	VISA RESULTAT
+# STADIUM
+stadium.title	LAG
+stadium.kick_off	AVSPARK
+stadium.edit_lineup	ANDRA LAG
+# OPTIONS
+opt.title	INSTALLNINGAR
+opt.page	SIDA
+opt.language	SPRAK
+opt.half_length	HALVLEK
+opt.game_speed	SPELHASTIGHET
+opt.opponent	MOTSTANDARE
+opt.pitch	PLAN
+opt.skill_scaling	SKICKLIGHETSSKALA
+opt.skill_scaling_hint	TROGEN SWOS SPELARPRIS-SKICKLIGHETSSKALA
+opt.all_teams_equal	ALLA LAG LIKA
+opt.all_teams_equal_hint	JAMNAR UT LAGSTYRKA FOR SPELARLAG
+opt.pre_match_menus	FORMATCH-MENYER
+opt.player_fatigue	SPELARTROTTHET
+opt.energy_bar	ENERGIMATARE
+opt.music	MUSIK
+opt.music_hint	AMIGA / PC / EGEN MENYMUSIK
+opt.sound	LJUD
+opt.sound_hint	PC ELLER AMIGA MATCHLJUD
+opt.display	SKARM
+opt.display_hint	F11 VAXLAR  ALT+ENTER FULLSKARM
+# OPTION VALUES
+val.pitch_none	(INGEN)
+val.pitch_random	SLUMP
+val.opponent_ai	AI
+val.opponent_player2	SPELARE 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	EGEN
+val.music_off	AV
+val.length_whole_match_seconds	%dS RIKTIG  (HELA MATCHEN)
+val.length_whole_match_minutes	%d MIN RIKTIG  (HELA MATCHEN)
+val.display_windowed	FONSTER
+val.display_full_fill	FULL FYLL
+val.display_full_integer	FULL HELTAL
+# LOCAL MULTIPLAYER
+mp.title	LOKAL FLERSPELARE
+mp.controls_hint	SPELARE 1: PILAR+MELLANSLAG   SPELARE 2: WASD+SHIFT
+mp.start	STARTA 2-SPELARMATCH
+# PICKERS
+pick.continent	KONTINENT
+pick.country	LAND
+pick.your_team	DITT LAG
+pick.all_countries	ALLA LANDER
+pick.all	ALLA
+pick.select_country	VALJ LAND
+pick.select_continent	VALJ KONTINENT
+pick.select_your_team	VALJ DITT LAG
+pick.home_team	HEMMALAG
+pick.away_team	BORTALAG
+pick.nothing_to_choose	INGET ATT VALJA
+pick.item	POST
+pick.more_down	MER v
+# DRAW CEREMONY
+draw.title_suffix	LOTTNING
+# PLAY AGAIN
+playagain.title	FULLTID
+playagain.play_again	SPELA IGEN
+playagain.exit	AVSLUTA
+# COMPETITIONS HUB
+comp.title	TAVLINGAR
+comp.new_league	NY LIGA
+comp.new_cup	NY CUP
+comp.new_tournament	NY TURNERING
+comp.preset_competition	FARDIG TAVLING
+comp.new_career	NY KARRIAR
+comp.load_game	LADDA SPEL
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NY LIGA
+setup.cup_title	NY CUP
+setup.tournament_title	NY TURNERING
+setup.size	STORLEK
+setup.teams_suffix	LAG
+setup.entrants	DELTAGARE
+setup.entrants_same_division	SAMMA DIVISION
+setup.entrants_same_nation	SAMMA LAND
+setup.entrants_random	SLUMP
+setup.rounds	OMGANGAR
+setup.rounds_single	ENKEL
+setup.rounds_double	DUBBEL
+setup.groups	GRUPPER
+setup.groups_of_4_suffix	GRUPPER OM 4
+setup.create_league	SKAPA LIGA
+setup.create_cup	SKAPA CUP
+setup.create_tournament	SKAPA TURNERING
+# CAREER SETUP
+career.title	NY KARRIAR
+career.blurb_seasons	LIGA OCH INHEMSK CUP VARJE SASONG
+career.blurb_promotion	VINN LIGAN FOR UPPFLYTTNING, SIST ATER NER
+career.start	STARTA KARRIAR
+# MANAGER NAME ENTRY
+mgr.title	MANAGERNAMN
+mgr.hint	SKRIV NAMN   VANSTER/HOGER TITEL   ENTER OK   ESC AVBRYT
+mgr.title_row	TITEL
+mgr.title_mr	HERR
+mgr.title_ms	FRU
+mgr.default_name	SPELARE
+# COMPETITION DASHBOARD
+dash.play_next_match	SPELA NASTA MATCH
+dash.continue	FORTSATT
+dash.next_season	NASTA SASONG
+dash.table	TABELL
+dash.fixtures	MATCHER
+dash.squad	TRUPP
+dash.lineup	LAGUPPSTALLNING
+dash.transfers	OVERGANGAR
+dash.staff	PERSONAL
+dash.scouting	SCOUTING
+dash.record	MERITER
+dash.save_as	SPARA SOM
+dash.retire	AVGA
+dash.abandon	OVERGE
+dash.management_record	MANAGERMERITER
+dash.status_retired	AVGATT
+dash.status_champions	MASTARE:
+dash.status_eliminated	UTSLAGEN
+dash.offers_prefix	BUD
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	NASTA MATCH
+result.title	FULLTID
+result.label	RESULTAT
+# MANAGEMENT RECORD
+mrec.title	MANAGERMERITER
+mrec.title_of_prefix	MANAGERMERITER FOR
+mrec.career_over	KARRIAR SLUT
+mrec.season	SASONG
+mrec.div	DIV
+mrec.trophies	TROFEER
+mrec.none_yet	INGA AN
+mrec.history	HISTORIK
+mrec.first_season	FORSTA SASONGEN PAGAR
+# RETIRE CONFIRM
+retire.title	AVGA
+retire.prompt	AVGA FRAN MANAGERJOBBET?
+retire.confirm	AVGA
+# PRESET COMPETITIONS
+preset.title	FARDIG TAVLING
+preset.blurb	RIKTIGA TAVLINGAR MED RIKTIGA LAG
+preset.european_cup	EUROPACUPEN
+preset.uefa_cup	UEFA-CUPEN
+preset.cup_winners_cup	CUPVINNARCUPEN
+preset.world_cup	VARLDSMASTERSKAPET
+preset.european_championship	EUROPAMASTERSKAPET
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	LAG UTSLAGNING
+preset.groups_then_knockout_suffix	GRUPPER OM 4 SEDAN UTSLAGNING
+preset.create	SKAPA
+# SAVE AS / LOAD GAME
+save.title	SPARA SOM
+save.hint	SKRIV NAMN   ENTER OK   ESC AVBRYT
+save.saved_as_prefix	SPARAT SOM
+load.title	LADDA SPEL
+load.delete_mode	RADERINGSLAGE
+load.no_saved_games	INGA SPARADE SPEL
+# STANDINGS / FIXTURES
+table.title	TABELL
+table.group	GRUPP
+fixtures.title	MATCHER
+# TEAM SETUP
+teamcfg.title	LAGUPPSTALLNING
+teamcfg.team	LAG
+teamcfg.team_home_prefix	HEMMA
+teamcfg.team_away_prefix	BORTA
+teamcfg.switch_home_away	VAXLA HEMMA / BORTA
+teamcfg.coach	TRANARE
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	GRUPP
+stage.final	FINAL
+stage.semi_final	SEMIFINAL
+stage.quarter_final	KVARTSFINAL
+stage.round_of_16	ATTONDELSFINAL
+stage.round_of_32	SEXTONDELSFINAL
+stage.round_of_prefix	OMGANG AV
+stage.cup_prefix	CUP
+round.league_round	LIGA - OMGANG
+round.competition_complete	TAVLING KLAR
+round.no_fixtures	INGA MATCHER
+status.no_player_team	INGET SPELARLAG
+status.you_are_champion	DU AR MASTARE
+status.you_are_prefix	DU AR
+status.you_are_unplaced	DU AR OPLACERAD
+status.you_were_eliminated	DU BLEV UTSLAGEN
+status.you_are_through	DU AR VIDARE TILL NASTA OMGANG
+status.you_are_in_prefix	DU AR I
+status.you_are_in_the_prefix	DU AR I
+ord.st	:A
+ord.nd	:A
+ord.rd	:E
+ord.th	:E
+season.cup_winner	VINNARE
+season.cup_runner_up	TVAA
+season.cup_out_in_prefix	UT I
+season.cup_out	UT
+season.trophy_league	SASONG %d LIGAMASTARE
+season.trophy_cup	SASONG %d CUPVINNARE
+season.history_line	S%d: LIGA %s, CUP %s
+season.history_retired	S%d: AVGATT
+fixture.penalties_mark	S
+# CAREER SQUAD
+squad.title_suffix	TRUPP
+squad.default_club	KLUBB
+squad.player_action	SPELARATGARD
+squad.no_player_selected	INGEN SPELARE VALD
+squad.fit_injured	SKA
+# PLAYER ACTION
+paction.value_prefix	VARDE
+paction.time_to_negotiate	TID ATT FORHANDLA
+paction.take_off_list	TA BORT FRAN LISTA
+paction.put_on_list	SATT PA OVERGANGSLISTA
+paction.give_free_transfer	GE FRI OVERGANG
+paction.off_list_prefix	AV LISTA
+paction.listed_prefix	LISTAD
+paction.list_full_prefix	LISTA FULL (MAX
+# FREE TRANSFER
+free.title	FRI OVERGANG
+free.confirm_prompt	SLAPP %s GRATIS?
+free.release	SLAPP
+free.released_prefix	SLAPPT
+free.squad_too_small	TRUPP FOR LITEN
+free.release_failed	SLAPP MISSLYCKADES
+# LINEUP EDITOR
+lineup.title	LAGUPPSTALLNING
+lineup.auto	AUTO
+lineup.hint	UPP/NER RAD   ELD VALJ/BYT   ESC TILLBAKA
+lineup.picked_prefix	VALD
+lineup.picked_swap_hint	- ELD PA EN RAD FOR BYTE
+lineup.unmarked_prefix	AVMARKERAD
+lineup.slot_not_available	PLATS EJ TILLGANGLIG
+lineup.goal_needs_keeper	MALPLATS KRAVER MALVAKT
+lineup.swapped_prefix	BYTT
+lineup.swapped_and	OCH
+lineup.auto_restored	AUTOUPPSTALLNING ATERSTALLD
+lineup.auto_label	AUTOUPPSTALLNING
+lineup.custom_label	EGEN UPPSTALLNING
+lineup.slot	PLATS
+lineup.slot_gk	MV
+lineup.slot_sub	AVB
+# STAFF
+staff.title	PERSONAL
+staff.coach	TRANARE
+staff.fire_selected	SPARKA VALD
+staff.hire_coach	ANSTALL TRANARE
+staff.training_focus	TRANINGSFOKUS
+staff.no_coach_selected	INGEN TRANARE VALD
+staff.no_coaches	INGA TRANARE
+# FIRE COACH
+firecoach.title	SPARKA TRANARE
+firecoach.coach_not_available	TRANARE EJ TILLGANGLIG
+firecoach.severance_prefix	AVGANGSVEDERLAG
+firecoach.fire	SPARKA
+firecoach.fired_prefix	SPARKAD
+# HIRE COACH
+hire.title	ANSTALL TRANARE
+hire.candidate	KANDIDAT
+hire.hire	ANSTALL
+hire.hired_prefix	ANSTALLD
+# TRAINING FOCUS
+focus.title	TRANINGSFOKUS
+focus.toggle	VAXLA FOKUS
+focus.removed_prefix	BORTTAGEN
+focus.focused_prefix	FOKUSERAD
+focus.max_prefix	MAX
+focus.max_suffix	FOKUSSPELARE
+focus.mark	*
+# SCOUTING
+scout.title	SCOUTING
+scout.scout_player	SCOUTA SPELARE
+scout.improve_prefix	FORBATTRA SCOUTING
+scout.maxed	SCOUTING MAX
+scout.unavailable	SCOUTING EJ TILLGANGLIG
+scout.quality_prefix	SCOUTKVALITET
+scout.no_watched	INGA BEVAKADE SPELARE
+scout.scout_selected	SCOUTA VALD
+scout.scout_prefix	SCOUTA
+scout.scouted_prefix	SCOUTAD
+scout.cost_prefix	KOSTNAD
+scout.no_players_available	INGA SPELARE TILLGANGLIGA
+# TRANSFER MARKET
+market.title	OVERGANGSMARKNAD
+market.max_price	MAXPRIS
+market.buy_selected	KOP VALD
+market.no_player_selected	INGEN SPELARE VALD
+market.free_agent	FRI AGENT
+market.club_fallback_prefix	KLUBB
+market.price_any	ALLA
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	KOP SPELARE
+buy.asking_prefix	BEGAR
+buy.your_bid	DITT BUD
+buy.make_bid	LAGG BUD
+buy.club_unwilling	KLUBBEN VILL EJ KOPA SPELARE
+buy.no_time	INGEN TID KVAR ATT FORHANDLA
+buy.enter_a_bid	ANGE ETT BUD
+buy.not_enough_money	INTE NOG PENGAR
+buy.bought_prefix	KOPT
+buy.squad_full	TRUPP FULL
+buy.transfer_failed	OVERGANG MISSLYCKADES
+buy.counter_prefix	DE MOTBJUDER MED
+buy.rejected	BUD FOR LAGT - AVSLAGET
+# INCOMING OFFERS
+offers.title	OVERGANGSBUD
+offers.no_offers	INGA BUD
+offers.offer	BUD
+offers.accept	ACCEPTERA
+offers.demand_more	KRAV MER
+offers.reject	AVSLA
+offers.header_negotiate_prefix	TID ATT FORHANDLA
+offers.header_sells	SALJ
+offers.not_available	BUD EJ TILLGANGLIGT
+offers.sold_prefix	SALD
+offers.sold_for	FOR
+offers.squad_too_small	TRUPP FOR LITEN
+offers.accept_failed	ACCEPT MISSLYCKADES
+offers.improved_prefix	HOJT TILL
+offers.withdrawn	BUD ATERKALLAT
+offers.refused	DE VAGRAR BETALA MER
+offers.rejected	BUD AVSLAGET
+# MATCH HUD / OVERLAYS
+hud.half_time	HALVTID
+hud.full_time	FULLTID
+hud.penalties	STRAFFAR
+hud.paused	PAUSAT
+hud.pause_resume_hint	mellanslag  fortsatt
+hud.pause_quit_hint	ESC    avsluta till meny
+hud.goal	MAL!
+hud.throw_in	INKAST
+hud.corner	HORNA
+hud.goal_kick	INSPARK
+hud.press_space	tryck mellanslag
+hud.team_home_fallback	HEMMA
+hud.team_away_fallback	BORTA
+goal.type_penalty	(STR)
+goal.type_own_goal	(SJM)

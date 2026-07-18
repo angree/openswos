@@ -1,0 +1,472 @@
+key	english	context
+# COMMON — strings shared across many screens; translate once, reused everywhere.
+common.back	BACK	Button on almost every sub-screen; returns to the previous screen.
+common.continue	CONTINUE	Generic button that proceeds / dismisses (e.g. draw ceremony, view-result full time). Also the default resume-saved-game label before a competition name is appended.
+common.cancel	CANCEL	Button that aborts an action and returns (used on the RETIRE confirm prompt).
+common.ok	OK	Confirm button on typed-entry screens (manager name, save-slot name).
+common.on	ON	Value shown for an enabled ON/OFF option toggle.
+common.off	OFF	Value shown for a disabled ON/OFF option toggle.
+common.na	N/A	Value shown when an option is unavailable/not applicable (e.g. energy bar while fatigue is off; a missing audio source is suffixed " (N/A)").
+common.none	NONE	Placeholder shown in a selector value box when nothing is selected (squad/coach/market player, offer).
+common.versus	V	Large "versus" separator drawn between the two team names on the pre-match screen and in fixture pairings (HOME V AWAY).
+common.page	PAGE	Prefix of a paged-list indicator, e.g. "PAGE 1/3" on squad / scouting / market screens.
+common.previous_page	PREVIOUS PAGE	Button that scrolls the current table one page back.
+common.next_page	NEXT PAGE	Button that scrolls the current table one page forward.
+common.no_career_data	NO CAREER DATA	Placeholder shown when a career screen has no world/career loaded.
+common.no_squad_data	NO SQUAD DATA	Placeholder shown when a squad-based screen has no squad to show.
+common.player_not_available	PLAYER NOT AVAILABLE	Notice when the selected player can no longer be acted on (sold/left).
+common.player	PLAYER	Selector-row label for choosing a player from the visible table (squad, transfer, scout, training).
+common.budget	BUDGET	Label prefixing the club's cash balance, e.g. "BUDGET 1.3M".
+common.sort	SORT	Selector-row label; opens the transfer/scout list sort-order picker.
+common.sort_by	SORT BY	Title of the pop-up list that chooses the sort order.
+common.value	VALUE	Sort mode / column: order players by their monetary value.
+common.skill	SKILL	Sort mode and table column: a player's effective overall skill.
+common.age	AGE	Sort mode and table column: a player's age in years.
+common.money_thousands_suffix	K	Suffix appended to an abbreviated money amount in thousands, e.g. "270K".
+common.money_millions_suffix	M	Suffix appended to an abbreviated money amount in millions, e.g. "1.3M".
+
+# TABLE COLUMN HEADERS — short column captions in data tables. Kept apart from full words because they are abbreviations.
+col.pos	POS	Table column header: player position / league standing position (abbreviation of POSITION).
+col.team	TEAM	League-table column header for the club name.
+col.name	NAME	Table column header for a player or coach name.
+col.number	NO	Squad table column header for the shirt number (abbreviation of NUMBER).
+col.number_hash	#	Squad table column header for the shirt number (hash symbol form, TEAM SETUP screen).
+col.p	P	League-table column header: matches Played.
+col.w	W	League-table column header: matches Won.
+col.d	D	League-table column header: matches Drawn.
+col.l	L	League-table column header: matches Lost.
+col.gf	GF	League-table column header: Goals For.
+col.ga	GA	League-table column header: Goals Against.
+col.pts	PTS	League-table column header: Points.
+col.skl	SKL	Squad table column header: the player's three top skill letters (abbreviation of SKILL letters).
+col.skill	SKILL	Squad/market column header: numeric effective overall skill.
+col.pot	POT	Squad/scout column header: scouted potential estimate (abbreviation of POTENTIAL).
+col.sta	STA	Squad column header: stamina rating (abbreviation of STAMINA).
+col.form	F	Squad/training column header: current form indicator (single-letter, abbreviation of FORM / FOCUS mark).
+col.fit	FIT	Squad column header: fitness / freshness percent (or INJ when injured).
+col.val	VAL	Squad column header: player monetary value (abbreviation of VALUE).
+col.nat	NAT	Transfer-market column header: player nationality (abbreviation of NATIONALITY).
+col.club	CLUB	Column header for the player's current club.
+col.price	PRICE	Transfer/scout column header: asking price.
+col.spec	SPEC	Staff table column header: coaching specialty (abbreviation of SPECIALTY).
+col.quality	Q	Staff table column header: coach quality rating (single letter, QUALITY).
+col.wage	WAGE	Staff table column header: coach wage.
+col.fee	FEE	Hire-coach column header: one-off signing fee.
+col.amount	AMOUNT	Offers table column header: the bid amount.
+col.exp	EXP	Offers table column header: rounds until the offer expires (abbreviation of EXPIRES).
+col.skill_row	PA TA SH HE CO SP FI	TEAM SETUP squad table header abbreviating the seven skills: Passing, Tackling, Shooting, Heading, Control, Speed, Finishing.
+
+# HOME — the main/root menu.
+home.title	O P E N   S W O S	Title bar of the root menu (the game name, letter-spaced as a logo).
+home.play_match	PLAY MATCH	Root-menu button; opens FRIENDLY MATCH setup to start a single friendly.
+home.competitions	COMPETITIONS	Root-menu button; opens the competitions hub (league/cup/tournament/career).
+home.multiplayer	MULTIPLAYER	Root-menu button; opens local 2-player match setup.
+home.team_setup	TEAM SETUP	Root-menu button; opens the read-only team & squad viewer.
+home.options	OPTIONS	Root-menu button; opens the settings pages.
+home.career	CAREER	Root-menu button; resumes the saved career or starts a new one.
+home.exit	EXIT	Root-menu button; opens the quit-confirmation prompt.
+home.credit	BY GRZEGORZ KORYCKI	Author credit shown in the bottom-right corner of the root menu only.
+home.continue_prefix	CONTINUE:	Prefix of the quick-resume button when a saved competition exists, followed by its name and round.
+
+# QUIT — confirmation before leaving the game.
+quit.title	QUIT	Title of the quit-confirmation screen.
+quit.are_you_sure	ARE YOU SURE?	Prompt text on the quit-confirmation screen.
+quit.quit_to_windows	QUIT TO WINDOWS	Button that exits the game to the desktop.
+quit.return_to_game	RETURN TO GAME	Button that dismisses the quit prompt and returns to the menu.
+
+# FRIENDLY — single friendly match setup.
+friendly.title	FRIENDLY MATCH	Title of the friendly-match setup screen; also used as the context label on its pre-match versus screen.
+friendly.home	HOME	Setup row label for the home team; opens the country/club picker.
+friendly.away	AWAY	Setup row label for the away team; opens the country/club picker.
+friendly.swap_teams	SWAP TEAMS	Button that swaps the chosen home and away teams.
+friendly.pitch	PITCH	Setup row label; chooses the pitch/ground variant.
+friendly.opponent	OPPONENT	Setup row label; chooses AI / player-2 / demo opponent.
+friendly.half_length	HALF LENGTH	Setup row label; the real-time length of each half.
+friendly.game_speed	GAME SPEED	Setup row label; the match simulation speed multiplier.
+friendly.kick_off	KICK OFF	Button that starts the friendly match.
+friendly.context	FRIENDLY	Context caption on the versus screen for a friendly match.
+
+# VERSUS — pre-match "HOME v AWAY" screen.
+versus.play	PLAY	Button on the versus screen; proceeds to the stadium line-ups / starts the match.
+versus.view_result	VIEW RESULT	Button on a competition versus screen; instantly simulates the tie instead of playing it.
+
+# STADIUM — starting line-ups shown before kick-off.
+stadium.title	TEAMS	Title of the pre-match line-ups screen showing both starting XIs.
+stadium.kick_off	KICK OFF	Button that launches the match from the line-ups screen.
+stadium.edit_lineup	EDIT LINEUP	Button (career only) that opens the lineup editor before kick-off.
+
+# OPTIONS — settings pages.
+opt.title	OPTIONS	Title of the settings screen.
+opt.page	PAGE	Pager row label at the top of OPTIONS; LEFT/RIGHT flips between pages (value like "1/2").
+opt.language	LANGUAGE	Options row; selects the UI language.
+opt.half_length	HALF LENGTH	Options row; the real-time length of each half.
+opt.game_speed	GAME SPEED	Options row; the match simulation speed multiplier.
+opt.opponent	OPPONENT	Options row; default opponent type for friendlies.
+opt.pitch	PITCH	Options row; default pitch/ground.
+opt.skill_scaling	SKILL SCALING	Options row; toggles faithful SWOS player-price skill scaling.
+opt.skill_scaling_hint	FAITHFUL SWOS PLAYER PRICE SKILL SCALING	Explanatory caption under the SKILL SCALING row.
+opt.all_teams_equal	ALL TEAMS EQUAL	Options row; equalizes strength across player-coached teams.
+opt.all_teams_equal_hint	EQUALIZES TEAM STRENGTH FOR PLAYER TEAMS	Explanatory caption under the ALL TEAMS EQUAL row.
+opt.pre_match_menus	PRE MATCH MENUS	Options row; toggles showing the versus + line-ups screens before kick-off.
+opt.player_fatigue	PLAYER FATIGUE	Options row; toggles the stamina/fatigue simulation in non-career matches.
+opt.energy_bar	ENERGY BAR	Options row; toggles the on-pitch energy-bar overlay (inert while fatigue is off).
+opt.music	MUSIC	Options row; selects the front-end music source.
+opt.music_hint	AMIGA / PC / CUSTOM MENU MUSIC	Explanatory caption under the MUSIC row.
+opt.sound	SOUND	Options row; selects PC or Amiga in-match sound effects.
+opt.sound_hint	PC OR AMIGA IN-MATCH SOUNDS	Explanatory caption under the SOUND row.
+opt.display	DISPLAY	Options row; cycles the window/fullscreen display mode.
+opt.display_hint	F11 CYCLES  ALT+ENTER TOGGLES FULLSCREEN	Explanatory caption under the DISPLAY row listing the hotkeys.
+
+# OPTION VALUES — dynamic values shown in option value boxes (from Main.MenuHost.cs).
+val.pitch_none	(NONE)	Pitch value when no pitch variants are available.
+val.pitch_random	RANDOM	Pitch value; a fresh random ground is rolled each kick-off.
+val.opponent_ai	AI	Opponent value; the computer controls the other team.
+val.opponent_player2	PLAYER 2  (WASD)	Opponent value; a local second human plays with WASD controls.
+val.opponent_demo	DEMO  (AI V AI)	Opponent value; the game plays itself (AI versus AI demonstration).
+val.sound_amiga	AMIGA	Audio-source value: use the Amiga sound set.
+val.sound_pc	PC	Audio-source value: use the PC sound set.
+val.music_custom	CUSTOM	Music-source value: use the user's custom music.
+val.music_off	OFF	Music-source value: no front-end music.
+val.length_whole_match_seconds	%dS REAL  (WHOLE MATCH)	Half-length value when under a minute; %d is seconds of real time for the whole match. Translate "REAL" (real time) and "WHOLE MATCH".
+val.length_whole_match_minutes	%d MIN REAL  (WHOLE MATCH)	Half-length value in minutes; %d is minutes of real time. Translate "MIN", "REAL", "WHOLE MATCH".
+val.display_windowed	WINDOWED	Display-mode value: run in a window.
+val.display_full_fill	FULL FILL	Display-mode value: fullscreen stretched to fill the screen.
+val.display_full_integer	FULL INTEGER	Display-mode value: fullscreen at an integer pixel scale.
+
+# LOCAL MULTIPLAYER — 2-player match setup.
+mp.title	LOCAL MULTIPLAYER	Title of the local 2-player setup screen.
+mp.controls_hint	PLAYER 1: ARROWS+SPACE   PLAYER 2: WASD+SHIFT	Caption listing the two players' keyboard controls.
+mp.start	START 2 PLAYER MATCH	Button that launches the local 2-player match.
+
+# PICKERS — continent/country/team choosers and the generic list picker.
+pick.continent	CONTINENT	Setup row label; opens the continent chooser.
+pick.country	COUNTRY	Setup row label; opens the country chooser (value shows name + team count).
+pick.your_team	YOUR TEAM	Setup row label; opens the chooser for the team you will control.
+pick.all_countries	ALL COUNTRIES	First row of the friendly country filter; shows teams from every country.
+pick.all	ALL	Compact value shown when no country filter is applied.
+pick.select_country	SELECT COUNTRY	Title of the country-selection list.
+pick.select_continent	SELECT CONTINENT	Title of the continent-selection list.
+pick.select_your_team	SELECT YOUR TEAM	Title of the team-selection list.
+pick.home_team	HOME TEAM	Title/breadcrumb of the drill-down picker when choosing the home team.
+pick.away_team	AWAY TEAM	Title/breadcrumb of the drill-down picker when choosing the away team.
+pick.nothing_to_choose	NOTHING TO CHOOSE	Shown inside a list picker that has no selectable items.
+pick.item	ITEM	Prefix of the list picker's position header, e.g. "ITEM 3 / 20".
+pick.more_down	MORE v	Marker in a paged list picker indicating more items below (v = down arrow).
+
+# DRAW CEREMONY — knockout round draw reveal.
+draw.title_suffix	DRAW	Suffix of the knockout draw screen title, preceded by the stage, e.g. "FINAL DRAW".
+
+# PLAY AGAIN — post-friendly full-time screen.
+playagain.title	FULL TIME	Title of the post-match screen after a friendly ends.
+playagain.play_again	PLAY AGAIN	Button that immediately replays the same friendly.
+playagain.exit	EXIT	Button that returns to the main menu after a friendly.
+
+# COMPETITIONS HUB.
+comp.title	COMPETITIONS	Title of the competitions hub.
+comp.new_league	NEW LEAGUE	Hub button; opens league creation.
+comp.new_cup	NEW CUP	Hub button; opens cup creation.
+comp.new_tournament	NEW TOURNAMENT	Hub button; opens tournament creation.
+comp.preset_competition	PRESET COMPETITION	Hub button; opens the list of real preset competitions.
+comp.new_career	NEW CAREER	Hub button; opens career creation.
+comp.load_game	LOAD GAME	Hub button; opens the saved-games list.
+
+# LEAGUE / CUP / TOURNAMENT SETUP.
+setup.league_title	NEW LEAGUE	Title of the league setup screen.
+setup.cup_title	NEW CUP	Title of the cup setup screen.
+setup.tournament_title	NEW TOURNAMENT	Title of the tournament setup screen.
+setup.size	SIZE	Setup row; number of teams in the competition.
+setup.teams_suffix	TEAMS	Suffix after a team-count value, e.g. "8 TEAMS".
+setup.entrants	ENTRANTS	Setup row; how the other entrants are chosen.
+setup.entrants_same_division	SAME DIVISION	Entrants mode: fill from teams in the same division.
+setup.entrants_same_nation	SAME NATION	Entrants mode: fill from teams in the same country.
+setup.entrants_random	RANDOM	Entrants mode: fill from random teams.
+setup.rounds	ROUNDS	League setup row; single or double round-robin.
+setup.rounds_single	SINGLE	League rounds value: play each opponent once.
+setup.rounds_double	DOUBLE	League rounds value: play each opponent home and away.
+setup.groups	GROUPS	Tournament setup row; number of groups.
+setup.groups_of_4_suffix	GROUPS OF 4	Suffix after a group-count value, e.g. "4 GROUPS OF 4".
+setup.create_league	CREATE LEAGUE	Button that creates the league.
+setup.create_cup	CREATE CUP	Button that creates the cup.
+setup.create_tournament	CREATE TOURNAMENT	Button that creates the tournament.
+
+# CAREER SETUP.
+career.title	NEW CAREER	Title of the career setup screen.
+career.blurb_seasons	LEAGUE AND DOMESTIC CUP EVERY SEASON	Caption describing what a career season contains.
+career.blurb_promotion	WIN THE LEAGUE FOR PROMOTION, FINISH LAST AND DROP	Caption describing promotion/relegation rules.
+career.start	START CAREER	Button that begins career creation (prompts for the manager name next).
+
+# MANAGER NAME ENTRY.
+mgr.title	MANAGER NAME	Title of the typed manager-name entry screen.
+mgr.hint	TYPE NAME   LEFT/RIGHT TITLE   ENTER OK   ESC CANCEL	Key-hint caption below the manager-name field.
+mgr.title_row	TITLE	Prefix of the manager-title side row, e.g. "TITLE  MR".
+mgr.title_mr	MR	Manager honorific title option (Mister).
+mgr.title_ms	MS	Manager honorific title option (Ms).
+mgr.default_name	PLAYER	Default manager name used when the field is left empty.
+
+# COMPETITION DASHBOARD.
+dash.play_next_match	PLAY NEXT MATCH	Dashboard button; plays the player's next fixture.
+dash.continue	CONTINUE	Dashboard button; fast-forwards the next AI-only round.
+dash.next_season	NEXT SEASON	Dashboard button; advances a finished career to the next season.
+dash.table	TABLE	Dashboard button; opens the league/group standings.
+dash.fixtures	FIXTURES	Dashboard button; opens the player's fixture list.
+dash.squad	SQUAD	Dashboard button (career); opens the squad screen.
+dash.lineup	LINEUP	Dashboard button (career); opens the lineup editor.
+dash.transfers	TRANSFERS	Dashboard button (career); opens the transfer market.
+dash.staff	STAFF	Dashboard button (career); opens the staff/coaches screen.
+dash.scouting	SCOUTING	Dashboard button (career); opens the scouting screen.
+dash.record	RECORD	Dashboard button (career); opens the management record.
+dash.save_as	SAVE AS	Dashboard button; saves the game under a named slot.
+dash.retire	RETIRE	Dashboard button (career); opens the retire confirmation.
+dash.abandon	ABANDON	Dashboard button; deletes the active competition and leaves.
+dash.management_record	MANAGEMENT RECORD	Button (retired career); opens the final management record.
+dash.status_retired	RETIRED	Status-line prefix shown for a retired career.
+dash.status_champions	CHAMPIONS:	Status-line prefix naming the competition champion.
+dash.status_eliminated	ELIMINATED	Status-line suffix when the player has been knocked out.
+dash.offers_prefix	OFFERS	Dashboard OFFERS button label; a count follows in parentheses, e.g. "OFFERS (2)".
+dash.offers_unseen_mark	!	Prefix mark on the OFFERS button while there are unseen incoming bids.
+
+# NEXT MATCH / VIEW RESULT.
+next.title	NEXT MATCH	Title of the versus screen for the next competition fixture.
+result.title	FULL TIME	Title of the instant view-result screen showing the simulated score.
+result.label	RESULT	Caption above the two teams' scores on the view-result screen.
+
+# MANAGEMENT RECORD.
+mrec.title	MANAGEMENT RECORD	Default title of the management-record screen (fallback when no manager name).
+mrec.title_of_prefix	MANAGEMENT RECORD OF	Title prefix followed by the manager's title and name.
+mrec.career_over	CAREER OVER	Heading shown when viewing the record of a retired career.
+mrec.season	SEASON	Prefix of the current-season summary line, e.g. "SEASON 3".
+mrec.div	DIV	Division abbreviation used in the record and squad summaries, e.g. "DIV 1".
+mrec.trophies	TROPHIES	Section heading listing won trophies.
+mrec.none_yet	NONE YET	Shown under TROPHIES when the manager has won nothing.
+mrec.history	HISTORY	Section heading listing past seasons.
+mrec.first_season	FIRST SEASON IN PROGRESS	Shown under HISTORY during the very first season.
+
+# RETIRE CONFIRM.
+retire.title	RETIRE	Title of the retire-confirmation screen.
+retire.prompt	RETIRE FROM MANAGEMENT?	Prompt text on the retire screen.
+retire.confirm	RETIRE	Button that confirms retirement.
+
+# PRESET COMPETITIONS.
+preset.title	PRESET COMPETITION	Title of the preset-competition list.
+preset.blurb	REAL COMPETITIONS WITH THEIR REAL FIELDS	Caption describing the preset list.
+preset.european_cup	EUROPEAN CUP	Name of the European Cup preset competition.
+preset.uefa_cup	UEFA CUP	Name of the UEFA Cup preset competition.
+preset.cup_winners_cup	CUP WINNERS CUP	Name of the Cup Winners' Cup preset competition.
+preset.world_cup	WORLD CUP	Name of the World Cup preset competition.
+preset.european_championship	EUROPEAN CHAMPIONSHIP	Name of the European Championship preset competition.
+preset.copa_america	COPA AMERICA	Name of the Copa America preset competition.
+preset.team_knockout_suffix	TEAM KNOCKOUT	Format caption suffix for a preset cup, e.g. "16 TEAM KNOCKOUT".
+preset.groups_then_knockout_suffix	GROUPS OF 4 THEN KNOCKOUT	Format caption suffix for a preset tournament, e.g. "4 GROUPS OF 4 THEN KNOCKOUT".
+preset.create	CREATE	Button that creates the chosen preset competition.
+
+# SAVE AS / LOAD GAME.
+save.title	SAVE AS	Title of the save-slot name entry.
+save.hint	TYPE SLOT NAME   ENTER OK   ESC CANCEL	Key-hint caption on the save-slot name entry.
+save.saved_as_prefix	SAVED AS	Confirmation prefix after saving, followed by the slot name.
+load.title	LOAD GAME	Title of the saved-games list.
+load.delete_mode	DELETE MODE	Option row on LOAD GAME; when ON, firing a slot deletes it instead of loading.
+load.no_saved_games	NO SAVED GAMES	Shown when there are no saved games to load.
+
+# STANDINGS / FIXTURES screens.
+table.title	TABLE	Title of the full standings screen.
+table.group	GROUP	Option row on the tournament TABLE screen; steps between group standings (value is the group letter).
+fixtures.title	FIXTURES	Title of the player's fixtures screen.
+
+# TEAM SETUP (read-only squad viewer).
+teamcfg.title	TEAM SETUP	Title of the read-only team/squad viewer.
+teamcfg.team	TEAM	Row label; the team being viewed (value prefixed HOME/AWAY + name).
+teamcfg.team_home_prefix	HOME	Value prefix marking the home team in TEAM SETUP.
+teamcfg.team_away_prefix	AWAY	Value prefix marking the away team in TEAM SETUP.
+teamcfg.switch_home_away	SWITCH HOME / AWAY	Button that toggles between viewing the home and away team.
+teamcfg.coach	COACH	Prefix of the squad-panel header naming the club's coach, e.g. "COACH SMITH".
+
+# COMPETITION ENGINE — round/stage labels and status lines (CompetitionEngine.cs).
+stage.league	LEAGUE	Stage name for league fixtures / the league table.
+stage.group_prefix	GROUP	Stage-name prefix for a group, followed by a letter, e.g. "GROUP A".
+stage.final	FINAL	Knockout stage: the final.
+stage.semi_final	SEMI FINAL	Knockout stage: the semi-finals.
+stage.quarter_final	QUARTER FINAL	Knockout stage: the quarter-finals.
+stage.round_of_16	ROUND OF 16	Knockout stage: the last 16.
+stage.round_of_32	ROUND OF 32	Knockout stage: the last 32.
+stage.round_of_prefix	ROUND OF	Generic knockout stage prefix for other sizes, followed by a number, e.g. "ROUND OF 64".
+stage.cup_prefix	CUP	Prefix marking a career domestic-cup stage, e.g. "CUP FINAL", "CUP SEMI FINAL".
+round.league_round	LEAGUE - ROUND	Round-label form "LEAGUE - ROUND 7/22" showing league progress.
+round.competition_complete	COMPETITION COMPLETE	Round label when the whole competition is finished.
+round.no_fixtures	NO FIXTURES	Round label when there are no fixtures at all.
+status.no_player_team	NO PLAYER TEAM	Player summary when there is no player-controlled team.
+status.you_are_champion	YOU ARE THE CHAMPION	Player summary after winning the competition.
+status.you_are_prefix	YOU ARE	Player summary prefix followed by an ordinal position, e.g. "YOU ARE 3RD".
+status.you_are_unplaced	YOU ARE UNPLACED	Player summary when the player is not yet in the table.
+status.you_were_eliminated	YOU WERE ELIMINATED	Player summary after a cup/tournament knockout.
+status.you_are_through	YOU ARE THROUGH TO THE NEXT ROUND	Player summary while awaiting the next knockout draw.
+status.you_are_in_prefix	YOU ARE IN	Player summary prefix for the current group, e.g. "YOU ARE IN GROUP A".
+status.you_are_in_the_prefix	YOU ARE IN THE	Player summary prefix for the current knockout stage, e.g. "YOU ARE IN THE FINAL".
+ord.st	ST	Ordinal suffix for numbers ending in 1 (1ST).
+ord.nd	ND	Ordinal suffix for numbers ending in 2 (2ND).
+ord.rd	RD	Ordinal suffix for numbers ending in 3 (3RD).
+ord.th	TH	Ordinal suffix for most numbers (4TH, 11TH).
+season.cup_winner	WINNER	Career season summary: the player won the domestic cup.
+season.cup_runner_up	RUNNER UP	Career season summary: the player lost the cup final.
+season.cup_out_in_prefix	OUT IN	Career season summary prefix: knocked out of the cup at the given stage.
+season.cup_out	OUT	Career season summary: eliminated early from the cup.
+season.trophy_league	SEASON %d LEAGUE CHAMPIONS	Trophy-cabinet entry for winning the league in a season.
+season.trophy_cup	SEASON %d CUP WINNERS	Trophy-cabinet entry for winning the cup in a season.
+season.history_line	S%d: LEAGUE %s, CUP %s	Season-history line format: season number, league finish, cup outcome.
+season.history_retired	S%d: RETIRED	Season-history line recorded when the manager retires.
+fixture.penalties_mark	P	Suffix on a fixture result decided on penalties (single letter).
+
+# CAREER SQUAD.
+squad.title_suffix	SQUAD	Squad-screen title suffix, preceded by the club name, e.g. "ARSENAL SQUAD".
+squad.default_club	CLUB	Fallback club name when the career club name is empty.
+squad.player_action	PLAYER ACTION	Button opening actions for the selected squad player; also the action-screen title.
+squad.no_player_selected	NO PLAYER SELECTED	Notice when trying to act with no player highlighted.
+squad.fit_injured	INJ	FIT-cell text for an injured, unavailable player (abbreviation of INJURED).
+
+# PLAYER ACTION.
+paction.value_prefix	VALUE	Prefix of the player's monetary value line on the action screen.
+paction.time_to_negotiate	TIME TO NEGOTIATE	Label showing the manager's remaining negotiation budget.
+paction.take_off_list	TAKE OFF LIST	Button to remove a player from the transfer list.
+paction.put_on_list	PUT ON TRANSFER LIST	Button to put a player on the transfer list.
+paction.give_free_transfer	GIVE FREE TRANSFER	Button to release a player for free.
+paction.off_list_prefix	OFF LIST	Notice prefix after removing a player from the transfer list.
+paction.listed_prefix	LISTED	Notice prefix after listing a player for transfer.
+paction.list_full_prefix	LIST FULL (MAX	Notice when the transfer list is full; a max count and ")" follow.
+
+# FREE TRANSFER.
+free.title	FREE TRANSFER	Title of the free-transfer confirmation screen.
+free.confirm_prompt	RELEASE %s FOR FREE?	Confirmation question; %s is the player name.
+free.release	RELEASE	Button that releases the player for free.
+free.released_prefix	RELEASED	Notice prefix after releasing a player.
+free.squad_too_small	SQUAD TOO SMALL	Notice when releasing would leave too few players.
+free.release_failed	RELEASE FAILED	Notice when the release could not be completed.
+
+# LINEUP EDITOR.
+lineup.title	TEAM LINEUP	Title of the pre-match lineup editor.
+lineup.auto	AUTO	Button that resets to the club's automatic lineup.
+lineup.hint	UP/DOWN ROW   FIRE PICK/SWAP   ESC BACK	Footer hint while editing the lineup table.
+lineup.picked_prefix	PICKED	Notice prefix after marking a slot as the swap source (followed by slot tag and instruction).
+lineup.picked_swap_hint	- FIRE A ROW TO SWAP	Trailing instruction after PICKED, telling the user to choose a second row.
+lineup.unmarked_prefix	UNMARKED	Notice prefix after cancelling a marked swap source.
+lineup.slot_not_available	SLOT NOT AVAILABLE	Notice when a chosen slot cannot be swapped.
+lineup.goal_needs_keeper	GOAL SLOT NEEDS A KEEPER	Notice when trying to put a non-keeper in the goal slot.
+lineup.swapped_prefix	SWAPPED	Notice prefix after swapping two slots (followed by the two slot tags).
+lineup.swapped_and	AND	Connector between the two swapped slot tags, e.g. "SWAPPED GK AND SUB".
+lineup.auto_restored	AUTO LINEUP RESTORED	Notice after resetting to the automatic lineup.
+lineup.auto_label	AUTO LINEUP	Panel header when the automatic lineup is in use.
+lineup.custom_label	CUSTOM LINEUP	Panel header when a custom lineup is in use.
+lineup.slot	SLOT	Lineup table column header for the slot tag.
+lineup.slot_gk	GK	Slot tag for the goalkeeper row.
+lineup.slot_sub	SUB	Slot tag for a substitute/bench row.
+
+# STAFF.
+staff.title	STAFF	Title of the staff/coaches screen.
+staff.coach	COACH	Selector row for choosing a coach from the staff table.
+staff.fire_selected	FIRE SELECTED	Button opening the fire-coach confirmation for the selected coach.
+staff.hire_coach	HIRE COACH	Button opening the hire-coach screen; also that screen's title.
+staff.training_focus	TRAINING FOCUS	Button opening the training-focus screen.
+staff.no_coach_selected	NO COACH SELECTED	Notice when firing with no coach highlighted.
+staff.no_coaches	NO COACHES	Shown when the club has no coaches.
+
+# FIRE COACH.
+firecoach.title	FIRE COACH	Title of the fire-coach confirmation screen.
+firecoach.coach_not_available	COACH NOT AVAILABLE	Notice when the selected coach can no longer be acted on.
+firecoach.severance_prefix	SEVERANCE	Prefix of the severance-pay line, e.g. "SEVERANCE 20K".
+firecoach.fire	FIRE	Button confirming the coach dismissal.
+firecoach.fired_prefix	FIRED	Notice prefix after firing a coach.
+
+# HIRE COACH.
+hire.title	HIRE COACH	Title of the hire-coach screen.
+hire.candidate	CANDIDATE	Selector row for choosing a coaching candidate.
+hire.hire	HIRE	Button that hires the selected candidate.
+hire.hired_prefix	HIRED	Notice prefix after hiring a coach.
+
+# TRAINING FOCUS.
+focus.title	TRAINING FOCUS	Title of the training-focus screen.
+focus.toggle	TOGGLE FOCUS	Button that toggles training focus on the selected player.
+focus.removed_prefix	REMOVED	Notice prefix after removing a player from training focus.
+focus.focused_prefix	FOCUSED	Notice prefix after adding a player to training focus.
+focus.max_prefix	MAX	Prefix of the focus-limit caption, e.g. "MAX 3 FOCUS PLAYERS".
+focus.max_suffix	FOCUS PLAYERS	Suffix of the focus-limit caption after the maximum number.
+focus.mark	*	Marker in the F column indicating a player currently under training focus.
+
+# SCOUTING.
+scout.title	SCOUTING	Title of the scouting overview screen.
+scout.scout_player	SCOUT PLAYER	Button opening the scout-market screen; also that screen's title.
+scout.improve_prefix	IMPROVE SCOUTING	Button prefix to upgrade scout quality, followed by the cost.
+scout.maxed	SCOUTING MAXED	Button text when scout quality is already at maximum.
+scout.unavailable	SCOUTING UNAVAILABLE	Notice when scouting cannot be used.
+scout.quality_prefix	SCOUT QUALITY	Prefix of the scout-quality line/notice, e.g. "SCOUT QUALITY 5".
+scout.no_watched	NO WATCHED PLAYERS	Shown when no players are being scouted.
+scout.scout_selected	SCOUT SELECTED	Button text when no market player is highlighted to scout.
+scout.scout_prefix	SCOUT	Button prefix to scout the selected player, followed by the cost.
+scout.scouted_prefix	SCOUTED	Notice prefix after scouting a player.
+scout.cost_prefix	COST	Prefix of the scouting-cost part of the market header, e.g. "COST 10K".
+scout.no_players_available	NO PLAYERS AVAILABLE	Shown when the scout market has no players.
+
+# TRANSFER MARKET.
+market.title	TRANSFER MARKET	Title of the transfer market screen.
+market.max_price	MAX PRICE	Option row; filters the market by a maximum asking price.
+market.buy_selected	BUY SELECTED	Button opening the buy/negotiation screen for the selected player.
+market.no_player_selected	NO PLAYER SELECTED	Notice when buying with no player highlighted.
+market.free_agent	FREE AGENT	Shown in the CLUB column for players with no club.
+market.club_fallback_prefix	CLUB	Fallback club label followed by a numeric id when the club name is unknown.
+market.price_any	ANY	Max-price filter value: no price cap.
+market.price_100k	<100K	Max-price filter value: under 100,000.
+market.price_250k	<250K	Max-price filter value: under 250,000.
+market.price_500k	<500K	Max-price filter value: under 500,000.
+market.price_1m	<1M	Max-price filter value: under 1,000,000.
+market.price_2m	<2M	Max-price filter value: under 2,000,000.
+market.price_5m	<5M	Max-price filter value: under 5,000,000.
+market.price_10m	<10M	Max-price filter value: under 10,000,000.
+market.price_over_10m	>=10M	Max-price filter value: 10,000,000 or more.
+
+# BUY / NEGOTIATION.
+buy.title	BUY PLAYER	Title of the buy/negotiation screen.
+buy.asking_prefix	ASKING	Part of the header line showing the selling club's asking price.
+buy.your_bid	YOUR BID	Option row; the amount you are bidding.
+buy.make_bid	MAKE BID	Button that submits the bid.
+buy.club_unwilling	CLUB UNWILLING TO PURCHASE PLAYERS	Notice when the club's per-season buy quota is spent.
+buy.no_time	NO MORE TIME TO NEGOTIATE	Notice when the negotiation budget is exhausted.
+buy.enter_a_bid	ENTER A BID	Notice when a zero/blank bid is submitted.
+buy.not_enough_money	NOT ENOUGH MONEY	Notice when the bid exceeds the club budget.
+buy.bought_prefix	BOUGHT	Notice prefix after a successful purchase.
+buy.squad_full	SQUAD FULL	Notice when the squad is already at maximum size.
+buy.transfer_failed	TRANSFER FAILED	Notice when the transfer could not be completed.
+buy.counter_prefix	THEY COUNTER AT	Notice prefix when the selling club counter-offers a price.
+buy.rejected	BID TOO LOW - REJECTED	Notice when the bid is below the player's value.
+
+# INCOMING OFFERS.
+offers.title	TRANSFER OFFERS	Title of the incoming-offers screen.
+offers.no_offers	NO OFFERS	Shown when there are no incoming bids.
+offers.offer	OFFER	Selector row for choosing an incoming offer.
+offers.accept	ACCEPT	Button that accepts the selected offer (sells the player).
+offers.demand_more	DEMAND MORE	Button that rejects but asks the bidder to improve the offer.
+offers.reject	REJECT	Button that rejects the selected offer.
+offers.header_negotiate_prefix	TIME TO NEGOTIATE	Header prefix on the offers table showing remaining negotiation budget.
+offers.header_sells	SELLS	Header word showing how many players have been sold this season.
+offers.not_available	OFFER NOT AVAILABLE	Notice when the selected offer can no longer be acted on.
+offers.sold_prefix	SOLD	Notice prefix after selling a player (followed by name, "FOR", and amount).
+offers.sold_for	FOR	Connector in the sold notice between the player name and the fee.
+offers.squad_too_small	SQUAD TOO SMALL	Notice when accepting would leave too few players.
+offers.accept_failed	ACCEPT FAILED	Notice when the sale could not be completed.
+offers.improved_prefix	IMPROVED TO	Notice prefix when a bidder raises the offer.
+offers.withdrawn	OFFER WITHDRAWN	Notice when a bidder pulls out after being pushed.
+offers.refused	THEY REFUSE TO PAY MORE	Notice when a bidder declines to improve the offer.
+offers.rejected	OFFER REJECTED	Notice after rejecting an offer.
+
+# MATCH HUD / OVERLAYS (Main.cs).
+hud.half_time	HALF TIME	Overlay/result-panel banner shown at half time.
+hud.full_time	FULL TIME	Overlay/result-panel banner shown at full time.
+hud.penalties	PENALTIES	Overlay banner during a penalty shootout.
+hud.paused	PAUSED	Overlay heading when the match is paused.
+hud.pause_resume_hint	space  resume	Pause-overlay hint: press space to resume the match.
+hud.pause_quit_hint	ESC    quit to menu	Pause-overlay hint: press ESC to quit to the menu.
+hud.goal	GOAL!	Overlay shown briefly after a goal is scored.
+hud.throw_in	THROW-IN	Overlay shown for a throw-in restart.
+hud.corner	CORNER	Overlay shown for a corner kick.
+hud.goal_kick	GOAL KICK	Overlay shown for a goal kick.
+hud.press_space	press space	Full-time overlay hint prompting the player to continue.
+hud.team_home_fallback	HOME	Fallback home-team name in the full-time overlay when the real name is missing.
+hud.team_away_fallback	AWAY	Fallback away-team name in the full-time overlay when the real name is missing.
+goal.type_penalty	(PEN)	Suffix on a scorer's minute marking a penalty goal.
+goal.type_own_goal	(OG)	Suffix on a scorer's minute marking an own goal.

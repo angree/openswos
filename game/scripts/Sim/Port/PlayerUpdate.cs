@@ -177,6 +177,15 @@ public static class PlayerUpdate
             }
         }
 
+        // OpenSWOS fatigue: a keeper tires from EACH ball caught/held — random
+        // 1..3% of his current energy (user spec). This funnel re-fires within a
+        // single catch (mid-dive completion, bench re-check), but only the FIRST
+        // call runs with gameState != 3 (open play); every repeat already sees 3
+        // (set just below). So gating on "gameState != 3" makes it fire exactly
+        // once per catch. Gated on EffectEnabled inside DrainOnKeeperCatch.
+        if (Memory.ReadSignedWord(Memory.Addr.gameState) != 3)
+            PlayerEnergy.DrainOnKeeperCatch(keeperSpriteAddr);
+
         // player.cpp:2297 — gameState = ST_KEEPER_HOLDS_BALL (3)
         Memory.WriteWord(Memory.Addr.gameState, 3);
         // player.cpp:2298 — breakCameraMode = -1 (offset 523120).
@@ -1293,6 +1302,11 @@ public static class PlayerUpdate
                     d1GoalieSkill = (sbyte)Memory.ReadByte(piAddr + 34);   // PlayerInfo.goalieSkill
                 }
             }
+            // OpenSWOS fatigue: a tired keeper saves worse — subtract the fatigue
+            // penalty (0/1/2 at >50% / <=50% / <=20% energy) from his save skill,
+            // so d1 = finishing - skill grows → higher goal chance. User spec.
+            d1GoalieSkill -= PlayerEnergy.KeeperSkillPenalty(a1KeeperAddr);
+            if (d1GoalieSkill < 0) d1GoalieSkill = 0;
             int d1 = d1Finishing - d1GoalieSkill;
             // 2326 — `cbw`: sign-extend low byte to word. Mirror by masking.
             d1 = (sbyte)(d1 & 0xFF);

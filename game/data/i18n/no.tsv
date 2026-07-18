@@ -1,0 +1,434 @@
+key	no
+# COMMON
+common.back	TILBAKE
+common.continue	FORTSETT
+common.cancel	AVBRYT
+common.ok	OK
+common.on	PA
+common.off	AV
+common.na	I/T
+common.none	INGEN
+common.versus	V
+common.page	SIDE
+common.previous_page	FORRIGE SIDE
+common.next_page	NESTE SIDE
+common.no_career_data	INGEN KARRIEREDATA
+common.no_squad_data	INGEN STALLDATA
+common.player_not_available	SPILLER UTILGJENGELIG
+common.player	SPILLER
+common.budget	BUDSJETT
+common.sort	SORTER
+common.sort_by	SORTER ETTER
+common.value	VERDI
+common.skill	FERDIGHET
+common.age	ALDER
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	PL
+col.team	LAG
+col.name	NAVN
+col.number	NR
+col.number_hash	#
+col.p	K
+col.w	S
+col.d	U
+col.l	T
+col.gf	MF
+col.ga	MI
+col.pts	P
+col.skl	FRD
+col.skill	FERD
+col.pot	POT
+col.sta	UTH
+col.form	F
+col.fit	FORM
+col.val	VRD
+col.nat	NAS
+col.club	KLUBB
+col.price	PRIS
+col.spec	SPES
+col.quality	K
+col.wage	LONN
+col.fee	AVG
+col.amount	SUM
+col.exp	UTL
+col.skill_row	PA TA SK HO KO FA AV
+# HOME
+home.title	O P E N   S W O S
+home.play_match	SPILL KAMP
+home.competitions	TURNERINGER
+home.multiplayer	FLERSPILLER
+home.team_setup	LAGOPPSETT
+home.options	VALG
+home.career	KARRIERE
+home.exit	AVSLUTT
+home.credit	AV GRZEGORZ KORYCKI
+home.continue_prefix	FORTSETT:
+# QUIT
+quit.title	AVSLUTT
+quit.are_you_sure	ER DU SIKKER?
+quit.quit_to_windows	AVSLUTT TIL WINDOWS
+quit.return_to_game	TILBAKE TIL SPILL
+# FRIENDLY
+friendly.title	TRENINGSKAMP
+friendly.home	HJEMME
+friendly.away	BORTE
+friendly.swap_teams	BYTT LAG
+friendly.pitch	BANE
+friendly.opponent	MOTSTANDER
+friendly.half_length	OMGANGSLENGDE
+friendly.game_speed	SPILLFART
+friendly.kick_off	AVSPARK
+friendly.context	TRENINGSKAMP
+# VERSUS
+versus.play	SPILL
+versus.view_result	VIS RESULTAT
+# STADIUM
+stadium.title	LAG
+stadium.kick_off	AVSPARK
+stadium.edit_lineup	REDIGER LAG
+# OPTIONS
+opt.title	VALG
+opt.page	SIDE
+opt.language	SPRAK
+opt.half_length	OMGANGSLENGDE
+opt.game_speed	SPILLFART
+opt.opponent	MOTSTANDER
+opt.pitch	BANE
+opt.skill_scaling	FERDIGHETSSKALA
+opt.skill_scaling_hint	TRO MOT SWOS SPILLERPRIS-FERDIGHETSSKALA
+opt.all_teams_equal	ALLE LAG LIKE
+opt.all_teams_equal_hint	UTJEVNER LAGSTYRKE FOR SPILLERLAG
+opt.pre_match_menus	FORKAMPMENYER
+opt.player_fatigue	SPILLERUTMATTELSE
+opt.energy_bar	ENERGILINJE
+opt.music	MUSIKK
+opt.music_hint	AMIGA / PC / EGEN MENYMUSIKK
+opt.sound	LYD
+opt.sound_hint	PC ELLER AMIGA KAMPLYDER
+opt.display	SKJERM
+opt.display_hint	F11 VEKSLER  ALT+ENTER FULLSKJERM
+# OPTION VALUES
+val.pitch_none	(INGEN)
+val.pitch_random	TILFELDIG
+val.opponent_ai	KI
+val.opponent_player2	SPILLER 2  (WASD)
+val.opponent_demo	DEMO  (KI V KI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	EGEN
+val.music_off	AV
+val.length_whole_match_seconds	%dS EKTE  (HELE KAMPEN)
+val.length_whole_match_minutes	%d MIN EKTE  (HELE KAMPEN)
+val.display_windowed	VINDU
+val.display_full_fill	FULL FYLL
+val.display_full_integer	FULL HELTALL
+# LOCAL MULTIPLAYER
+mp.title	LOKAL FLERSPILLER
+mp.controls_hint	SPILLER 1: PILER+MELLOMROM   SPILLER 2: WASD+SHIFT
+mp.start	START 2-SPILLERKAMP
+# PICKERS
+pick.continent	VERDENSDEL
+pick.country	LAND
+pick.your_team	DITT LAG
+pick.all_countries	ALLE LAND
+pick.all	ALLE
+pick.select_country	VELG LAND
+pick.select_continent	VELG VERDENSDEL
+pick.select_your_team	VELG DITT LAG
+pick.home_team	HJEMMELAG
+pick.away_team	BORTELAG
+pick.nothing_to_choose	INGENTING A VELGE
+pick.item	NR
+pick.more_down	MER v
+# DRAW CEREMONY
+draw.title_suffix	TREKNING
+# PLAY AGAIN
+playagain.title	FULL TID
+playagain.play_again	SPILL IGJEN
+playagain.exit	AVSLUTT
+# COMPETITIONS HUB
+comp.title	TURNERINGER
+comp.new_league	NY LIGA
+comp.new_cup	NY CUP
+comp.new_tournament	NY TURNERING
+comp.preset_competition	FERDIG TURNERING
+comp.new_career	NY KARRIERE
+comp.load_game	LAST SPILL
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NY LIGA
+setup.cup_title	NY CUP
+setup.tournament_title	NY TURNERING
+setup.size	STORRELSE
+setup.teams_suffix	LAG
+setup.entrants	DELTAKERE
+setup.entrants_same_division	SAMME DIVISJON
+setup.entrants_same_nation	SAMME LAND
+setup.entrants_random	TILFELDIG
+setup.rounds	RUNDER
+setup.rounds_single	ENKEL
+setup.rounds_double	DOBBEL
+setup.groups	GRUPPER
+setup.groups_of_4_suffix	GRUPPER PA 4
+setup.create_league	OPPRETT LIGA
+setup.create_cup	OPPRETT CUP
+setup.create_tournament	OPPRETT TURNERING
+# CAREER SETUP
+career.title	NY KARRIERE
+career.blurb_seasons	LIGA OG HJEMLIG CUP HVER SESONG
+career.blurb_promotion	VINN LIGAEN FOR OPPRYKK, SIST GIR NEDRYKK
+career.start	START KARRIERE
+# MANAGER NAME ENTRY
+mgr.title	MANAGERNAVN
+mgr.hint	SKRIV NAVN   VENSTRE/HOYRE TITTEL   ENTER OK   ESC AVBRYT
+mgr.title_row	TITTEL
+mgr.title_mr	HR
+mgr.title_ms	FR
+mgr.default_name	SPILLER
+# COMPETITION DASHBOARD
+dash.play_next_match	SPILL NESTE KAMP
+dash.continue	FORTSETT
+dash.next_season	NESTE SESONG
+dash.table	TABELL
+dash.fixtures	KAMPER
+dash.squad	STALL
+dash.lineup	LAGOPPSTILLING
+dash.transfers	OVERGANGER
+dash.staff	STAB
+dash.scouting	SPEIDING
+dash.record	HISTORIKK
+dash.save_as	LAGRE SOM
+dash.retire	GI SEG
+dash.abandon	FORLAT
+dash.management_record	MANAGERHISTORIKK
+dash.status_retired	PENSJONERT
+dash.status_champions	MESTER:
+dash.status_eliminated	SLATT UT
+dash.offers_prefix	BUD
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	NESTE KAMP
+result.title	FULL TID
+result.label	RESULTAT
+# MANAGEMENT RECORD
+mrec.title	MANAGERHISTORIKK
+mrec.title_of_prefix	MANAGERHISTORIKK FOR
+mrec.career_over	KARRIERE OVER
+mrec.season	SESONG
+mrec.div	DIV
+mrec.trophies	TROFEER
+mrec.none_yet	INGEN ENNA
+mrec.history	HISTORIE
+mrec.first_season	FORSTE SESONG PAGAR
+# RETIRE CONFIRM
+retire.title	GI SEG
+retire.prompt	GI SEG SOM MANAGER?
+retire.confirm	GI SEG
+# PRESET COMPETITIONS
+preset.title	FERDIG TURNERING
+preset.blurb	EKTE TURNERINGER MED EKTE FELT
+preset.european_cup	SERIEMESTERCUPEN
+preset.uefa_cup	UEFA-CUPEN
+preset.cup_winners_cup	CUPVINNERCUPEN
+preset.world_cup	VM
+preset.european_championship	EM
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	LAGS UTSLAG
+preset.groups_then_knockout_suffix	GRUPPER PA 4 SO UTSLAG
+preset.create	OPPRETT
+# SAVE AS / LOAD GAME
+save.title	LAGRE SOM
+save.hint	SKRIV FILNAVN   ENTER OK   ESC AVBRYT
+save.saved_as_prefix	LAGRET SOM
+load.title	LAST SPILL
+load.delete_mode	SLETTEMODUS
+load.no_saved_games	INGEN LAGREDE SPILL
+# STANDINGS / FIXTURES
+table.title	TABELL
+table.group	GRUPPE
+fixtures.title	KAMPER
+# TEAM SETUP
+teamcfg.title	LAGOPPSETT
+teamcfg.team	LAG
+teamcfg.team_home_prefix	HJEMME
+teamcfg.team_away_prefix	BORTE
+teamcfg.switch_home_away	BYTT HJEMME / BORTE
+teamcfg.coach	TRENER
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	GRUPPE
+stage.final	FINALE
+stage.semi_final	SEMIFINALE
+stage.quarter_final	KVARTFINALE
+stage.round_of_16	ATTENDELSFINALE
+stage.round_of_32	SEKSTENDELSFINALE
+stage.round_of_prefix	RUNDE AV
+stage.cup_prefix	CUP
+round.league_round	LIGA - RUNDE
+round.competition_complete	TURNERING FULLFORT
+round.no_fixtures	INGEN KAMPER
+status.no_player_team	INGEN SPILLERLAG
+status.you_are_champion	DU ER MESTER
+status.you_are_prefix	DU ER
+status.you_are_unplaced	DU ER UPLASSERT
+status.you_were_eliminated	DU BLE SLATT UT
+status.you_are_through	DU ER VIDERE TIL NESTE RUNDE
+status.you_are_in_prefix	DU ER I
+status.you_are_in_the_prefix	DU ER I
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	VINNER
+season.cup_runner_up	FINALETAPER
+season.cup_out_in_prefix	UTE I
+season.cup_out	UTE
+season.trophy_league	SESONG %d LIGAMESTER
+season.trophy_cup	SESONG %d CUPMESTER
+season.history_line	S%d: LIGA %s, CUP %s
+season.history_retired	S%d: GA SEG
+fixture.penalties_mark	S
+# CAREER SQUAD
+squad.title_suffix	STALL
+squad.default_club	KLUBB
+squad.player_action	SPILLERHANDLING
+squad.no_player_selected	INGEN SPILLER VALGT
+squad.fit_injured	SKA
+# PLAYER ACTION
+paction.value_prefix	VERDI
+paction.time_to_negotiate	TID TIL FORHANDLING
+paction.take_off_list	TA AV LISTE
+paction.put_on_list	SETT PA OVERGANGSLISTE
+paction.give_free_transfer	GI FRI OVERGANG
+paction.off_list_prefix	AV LISTE
+paction.listed_prefix	LISTET
+paction.list_full_prefix	LISTE FULL (MAKS
+# FREE TRANSFER
+free.title	FRI OVERGANG
+free.confirm_prompt	SLIPP %s GRATIS?
+free.release	SLIPP
+free.released_prefix	SLUPPET
+free.squad_too_small	STALL FOR LITEN
+free.release_failed	SLIPP MISLYKTES
+# LINEUP EDITOR
+lineup.title	LAGOPPSTILLING
+lineup.auto	AUTO
+lineup.hint	OPP/NED RAD   FIRE VELG/BYTT   ESC TILBAKE
+lineup.picked_prefix	VALGT
+lineup.picked_swap_hint	- FIRE EN RAD FOR A BYTTE
+lineup.unmarked_prefix	FJERNET
+lineup.slot_not_available	PLASS UTILGJENGELIG
+lineup.goal_needs_keeper	MALPLASS TRENGER KEEPER
+lineup.swapped_prefix	BYTTET
+lineup.swapped_and	OG
+lineup.auto_restored	AUTO OPPSTILLING GJENOPPRETTET
+lineup.auto_label	AUTO OPPSTILLING
+lineup.custom_label	EGEN OPPSTILLING
+lineup.slot	PLASS
+lineup.slot_gk	MV
+lineup.slot_sub	INN
+# STAFF
+staff.title	STAB
+staff.coach	TRENER
+staff.fire_selected	SPARK VALGT
+staff.hire_coach	ANSETT TRENER
+staff.training_focus	TRENINGSFOKUS
+staff.no_coach_selected	INGEN TRENER VALGT
+staff.no_coaches	INGEN TRENERE
+# FIRE COACH
+firecoach.title	SPARK TRENER
+firecoach.coach_not_available	TRENER UTILGJENGELIG
+firecoach.severance_prefix	SLUTTPAKKE
+firecoach.fire	SPARK
+firecoach.fired_prefix	SPARKET
+# HIRE COACH
+hire.title	ANSETT TRENER
+hire.candidate	KANDIDAT
+hire.hire	ANSETT
+hire.hired_prefix	ANSATT
+# TRAINING FOCUS
+focus.title	TRENINGSFOKUS
+focus.toggle	VEKSLE FOKUS
+focus.removed_prefix	FJERNET
+focus.focused_prefix	FOKUSERT
+focus.max_prefix	MAKS
+focus.max_suffix	FOKUSSPILLERE
+focus.mark	*
+# SCOUTING
+scout.title	SPEIDING
+scout.scout_player	SPEID SPILLER
+scout.improve_prefix	FORBEDRE SPEIDING
+scout.maxed	SPEIDING MAKS
+scout.unavailable	SPEIDING UTILGJENGELIG
+scout.quality_prefix	SPEIDERKVALITET
+scout.no_watched	INGEN SPEIDEDE SPILLERE
+scout.scout_selected	SPEID VALGT
+scout.scout_prefix	SPEID
+scout.scouted_prefix	SPEIDET
+scout.cost_prefix	KOST
+scout.no_players_available	INGEN SPILLERE TILGJENGELIG
+# TRANSFER MARKET
+market.title	OVERGANGSMARKED
+market.max_price	MAKS PRIS
+market.buy_selected	KJOP VALGT
+market.no_player_selected	INGEN SPILLER VALGT
+market.free_agent	FRI AGENT
+market.club_fallback_prefix	KLUBB
+market.price_any	ALLE
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	KJOP SPILLER
+buy.asking_prefix	KREVER
+buy.your_bid	DITT BUD
+buy.make_bid	LEGG INN BUD
+buy.club_unwilling	KLUBBEN VIL IKKE KJOPE SPILLERE
+buy.no_time	INGEN TID IGJEN TIL FORHANDLING
+buy.enter_a_bid	LEGG INN ET BUD
+buy.not_enough_money	IKKE NOK PENGER
+buy.bought_prefix	KJOPT
+buy.squad_full	STALL FULL
+buy.transfer_failed	OVERGANG MISLYKTES
+buy.counter_prefix	DE KONTRER MED
+buy.rejected	BUD FOR LAVT - AVSLATT
+# INCOMING OFFERS
+offers.title	OVERGANGSBUD
+offers.no_offers	INGEN BUD
+offers.offer	BUD
+offers.accept	GODTA
+offers.demand_more	KREV MER
+offers.reject	AVSLA
+offers.header_negotiate_prefix	TID TIL FORHANDLING
+offers.header_sells	SALG
+offers.not_available	BUD UTILGJENGELIG
+offers.sold_prefix	SOLGT
+offers.sold_for	FOR
+offers.squad_too_small	STALL FOR LITEN
+offers.accept_failed	GODTA MISLYKTES
+offers.improved_prefix	OKT TIL
+offers.withdrawn	BUD TRUKKET
+offers.refused	DE NEKTER A BETALE MER
+offers.rejected	BUD AVSLATT
+# MATCH HUD / OVERLAYS
+hud.half_time	PAUSE
+hud.full_time	FULL TID
+hud.penalties	STRAFFER
+hud.paused	PAUSE
+hud.pause_resume_hint	mellomrom  fortsett
+hud.pause_quit_hint	ESC    til meny
+hud.goal	MAL!
+hud.throw_in	INNKAST
+hud.corner	CORNER
+hud.goal_kick	UTSPARK
+hud.press_space	trykk mellomrom
+hud.team_home_fallback	HJEMME
+hud.team_away_fallback	BORTE
+goal.type_penalty	(STR)
+goal.type_own_goal	(SM)

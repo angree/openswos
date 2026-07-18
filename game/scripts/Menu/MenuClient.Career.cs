@@ -80,10 +80,10 @@ public sealed partial class MenuClient
             c.Career.World.Clubs.TryGetValue(c.Career.ClubGlobalId, out club);
 
         string clubName = (c?.Career?.ClubName ?? "").Trim();
-        if (clubName.Length == 0) clubName = "CLUB";
+        if (clubName.Length == 0) clubName = Loc.Tr("squad.default_club", "CLUB");
         var s = new MenuScreen
         {
-            Title = FitText(clubName + " SQUAD", true, 294),
+            Title = FitText(clubName + " " + Loc.Tr("squad.title_suffix", "SQUAD"), true, 294),
             BodyReserve = 100,
         };
 
@@ -96,7 +96,7 @@ public sealed partial class MenuClient
             _transferNotice = null;
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = SquadPageLabel });
             var playerField = new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "PLAYER", Value = SquadSelectedLabel, OnActivate = EnterTableSelectCurrent };
+                Label = () => Loc.Tr("common.player", "PLAYER"), Value = SquadSelectedLabel, OnActivate = EnterTableSelectCurrent };
             s.Entries.Add(playerField);
             s.TableSelect = new MenuTableSelect
             {
@@ -106,14 +106,14 @@ public sealed partial class MenuClient
                 SetIndex = idx => { _squadSelectedIndex = idx; _squadPage = idx / CareerSquadRowsPerPage(); },
             };
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Accent, Big = false,
-                Label = () => "PLAYER ACTION", OnActivate = OpenSquadAction });
+                Label = () => Loc.Tr("squad.player_action", "PLAYER ACTION"), OnActivate = OpenSquadAction });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "PREVIOUS PAGE", OnActivate = () => StepSquadPage(-1) });
+                Label = () => Loc.Tr("common.previous_page", "PREVIOUS PAGE"), OnActivate = () => StepSquadPage(-1) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "NEXT PAGE", OnActivate = () => StepSquadPage(+1) });
+                Label = () => Loc.Tr("common.next_page", "NEXT PAGE"), OnActivate = () => StepSquadPage(+1) });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         s.Body = client => client.InTableSpace(() => client.DrawCareerSquadBody(s));
         return s;
     }
@@ -132,7 +132,7 @@ public sealed partial class MenuClient
     {
         int pages = CareerSquadPageCount();
         _squadPage = System.Math.Clamp(_squadPage, 0, pages - 1);
-        return $"PAGE {_squadPage + 1}/{pages}";
+        return $"{Loc.Tr("common.page", "PAGE")} {_squadPage + 1}/{pages}";
     }
 
     private int CareerSquadPageCount()
@@ -182,13 +182,13 @@ public sealed partial class MenuClient
     private string SquadSelectedLabel()
     {
         CareerPlayer? player = CurrentSquadPlayer();
-        return player is null ? "NONE" : FitText((player.Name ?? "").Trim(), false, 132);
+        return player is null ? Loc.Tr("common.none", "NONE") : FitText((player.Name ?? "").Trim(), false, 132);
     }
 
     private void OpenSquadAction()
     {
         CareerPlayer? player = CurrentSquadPlayer();
-        if (player is null) { _transferNotice = "NO PLAYER SELECTED"; RebuildCurrent(); return; }
+        if (player is null) { _transferNotice = Loc.Tr("squad.no_player_selected", "NO PLAYER SELECTED"); RebuildCurrent(); return; }
         _squadActionPlayerId = player.Id;
         _transferNotice = null;
         Push(BuildSquadAction());
@@ -198,26 +198,26 @@ public sealed partial class MenuClient
     {
         CareerClub? club = CurrentCareerClub();
         CareerPlayer? player = club?.Squad?.Find(p => p is not null && p.Id == _squadActionPlayerId);
-        var s = new MenuScreen { Title = "PLAYER ACTION" };
+        var s = new MenuScreen { Title = Loc.Tr("squad.player_action", "PLAYER ACTION") };
         if (player is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "PLAYER NOT AVAILABLE" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.player_not_available", "PLAYER NOT AVAILABLE") });
         }
         else
         {
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
                 Label = () => FitText(player.Name ?? "", false, 294) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
-                Label = () => "VALUE " + FormatMoney(Finance.PlayerValue(player)) + "   " + NegotiateStatus() });
+                Label = () => Loc.Tr("paction.value_prefix", "VALUE") + " " + FormatMoney(Finance.PlayerValue(player)) + "   " + NegotiateStatus() });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _transferNotice ?? "" });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Accent, Big = false,
-                Label = () => TransferOffers.IsListed(LoadedComp()!, player.Id) ? "TAKE OFF LIST" : "PUT ON TRANSFER LIST",
+                Label = () => TransferOffers.IsListed(LoadedComp()!, player.Id) ? Loc.Tr("paction.take_off_list", "TAKE OFF LIST") : Loc.Tr("paction.put_on_list", "PUT ON TRANSFER LIST"),
                 OnActivate = ToggleTransferList });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Danger, Big = false,
-                Label = () => "GIVE FREE TRANSFER", OnActivate = () => Push(BuildFreeTransferConfirm()) });
+                Label = () => Loc.Tr("paction.give_free_transfer", "GIVE FREE TRANSFER"), OnActivate = () => Push(BuildFreeTransferConfirm()) });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         return s;
     }
 
@@ -226,7 +226,7 @@ public sealed partial class MenuClient
     {
         var c = LoadedComp();
         if (c?.Career is null) return "";
-        return "TIME TO NEGOTIATE " + System.Math.Max(0, c.Career.TimeToNegotiate);
+        return Loc.Tr("paction.time_to_negotiate", "TIME TO NEGOTIATE") + " " + System.Math.Max(0, c.Career.TimeToNegotiate);
     }
 
     private void ToggleTransferList()
@@ -236,22 +236,22 @@ public sealed partial class MenuClient
         CareerPlayer? player = club?.Squad?.Find(p => p is not null && p.Id == _squadActionPlayerId);
         if (c?.Career is null || player is null)
         {
-            _transferNotice = "PLAYER NOT AVAILABLE";
+            _transferNotice = Loc.Tr("common.player_not_available", "PLAYER NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
         if (TransferOffers.IsListed(c, player.Id))
         {
             TransferOffers.UnlistPlayer(c, player.Id);
-            _transferNotice = "OFF LIST " + AsciiText(player.Name);
+            _transferNotice = Loc.Tr("paction.off_list_prefix", "OFF LIST") + " " + AsciiText(player.Name);
         }
         else if (TransferOffers.ListPlayer(c, player.Id))
         {
-            _transferNotice = "LISTED " + AsciiText(player.Name);
+            _transferNotice = Loc.Tr("paction.listed_prefix", "LISTED") + " " + AsciiText(player.Name);
         }
         else
         {
-            _transferNotice = "LIST FULL (MAX " + TransferOffers.MaxTransferListed + ")";
+            _transferNotice = Loc.Tr("paction.list_full_prefix", "LIST FULL (MAX") + " " + TransferOffers.MaxTransferListed + ")";
             RebuildCurrent();
             return;
         }
@@ -263,10 +263,10 @@ public sealed partial class MenuClient
     {
         CareerClub? club = CurrentCareerClub();
         CareerPlayer? player = club?.Squad?.Find(p => p is not null && p.Id == _squadActionPlayerId);
-        var s = new MenuScreen { Title = "FREE TRANSFER" };
+        var s = new MenuScreen { Title = Loc.Tr("free.title", "FREE TRANSFER") };
         if (player is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "PLAYER NOT AVAILABLE" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.player_not_available", "PLAYER NOT AVAILABLE") });
         }
         else
         {
@@ -274,10 +274,10 @@ public sealed partial class MenuClient
                 Label = () => FitText("RELEASE " + (player.Name ?? "") + " FOR FREE?", false, 294) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _transferNotice ?? "" });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Danger, Big = false,
-                Label = () => "RELEASE", OnActivate = FreeTransferSelectedPlayer });
+                Label = () => Loc.Tr("free.release", "RELEASE"), OnActivate = FreeTransferSelectedPlayer });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         return s;
     }
 
@@ -288,7 +288,7 @@ public sealed partial class MenuClient
         CareerPlayer? player = club?.Squad?.Find(p => p is not null && p.Id == _squadActionPlayerId);
         if (c?.Career?.World is null || club is null || player is null)
         {
-            _transferNotice = "PLAYER NOT AVAILABLE";
+            _transferNotice = Loc.Tr("common.player_not_available", "PLAYER NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
@@ -296,12 +296,12 @@ public sealed partial class MenuClient
         {
             CompetitionStore.Save(c);
             InvalidateMarketCaches();
-            _transferNotice = "RELEASED " + AsciiText(player.Name);
+            _transferNotice = Loc.Tr("free.released_prefix", "RELEASED") + " " + AsciiText(player.Name);
             Pop();   // back to squad action
             Pop();   // back to squad
             return;
         }
-        _transferNotice = club.Squad.Count <= 12 ? "SQUAD TOO SMALL" : "RELEASE FAILED";
+        _transferNotice = club.Squad.Count <= 12 ? Loc.Tr("free.squad_too_small", "SQUAD TOO SMALL") : Loc.Tr("free.release_failed", "RELEASE FAILED");
         RebuildCurrent();
     }
 
@@ -316,7 +316,7 @@ public sealed partial class MenuClient
         var normal = new Color(0.92f, 0.94f, 1f);
         if (club is null || club.Squad is null)
         {
-            BodyText(s, "NO SQUAD DATA", false, panelX + 8, panelY + 8, head);
+            BodyText(s, Loc.Tr("common.no_squad_data", "NO SQUAD DATA"), false, panelX + 8, panelY + 8, head);
             return;
         }
 
@@ -338,21 +338,21 @@ public sealed partial class MenuClient
         int fit = panelX + 452;
         int value = panelX + panelW - 6;
 
-        CareerTableText(s, "BUDGET " + FormatMoney(club.Budget), panelX + 8, panelY + 4, head);
+        CareerTableText(s, Loc.Tr("common.budget", "BUDGET") + " " +FormatMoney(club.Budget), panelX + 8, panelY + 4, head);
         if (!string.IsNullOrEmpty(_transferNotice))
             CareerTableText(s, FitText(_transferNotice, false, panelW - 124), panelX + 116, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "NO", no, y, head, rightAlign: true);
-        CareerTableText(s, "NAME", name, y, head);
-        CareerTableText(s, "POS", pos, y, head);
-        CareerTableText(s, "SKL", skl, y, head);
-        CareerTableText(s, "AGE", age, y, head, rightAlign: true);
-        CareerTableText(s, "SKILL", eff, y, head, rightAlign: true);
-        CareerTableText(s, "POT", pot, y, head, rightAlign: true);
-        CareerTableText(s, "STA", sta, y, head, rightAlign: true);
-        CareerTableText(s, "F", formCol, y, head, rightAlign: true);
-        CareerTableText(s, "FIT", fit, y, head, rightAlign: true);
-        CareerTableText(s, "VAL", value, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.number", "NO"),no, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.name", "NAME"),name, y, head);
+        CareerTableText(s, Loc.Tr("col.pos", "POS"),pos, y, head);
+        CareerTableText(s, Loc.Tr("col.skl", "SKL"),skl, y, head);
+        CareerTableText(s, Loc.Tr("col.age", "AGE"),age, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.skill", "SKILL"),eff, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.pot", "POT"),pot, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.sta", "STA"),sta, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.form", "F"),formCol, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.fit", "FIT"),fit, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.val", "VAL"),value, y, head, rightAlign: true);
         y += 10;
 
         var players = SquadPlayers();
@@ -378,7 +378,7 @@ public sealed partial class MenuClient
             int inj = player.InjurySeverity;
             Color nameColor = inj >= 2 ? InjuryRed : normal;
             Color fitColor = inj >= 2 ? InjuryRed : inj == 1 ? InjuryYellow : normal;
-            string fitText = inj >= 2 ? "INJ" : freshness.ToString();
+            string fitText = inj >= 2 ? Loc.Tr("squad.fit_injured", "INJ") : freshness.ToString();
 
             CareerTableText(s, player.ShirtNumber.ToString(), no, y, normal, rightAlign: true);
             BodyPlayerFlag(s, player.Nationality, flag, y);
@@ -414,17 +414,17 @@ public sealed partial class MenuClient
         _lineupSelectedSlot = 0;
         _lineupSwapAnchor = -1;
         _lineupNotice = null;
-        var s = new MenuScreen { Title = "TEAM LINEUP", BodyReserve = 92 };
+        var s = new MenuScreen { Title = Loc.Tr("lineup.title", "TEAM LINEUP"), BodyReserve = 92 };
         if (club?.Squad is not { Count: > 0 })
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "NO SQUAD DATA" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.no_squad_data", "NO SQUAD DATA") });
         }
         else
         {
             // AUTO / BACK live above the table; the table is the default focus,
             // so they are reached by scrolling UP out of the slot rows.
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "AUTO", OnActivate = ResetLineupToAuto });
+                Label = () => Loc.Tr("lineup.auto", "AUTO"), OnActivate = ResetLineupToAuto });
             s.TableSelect = new MenuTableSelect
             {
                 Field = null,
@@ -434,12 +434,12 @@ public sealed partial class MenuClient
                 OnConfirm = LineupFireRow,
                 StayOnConfirm = true,        // pick source, then pick target, without leaving the table
                 OnCancel = () => Pop(),      // ESC leaves the whole screen (UP off row 0 -> entries)
-                Hint = "UP/DOWN ROW   FIRE PICK/SWAP   ESC BACK",
+                Hint = Loc.Tr("lineup.hint", "UP/DOWN ROW   FIRE PICK/SWAP   ESC BACK"),
             };
             s.AutoTableSelect = true;        // enter directly in table mode over the slots
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         s.Body = client => client.InTableSpace(() => client.DrawLineupEditorBody(s));
         return s;
     }
@@ -467,7 +467,7 @@ public sealed partial class MenuClient
 
     // SWOS labels the keeper slot GK, the XI 2..11, the bench SUB.
     private static string LineupSlotTag(int slot)
-        => slot == 0 ? "GK" : slot < 11 ? (slot + 1).ToString() : "SUB";
+        => slot == 0 ? Loc.Tr("lineup.slot_gk", "GK") : slot < 11 ? (slot + 1).ToString() : Loc.Tr("lineup.slot_sub", "SUB");
 
     // FIRE on a slot row (StayOnConfirm table flow). First FIRE marks the source
     // row; FIRE on a different row swaps the two players and saves; FIRE on the
@@ -477,31 +477,31 @@ public sealed partial class MenuClient
         var c = LoadedComp();
         CareerClub? club = CurrentCareerClub();
         int count = LineupSlotCount();
-        if (c is null || club is null || count == 0) { _lineupNotice = "NO SQUAD DATA"; return; }
+        if (c is null || club is null || count == 0) { _lineupNotice = Loc.Tr("common.no_squad_data", "NO SQUAD DATA"); return; }
         int cur = System.Math.Clamp(_lineupSelectedSlot, 0, count - 1);
 
         if (_lineupSwapAnchor < 0)
         {
             _lineupSwapAnchor = cur;
-            _lineupNotice = "PICKED " + LineupSlotTag(cur) + " - FIRE A ROW TO SWAP";
+            _lineupNotice = Loc.Tr("lineup.picked_prefix", "PICKED") + " " + LineupSlotTag(cur) + " " + Loc.Tr("lineup.picked_swap_hint", "- FIRE A ROW TO SWAP");
             return;
         }
         if (_lineupSwapAnchor == cur)
         {
             _lineupSwapAnchor = -1;
-            _lineupNotice = "UNMARKED " + LineupSlotTag(cur);
+            _lineupNotice = Loc.Tr("lineup.unmarked_prefix", "UNMARKED") + " " + LineupSlotTag(cur);
             return;
         }
 
         int a = _lineupSwapAnchor, b = cur;
         var slots = LineupSlots();
-        if (a >= slots.Count || b >= slots.Count) { _lineupSwapAnchor = -1; _lineupNotice = "SLOT NOT AVAILABLE"; return; }
+        if (a >= slots.Count || b >= slots.Count) { _lineupSwapAnchor = -1; _lineupNotice = Loc.Tr("lineup.slot_not_available", "SLOT NOT AVAILABLE"); return; }
         // Guard: the goal slot (0) can only hold a keeper. Keep the mark so the
         // user can pick a different, valid target.
         if ((a == 0 && !CareerMatchTeam.IsKeeper(slots[b]))
             || (b == 0 && !CareerMatchTeam.IsKeeper(slots[a])))
         {
-            _lineupNotice = "GOAL SLOT NEEDS A KEEPER";
+            _lineupNotice = Loc.Tr("lineup.goal_needs_keeper", "GOAL SLOT NEEDS A KEEPER");
             return;
         }
 
@@ -511,7 +511,7 @@ public sealed partial class MenuClient
         (ids[a], ids[b]) = (ids[b], ids[a]);
         club.PreferredLineup = ids;
         CompetitionStore.Save(c);
-        _lineupNotice = "SWAPPED " + LineupSlotTag(a) + " AND " + LineupSlotTag(b);
+        _lineupNotice = Loc.Tr("lineup.swapped_prefix", "SWAPPED") + " " + LineupSlotTag(a) + " " + Loc.Tr("lineup.swapped_and", "AND") + " " + LineupSlotTag(b);
         _lineupSwapAnchor = -1;
     }
 
@@ -519,12 +519,12 @@ public sealed partial class MenuClient
     {
         var c = LoadedComp();
         CareerClub? club = CurrentCareerClub();
-        if (c is null || club is null) { _lineupNotice = "NO SQUAD DATA"; RebuildCurrent(); return; }
+        if (c is null || club is null) { _lineupNotice = Loc.Tr("common.no_squad_data", "NO SQUAD DATA"); RebuildCurrent(); return; }
         _lineupSwapAnchor = -1;
         club.PreferredLineup?.Clear();
         club.PreferredLineup ??= new System.Collections.Generic.List<int>();
         CompetitionStore.Save(c);
-        _lineupNotice = "AUTO LINEUP RESTORED";
+        _lineupNotice = Loc.Tr("lineup.auto_restored", "AUTO LINEUP RESTORED");
         RebuildCurrent();
     }
 
@@ -537,7 +537,7 @@ public sealed partial class MenuClient
         var head = new Color(0.7f, 0.85f, 1f);
         var normal = new Color(0.92f, 0.94f, 1f);
         var dim = new Color(0.62f, 0.66f, 0.78f);
-        if (club is null) { CareerTableText(s, "NO SQUAD DATA", panelX + 8, panelY + 8, head); return; }
+        if (club is null) { CareerTableText(s, Loc.Tr("common.no_squad_data", "NO SQUAD DATA"), panelX + 8, panelY + 8, head); return; }
 
         bool auto = club.PreferredLineup is not { Count: > 0 };
         // SLOT | NO | FLAG | NAME | POS | SKL | EFF | FIT | VAL across the 560 px panel.
@@ -545,17 +545,17 @@ public sealed partial class MenuClient
             name = flag + FlagAdvance + HeadIconAdvance, pos = panelX + 360,
             skl = panelX + 410, eff = panelX + 470, fit = panelX + panelW - 60,
             val = panelX + panelW - 6;
-        CareerTableText(s, auto ? "AUTO LINEUP" : "CUSTOM LINEUP", panelX + 8, panelY + 2, new Color(1f, 0.84f, 0.2f));
+        CareerTableText(s, auto ? Loc.Tr("lineup.auto_label", "AUTO LINEUP") : Loc.Tr("lineup.custom_label", "CUSTOM LINEUP"), panelX + 8, panelY + 2, new Color(1f, 0.84f, 0.2f));
         if (!string.IsNullOrEmpty(_lineupNotice))
             CareerTableText(s, FitText(_lineupNotice, false, panelW - 132), panelX + 124, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "SLOT", slotCol, y, head, rightAlign: true);
-        CareerTableText(s, "NAME", name, y, head);
-        CareerTableText(s, "POS", pos, y, head);
-        CareerTableText(s, "SKL", skl, y, head);
-        CareerTableText(s, "SKILL", eff, y, head, rightAlign: true);
-        CareerTableText(s, "FIT", fit, y, head, rightAlign: true);
-        CareerTableText(s, "VAL", val, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("lineup.slot", "SLOT"), slotCol, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.name", "NAME"),name, y, head);
+        CareerTableText(s, Loc.Tr("col.pos", "POS"),pos, y, head);
+        CareerTableText(s, Loc.Tr("col.skl", "SKL"),skl, y, head);
+        CareerTableText(s, Loc.Tr("col.skill", "SKILL"),eff, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.fit", "FIT"),fit, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.val", "VAL"),val, y, head, rightAlign: true);
         y += 10;
 
         var slots = LineupSlots();
@@ -577,7 +577,7 @@ public sealed partial class MenuClient
             int inj = p.InjurySeverity;
             Color nameColor = inj >= 2 ? InjuryRed : rc;
             Color fitColor = inj >= 2 ? InjuryRed : inj == 1 ? InjuryYellow : rc;
-            string fitText = inj >= 2 ? "INJ" : freshness.ToString();
+            string fitText = inj >= 2 ? Loc.Tr("squad.fit_injured", "INJ") : freshness.ToString();
             CareerTableText(s, LineupSlotTag(i), slotCol, y, rc, rightAlign: true);
             CareerTableText(s, p.ShirtNumber.ToString(), no, y, rc, rightAlign: true);
             BodyPlayerFlag(s, p.Nationality, flag, y);
@@ -595,10 +595,10 @@ public sealed partial class MenuClient
     private MenuScreen BuildStaffScreen()
     {
         CareerClub? club = CurrentCareerClub();
-        var s = new MenuScreen { Title = "STAFF", BodyReserve = 82 };
+        var s = new MenuScreen { Title = Loc.Tr("staff.title", "STAFF"), BodyReserve = 82 };
         if (club is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "NO CAREER DATA" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.no_career_data", "NO CAREER DATA") });
         }
         else
         {
@@ -606,14 +606,14 @@ public sealed partial class MenuClient
             _staffActionCoachId = -1;
             _staffNotice = null;
             var coachField = new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "COACH", Value = StaffSelectedLabel, OnActivate = EnterTableSelectCurrent };
+                Label = () => Loc.Tr("staff.coach", "COACH"), Value = StaffSelectedLabel, OnActivate = EnterTableSelectCurrent };
             s.Entries.Add(coachField);
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Danger, Big = false,
-                Label = () => "FIRE SELECTED", OnActivate = OpenFireCoach });
+                Label = () => Loc.Tr("staff.fire_selected", "FIRE SELECTED"), OnActivate = OpenFireCoach });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Accent, Big = false,
-                Label = () => "HIRE COACH", OnActivate = () => Push(BuildHireCoachScreen()) });
+                Label = () => Loc.Tr("staff.hire_coach", "HIRE COACH"), OnActivate = () => Push(BuildHireCoachScreen()) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "TRAINING FOCUS", OnActivate = () => Push(BuildTrainingFocusScreen()) });
+                Label = () => Loc.Tr("staff.training_focus", "TRAINING FOCUS"), OnActivate = () => Push(BuildTrainingFocusScreen()) });
             s.TableSelect = new MenuTableSelect
             {
                 Field = coachField,
@@ -623,7 +623,7 @@ public sealed partial class MenuClient
             };
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         s.Body = client => client.InTableSpace(() => client.DrawStaffBody(s));
         return s;
     }
@@ -649,13 +649,13 @@ public sealed partial class MenuClient
     private string StaffSelectedLabel()
     {
         Coach? coach = CurrentStaffCoach();
-        return coach is null ? "NONE" : FitText(coach.Name, false, 132);
+        return coach is null ? Loc.Tr("common.none", "NONE") : FitText(coach.Name, false, 132);
     }
 
     private void OpenFireCoach()
     {
         Coach? coach = CurrentStaffCoach();
-        if (coach is null) { _staffNotice = "NO COACH SELECTED"; RebuildCurrent(); return; }
+        if (coach is null) { _staffNotice = Loc.Tr("staff.no_coach_selected", "NO COACH SELECTED"); RebuildCurrent(); return; }
         _staffActionCoachId = coach.Id;
         _staffNotice = null;
         Push(BuildFireCoachScreen());
@@ -665,23 +665,23 @@ public sealed partial class MenuClient
     {
         CareerClub? club = CurrentCareerClub();
         Coach? coach = club?.Coaches?.Find(item => item is not null && item.Id == _staffActionCoachId);
-        var s = new MenuScreen { Title = "FIRE COACH" };
+        var s = new MenuScreen { Title = Loc.Tr("firecoach.title", "FIRE COACH") };
         if (club is null || coach is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "COACH NOT AVAILABLE" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("firecoach.coach_not_available", "COACH NOT AVAILABLE") });
         }
         else
         {
             long severance = System.Math.Max(0L, coach.Wage) / 2L;
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => FitText(coach.Name, false, 294) });
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "SEVERANCE " + FormatMoney(severance) });
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "BUDGET " + FormatMoney(club.Budget) });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("firecoach.severance_prefix", "SEVERANCE") + " " + FormatMoney(severance) });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.budget", "BUDGET") + " " +FormatMoney(club.Budget) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _staffNotice ?? "" });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Danger, Big = false,
-                Label = () => "FIRE", OnActivate = FireSelectedCoach });
+                Label = () => Loc.Tr("firecoach.fire", "FIRE"), OnActivate = FireSelectedCoach });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         return s;
     }
 
@@ -690,16 +690,16 @@ public sealed partial class MenuClient
         var c = LoadedComp();
         if (c?.Career?.World is null)
         {
-            _staffNotice = "COACH NOT AVAILABLE";
+            _staffNotice = Loc.Tr("firecoach.coach_not_available", "COACH NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
         Coach? coach = CurrentCareerClub()?.Coaches?.Find(item => item is not null && item.Id == _staffActionCoachId);
-        string name = coach?.Name ?? "COACH";
+        string name = coach?.Name ?? Loc.Tr("staff.coach", "COACH");
         if (StaffModel.TryFire(c.Career.World, c.Career.ClubGlobalId, _staffActionCoachId, out string refusal))
         {
             CompetitionStore.Save(c);
-            _staffNotice = "FIRED " + AsciiText(name);
+            _staffNotice = Loc.Tr("firecoach.fired_prefix", "FIRED") + " " + AsciiText(name);
             Pop();
             return;
         }
@@ -711,17 +711,17 @@ public sealed partial class MenuClient
     {
         var c = LoadedComp();
         CareerClub? club = CurrentCareerClub();
-        var s = new MenuScreen { Title = "HIRE COACH", BodyReserve = 94 };
+        var s = new MenuScreen { Title = Loc.Tr("hire.title", "HIRE COACH"), BodyReserve = 94 };
         if (c?.Career?.World is null || club is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "NO CAREER DATA" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.no_career_data", "NO CAREER DATA") });
         }
         else
         {
             _staffCandidateIndex = 0;
             _staffNotice = null;
             var candidateField = new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "CANDIDATE", Value = StaffCandidateLabel, OnActivate = EnterTableSelectCurrent };
+                Label = () => Loc.Tr("hire.candidate", "CANDIDATE"), Value = StaffCandidateLabel, OnActivate = EnterTableSelectCurrent };
             s.Entries.Add(candidateField);
             s.TableSelect = new MenuTableSelect
             {
@@ -731,11 +731,11 @@ public sealed partial class MenuClient
                 SetIndex = idx => { _staffCandidateIndex = idx; },
             };
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.PlayPrimary, Big = false,
-                Label = () => "HIRE", OnActivate = HireSelectedCoach });
+                Label = () => Loc.Tr("hire.hire", "HIRE"), OnActivate = HireSelectedCoach });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _staffNotice ?? "" });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         s.Body = client => client.InTableSpace(() => client.DrawHireCoachBody(s));
         return s;
     }
@@ -751,7 +751,7 @@ public sealed partial class MenuClient
     private string StaffCandidateLabel()
     {
         var candidates = StaffCandidates();
-        if (candidates.Count == 0) return "NONE";
+        if (candidates.Count == 0) return Loc.Tr("common.none", "NONE");
         _staffCandidateIndex = System.Math.Clamp(_staffCandidateIndex, 0, candidates.Count - 1);
         return FitText(candidates[_staffCandidateIndex].Name, false, 132);
     }
@@ -763,14 +763,14 @@ public sealed partial class MenuClient
         CoachHireCandidate? candidate = candidates.Find(item => item.Slot == _staffCandidateIndex);
         if (c?.Career?.World is null || candidate is null)
         {
-            _staffNotice = "COACH NOT AVAILABLE";
+            _staffNotice = Loc.Tr("firecoach.coach_not_available", "COACH NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
         if (StaffModel.TryHire(c.Career.World, c.Career.ClubGlobalId, candidate.Slot, out string refusal))
         {
             CompetitionStore.Save(c);
-            _staffNotice = "HIRED " + AsciiText(candidate.Name);
+            _staffNotice = Loc.Tr("hire.hired_prefix", "HIRED") + " " + AsciiText(candidate.Name);
             Pop();
             return;
         }
@@ -786,21 +786,21 @@ public sealed partial class MenuClient
         BodyBox(s, panelX, panelY, panelW, panelH, MenuTheme.Style.Value, 6);
         var head = new Color(0.7f, 0.85f, 1f);
         var normal = new Color(0.92f, 0.94f, 1f);
-        if (club is null) { CareerTableText(s, "NO CAREER DATA", panelX + 8, panelY + 8, head); return; }
+        if (club is null) { CareerTableText(s, Loc.Tr("common.no_career_data", "NO CAREER DATA"), panelX + 8, panelY + 8, head); return; }
 
         // NAME | SPEC | Q | WAGE spread across the 560 px inner panel.
         int name = panelX + 8, specialty = panelX + 200, quality = panelX + 470, wage = panelX + panelW - 6;
-        CareerTableText(s, "BUDGET " + FormatMoney(club.Budget), panelX + 8, panelY + 4, head);
+        CareerTableText(s, Loc.Tr("common.budget", "BUDGET") + " " +FormatMoney(club.Budget), panelX + 8, panelY + 4, head);
         if (!string.IsNullOrEmpty(_staffNotice))
             CareerTableText(s, FitText(_staffNotice, false, panelW - 124), panelX + 116, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "NAME", name, y, head);
-        CareerTableText(s, "SPEC", specialty, y, head);
-        CareerTableText(s, "Q", quality, y, head, rightAlign: true);
-        CareerTableText(s, "WAGE", wage, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.name", "NAME"),name, y, head);
+        CareerTableText(s, Loc.Tr("col.spec", "SPEC"),specialty, y, head);
+        CareerTableText(s, Loc.Tr("col.quality", "Q"),quality, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.wage", "WAGE"),wage, y, head, rightAlign: true);
         y += 10;
         var coaches = StaffCoaches();
-        if (coaches.Count == 0) { CareerTableText(s, "NO COACHES", name, y, normal); return; }
+        if (coaches.Count == 0) { CareerTableText(s, Loc.Tr("staff.no_coaches", "NO COACHES"), name, y, normal); return; }
         for (int i = 0; i < coaches.Count && y < panelY + panelH - 8; i++)
         {
             Coach coach = coaches[i];
@@ -821,15 +821,15 @@ public sealed partial class MenuClient
         BodyBox(s, panelX, panelY, panelW, panelH, MenuTheme.Style.Value, 6);
         var head = new Color(0.7f, 0.85f, 1f);
         var normal = new Color(0.92f, 0.94f, 1f);
-        if (club is null) { CareerTableText(s, "NO CAREER DATA", panelX + 8, panelY + 8, head); return; }
+        if (club is null) { CareerTableText(s, Loc.Tr("common.no_career_data", "NO CAREER DATA"), panelX + 8, panelY + 8, head); return; }
         // NAME | SPEC | Q | FEE spread across the 560 px inner panel.
         int name = panelX + 8, specialty = panelX + 200, quality = panelX + 470, fee = panelX + panelW - 6;
-        CareerTableText(s, "BUDGET " + FormatMoney(club.Budget), panelX + 8, panelY + 4, head);
+        CareerTableText(s, Loc.Tr("common.budget", "BUDGET") + " " +FormatMoney(club.Budget), panelX + 8, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "NAME", name, y, head);
-        CareerTableText(s, "SPEC", specialty, y, head);
-        CareerTableText(s, "Q", quality, y, head, rightAlign: true);
-        CareerTableText(s, "FEE", fee, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.name", "NAME"),name, y, head);
+        CareerTableText(s, Loc.Tr("col.spec", "SPEC"),specialty, y, head);
+        CareerTableText(s, Loc.Tr("col.quality", "Q"),quality, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.fee", "FEE"),fee, y, head, rightAlign: true);
         y += 10;
         foreach (CoachHireCandidate candidate in StaffCandidates())
         {
@@ -845,10 +845,10 @@ public sealed partial class MenuClient
     private MenuScreen BuildTrainingFocusScreen()
     {
         CareerClub? club = CurrentCareerClub();
-        var s = new MenuScreen { Title = "TRAINING FOCUS", BodyReserve = 100 };
+        var s = new MenuScreen { Title = Loc.Tr("focus.title", "TRAINING FOCUS"), BodyReserve = 100 };
         if (club?.Squad is not { Count: > 0 })
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "NO SQUAD DATA" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.no_squad_data", "NO SQUAD DATA") });
         }
         else
         {
@@ -856,7 +856,7 @@ public sealed partial class MenuClient
             _focusSelectedIndex = 0;
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = FocusPageLabel });
             var focusField = new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "PLAYER", Value = FocusSelectedLabel, OnActivate = EnterTableSelectCurrent };
+                Label = () => Loc.Tr("common.player", "PLAYER"), Value = FocusSelectedLabel, OnActivate = EnterTableSelectCurrent };
             s.Entries.Add(focusField);
             s.TableSelect = new MenuTableSelect
             {
@@ -866,15 +866,15 @@ public sealed partial class MenuClient
                 SetIndex = idx => { _focusSelectedIndex = idx; _focusPage = idx / FocusRowsPerPage(); },
             };
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Accent, Big = false,
-                Label = () => "TOGGLE FOCUS", OnActivate = ToggleTrainingFocus });
+                Label = () => Loc.Tr("focus.toggle", "TOGGLE FOCUS"), OnActivate = ToggleTrainingFocus });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "PREVIOUS PAGE", OnActivate = () => StepFocusPage(-1) });
+                Label = () => Loc.Tr("common.previous_page", "PREVIOUS PAGE"), OnActivate = () => StepFocusPage(-1) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "NEXT PAGE", OnActivate = () => StepFocusPage(+1) });
+                Label = () => Loc.Tr("common.next_page", "NEXT PAGE"), OnActivate = () => StepFocusPage(+1) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _staffNotice ?? "" });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         s.Body = client => client.InTableSpace(() => client.DrawTrainingFocusBody(s));
         return s;
     }
@@ -892,7 +892,7 @@ public sealed partial class MenuClient
     {
         int pages = FocusPageCount();
         _focusPage = System.Math.Clamp(_focusPage, 0, pages - 1);
-        return $"PAGE {_focusPage + 1}/{pages}";
+        return $"{Loc.Tr("common.page", "PAGE")} {_focusPage + 1}/{pages}";
     }
 
     private CareerPlayer? CurrentFocusPlayer()
@@ -907,7 +907,7 @@ public sealed partial class MenuClient
     private string FocusSelectedLabel()
     {
         CareerPlayer? player = CurrentFocusPlayer();
-        return player is null ? "NONE" : FitText(player.Name, false, 132);
+        return player is null ? Loc.Tr("common.none", "NONE") : FitText(player.Name, false, 132);
     }
 
     private void StepFocusPage(int delta)
@@ -923,7 +923,7 @@ public sealed partial class MenuClient
         CareerPlayer? player = CurrentFocusPlayer();
         if (c?.Career?.World is null || player is null)
         {
-            _staffNotice = "PLAYER NOT AVAILABLE";
+            _staffNotice = Loc.Tr("common.player_not_available", "PLAYER NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
@@ -931,7 +931,7 @@ public sealed partial class MenuClient
         if (StaffModel.TryToggleTrainingFocus(c.Career.World, c.Career.ClubGlobalId, player.Id, out string refusal))
         {
             CompetitionStore.Save(c);
-            _staffNotice = (wasFocused ? "REMOVED " : "FOCUSED ") + AsciiText(player.Name);
+            _staffNotice = (wasFocused ? Loc.Tr("focus.removed_prefix", "REMOVED") : Loc.Tr("focus.focused_prefix", "FOCUSED")) + " " + AsciiText(player.Name);
         }
         else _staffNotice = refusal;
         RebuildCurrent();
@@ -945,16 +945,16 @@ public sealed partial class MenuClient
         BodyBox(s, panelX, panelY, panelW, panelH, MenuTheme.Style.Value, 6);
         var head = new Color(0.7f, 0.85f, 1f);
         var normal = new Color(0.92f, 0.94f, 1f);
-        if (club is null) { CareerTableText(s, "NO SQUAD DATA", panelX + 8, panelY + 8, head); return; }
+        if (club is null) { CareerTableText(s, Loc.Tr("common.no_squad_data", "NO SQUAD DATA"), panelX + 8, panelY + 8, head); return; }
         // F | NAME | POS | AGE | EFF spread across the 560 px inner panel.
         int mark = panelX + 8, name = panelX + 24 + HeadIconAdvance, pos = panelX + 280, age = panelX + 360, eff = panelX + 410;
-        CareerTableText(s, "MAX " + StaffModel.MaximumTrainingFocus + " FOCUS PLAYERS", panelX + 8, panelY + 4, head);
+        CareerTableText(s, Loc.Tr("focus.max_prefix", "MAX") + " " + StaffModel.MaximumTrainingFocus + " " + Loc.Tr("focus.max_suffix", "FOCUS PLAYERS"), panelX + 8, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "F", mark, y, head);
-        CareerTableText(s, "NAME", name, y, head);
-        CareerTableText(s, "POS", pos, y, head);
-        CareerTableText(s, "AGE", age, y, head, rightAlign: true);
-        CareerTableText(s, "SKILL", eff, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.form", "F"),mark, y, head);
+        CareerTableText(s, Loc.Tr("col.name", "NAME"),name, y, head);
+        CareerTableText(s, Loc.Tr("col.pos", "POS"),pos, y, head);
+        CareerTableText(s, Loc.Tr("col.age", "AGE"),age, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.skill", "SKILL"),eff, y, head, rightAlign: true);
         y += 10;
         var players = SquadPlayers();
         int rows = FocusRowsPerPage();
@@ -963,7 +963,7 @@ public sealed partial class MenuClient
         {
             CareerPlayer player = players[i];
             if (i == _focusSelectedIndex) BodyBox(s, panelX + 4, y - 1, panelW - 8, 7, MenuTheme.Style.Info, 21);
-            CareerTableText(s, club.TrainingFocusIds?.Contains(player.Id) == true ? "*" : "", mark, y, normal);
+            CareerTableText(s, club.TrainingFocusIds?.Contains(player.Id) == true ? Loc.Tr("focus.mark", "*") : "", mark, y, normal);
             BodyHeadIcon(s, player.Face, name - HeadIconAdvance, y - 1, PlayerHeadKit(player));
             CareerCell(s, player.Name, name, y, pos - name - 4, normal);
             CareerCell(s, player.Position, pos, y, age - pos - 18, normal);
@@ -976,10 +976,10 @@ public sealed partial class MenuClient
     private MenuScreen BuildScoutingScreen()
     {
         CareerClub? club = CurrentCareerClub();
-        var s = new MenuScreen { Title = "SCOUTING", BodyReserve = 78 };
+        var s = new MenuScreen { Title = Loc.Tr("scout.title", "SCOUTING"), BodyReserve = 78 };
         if (club is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "NO CAREER DATA" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.no_career_data", "NO CAREER DATA") });
         }
         else
         {
@@ -987,17 +987,17 @@ public sealed partial class MenuClient
             _scoutingNotice = null;
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = ScoutingPageLabel });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Accent, Big = false,
-                Label = () => "SCOUT PLAYER", OnActivate = () => Push(BuildScoutMarketScreen()) });
+                Label = () => Loc.Tr("scout.scout_player", "SCOUT PLAYER"), OnActivate = () => Push(BuildScoutMarketScreen()) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
                 Label = ImproveScoutingLabel, OnActivate = ImproveScouting });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "PREVIOUS PAGE", OnActivate = () => StepScoutingPage(-1) });
+                Label = () => Loc.Tr("common.previous_page", "PREVIOUS PAGE"), OnActivate = () => StepScoutingPage(-1) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "NEXT PAGE", OnActivate = () => StepScoutingPage(+1) });
+                Label = () => Loc.Tr("common.next_page", "NEXT PAGE"), OnActivate = () => StepScoutingPage(+1) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _scoutingNotice ?? "" });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         s.Body = client => client.InTableSpace(() => client.DrawScoutingBody(s));
         return s;
     }
@@ -1008,8 +1008,8 @@ public sealed partial class MenuClient
     {
         int quality = ScoutQuality();
         return quality >= 7
-            ? "SCOUTING MAXED"
-            : "IMPROVE SCOUTING " + FormatMoney(Scouting.ScoutUpgradeCost(quality));
+            ? Loc.Tr("scout.maxed", "SCOUTING MAXED")
+            : Loc.Tr("scout.improve_prefix", "IMPROVE SCOUTING") + " " + FormatMoney(Scouting.ScoutUpgradeCost(quality));
     }
 
     private System.Collections.Generic.List<CareerPlayer> WatchedPlayers()
@@ -1056,7 +1056,7 @@ public sealed partial class MenuClient
     {
         int pages = ScoutingPageCount();
         _scoutingPage = System.Math.Clamp(_scoutingPage, 0, pages - 1);
-        return $"PAGE {_scoutingPage + 1}/{pages}";
+        return $"{Loc.Tr("common.page", "PAGE")} {_scoutingPage + 1}/{pages}";
     }
 
     private void StepScoutingPage(int delta)
@@ -1070,14 +1070,14 @@ public sealed partial class MenuClient
         var c = LoadedComp();
         if (c?.Career?.World is null)
         {
-            _scoutingNotice = "SCOUTING UNAVAILABLE";
+            _scoutingNotice = Loc.Tr("scout.unavailable", "SCOUTING UNAVAILABLE");
             RebuildCurrent();
             return;
         }
         if (Scouting.TryImproveScoutQuality(c.Career.World, c.Career.ClubGlobalId, out string refusal))
         {
             CompetitionStore.Save(c);
-            _scoutingNotice = "SCOUT QUALITY " + ScoutQuality();
+            _scoutingNotice = Loc.Tr("scout.quality_prefix", "SCOUT QUALITY") + " " + ScoutQuality();
         }
         else _scoutingNotice = refusal;
         RebuildCurrent();
@@ -1091,23 +1091,23 @@ public sealed partial class MenuClient
         BodyBox(s, panelX, panelY, panelW, panelH, MenuTheme.Style.Value, 6);
         var head = new Color(0.7f, 0.85f, 1f);
         var normal = new Color(0.92f, 0.94f, 1f);
-        if (club is null) { CareerTableText(s, "NO CAREER DATA", panelX + 8, panelY + 8, head); return; }
+        if (club is null) { CareerTableText(s, Loc.Tr("common.no_career_data", "NO CAREER DATA"), panelX + 8, panelY + 8, head); return; }
 
         // NAME | CLUB | AGE | EFF | POT spread across the 560 px inner panel.
         int name = panelX + 8 + HeadIconAdvance, clubName = panelX + 210, age = panelX + 420, eff = panelX + 460, estimate = panelX + panelW - 6;
-        CareerTableText(s, "SCOUT QUALITY " + ScoutQuality() + "/7  BUDGET " + FormatMoney(club.Budget), panelX + 8, panelY + 4, head);
+        CareerTableText(s, Loc.Tr("scout.quality_prefix", "SCOUT QUALITY") + " " + ScoutQuality() + "/7  " + Loc.Tr("common.budget", "BUDGET") + " " + FormatMoney(club.Budget), panelX + 8, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "NAME", name, y, head);
-        CareerTableText(s, "CLUB", clubName, y, head);
-        CareerTableText(s, "AGE", age, y, head, rightAlign: true);
-        CareerTableText(s, "SKILL", eff, y, head, rightAlign: true);
-        CareerTableText(s, "POT", estimate, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.name", "NAME"),name, y, head);
+        CareerTableText(s, Loc.Tr("col.club", "CLUB"),clubName, y, head);
+        CareerTableText(s, Loc.Tr("col.age", "AGE"),age, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.skill", "SKILL"),eff, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.pot", "POT"),estimate, y, head, rightAlign: true);
         y += 10;
         var players = WatchedPlayers();
         int rows = ScoutingRowsPerPage();
         int pages = System.Math.Max(1, (players.Count + rows - 1) / rows);
         _scoutingPage = System.Math.Clamp(_scoutingPage, 0, pages - 1);
-        if (players.Count == 0) { CareerTableText(s, "NO WATCHED PLAYERS", name, y, normal); return; }
+        if (players.Count == 0) { CareerTableText(s, Loc.Tr("scout.no_watched", "NO WATCHED PLAYERS"), name, y, normal); return; }
         for (int i = _scoutingPage * rows; i < players.Count && i < _scoutingPage * rows + rows; i++)
         {
             CareerPlayer player = players[i];
@@ -1129,10 +1129,10 @@ public sealed partial class MenuClient
     {
         var c = LoadedComp();
         CareerClub? club = CurrentCareerClub();
-        var s = new MenuScreen { Title = "SCOUT PLAYER", BodyReserve = 70 };
+        var s = new MenuScreen { Title = Loc.Tr("scout.scout_player", "SCOUT PLAYER"), BodyReserve = 70 };
         if (c?.Career?.World is null || club is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "NO CAREER DATA" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.no_career_data", "NO CAREER DATA") });
         }
         else
         {
@@ -1143,9 +1143,9 @@ public sealed partial class MenuClient
             _scoutMarketCache = null;   // fresh screen entry rebuilds the list
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = ScoutingMarketPageLabel });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "SORT", Value = ScoutingMarketSortLabel, OnActivate = OpenScoutSortPicker });
+                Label = () => Loc.Tr("common.sort", "SORT"), Value = ScoutingMarketSortLabel, OnActivate = OpenScoutSortPicker });
             var scoutPlayerField = new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "PLAYER", Value = ScoutingMarketSelectedLabel, OnActivate = EnterTableSelectCurrent };
+                Label = () => Loc.Tr("common.player", "PLAYER"), Value = ScoutingMarketSelectedLabel, OnActivate = EnterTableSelectCurrent };
             s.Entries.Add(scoutPlayerField);
             s.TableSelect = new MenuTableSelect
             {
@@ -1157,12 +1157,12 @@ public sealed partial class MenuClient
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.PlayPrimary, Big = false,
                 Label = ScoutingSelectedLabel, OnActivate = ScoutSelectedPlayer });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "PREVIOUS PAGE", OnActivate = () => StepScoutingMarketPage(-1) });
+                Label = () => Loc.Tr("common.previous_page", "PREVIOUS PAGE"), OnActivate = () => StepScoutingMarketPage(-1) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "NEXT PAGE", OnActivate = () => StepScoutingMarketPage(+1) });
+                Label = () => Loc.Tr("common.next_page", "NEXT PAGE"), OnActivate = () => StepScoutingMarketPage(+1) });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         s.Body = client => client.InTableSpace(() => client.DrawScoutMarketBody(s));
         return s;
     }
@@ -1194,14 +1194,14 @@ public sealed partial class MenuClient
     {
         int pages = ScoutingMarketPageCount();
         _scoutingMarketPage = System.Math.Clamp(_scoutingMarketPage, 0, pages - 1);
-        return $"PAGE {_scoutingMarketPage + 1}/{pages}";
+        return $"{Loc.Tr("common.page", "PAGE")} {_scoutingMarketPage + 1}/{pages}";
     }
 
     private string ScoutingMarketSortLabel() => _scoutingMarketSort switch
     {
-        TransferModel.SortEffectiveOverall => "SKILL",
-        TransferModel.SortAge => "AGE",
-        _ => "VALUE",
+        TransferModel.SortEffectiveOverall => Loc.Tr("common.skill", "SKILL"),
+        TransferModel.SortAge => Loc.Tr("common.age", "AGE"),
+        _ => Loc.Tr("common.value", "VALUE"),
     };
 
     private CareerPlayer? CurrentScoutingMarketPlayer()
@@ -1216,13 +1216,13 @@ public sealed partial class MenuClient
     private string ScoutingMarketSelectedLabel()
     {
         CareerPlayer? player = CurrentScoutingMarketPlayer();
-        return player is null ? "NONE" : FitText(player.Name, false, 132);
+        return player is null ? Loc.Tr("common.none", "NONE") : FitText(player.Name, false, 132);
     }
 
     private string ScoutingSelectedLabel()
     {
         CareerPlayer? player = CurrentScoutingMarketPlayer();
-        return player is null ? "SCOUT SELECTED" : "SCOUT " + FormatMoney(Scouting.PlayerScoutingCost(ScoutQuality()));
+        return player is null ? Loc.Tr("scout.scout_selected", "SCOUT SELECTED") : Loc.Tr("scout.scout_prefix", "SCOUT") + " " + FormatMoney(Scouting.PlayerScoutingCost(ScoutQuality()));
     }
 
     private void OpenScoutSortPicker()
@@ -1230,7 +1230,7 @@ public sealed partial class MenuClient
         var rows = new System.Collections.Generic.List<string>();
         foreach (var m in kSortModes) rows.Add(m.Name);
         int cur = System.Array.FindIndex(kSortModes, m => m.Mode == _scoutingMarketSort);
-        PushListPicker("SORT BY", rows, cur < 0 ? 0 : cur, idx =>
+        PushListPicker(Loc.Tr("common.sort_by", "SORT BY"), rows, cur < 0 ? 0 : cur, idx =>
         {
             _scoutingMarketSort = kSortModes[idx].Mode;
             _scoutingMarketPage = 0;
@@ -1253,7 +1253,7 @@ public sealed partial class MenuClient
         CareerPlayer? player = CurrentScoutingMarketPlayer();
         if (c?.Career?.World is null || player is null)
         {
-            _scoutingNotice = "PLAYER NOT AVAILABLE";
+            _scoutingNotice = Loc.Tr("common.player_not_available", "PLAYER NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
@@ -1262,7 +1262,7 @@ public sealed partial class MenuClient
         {
             CompetitionStore.Save(c);
             InvalidateMarketCaches();   // scouting flags changed on the pooled player
-            _scoutingNotice = "SCOUTED " + AsciiText(name);
+            _scoutingNotice = Loc.Tr("scout.scouted_prefix", "SCOUTED") + " " + AsciiText(name);
             Pop();
             return;
         }
@@ -1278,25 +1278,25 @@ public sealed partial class MenuClient
         BodyBox(s, panelX, panelY, panelW, panelH, MenuTheme.Style.Value, 6);
         var head = new Color(0.7f, 0.85f, 1f);
         var normal = new Color(0.92f, 0.94f, 1f);
-        if (club is null) { CareerTableText(s, "NO CAREER DATA", panelX + 8, panelY + 8, head); return; }
+        if (club is null) { CareerTableText(s, Loc.Tr("common.no_career_data", "NO CAREER DATA"), panelX + 8, panelY + 8, head); return; }
         // NAME | POS | AGE | SKILL | CLUB | PRICE across the 560 px inner panel
         // (PRICE is what a scouting decision hinges on — user request).
         int name = panelX + 8 + HeadIconAdvance, pos = panelX + 190, age = panelX + 250, eff = panelX + 290, clubName = panelX + 320;
         int price = panelX + panelW - 6;
-        CareerTableText(s, "BUDGET " + FormatMoney(club.Budget) + "  COST " + FormatMoney(Scouting.PlayerScoutingCost(ScoutQuality())), panelX + 8, panelY + 4, head);
+        CareerTableText(s, Loc.Tr("common.budget", "BUDGET") + " " + FormatMoney(club.Budget) + "  " + Loc.Tr("scout.cost_prefix", "COST") + " " + FormatMoney(Scouting.PlayerScoutingCost(ScoutQuality())), panelX + 8, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "NAME", name, y, head);
-        CareerTableText(s, "POS", pos, y, head);
-        CareerTableText(s, "AGE", age, y, head, rightAlign: true);
-        CareerTableText(s, "SKILL", eff, y, head, rightAlign: true);
-        CareerTableText(s, "CLUB", clubName, y, head);
-        CareerTableText(s, "PRICE", price, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.name", "NAME"),name, y, head);
+        CareerTableText(s, Loc.Tr("col.pos", "POS"),pos, y, head);
+        CareerTableText(s, Loc.Tr("col.age", "AGE"),age, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.skill", "SKILL"),eff, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.club", "CLUB"),clubName, y, head);
+        CareerTableText(s, Loc.Tr("col.price", "PRICE"),price, y, head, rightAlign: true);
         y += 10;
         var players = ScoutingMarketPlayers();
         int rows = ScoutingMarketRowsPerPage();
         int pages = System.Math.Max(1, (players.Count + rows - 1) / rows);
         _scoutingMarketPage = System.Math.Clamp(_scoutingMarketPage, 0, pages - 1);
-        if (players.Count == 0) { CareerTableText(s, "NO PLAYERS AVAILABLE", name, y, normal); return; }
+        if (players.Count == 0) { CareerTableText(s, Loc.Tr("scout.no_players_available", "NO PLAYERS AVAILABLE"), name, y, normal); return; }
         for (int i = _scoutingMarketPage * rows; i < players.Count && i < _scoutingMarketPage * rows + rows; i++)
         {
             CareerPlayer player = players[i];
@@ -1318,13 +1318,13 @@ public sealed partial class MenuClient
         CareerClub? club = CurrentCareerClub();
         var s = new MenuScreen
         {
-            Title = "TRANSFER MARKET",
+            Title = Loc.Tr("market.title", "TRANSFER MARKET"),
             BodyReserve = 70,
         };
 
         if (c?.Career?.World is null || club is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "NO CAREER DATA" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.no_career_data", "NO CAREER DATA") });
         }
         else
         {
@@ -1337,12 +1337,12 @@ public sealed partial class MenuClient
             _marketCache = null;   // fresh screen entry rebuilds the list
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = MarketPageLabel });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "SORT", Value = MarketSortLabel, OnActivate = OpenMarketSortPicker });
+                Label = () => Loc.Tr("common.sort", "SORT"), Value = MarketSortLabel, OnActivate = OpenMarketSortPicker });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "MAX PRICE", Value = () => kPriceFilters[_marketPriceFilter].Label,
+                Label = () => Loc.Tr("market.max_price", "MAX PRICE"), Value = () => kPriceFilters[_marketPriceFilter].Label,
                 OnStep = StepMarketPriceFilter });
             var marketPlayerField = new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "PLAYER", Value = MarketSelectedLabel, OnActivate = EnterTableSelectCurrent };
+                Label = () => Loc.Tr("common.player", "PLAYER"), Value = MarketSelectedLabel, OnActivate = EnterTableSelectCurrent };
             s.Entries.Add(marketPlayerField);
             s.TableSelect = new MenuTableSelect
             {
@@ -1352,14 +1352,14 @@ public sealed partial class MenuClient
                 SetIndex = idx => { _marketSelectedIndex = idx; _marketPage = idx / MarketRowsPerPage(); },
             };
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Accent, Big = false,
-                Label = () => "BUY SELECTED", OnActivate = OpenBuyConfirm, WidthOverride = 176 });
+                Label = () => Loc.Tr("market.buy_selected", "BUY SELECTED"), OnActivate = OpenBuyConfirm, WidthOverride = 176 });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "PREVIOUS PAGE", OnActivate = () => StepMarketPage(-1), WidthOverride = 176 });
+                Label = () => Loc.Tr("common.previous_page", "PREVIOUS PAGE"), OnActivate = () => StepMarketPage(-1), WidthOverride = 176 });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Tool, Big = false,
-                Label = () => "NEXT PAGE", OnActivate = () => StepMarketPage(+1), WidthOverride = 176 });
+                Label = () => Loc.Tr("common.next_page", "NEXT PAGE"), OnActivate = () => StepMarketPage(+1), WidthOverride = 176 });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop(), WidthOverride = 176 });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop(), WidthOverride = 176 });
         s.Body = client => client.InTableSpace(() => client.DrawTransferMarketBody(s));
         return s;
     }
@@ -1405,20 +1405,20 @@ public sealed partial class MenuClient
     {
         int pages = MarketPageCount();
         _marketPage = System.Math.Clamp(_marketPage, 0, pages - 1);
-        return $"PAGE {_marketPage + 1}/{pages}";
+        return $"{Loc.Tr("common.page", "PAGE")} {_marketPage + 1}/{pages}";
     }
 
     private string MarketSortLabel() => _marketSort switch
     {
-        TransferModel.SortEffectiveOverall => "SKILL",
-        TransferModel.SortAge => "AGE",
-        _ => "VALUE",
+        TransferModel.SortEffectiveOverall => Loc.Tr("common.skill", "SKILL"),
+        TransferModel.SortAge => Loc.Tr("common.age", "AGE"),
+        _ => Loc.Tr("common.value", "VALUE"),
     };
 
     private string MarketSelectedLabel()
     {
         CareerPlayer? player = CurrentMarketPlayer();
-        return player is null ? "NONE" : FitText(player.Name ?? "", false, 132);
+        return player is null ? Loc.Tr("common.none", "NONE") : FitText(player.Name ?? "", false, 132);
     }
 
     // The three market/scout sort modes and their labels, in display order. The
@@ -1460,7 +1460,7 @@ public sealed partial class MenuClient
         var rows = new System.Collections.Generic.List<string>();
         foreach (var m in kSortModes) rows.Add(m.Name);
         int cur = System.Array.FindIndex(kSortModes, m => m.Mode == _marketSort);
-        PushListPicker("SORT BY", rows, cur < 0 ? 0 : cur, idx =>
+        PushListPicker(Loc.Tr("common.sort_by", "SORT BY"), rows, cur < 0 ? 0 : cur, idx =>
         {
             _marketSort = kSortModes[idx].Mode;
             _marketPage = 0;
@@ -1482,7 +1482,7 @@ public sealed partial class MenuClient
     private void OpenBuyConfirm()
     {
         CareerPlayer? player = CurrentMarketPlayer();
-        if (player is null) { _transferNotice = "NO PLAYER SELECTED"; RebuildCurrent(); return; }
+        if (player is null) { _transferNotice = Loc.Tr("market.no_player_selected", "NO PLAYER SELECTED"); RebuildCurrent(); return; }
         _marketActionPlayerId = player.Id;
         _transferNotice = null;
         // A fresh target clears any prior counter; seed the bid at the asking price.
@@ -1504,25 +1504,25 @@ public sealed partial class MenuClient
     {
         CareerClub? club = CurrentCareerClub();
         CareerPlayer? player = FindMarketPlayer(_marketActionPlayerId);
-        var s = new MenuScreen { Title = "BUY PLAYER" };
+        var s = new MenuScreen { Title = Loc.Tr("buy.title", "BUY PLAYER") };
         if (club is null || player is null)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "PLAYER NOT AVAILABLE" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("common.player_not_available", "PLAYER NOT AVAILABLE") });
         }
         else
         {
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
-                Label = () => FitText(player.Name + "  ASKING " + FormatMoney(EffectiveAsking(player)), false, 294) });
+                Label = () => FitText(player.Name + "  " + Loc.Tr("buy.asking_prefix", "ASKING") + " " + FormatMoney(EffectiveAsking(player)), false, 294) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
-                Label = () => "BUDGET " + FormatMoney(club.Budget) + "   " + NegotiateStatus() });
+                Label = () => Loc.Tr("common.budget", "BUDGET") + " " +FormatMoney(club.Budget) + "   " + NegotiateStatus() });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "YOUR BID", Value = () => FormatMoney(_bidAmount), OnStep = d => StepBid(d, player, club) });
+                Label = () => Loc.Tr("buy.your_bid", "YOUR BID"), Value = () => FormatMoney(_bidAmount), OnStep = d => StepBid(d, player, club) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _transferNotice ?? "" });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.PlayPrimary, Big = false,
-                Label = () => "MAKE BID", OnActivate = MakeBid });
+                Label = () => Loc.Tr("buy.make_bid", "MAKE BID"), OnActivate = MakeBid });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         return s;
     }
 
@@ -1553,13 +1553,13 @@ public sealed partial class MenuClient
         CareerPlayer? player = FindMarketPlayer(_marketActionPlayerId);
         if (c?.Career?.World is null || club is null || player is null)
         {
-            _transferNotice = "PLAYER NOT AVAILABLE";
+            _transferNotice = Loc.Tr("common.player_not_available", "PLAYER NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
         if (c.Career.BuysThisSeason >= TransferOffers.BuyQuotaPerSeason)
         {
-            _transferNotice = "CLUB UNWILLING TO PURCHASE PLAYERS";
+            _transferNotice = Loc.Tr("buy.club_unwilling", "CLUB UNWILLING TO PURCHASE PLAYERS");
             RebuildCurrent();
             return;
         }
@@ -1567,7 +1567,7 @@ public sealed partial class MenuClient
         bool newTarget = _negotiationTargetId != player.Id;
         if (newTarget && c.Career.TimeToNegotiate <= 0)
         {
-            _transferNotice = "NO MORE TIME TO NEGOTIATE";
+            _transferNotice = Loc.Tr("buy.no_time", "NO MORE TIME TO NEGOTIATE");
             RebuildCurrent();
             return;
         }
@@ -1581,8 +1581,8 @@ public sealed partial class MenuClient
         long value = Finance.PlayerValue(player);
         long asking = EffectiveAsking(player);
         long bid = _bidAmount;
-        if (bid <= 0) { CompetitionStore.Save(c); _transferNotice = "ENTER A BID"; RebuildCurrent(); return; }
-        if (club.Budget < bid) { CompetitionStore.Save(c); _transferNotice = "NOT ENOUGH MONEY"; RebuildCurrent(); return; }
+        if (bid <= 0) { CompetitionStore.Save(c); _transferNotice = Loc.Tr("buy.enter_a_bid", "ENTER A BID"); RebuildCurrent(); return; }
+        if (club.Budget < bid) { CompetitionStore.Save(c); _transferNotice = Loc.Tr("buy.not_enough_money", "NOT ENOUGH MONEY"); RebuildCurrent(); return; }
 
         if (bid >= asking)
         {
@@ -1593,12 +1593,12 @@ public sealed partial class MenuClient
                 _bidCounterAsking = 0;
                 CompetitionStore.Save(c);
                 InvalidateMarketCaches();
-                _transferNotice = "BOUGHT " + AsciiText(player.Name);
+                _transferNotice = Loc.Tr("buy.bought_prefix", "BOUGHT") + " " + AsciiText(player.Name);
                 Pop();
                 return;
             }
             CompetitionStore.Save(c);
-            _transferNotice = club.Squad.Count >= 22 ? "SQUAD FULL" : "TRANSFER FAILED";
+            _transferNotice = club.Squad.Count >= 22 ? Loc.Tr("buy.squad_full", "SQUAD FULL") : Loc.Tr("buy.transfer_failed", "TRANSFER FAILED");
             RebuildCurrent();
             return;
         }
@@ -1607,12 +1607,12 @@ public sealed partial class MenuClient
             _bidCounterAsking = (bid + asking) / 2L;
             _bidAmount = System.Math.Clamp(_bidCounterAsking, 0L, club.Budget);
             CompetitionStore.Save(c);
-            _transferNotice = "THEY COUNTER AT " + FormatMoney(_bidCounterAsking);
+            _transferNotice = Loc.Tr("buy.counter_prefix", "THEY COUNTER AT") + " " + FormatMoney(_bidCounterAsking);
             RebuildCurrent();
             return;
         }
         CompetitionStore.Save(c);
-        _transferNotice = "BID TOO LOW - REJECTED";
+        _transferNotice = Loc.Tr("buy.rejected", "BID TOO LOW - REJECTED");
         RebuildCurrent();
     }
 
@@ -1621,8 +1621,8 @@ public sealed partial class MenuClient
     {
         var c = LoadedComp();
         int count = c?.Career?.PendingOffers?.Count ?? 0;
-        string prefix = c is not null && TransferOffers.HasUnseenOffers(c) ? "! " : "";
-        return prefix + "OFFERS (" + count + ")";
+        string prefix = c is not null && TransferOffers.HasUnseenOffers(c) ? Loc.Tr("dash.offers_unseen_mark", "!") + " " : "";
+        return prefix + Loc.Tr("dash.offers_prefix", "OFFERS") + " (" + count + ")";
     }
 
     private System.Collections.Generic.List<TransferOffer> OfferList()
@@ -1648,13 +1648,13 @@ public sealed partial class MenuClient
     {
         if (TeamNamesByGlobalId().TryGetValue(offer.BidderClubId, out string? name))
             return AsciiText(name);
-        return "CLUB " + offer.BidderClubId;
+        return Loc.Tr("market.club_fallback_prefix", "CLUB") + " " +offer.BidderClubId;
     }
 
     private MenuScreen BuildOffersScreen()
     {
         var c = LoadedComp();
-        var s = new MenuScreen { Title = "TRANSFER OFFERS", BodyReserve = 70 };
+        var s = new MenuScreen { Title = Loc.Tr("offers.title", "TRANSFER OFFERS"), BodyReserve = 70 };
         // Entering the screen marks every pending offer as seen (clears the "!").
         if (c?.Career?.PendingOffers is not null)
         {
@@ -1666,12 +1666,12 @@ public sealed partial class MenuClient
         _offerNotice = null;
         if (c?.Career is null || OfferList().Count == 0)
         {
-            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => "NO OFFERS" });
+            s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => Loc.Tr("offers.no_offers", "NO OFFERS") });
         }
         else
         {
             var offerField = new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => "OFFER", Value = OfferSelectedLabel, OnActivate = EnterTableSelectCurrent };
+                Label = () => Loc.Tr("offers.offer", "OFFER"), Value = OfferSelectedLabel, OnActivate = EnterTableSelectCurrent };
             s.Entries.Add(offerField);
             s.TableSelect = new MenuTableSelect
             {
@@ -1681,15 +1681,15 @@ public sealed partial class MenuClient
                 SetIndex = idx => { _offerSelectedIndex = idx; },
             };
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.PlayPrimary, Big = false,
-                Label = () => "ACCEPT", OnActivate = AcceptSelectedOffer });
+                Label = () => Loc.Tr("offers.accept", "ACCEPT"), OnActivate = AcceptSelectedOffer });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Accent, Big = false,
-                Label = () => "DEMAND MORE", OnActivate = DemandMoreSelectedOffer });
+                Label = () => Loc.Tr("offers.demand_more", "DEMAND MORE"), OnActivate = DemandMoreSelectedOffer });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Danger, Big = false,
-                Label = () => "REJECT", OnActivate = RejectSelectedOffer });
+                Label = () => Loc.Tr("offers.reject", "REJECT"), OnActivate = RejectSelectedOffer });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _offerNotice ?? "" });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
-            Label = () => "BACK", OnActivate = () => Pop() });
+            Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
         s.Body = client => client.InTableSpace(() => client.DrawOffersBody(s));
         return s;
     }
@@ -1697,7 +1697,7 @@ public sealed partial class MenuClient
     private string OfferSelectedLabel()
     {
         TransferOffer? offer = CurrentOffer();
-        if (offer is null) return "NONE";
+        if (offer is null) return Loc.Tr("common.none", "NONE");
         CareerPlayer? player = OfferPlayer(offer);
         string who = player is null ? ("#" + offer.PlayerId) : (player.Name ?? "");
         return FitText(who + " " + FormatMoney(offer.Amount), false, 150);
@@ -1709,7 +1709,7 @@ public sealed partial class MenuClient
         TransferOffer? offer = CurrentOffer();
         if (c?.Career?.World is null || offer is null)
         {
-            _offerNotice = "OFFER NOT AVAILABLE";
+            _offerNotice = Loc.Tr("offers.not_available", "OFFER NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
@@ -1719,9 +1719,9 @@ public sealed partial class MenuClient
         {
             CompetitionStore.Save(c);
             InvalidateMarketCaches();
-            _offerNotice = "SOLD " + AsciiText(name) + " FOR " + FormatMoney(offer.Amount);
+            _offerNotice = Loc.Tr("offers.sold_prefix", "SOLD") + " " + AsciiText(name) + " " + Loc.Tr("offers.sold_for", "FOR") + " " + FormatMoney(offer.Amount);
         }
-        else _offerNotice = CurrentCareerClub()?.Squad?.Count <= 12 ? "SQUAD TOO SMALL" : "ACCEPT FAILED";
+        else _offerNotice = CurrentCareerClub()?.Squad?.Count <= 12 ? Loc.Tr("offers.squad_too_small", "SQUAD TOO SMALL") : Loc.Tr("offers.accept_failed", "ACCEPT FAILED");
         _offerSelectedIndex = 0;
         RebuildCurrent();
     }
@@ -1732,7 +1732,7 @@ public sealed partial class MenuClient
         TransferOffer? offer = CurrentOffer();
         if (c?.Career is null || offer is null)
         {
-            _offerNotice = "OFFER NOT AVAILABLE";
+            _offerNotice = Loc.Tr("offers.not_available", "OFFER NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
@@ -1740,10 +1740,10 @@ public sealed partial class MenuClient
         CompetitionStore.Save(c);
         _offerNotice = outcome switch
         {
-            DemandOutcome.Improved => "IMPROVED TO " + FormatMoney(offer.Amount),
-            DemandOutcome.Withdrawn => "OFFER WITHDRAWN",
-            DemandOutcome.Refused => "THEY REFUSE TO PAY MORE",
-            _ => "OFFER NOT AVAILABLE",
+            DemandOutcome.Improved => Loc.Tr("offers.improved_prefix", "IMPROVED TO") + " " + FormatMoney(offer.Amount),
+            DemandOutcome.Withdrawn => Loc.Tr("offers.withdrawn", "OFFER WITHDRAWN"),
+            DemandOutcome.Refused => Loc.Tr("offers.refused", "THEY REFUSE TO PAY MORE"),
+            _ => Loc.Tr("offers.not_available", "OFFER NOT AVAILABLE"),
         };
         _offerSelectedIndex = 0;
         RebuildCurrent();
@@ -1755,13 +1755,13 @@ public sealed partial class MenuClient
         TransferOffer? offer = CurrentOffer();
         if (c?.Career?.PendingOffers is null || offer is null)
         {
-            _offerNotice = "OFFER NOT AVAILABLE";
+            _offerNotice = Loc.Tr("offers.not_available", "OFFER NOT AVAILABLE");
             RebuildCurrent();
             return;
         }
         c.Career.PendingOffers.Remove(offer);
         CompetitionStore.Save(c);
-        _offerNotice = "OFFER REJECTED";
+        _offerNotice = Loc.Tr("offers.rejected", "OFFER REJECTED");
         _offerSelectedIndex = 0;
         RebuildCurrent();
     }
@@ -1774,20 +1774,20 @@ public sealed partial class MenuClient
         BodyBox(s, panelX, panelY, panelW, panelH, MenuTheme.Style.Value, 6);
         var head = new Color(0.7f, 0.85f, 1f);
         var normal = new Color(0.92f, 0.94f, 1f);
-        if (c?.Career is null) { CareerTableText(s, "NO CAREER DATA", panelX + 8, panelY + 8, head); return; }
+        if (c?.Career is null) { CareerTableText(s, Loc.Tr("common.no_career_data", "NO CAREER DATA"), panelX + 8, panelY + 8, head); return; }
 
         // CLUB | PLAYER | AMOUNT | EXP spread across the 560 px inner panel.
         int club = panelX + 8, name = panelX + 220 + HeadIconAdvance, exp = panelX + panelW - 6, amount = exp - 40;
-        CareerTableText(s, "TIME TO NEGOTIATE " + System.Math.Max(0, c.Career.TimeToNegotiate)
-            + "   SELLS " + c.Career.SellsThisSeason, panelX + 8, panelY + 4, head);
+        CareerTableText(s, Loc.Tr("offers.header_negotiate_prefix", "TIME TO NEGOTIATE") + " " + System.Math.Max(0, c.Career.TimeToNegotiate)
+            + "   " + Loc.Tr("offers.header_sells", "SELLS") + " " + c.Career.SellsThisSeason, panelX + 8, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "CLUB", club, y, head);
-        CareerTableText(s, "PLAYER", name, y, head);
-        CareerTableText(s, "AMOUNT", amount, y, head, rightAlign: true);
-        CareerTableText(s, "EXP", exp, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.club", "CLUB"),club, y, head);
+        CareerTableText(s, Loc.Tr("common.player", "PLAYER"), name, y, head);
+        CareerTableText(s, Loc.Tr("col.amount", "AMOUNT"),amount, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.exp", "EXP"),exp, y, head, rightAlign: true);
         y += 10;
         var offers = OfferList();
-        if (offers.Count == 0) { CareerTableText(s, "NO OFFERS", club, y, normal); return; }
+        if (offers.Count == 0) { CareerTableText(s, Loc.Tr("offers.no_offers", "NO OFFERS"), club, y, normal); return; }
         for (int i = 0; i < offers.Count && y < panelY + panelH - 8; i++)
         {
             TransferOffer offer = offers[i];
@@ -1813,7 +1813,7 @@ public sealed partial class MenuClient
         var normal = new Color(0.92f, 0.94f, 1f);
         if (buyer is null)
         {
-            CareerTableText(s, "NO CAREER DATA", panelX + 8, panelY + 8, head);
+            CareerTableText(s, Loc.Tr("common.no_career_data", "NO CAREER DATA"), panelX + 8, panelY + 8, head);
             return;
         }
 
@@ -1825,17 +1825,17 @@ public sealed partial class MenuClient
         int skill = panelX + 268;
         int club = panelX + 300;
         int price = panelX + panelW - 6;
-        CareerTableText(s, "BUDGET " + FormatMoney(buyer.Budget), panelX + 8, panelY + 4, head);
+        CareerTableText(s, Loc.Tr("common.budget", "BUDGET") + " " +FormatMoney(buyer.Budget), panelX + 8, panelY + 4, head);
         if (!string.IsNullOrEmpty(_transferNotice))
             CareerTableText(s, FitText(_transferNotice, false, panelW - 124), panelX + 116, panelY + 4, head);
         int y = panelY + 15;
-        CareerTableText(s, "NAME", name, y, head);
-        CareerTableText(s, "NAT", nat, y, head);
-        CareerTableText(s, "POS", pos, y, head);
-        CareerTableText(s, "AGE", age, y, head, rightAlign: true);
-        CareerTableText(s, "SKILL", skill, y, head, rightAlign: true);
-        CareerTableText(s, "CLUB", club, y, head);
-        CareerTableText(s, "PRICE", price, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.name", "NAME"),name, y, head);
+        CareerTableText(s, Loc.Tr("col.nat", "NAT"),nat, y, head);
+        CareerTableText(s, Loc.Tr("col.pos", "POS"),pos, y, head);
+        CareerTableText(s, Loc.Tr("col.age", "AGE"),age, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.skill", "SKILL"),skill, y, head, rightAlign: true);
+        CareerTableText(s, Loc.Tr("col.club", "CLUB"),club, y, head);
+        CareerTableText(s, Loc.Tr("col.price", "PRICE"),price, y, head, rightAlign: true);
         y += 10;
 
         var players = MarketPlayers();
@@ -1845,7 +1845,7 @@ public sealed partial class MenuClient
         int first = _marketPage * rows;
         if (players.Count == 0)
         {
-            CareerTableText(s, "NO PLAYERS AVAILABLE", panelX + 8, y, normal);
+            CareerTableText(s, Loc.Tr("scout.no_players_available", "NO PLAYERS AVAILABLE"), panelX + 8, y, normal);
             return;
         }
 
@@ -1868,10 +1868,10 @@ public sealed partial class MenuClient
 
     private string MarketClubName(CareerPlayer player)
     {
-        if (player.ClubId == 0) return "FREE AGENT";
+        if (player.ClubId == 0) return Loc.Tr("market.free_agent", "FREE AGENT");
         if (TeamNamesByGlobalId().TryGetValue(player.ClubId, out string? name))
             return AsciiText(name);
-        return "CLUB " + player.ClubId;
+        return Loc.Tr("market.club_fallback_prefix", "CLUB") + " " +player.ClubId;
     }
 
     // Transfermarkt-style money: two significant digits with a K/M suffix, e.g.
@@ -1917,7 +1917,7 @@ public sealed partial class MenuClient
         => CareerTableText(s, FitText(text ?? "", false, System.Math.Max(6, maxW)), x, y, color);
 
     // --menu-shot only: force a couple of injuries into the player's career squad
-    // so the red "INJ" row (severity >= 2) and the yellow "carrying a knock" FIT
+    // so the red Loc.Tr("squad.fit_injured", "INJ") row (severity >= 2) and the yellow "carrying a knock" FIT
     // (severity 1) are visible in the 11b_career_squad screenshot. Never called in
     // normal play (guarded by the harness).
     public void DebugInjureSquadPlayers()
@@ -2155,7 +2155,7 @@ public sealed partial class MenuClient
 
     // Injury row colours. An unavailable injury (severity >= 2) paints the name +
     // FIT cell red, echoing the original's red squad row (swos.asm:53842-53870)
-    // and bench-cross aesthetic, with FIT text "INJ". A "carrying a knock"
+    // and bench-cross aesthetic, with FIT text Loc.Tr("squad.fit_injured", "INJ"). A "carrying a knock"
     // (severity 1) tints only the FIT number yellow — the player is still
     // selectable. Fatigue (freshness) and injury coexist: this only overrides the
     // FIT cell's colour/text, never the FatigueCarry value.

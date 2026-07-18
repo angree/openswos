@@ -1,0 +1,434 @@
+key	fi
+# COMMON
+common.back	TAKAISIN
+common.continue	JATKA
+common.cancel	PERUUTA
+common.ok	OK
+common.on	PAALLA
+common.off	POIS
+common.na	N/A
+common.none	EI MITAAN
+common.versus	V
+common.page	SIVU
+common.previous_page	EDELLINEN SIVU
+common.next_page	SEURAAVA SIVU
+common.no_career_data	EI URATIETOJA
+common.no_squad_data	EI JOUKKUETIETOJA
+common.player_not_available	PELAAJAA EI SAATAVILLA
+common.player	PELAAJA
+common.budget	BUDJETTI
+common.sort	LAJITTELE
+common.sort_by	LAJITTELE
+common.value	ARVO
+common.skill	TAITO
+common.age	IKA
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	SIJ
+col.team	JOUKKUE
+col.name	NIMI
+col.number	NRO
+col.number_hash	#
+col.p	O
+col.w	V
+col.d	T
+col.l	H
+col.gf	TM
+col.ga	PM
+col.pts	PIS
+col.skl	TAI
+col.skill	TAITO
+col.pot	POT
+col.sta	KES
+col.form	V
+col.fit	KUN
+col.val	ARV
+col.nat	KAN
+col.club	SEURA
+col.price	HINTA
+col.spec	ERI
+col.quality	L
+col.wage	PALKKA
+col.fee	MAKSU
+col.amount	SUMMA
+col.exp	VANH
+col.skill_row	SY TA LA PU HA NO VI
+# HOME
+home.title	O P E N   S W O S
+home.play_match	PELAA OTTELU
+home.competitions	KILPAILUT
+home.multiplayer	MONINPELI
+home.team_setup	JOUKKUE
+home.options	ASETUKSET
+home.career	URA
+home.exit	POISTU
+home.credit	TEKIJA GRZEGORZ KORYCKI
+home.continue_prefix	JATKA:
+# QUIT
+quit.title	LOPETA
+quit.are_you_sure	OLETKO VARMA?
+quit.quit_to_windows	LOPETA WINDOWSIIN
+quit.return_to_game	TAKAISIN PELIIN
+# FRIENDLY
+friendly.title	HARJOITUSOTTELU
+friendly.home	KOTI
+friendly.away	VIERAS
+friendly.swap_teams	VAIHDA JOUKKUEET
+friendly.pitch	KENTTA
+friendly.opponent	VASTUSTAJA
+friendly.half_length	PUOLIAJAN PITUUS
+friendly.game_speed	PELINOPEUS
+friendly.kick_off	ALOITA
+friendly.context	HARJOITUS
+# VERSUS
+versus.play	PELAA
+versus.view_result	NAYTA TULOS
+# STADIUM
+stadium.title	JOUKKUEET
+stadium.kick_off	ALOITA
+stadium.edit_lineup	MUOKKAA KOKOONPANOA
+# OPTIONS
+opt.title	ASETUKSET
+opt.page	SIVU
+opt.language	KIELI
+opt.half_length	PUOLIAJAN PITUUS
+opt.game_speed	PELINOPEUS
+opt.opponent	VASTUSTAJA
+opt.pitch	KENTTA
+opt.skill_scaling	TAITOSKAALAUS
+opt.skill_scaling_hint	USKOLLINEN SWOS PELAAJAHINNAN TAITOSKAALAUS
+opt.all_teams_equal	KAIKKI TASAVAHVAT
+opt.all_teams_equal_hint	TASAA PELAAJAJOUKKUEIDEN VAHVUUDEN
+opt.pre_match_menus	OTTELUN ESIVALIKOT
+opt.player_fatigue	PELAAJAN VASYMYS
+opt.energy_bar	ENERGIAPALKKI
+opt.music	MUSIIKKI
+opt.music_hint	AMIGA / PC / OMA VALIKKOMUSIIKKI
+opt.sound	AANI
+opt.sound_hint	PC- TAI AMIGA-OTTELUAANET
+opt.display	NAYTTO
+opt.display_hint	F11 KIERTAA  ALT+ENTER VAIHTAA KOKORUUDUN
+# OPTION VALUES
+val.pitch_none	(EI MITAAN)
+val.pitch_random	SATUNNAINEN
+val.opponent_ai	TEKOALY
+val.opponent_player2	PELAAJA 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	OMA
+val.music_off	POIS
+val.length_whole_match_seconds	%dS TODELL.  (KOKO OTTELU)
+val.length_whole_match_minutes	%d MIN TODELL.  (KOKO OTTELU)
+val.display_windowed	IKKUNA
+val.display_full_fill	KOKO TAYTTO
+val.display_full_integer	KOKO TARKKA
+# LOCAL MULTIPLAYER
+mp.title	PAIKALLINEN MONINPELI
+mp.controls_hint	PELAAJA 1: NUOLET+VALI   PELAAJA 2: WASD+SHIFT
+mp.start	ALOITA 2 PELAAJAN OTTELU
+# PICKERS
+pick.continent	MANNER
+pick.country	MAA
+pick.your_team	JOUKKUEESI
+pick.all_countries	KAIKKI MAAT
+pick.all	KAIKKI
+pick.select_country	VALITSE MAA
+pick.select_continent	VALITSE MANNER
+pick.select_your_team	VALITSE JOUKKUE
+pick.home_team	KOTIJOUKKUE
+pick.away_team	VIERASJOUKKUE
+pick.nothing_to_choose	EI VALITTAVAA
+pick.item	KOHDE
+pick.more_down	LISAA v
+# DRAW CEREMONY
+draw.title_suffix	ARVONTA
+# PLAY AGAIN
+playagain.title	PELIN LOPPU
+playagain.play_again	PELAA UUDELLEEN
+playagain.exit	POISTU
+# COMPETITIONS HUB
+comp.title	KILPAILUT
+comp.new_league	UUSI LIIGA
+comp.new_cup	UUSI CUP
+comp.new_tournament	UUSI TURNAUS
+comp.preset_competition	VALMIS KILPAILU
+comp.new_career	UUSI URA
+comp.load_game	LATAA PELI
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	UUSI LIIGA
+setup.cup_title	UUSI CUP
+setup.tournament_title	UUSI TURNAUS
+setup.size	KOKO
+setup.teams_suffix	JOUKKUETTA
+setup.entrants	OSALLISTUJAT
+setup.entrants_same_division	SAMA SARJA
+setup.entrants_same_nation	SAMA MAA
+setup.entrants_random	SATUNNAINEN
+setup.rounds	KIERROKSET
+setup.rounds_single	YKSI
+setup.rounds_double	KAKSI
+setup.groups	LOHKOT
+setup.groups_of_4_suffix	NELJAN LOHKOA
+setup.create_league	LUO LIIGA
+setup.create_cup	LUO CUP
+setup.create_tournament	LUO TURNAUS
+# CAREER SETUP
+career.title	UUSI URA
+career.blurb_seasons	LIIGA JA KOTIMAAN CUP JOKA KAUSI
+career.blurb_promotion	VOITA LIIGA NOUSTAKSESI, VIIMEINEN PUTOAA
+career.start	ALOITA URA
+# MANAGER NAME ENTRY
+mgr.title	MANAGERIN NIMI
+mgr.hint	KIRJOITA NIMI   VAS/OIK TITTELI   ENTER OK   ESC PERUUTA
+mgr.title_row	TITTELI
+mgr.title_mr	HRA
+mgr.title_ms	RVA
+mgr.default_name	PELAAJA
+# COMPETITION DASHBOARD
+dash.play_next_match	PELAA SEURAAVA
+dash.continue	JATKA
+dash.next_season	SEURAAVA KAUSI
+dash.table	TAULUKKO
+dash.fixtures	OTTELUT
+dash.squad	JOUKKUE
+dash.lineup	KOKOONPANO
+dash.transfers	SIIRROT
+dash.staff	HENKILOSTO
+dash.scouting	SKAUTTAUS
+dash.record	SAAVUTUKSET
+dash.save_as	TALLENNA
+dash.retire	ELAKKEELLE
+dash.abandon	HYLKAA
+dash.management_record	JOHTAMISTILASTO
+dash.status_retired	ELAKKEELLA
+dash.status_champions	MESTARI:
+dash.status_eliminated	PUDONNUT
+dash.offers_prefix	TARJOUKSET
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	SEURAAVA OTTELU
+result.title	PELIN LOPPU
+result.label	TULOS
+# MANAGEMENT RECORD
+mrec.title	JOHTAMISTILASTO
+mrec.title_of_prefix	JOHTAMISTILASTO:
+mrec.career_over	URA OHI
+mrec.season	KAUSI
+mrec.div	DIV
+mrec.trophies	POKAALIT
+mrec.none_yet	EI VIELA
+mrec.history	HISTORIA
+mrec.first_season	ENSIMMAINEN KAUSI KESKEN
+# RETIRE CONFIRM
+retire.title	ELAKKEELLE
+retire.prompt	LOPETA MANAGERINA?
+retire.confirm	ELAKKEELLE
+# PRESET COMPETITIONS
+preset.title	VALMIS KILPAILU
+preset.blurb	OIKEAT KILPAILUT OIKEILLA JOUKKUEILLA
+preset.european_cup	EUROOPAN CUP
+preset.uefa_cup	UEFA CUP
+preset.cup_winners_cup	CUP-VOITTAJIEN CUP
+preset.world_cup	MM-KISAT
+preset.european_championship	EM-KISAT
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	JOUKKUEEN CUP
+preset.groups_then_knockout_suffix	NELJAN LOHKOA SITTEN CUP
+preset.create	LUO
+# SAVE AS / LOAD GAME
+save.title	TALLENNA NIMELLA
+save.hint	KIRJOITA NIMI   ENTER OK   ESC PERUUTA
+save.saved_as_prefix	TALLENNETTU:
+load.title	LATAA PELI
+load.delete_mode	POISTOTILA
+load.no_saved_games	EI TALLENNUKSIA
+# STANDINGS / FIXTURES
+table.title	TAULUKKO
+table.group	LOHKO
+fixtures.title	OTTELUT
+# TEAM SETUP
+teamcfg.title	JOUKKUE
+teamcfg.team	JOUKKUE
+teamcfg.team_home_prefix	KOTI
+teamcfg.team_away_prefix	VIERAS
+teamcfg.switch_home_away	VAIHDA KOTI / VIERAS
+teamcfg.coach	VALMENTAJA
+# COMPETITION ENGINE
+stage.league	LIIGA
+stage.group_prefix	LOHKO
+stage.final	FINAALI
+stage.semi_final	VALIERA
+stage.quarter_final	PUOLIVALIERA
+stage.round_of_16	NELJANNESVALIERA
+stage.round_of_32	KAHDEKSANNESVALIERA
+stage.round_of_prefix	PARHAAT
+stage.cup_prefix	CUP
+round.league_round	LIIGA - KIERROS
+round.competition_complete	KILPAILU VALMIS
+round.no_fixtures	EI OTTELUITA
+status.no_player_team	EI PELAAJAJOUKKUETTA
+status.you_are_champion	OLET MESTARI
+status.you_are_prefix	OLET
+status.you_are_unplaced	OLET SIJOITTAMATTA
+status.you_were_eliminated	SINUT PUDOTETTIIN
+status.you_are_through	OLET JATKOON SEURAAVALLE KIERROKSELLE
+status.you_are_in_prefix	OLET
+status.you_are_in_the_prefix	OLET
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	VOITTAJA
+season.cup_runner_up	TOINEN
+season.cup_out_in_prefix	ULOS
+season.cup_out	ULOS
+season.trophy_league	KAUSI %d LIIGAMESTARI
+season.trophy_cup	KAUSI %d CUP-VOITTAJA
+season.history_line	K%d: LIIGA %s, CUP %s
+season.history_retired	K%d: ELAKE
+fixture.penalties_mark	R
+# CAREER SQUAD
+squad.title_suffix	JOUKKUE
+squad.default_club	SEURA
+squad.player_action	PELAAJATOIMINTO
+squad.no_player_selected	EI VALITTUA PELAAJAA
+squad.fit_injured	LOU
+# PLAYER ACTION
+paction.value_prefix	ARVO
+paction.time_to_negotiate	NEUVOTTELUAIKA
+paction.take_off_list	POISTA LISTALTA
+paction.put_on_list	LISAA SIIRTOLISTALLE
+paction.give_free_transfer	VAPAUTA ILMAISEKSI
+paction.off_list_prefix	POIS LISTALTA
+paction.listed_prefix	LISTALLA
+paction.list_full_prefix	LISTA TAYNNA (MAX
+# FREE TRANSFER
+free.title	VAPAA SIIRTO
+free.confirm_prompt	VAPAUTA %s ILMAISEKSI?
+free.release	VAPAUTA
+free.released_prefix	VAPAUTETTU
+free.squad_too_small	JOUKKUE LIIAN PIENI
+free.release_failed	VAPAUTUS EPAONNISTUI
+# LINEUP EDITOR
+lineup.title	JOUKKUEEN KOKOONPANO
+lineup.auto	AUTO
+lineup.hint	YLOS/ALAS RIVI   FIRE VALITSE/VAIHDA   ESC TAKAISIN
+lineup.picked_prefix	VALITTU
+lineup.picked_swap_hint	- PAINA RIVIA VAIHTAAKSESI
+lineup.unmarked_prefix	POISTETTU
+lineup.slot_not_available	PAIKKA EI KAYTETTAVISSA
+lineup.goal_needs_keeper	MAALIPAIKKA VAATII VAHDIN
+lineup.swapped_prefix	VAIHDETTU
+lineup.swapped_and	JA
+lineup.auto_restored	AUTOKOKOONPANO PALAUTETTU
+lineup.auto_label	AUTOKOKOONPANO
+lineup.custom_label	OMA KOKOONPANO
+lineup.slot	PAIKKA
+lineup.slot_gk	MV
+lineup.slot_sub	VARA
+# STAFF
+staff.title	HENKILOSTO
+staff.coach	VALMENTAJA
+staff.fire_selected	EROTA VALITTU
+staff.hire_coach	PALKKAA VALMENTAJA
+staff.training_focus	HARJOITUSPAINOTUS
+staff.no_coach_selected	EI VALITTUA VALMENTAJAA
+staff.no_coaches	EI VALMENTAJIA
+# FIRE COACH
+firecoach.title	EROTA VALMENTAJA
+firecoach.coach_not_available	VALMENTAJA EI SAATAVILLA
+firecoach.severance_prefix	EROKORVAUS
+firecoach.fire	EROTA
+firecoach.fired_prefix	EROTETTU
+# HIRE COACH
+hire.title	PALKKAA VALMENTAJA
+hire.candidate	EHDOKAS
+hire.hire	PALKKAA
+hire.hired_prefix	PALKATTU
+# TRAINING FOCUS
+focus.title	HARJOITUSPAINOTUS
+focus.toggle	VAIHDA PAINOTUS
+focus.removed_prefix	POISTETTU
+focus.focused_prefix	PAINOTETTU
+focus.max_prefix	MAX
+focus.max_suffix	PAINOTUSPELAAJAA
+focus.mark	*
+# SCOUTING
+scout.title	SKAUTTAUS
+scout.scout_player	SKAUTTAA PELAAJA
+scout.improve_prefix	PARANNA SKAUTTAUSTA
+scout.maxed	SKAUTTAUS MAKSIMISSA
+scout.unavailable	SKAUTTAUS EI KAYTOSSA
+scout.quality_prefix	SKAUTIN LAATU
+scout.no_watched	EI TARKKAILTAVIA
+scout.scout_selected	SKAUTTAA VALITTU
+scout.scout_prefix	SKAUTTAA
+scout.scouted_prefix	SKAUTATTU
+scout.cost_prefix	HINTA
+scout.no_players_available	EI PELAAJIA SAATAVILLA
+# TRANSFER MARKET
+market.title	SIIRTOTORI
+market.max_price	MAKSIMIHINTA
+market.buy_selected	OSTA VALITTU
+market.no_player_selected	EI VALITTUA PELAAJAA
+market.free_agent	VAPAA PELAAJA
+market.club_fallback_prefix	SEURA
+market.price_any	KAIKKI
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	OSTA PELAAJA
+buy.asking_prefix	PYYNTI
+buy.your_bid	TARJOUKSESI
+buy.make_bid	TEE TARJOUS
+buy.club_unwilling	SEURA EI OSTA PELAAJIA
+buy.no_time	EI AIKAA NEUVOTELLA
+buy.enter_a_bid	SYOTA TARJOUS
+buy.not_enough_money	EI TARPEEKSI RAHAA
+buy.bought_prefix	OSTETTU
+buy.squad_full	JOUKKUE TAYNNA
+buy.transfer_failed	SIIRTO EPAONNISTUI
+buy.counter_prefix	VASTATARJOUS
+buy.rejected	TARJOUS LIIAN PIENI - HYLATTY
+# INCOMING OFFERS
+offers.title	SIIRTOTARJOUKSET
+offers.no_offers	EI TARJOUKSIA
+offers.offer	TARJOUS
+offers.accept	HYVAKSY
+offers.demand_more	VAADI LISAA
+offers.reject	HYLKAA
+offers.header_negotiate_prefix	NEUVOTTELUAIKA
+offers.header_sells	MYYNNIT
+offers.not_available	TARJOUS EI SAATAVILLA
+offers.sold_prefix	MYYTY
+offers.sold_for	HINTAAN
+offers.squad_too_small	JOUKKUE LIIAN PIENI
+offers.accept_failed	HYVAKSYNTA EPAONNISTUI
+offers.improved_prefix	KOROTETTU
+offers.withdrawn	TARJOUS PERUTTU
+offers.refused	EIVAT MAKSA ENEMPAA
+offers.rejected	TARJOUS HYLATTY
+# MATCH HUD / OVERLAYS
+hud.half_time	PUOLIAIKA
+hud.full_time	PELIN LOPPU
+hud.penalties	RANGAISTUSPOTKUT
+hud.paused	TAUKO
+hud.pause_resume_hint	vali  jatka
+hud.pause_quit_hint	ESC    valikkoon
+hud.goal	MAALI!
+hud.throw_in	SISAANHEITTO
+hud.corner	KULMA
+hud.goal_kick	MAALIPOTKU
+hud.press_space	paina vali
+hud.team_home_fallback	KOTI
+hud.team_away_fallback	VIERAS
+goal.type_penalty	(RP)
+goal.type_own_goal	(OM)

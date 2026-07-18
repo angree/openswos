@@ -1,0 +1,434 @@
+key	pt
+# COMMON
+common.back	VOLTAR
+common.continue	CONTINUAR
+common.cancel	CANCELAR
+common.ok	OK
+common.on	LIG
+common.off	DESL
+common.na	N/D
+common.none	NENHUM
+common.versus	V
+common.page	PAG
+common.previous_page	PAGINA ANTERIOR
+common.next_page	PAGINA SEGUINTE
+common.no_career_data	SEM DADOS DE CARREIRA
+common.no_squad_data	SEM DADOS DE PLANTEL
+common.player_not_available	JOGADOR INDISPONIVEL
+common.player	JOGADOR
+common.budget	ORCAMENTO
+common.sort	ORDENAR
+common.sort_by	ORDENAR POR
+common.value	VALOR
+common.skill	NIVEL
+common.age	IDADE
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POS
+col.team	EQUIPA
+col.name	NOME
+col.number	NO
+col.number_hash	#
+col.p	J
+col.w	V
+col.d	E
+col.l	D
+col.gf	GM
+col.ga	GS
+col.pts	PTS
+col.skl	NIV
+col.skill	NIVEL
+col.pot	POT
+col.sta	RES
+col.form	F
+col.fit	FIS
+col.val	VAL
+col.nat	NAC
+col.club	CLUBE
+col.price	PRECO
+col.spec	ESP
+col.quality	Q
+col.wage	SAL
+col.fee	TAXA
+col.amount	VALOR
+col.exp	EXP
+col.skill_row	PA DE RE CB CO VE FI
+# HOME
+home.title	O P E N   S W O S
+home.play_match	JOGAR PARTIDA
+home.competitions	COMPETICOES
+home.multiplayer	MULTIJOGADOR
+home.team_setup	CONFIG EQUIPA
+home.options	OPCOES
+home.career	CARREIRA
+home.exit	SAIR
+home.credit	POR GRZEGORZ KORYCKI
+home.continue_prefix	CONTINUAR:
+# QUIT
+quit.title	SAIR
+quit.are_you_sure	TEM A CERTEZA?
+quit.quit_to_windows	SAIR PARA O WINDOWS
+quit.return_to_game	VOLTAR AO JOGO
+# FRIENDLY
+friendly.title	PARTIDA AMIGAVEL
+friendly.home	CASA
+friendly.away	FORA
+friendly.swap_teams	TROCAR EQUIPAS
+friendly.pitch	CAMPO
+friendly.opponent	ADVERSARIO
+friendly.half_length	DURACAO PARTE
+friendly.game_speed	VELOCIDADE JOGO
+friendly.kick_off	INICIAR
+friendly.context	AMIGAVEL
+# VERSUS
+versus.play	JOGAR
+versus.view_result	VER RESULTADO
+# STADIUM
+stadium.title	EQUIPAS
+stadium.kick_off	INICIAR
+stadium.edit_lineup	EDITAR ONZE
+# OPTIONS
+opt.title	OPCOES
+opt.page	PAG
+opt.language	IDIOMA
+opt.half_length	DURACAO PARTE
+opt.game_speed	VELOCIDADE JOGO
+opt.opponent	ADVERSARIO
+opt.pitch	CAMPO
+opt.skill_scaling	ESCALA DE NIVEL
+opt.skill_scaling_hint	ESCALA FIEL DE NIVEL POR PRECO SWOS
+opt.all_teams_equal	EQUIPAS IGUAIS
+opt.all_teams_equal_hint	IGUALA A FORCA DAS EQUIPAS DO JOGADOR
+opt.pre_match_menus	MENUS PRE PARTIDA
+opt.player_fatigue	FADIGA JOGADOR
+opt.energy_bar	BARRA ENERGIA
+opt.music	MUSICA
+opt.music_hint	MUSICA DE MENU AMIGA / PC / PERSONAL
+opt.sound	SOM
+opt.sound_hint	SONS DE JOGO PC OU AMIGA
+opt.display	ECRA
+opt.display_hint	F11 ALTERNA  ALT+ENTER ECRA CHEIO
+# OPTION VALUES
+val.pitch_none	(NENHUM)
+val.pitch_random	ALEATORIO
+val.opponent_ai	IA
+val.opponent_player2	JOGADOR 2  (WASD)
+val.opponent_demo	DEMO  (IA V IA)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	PERSONAL
+val.music_off	DESL
+val.length_whole_match_seconds	%dS REAL  (JOGO TODO)
+val.length_whole_match_minutes	%d MIN REAL  (JOGO TODO)
+val.display_windowed	JANELA
+val.display_full_fill	CHEIO ESTICADO
+val.display_full_integer	CHEIO INTEIRO
+# LOCAL MULTIPLAYER
+mp.title	MULTIJOGADOR LOCAL
+mp.controls_hint	JOGADOR 1: SETAS+ESPACO   JOGADOR 2: WASD+SHIFT
+mp.start	INICIAR JOGO 2 JOGADORES
+# PICKERS
+pick.continent	CONTINENTE
+pick.country	PAIS
+pick.your_team	A TUA EQUIPA
+pick.all_countries	TODOS OS PAISES
+pick.all	TODOS
+pick.select_country	ESCOLHER PAIS
+pick.select_continent	ESCOLHER CONTINENTE
+pick.select_your_team	ESCOLHER A TUA EQUIPA
+pick.home_team	EQUIPA CASA
+pick.away_team	EQUIPA FORA
+pick.nothing_to_choose	NADA A ESCOLHER
+pick.item	ITEM
+pick.more_down	MAIS v
+# DRAW CEREMONY
+draw.title_suffix	SORTEIO
+# PLAY AGAIN
+playagain.title	FIM DE JOGO
+playagain.play_again	JOGAR DE NOVO
+playagain.exit	SAIR
+# COMPETITIONS HUB
+comp.title	COMPETICOES
+comp.new_league	NOVA LIGA
+comp.new_cup	NOVA TACA
+comp.new_tournament	NOVO TORNEIO
+comp.preset_competition	COMPETICAO PREDEFINIDA
+comp.new_career	NOVA CARREIRA
+comp.load_game	CARREGAR JOGO
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NOVA LIGA
+setup.cup_title	NOVA TACA
+setup.tournament_title	NOVO TORNEIO
+setup.size	TAMANHO
+setup.teams_suffix	EQUIPAS
+setup.entrants	PARTICIPANTES
+setup.entrants_same_division	MESMA DIVISAO
+setup.entrants_same_nation	MESMO PAIS
+setup.entrants_random	ALEATORIO
+setup.rounds	VOLTAS
+setup.rounds_single	UNICA
+setup.rounds_double	DUPLA
+setup.groups	GRUPOS
+setup.groups_of_4_suffix	GRUPOS DE 4
+setup.create_league	CRIAR LIGA
+setup.create_cup	CRIAR TACA
+setup.create_tournament	CRIAR TORNEIO
+# CAREER SETUP
+career.title	NOVA CARREIRA
+career.blurb_seasons	LIGA E TACA NACIONAL EM CADA EPOCA
+career.blurb_promotion	VENCE A LIGA PARA SUBIR, ACABA EM ULTIMO E DESCE
+career.start	INICIAR CARREIRA
+# MANAGER NAME ENTRY
+mgr.title	NOME DO TREINADOR
+mgr.hint	ESCREVE NOME   ESQ/DIR TITULO   ENTER OK   ESC CANCELAR
+mgr.title_row	TITULO
+mgr.title_mr	SR
+mgr.title_ms	SRA
+mgr.default_name	JOGADOR
+# COMPETITION DASHBOARD
+dash.play_next_match	JOGAR PROXIMA PARTIDA
+dash.continue	CONTINUAR
+dash.next_season	PROXIMA EPOCA
+dash.table	TABELA
+dash.fixtures	CALENDARIO
+dash.squad	PLANTEL
+dash.lineup	ONZE
+dash.transfers	TRANSFERENCIAS
+dash.staff	EQUIPA TECNICA
+dash.scouting	OBSERVACAO
+dash.record	HISTORICO
+dash.save_as	GUARDAR COMO
+dash.retire	REFORMAR
+dash.abandon	ABANDONAR
+dash.management_record	HISTORICO DE GESTAO
+dash.status_retired	REFORMADO
+dash.status_champions	CAMPEOES:
+dash.status_eliminated	ELIMINADO
+dash.offers_prefix	OFERTAS
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	PROXIMA PARTIDA
+result.title	FIM DE JOGO
+result.label	RESULTADO
+# MANAGEMENT RECORD
+mrec.title	HISTORICO DE GESTAO
+mrec.title_of_prefix	HISTORICO DE GESTAO DE
+mrec.career_over	CARREIRA TERMINADA
+mrec.season	EPOCA
+mrec.div	DIV
+mrec.trophies	TROFEUS
+mrec.none_yet	AINDA NENHUM
+mrec.history	HISTORICO
+mrec.first_season	PRIMEIRA EPOCA EM CURSO
+# RETIRE CONFIRM
+retire.title	REFORMAR
+retire.prompt	REFORMAR DA GESTAO?
+retire.confirm	REFORMAR
+# PRESET COMPETITIONS
+preset.title	COMPETICAO PREDEFINIDA
+preset.blurb	COMPETICOES REAIS COM OS SEUS DADOS REAIS
+preset.european_cup	TACA DOS CAMPEOES
+preset.uefa_cup	TACA UEFA
+preset.cup_winners_cup	TACA DAS TACAS
+preset.world_cup	CAMPEONATO DO MUNDO
+preset.european_championship	CAMPEONATO EUROPEU
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	EQUIPAS ELIMINATORIA
+preset.groups_then_knockout_suffix	GRUPOS DE 4 E DEPOIS ELIMINATORIA
+preset.create	CRIAR
+# SAVE AS / LOAD GAME
+save.title	GUARDAR COMO
+save.hint	ESCREVE NOME   ENTER OK   ESC CANCELAR
+save.saved_as_prefix	GUARDADO COMO
+load.title	CARREGAR JOGO
+load.delete_mode	MODO APAGAR
+load.no_saved_games	SEM JOGOS GUARDADOS
+# STANDINGS / FIXTURES
+table.title	TABELA
+table.group	GRUPO
+fixtures.title	CALENDARIO
+# TEAM SETUP
+teamcfg.title	CONFIG EQUIPA
+teamcfg.team	EQUIPA
+teamcfg.team_home_prefix	CASA
+teamcfg.team_away_prefix	FORA
+teamcfg.switch_home_away	TROCAR CASA / FORA
+teamcfg.coach	TREINADOR
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	GRUPO
+stage.final	FINAL
+stage.semi_final	MEIA FINAL
+stage.quarter_final	QUARTOS FINAL
+stage.round_of_16	OITAVOS
+stage.round_of_32	16 AVOS
+stage.round_of_prefix	RONDA DE
+stage.cup_prefix	TACA
+round.league_round	LIGA - RONDA
+round.competition_complete	COMPETICAO TERMINADA
+round.no_fixtures	SEM JOGOS
+status.no_player_team	SEM EQUIPA DO JOGADOR
+status.you_are_champion	ES O CAMPEAO
+status.you_are_prefix	ESTAS EM
+status.you_are_unplaced	SEM CLASSIFICACAO
+status.you_were_eliminated	FOSTE ELIMINADO
+status.you_are_through	PASSAS A PROXIMA RONDA
+status.you_are_in_prefix	ESTAS NO
+status.you_are_in_the_prefix	ESTAS NA
+ord.st	O
+ord.nd	O
+ord.rd	O
+ord.th	O
+season.cup_winner	VENCEDOR
+season.cup_runner_up	FINALISTA
+season.cup_out_in_prefix	FORA EM
+season.cup_out	FORA
+season.trophy_league	CAMPEAO DA LIGA EPOCA %d
+season.trophy_cup	VENCEDOR DA TACA EPOCA %d
+season.history_line	E%d: LIGA %s, TACA %s
+season.history_retired	E%d: REFORMADO
+fixture.penalties_mark	P
+# CAREER SQUAD
+squad.title_suffix	PLANTEL
+squad.default_club	CLUBE
+squad.player_action	ACAO JOGADOR
+squad.no_player_selected	NENHUM JOGADOR SELECIONADO
+squad.fit_injured	LES
+# PLAYER ACTION
+paction.value_prefix	VALOR
+paction.time_to_negotiate	TEMPO PARA NEGOCIAR
+paction.take_off_list	TIRAR DA LISTA
+paction.put_on_list	POR NA LISTA DE TRANSF
+paction.give_free_transfer	DAR TRANSFERENCIA LIVRE
+paction.off_list_prefix	FORA DA LISTA
+paction.listed_prefix	NA LISTA
+paction.list_full_prefix	LISTA CHEIA (MAX
+# FREE TRANSFER
+free.title	TRANSFERENCIA LIVRE
+free.confirm_prompt	LIBERTAR %s GRATIS?
+free.release	LIBERTAR
+free.released_prefix	LIBERTADO
+free.squad_too_small	PLANTEL PEQUENO DEMAIS
+free.release_failed	LIBERTACAO FALHOU
+# LINEUP EDITOR
+lineup.title	ONZE DA EQUIPA
+lineup.auto	AUTO
+lineup.hint	CIMA/BAIXO LINHA   ACAO ESCOLHER/TROCAR   ESC VOLTAR
+lineup.picked_prefix	ESCOLHIDO
+lineup.picked_swap_hint	- ACAO NUMA LINHA PARA TROCAR
+lineup.unmarked_prefix	DESMARCADO
+lineup.slot_not_available	POSICAO INDISPONIVEL
+lineup.goal_needs_keeper	POSICAO PRECISA DE GUARDA-REDES
+lineup.swapped_prefix	TROCADO
+lineup.swapped_and	E
+lineup.auto_restored	ONZE AUTO RESTAURADO
+lineup.auto_label	ONZE AUTO
+lineup.custom_label	ONZE PERSONAL
+lineup.slot	POS
+lineup.slot_gk	GR
+lineup.slot_sub	SUP
+# STAFF
+staff.title	EQUIPA TECNICA
+staff.coach	TREINADOR
+staff.fire_selected	DESPEDIR SELECIONADO
+staff.hire_coach	CONTRATAR TREINADOR
+staff.training_focus	FOCO DE TREINO
+staff.no_coach_selected	NENHUM TREINADOR SELECIONADO
+staff.no_coaches	SEM TREINADORES
+# FIRE COACH
+firecoach.title	DESPEDIR TREINADOR
+firecoach.coach_not_available	TREINADOR INDISPONIVEL
+firecoach.severance_prefix	INDEMNIZACAO
+firecoach.fire	DESPEDIR
+firecoach.fired_prefix	DESPEDIDO
+# HIRE COACH
+hire.title	CONTRATAR TREINADOR
+hire.candidate	CANDIDATO
+hire.hire	CONTRATAR
+hire.hired_prefix	CONTRATADO
+# TRAINING FOCUS
+focus.title	FOCO DE TREINO
+focus.toggle	ALTERNAR FOCO
+focus.removed_prefix	REMOVIDO
+focus.focused_prefix	FOCADO
+focus.max_prefix	MAX
+focus.max_suffix	JOGADORES EM FOCO
+focus.mark	*
+# SCOUTING
+scout.title	OBSERVACAO
+scout.scout_player	OBSERVAR JOGADOR
+scout.improve_prefix	MELHORAR OBSERVACAO
+scout.maxed	OBSERVACAO NO MAXIMO
+scout.unavailable	OBSERVACAO INDISPONIVEL
+scout.quality_prefix	NIVEL OBSERVADOR
+scout.no_watched	SEM JOGADORES OBSERVADOS
+scout.scout_selected	OBSERVAR SELECIONADO
+scout.scout_prefix	OBSERVAR
+scout.scouted_prefix	OBSERVADO
+scout.cost_prefix	CUSTO
+scout.no_players_available	SEM JOGADORES DISPONIVEIS
+# TRANSFER MARKET
+market.title	MERCADO DE TRANSF
+market.max_price	PRECO MAX
+market.buy_selected	COMPRAR SELECIONADO
+market.no_player_selected	NENHUM JOGADOR SELECIONADO
+market.free_agent	SEM CLUBE
+market.club_fallback_prefix	CLUBE
+market.price_any	QUALQUER
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	COMPRAR JOGADOR
+buy.asking_prefix	PEDIDO
+buy.your_bid	A TUA OFERTA
+buy.make_bid	FAZER OFERTA
+buy.club_unwilling	CLUBE NAO QUER COMPRAR JOGADORES
+buy.no_time	SEM MAIS TEMPO PARA NEGOCIAR
+buy.enter_a_bid	INTRODUZ UMA OFERTA
+buy.not_enough_money	DINHEIRO INSUFICIENTE
+buy.bought_prefix	COMPRADO
+buy.squad_full	PLANTEL CHEIO
+buy.transfer_failed	TRANSFERENCIA FALHOU
+buy.counter_prefix	CONTRA-OFERTA DE
+buy.rejected	OFERTA BAIXA - RECUSADA
+# INCOMING OFFERS
+offers.title	OFERTAS DE TRANSF
+offers.no_offers	SEM OFERTAS
+offers.offer	OFERTA
+offers.accept	ACEITAR
+offers.demand_more	EXIGIR MAIS
+offers.reject	RECUSAR
+offers.header_negotiate_prefix	TEMPO PARA NEGOCIAR
+offers.header_sells	VENDAS
+offers.not_available	OFERTA INDISPONIVEL
+offers.sold_prefix	VENDIDO
+offers.sold_for	POR
+offers.squad_too_small	PLANTEL PEQUENO DEMAIS
+offers.accept_failed	ACEITACAO FALHOU
+offers.improved_prefix	MELHORADO PARA
+offers.withdrawn	OFERTA RETIRADA
+offers.refused	RECUSAM PAGAR MAIS
+offers.rejected	OFERTA RECUSADA
+# MATCH HUD / OVERLAYS
+hud.half_time	INTERVALO
+hud.full_time	FIM DE JOGO
+hud.penalties	PENALTIS
+hud.paused	EM PAUSA
+hud.pause_resume_hint	espaco  retomar
+hud.pause_quit_hint	ESC    sair para o menu
+hud.goal	GOLO!
+hud.throw_in	LANCAMENTO
+hud.corner	CANTO
+hud.goal_kick	PONTAPE DE BALIZA
+hud.press_space	prime espaco
+hud.team_home_fallback	CASA
+hud.team_away_fallback	FORA
+goal.type_penalty	(PEN)
+goal.type_own_goal	(AG)

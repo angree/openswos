@@ -1,0 +1,434 @@
+key	ro
+# COMMON
+common.back	INAPOI
+common.continue	CONTINUA
+common.cancel	ANULEAZA
+common.ok	OK
+common.on	PORNIT
+common.off	OPRIT
+common.na	N/A
+common.none	NIMIC
+common.versus	V
+common.page	PAG
+common.previous_page	PAG ANTERIOARA
+common.next_page	PAG URMATOARE
+common.no_career_data	FARA DATE CARIERA
+common.no_squad_data	FARA DATE LOT
+common.player_not_available	JUCATOR INDISPONIBIL
+common.player	JUCATOR
+common.budget	BUGET
+common.sort	SORTARE
+common.sort_by	SORTARE DUPA
+common.value	VALOARE
+common.skill	ABILITATE
+common.age	VARSTA
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POZ
+col.team	ECHIPA
+col.name	NUME
+col.number	NR
+col.number_hash	#
+col.p	J
+col.w	V
+col.d	E
+col.l	I
+col.gf	GM
+col.ga	GP
+col.pts	PCT
+col.skl	ABL
+col.skill	ABIL
+col.pot	POT
+col.sta	STA
+col.form	F
+col.fit	FIZ
+col.val	VAL
+col.nat	NAT
+col.club	CLUB
+col.price	PRET
+col.spec	SPEC
+col.quality	C
+col.wage	SAL
+col.fee	TAXA
+col.amount	SUMA
+col.exp	EXP
+col.skill_row	PA DE SU CA CO VI FI
+# HOME
+home.title	O P E N   S W O S
+home.play_match	JOACA MECI
+home.competitions	COMPETITII
+home.multiplayer	MULTIPLAYER
+home.team_setup	SETARI ECHIPA
+home.options	OPTIUNI
+home.career	CARIERA
+home.exit	IESIRE
+home.credit	DE GRZEGORZ KORYCKI
+home.continue_prefix	CONTINUA:
+# QUIT
+quit.title	IESIRE
+quit.are_you_sure	ESTI SIGUR?
+quit.quit_to_windows	IESI IN WINDOWS
+quit.return_to_game	INAPOI LA JOC
+# FRIENDLY
+friendly.title	MECI AMICAL
+friendly.home	GAZDA
+friendly.away	OASPETE
+friendly.swap_teams	SCHIMBA ECHIPE
+friendly.pitch	TEREN
+friendly.opponent	ADVERSAR
+friendly.half_length	DURATA REPRIZA
+friendly.game_speed	VITEZA JOC
+friendly.kick_off	INCEPE MECI
+friendly.context	AMICAL
+# VERSUS
+versus.play	JOACA
+versus.view_result	VEZI REZULTAT
+# STADIUM
+stadium.title	ECHIPE
+stadium.kick_off	INCEPE MECI
+stadium.edit_lineup	EDIT FORMATIE
+# OPTIONS
+opt.title	OPTIUNI
+opt.page	PAG
+opt.language	LIMBA
+opt.half_length	DURATA REPRIZA
+opt.game_speed	VITEZA JOC
+opt.opponent	ADVERSAR
+opt.pitch	TEREN
+opt.skill_scaling	SCALARE ABIL
+opt.skill_scaling_hint	SCALARE FIDELA SWOS PRET-ABILITATE
+opt.all_teams_equal	TOATE ECHIPE EGALE
+opt.all_teams_equal_hint	EGALIZEAZA FORTA ECHIPELOR JUCATORILOR
+opt.pre_match_menus	MENIURI PRE-MECI
+opt.player_fatigue	OBOSEALA JUCATOR
+opt.energy_bar	BARA ENERGIE
+opt.music	MUZICA
+opt.music_hint	MUZICA MENIU AMIGA / PC / PERSONALIZAT
+opt.sound	SUNET
+opt.sound_hint	SUNETE IN MECI PC SAU AMIGA
+opt.display	AFISARE
+opt.display_hint	F11 CICLEAZA  ALT+ENTER COMUTA ECRAN COMPLET
+# OPTION VALUES
+val.pitch_none	(NIMIC)
+val.pitch_random	ALEATOR
+val.opponent_ai	AI
+val.opponent_player2	JUCATOR 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	PERSONALIZAT
+val.music_off	OPRIT
+val.length_whole_match_seconds	%dS REAL  (MECI INTREG)
+val.length_whole_match_minutes	%d MIN REAL  (MECI INTREG)
+val.display_windowed	FEREASTRA
+val.display_full_fill	UMPLE ECRAN
+val.display_full_integer	SCARA INTREAGA
+# LOCAL MULTIPLAYER
+mp.title	MULTIPLAYER LOCAL
+mp.controls_hint	JUCATOR 1: SAGETI+SPATIU   JUCATOR 2: WASD+SHIFT
+mp.start	INCEPE MECI 2 JUCATORI
+# PICKERS
+pick.continent	CONTINENT
+pick.country	TARA
+pick.your_team	ECHIPA TA
+pick.all_countries	TOATE TARILE
+pick.all	TOATE
+pick.select_country	ALEGE TARA
+pick.select_continent	ALEGE CONTINENT
+pick.select_your_team	ALEGE ECHIPA TA
+pick.home_team	ECHIPA GAZDA
+pick.away_team	ECHIPA OASPETE
+pick.nothing_to_choose	NIMIC DE ALES
+pick.item	ELEM
+pick.more_down	MAI MULT v
+# DRAW CEREMONY
+draw.title_suffix	TRAGERE
+# PLAY AGAIN
+playagain.title	FINAL
+playagain.play_again	JOACA DIN NOU
+playagain.exit	IESIRE
+# COMPETITIONS HUB
+comp.title	COMPETITII
+comp.new_league	LIGA NOUA
+comp.new_cup	CUPA NOUA
+comp.new_tournament	TURNEU NOU
+comp.preset_competition	COMPETITIE PRESETATA
+comp.new_career	CARIERA NOUA
+comp.load_game	INCARCA JOC
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	LIGA NOUA
+setup.cup_title	CUPA NOUA
+setup.tournament_title	TURNEU NOU
+setup.size	MARIME
+setup.teams_suffix	ECHIPE
+setup.entrants	PARTICIPANTI
+setup.entrants_same_division	ACEEASI DIVIZIE
+setup.entrants_same_nation	ACEEASI TARA
+setup.entrants_random	ALEATOR
+setup.rounds	TURE
+setup.rounds_single	SIMPLU
+setup.rounds_double	DUBLU
+setup.groups	GRUPE
+setup.groups_of_4_suffix	GRUPE DE 4
+setup.create_league	CREEAZA LIGA
+setup.create_cup	CREEAZA CUPA
+setup.create_tournament	CREEAZA TURNEU
+# CAREER SETUP
+career.title	CARIERA NOUA
+career.blurb_seasons	LIGA SI CUPA INTERNA IN FIECARE SEZON
+career.blurb_promotion	CASTIGA LIGA PENTRU PROMOVARE, ULTIMUL RETROGRADEAZA
+career.start	INCEPE CARIERA
+# MANAGER NAME ENTRY
+mgr.title	NUME MANAGER
+mgr.hint	SCRIE NUME   STANGA/DREAPTA TITLU   ENTER OK   ESC ANULEAZA
+mgr.title_row	TITLU
+mgr.title_mr	DL
+mgr.title_ms	DNA
+mgr.default_name	JUCATOR
+# COMPETITION DASHBOARD
+dash.play_next_match	JOACA MECI URMATOR
+dash.continue	CONTINUA
+dash.next_season	SEZON URMATOR
+dash.table	CLASAMENT
+dash.fixtures	PROGRAM
+dash.squad	LOT
+dash.lineup	FORMATIE
+dash.transfers	TRANSFERURI
+dash.staff	STAFF
+dash.scouting	SCOUTING
+dash.record	BILANT
+dash.save_as	SALVEAZA CA
+dash.retire	RETRAGERE
+dash.abandon	ABANDONEAZA
+dash.management_record	BILANT MANAGER
+dash.status_retired	RETRAS
+dash.status_champions	CAMPIONI:
+dash.status_eliminated	ELIMINAT
+dash.offers_prefix	OFERTE
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	MECI URMATOR
+result.title	FINAL
+result.label	REZULTAT
+# MANAGEMENT RECORD
+mrec.title	BILANT MANAGER
+mrec.title_of_prefix	BILANT MANAGER AL
+mrec.career_over	CARIERA INCHEIATA
+mrec.season	SEZON
+mrec.div	DIV
+mrec.trophies	TROFEE
+mrec.none_yet	NIMIC INCA
+mrec.history	ISTORIC
+mrec.first_season	PRIMUL SEZON IN CURS
+# RETIRE CONFIRM
+retire.title	RETRAGERE
+retire.prompt	TE RETRAGI DIN MANAGEMENT?
+retire.confirm	RETRAGERE
+# PRESET COMPETITIONS
+preset.title	COMPETITIE PRESETATA
+preset.blurb	COMPETITII REALE CU ECHIPE REALE
+preset.european_cup	CUPA EUROPEANA
+preset.uefa_cup	CUPA UEFA
+preset.cup_winners_cup	CUPA CUPELOR
+preset.world_cup	CUPA MONDIALA
+preset.european_championship	CAMPIONATUL EUROPEAN
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	ECHIPE ELIMINATORIU
+preset.groups_then_knockout_suffix	GRUPE DE 4 APOI ELIMINATORIU
+preset.create	CREEAZA
+# SAVE AS / LOAD GAME
+save.title	SALVEAZA CA
+save.hint	SCRIE NUME SLOT   ENTER OK   ESC ANULEAZA
+save.saved_as_prefix	SALVAT CA
+load.title	INCARCA JOC
+load.delete_mode	MOD STERGERE
+load.no_saved_games	NICIUN JOC SALVAT
+# STANDINGS / FIXTURES
+table.title	CLASAMENT
+table.group	GRUPA
+fixtures.title	PROGRAM
+# TEAM SETUP
+teamcfg.title	SETARI ECHIPA
+teamcfg.team	ECHIPA
+teamcfg.team_home_prefix	GAZDA
+teamcfg.team_away_prefix	OASPETE
+teamcfg.switch_home_away	SCHIMBA GAZDA / OASPETE
+teamcfg.coach	ANTRENOR
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	GRUPA
+stage.final	FINALA
+stage.semi_final	SEMIFINALA
+stage.quarter_final	SFERT DE FINALA
+stage.round_of_16	OPTIMI
+stage.round_of_32	16-IMI
+stage.round_of_prefix	RUNDA DE
+stage.cup_prefix	CUPA
+round.league_round	LIGA - ETAPA
+round.competition_complete	COMPETITIE INCHEIATA
+round.no_fixtures	FARA MECIURI
+status.no_player_team	FARA ECHIPA JUCATOR
+status.you_are_champion	ESTI CAMPION
+status.you_are_prefix	ESTI
+status.you_are_unplaced	ESTI NECLASAT
+status.you_were_eliminated	AI FOST ELIMINAT
+status.you_are_through	ESTI CALIFICAT IN RUNDA URMATOARE
+status.you_are_in_prefix	ESTI IN
+status.you_are_in_the_prefix	ESTI IN
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	CASTIGATOR
+season.cup_runner_up	FINALIST
+season.cup_out_in_prefix	ELIMINAT IN
+season.cup_out	ELIMINAT
+season.trophy_league	SEZON %d CAMPIONI LIGA
+season.trophy_cup	SEZON %d CASTIGATORI CUPA
+season.history_line	S%d: LIGA %s, CUPA %s
+season.history_retired	S%d: RETRAS
+fixture.penalties_mark	P
+# CAREER SQUAD
+squad.title_suffix	LOT
+squad.default_club	CLUB
+squad.player_action	ACTIUNE JUCATOR
+squad.no_player_selected	NICIUN JUCATOR ALES
+squad.fit_injured	ACC
+# PLAYER ACTION
+paction.value_prefix	VALOARE
+paction.time_to_negotiate	TIMP DE NEGOCIERE
+paction.take_off_list	SCOATE DE PE LISTA
+paction.put_on_list	PUNE PE LISTA TRANSFER
+paction.give_free_transfer	TRANSFER LIBER
+paction.off_list_prefix	SCOS DE PE LISTA
+paction.listed_prefix	LISTAT
+paction.list_full_prefix	LISTA PLINA (MAX
+# FREE TRANSFER
+free.title	TRANSFER LIBER
+free.confirm_prompt	ELIBEREZI %s GRATUIT?
+free.release	ELIBEREAZA
+free.released_prefix	ELIBERAT
+free.squad_too_small	LOT PREA MIC
+free.release_failed	ELIBERARE ESUATA
+# LINEUP EDITOR
+lineup.title	FORMATIE ECHIPA
+lineup.auto	AUTO
+lineup.hint	SUS/JOS RAND   FIRE ALEGE/SCHIMBA   ESC INAPOI
+lineup.picked_prefix	ALES
+lineup.picked_swap_hint	- FIRE UN RAND PENTRU SCHIMB
+lineup.unmarked_prefix	ANULAT
+lineup.slot_not_available	SLOT INDISPONIBIL
+lineup.goal_needs_keeper	POARTA CERE PORTAR
+lineup.swapped_prefix	SCHIMBAT
+lineup.swapped_and	SI
+lineup.auto_restored	FORMATIE AUTO REFACUTA
+lineup.auto_label	FORMATIE AUTO
+lineup.custom_label	FORMATIE PROPRIE
+lineup.slot	SLOT
+lineup.slot_gk	PT
+lineup.slot_sub	REZ
+# STAFF
+staff.title	STAFF
+staff.coach	ANTRENOR
+staff.fire_selected	CONCEDIAZA ALES
+staff.hire_coach	ANGAJEAZA ANTRENOR
+staff.training_focus	FOCUS ANTRENAMENT
+staff.no_coach_selected	NICIUN ANTRENOR ALES
+staff.no_coaches	FARA ANTRENORI
+# FIRE COACH
+firecoach.title	CONCEDIAZA ANTRENOR
+firecoach.coach_not_available	ANTRENOR INDISPONIBIL
+firecoach.severance_prefix	COMPENSATIE
+firecoach.fire	CONCEDIAZA
+firecoach.fired_prefix	CONCEDIAT
+# HIRE COACH
+hire.title	ANGAJEAZA ANTRENOR
+hire.candidate	CANDIDAT
+hire.hire	ANGAJEAZA
+hire.hired_prefix	ANGAJAT
+# TRAINING FOCUS
+focus.title	FOCUS ANTRENAMENT
+focus.toggle	COMUTA FOCUS
+focus.removed_prefix	SCOS
+focus.focused_prefix	FOCUSAT
+focus.max_prefix	MAX
+focus.max_suffix	JUCATORI FOCUS
+focus.mark	*
+# SCOUTING
+scout.title	SCOUTING
+scout.scout_player	OBSERVA JUCATOR
+scout.improve_prefix	IMBUNATATESTE SCOUTING
+scout.maxed	SCOUTING MAXIM
+scout.unavailable	SCOUTING INDISPONIBIL
+scout.quality_prefix	CALITATE SCOUT
+scout.no_watched	NICIUN JUCATOR URMARIT
+scout.scout_selected	OBSERVA ALES
+scout.scout_prefix	OBSERVA
+scout.scouted_prefix	OBSERVAT
+scout.cost_prefix	COST
+scout.no_players_available	NICIUN JUCATOR DISPONIBIL
+# TRANSFER MARKET
+market.title	PIATA TRANSFERURI
+market.max_price	PRET MAXIM
+market.buy_selected	CUMPARA ALES
+market.no_player_selected	NICIUN JUCATOR ALES
+market.free_agent	LIBER DE CONTRACT
+market.club_fallback_prefix	CLUB
+market.price_any	ORICE
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	CUMPARA JUCATOR
+buy.asking_prefix	CERE
+buy.your_bid	OFERTA TA
+buy.make_bid	FA OFERTA
+buy.club_unwilling	CLUBUL NU MAI CUMPARA JUCATORI
+buy.no_time	FARA TIMP DE NEGOCIERE
+buy.enter_a_bid	INTRODU O OFERTA
+buy.not_enough_money	BANI INSUFICIENTI
+buy.bought_prefix	CUMPARAT
+buy.squad_full	LOT PLIN
+buy.transfer_failed	TRANSFER ESUAT
+buy.counter_prefix	CONTRAOFERTA LA
+buy.rejected	OFERTA PREA MICA - RESPINSA
+# INCOMING OFFERS
+offers.title	OFERTE TRANSFER
+offers.no_offers	FARA OFERTE
+offers.offer	OFERTA
+offers.accept	ACCEPTA
+offers.demand_more	CERE MAI MULT
+offers.reject	RESPINGE
+offers.header_negotiate_prefix	TIMP DE NEGOCIERE
+offers.header_sells	VANZARI
+offers.not_available	OFERTA INDISPONIBILA
+offers.sold_prefix	VANDUT
+offers.sold_for	PENTRU
+offers.squad_too_small	LOT PREA MIC
+offers.accept_failed	ACCEPTARE ESUATA
+offers.improved_prefix	MARITA LA
+offers.withdrawn	OFERTA RETRASA
+offers.refused	REFUZA SA PLATEASCA MAI MULT
+offers.rejected	OFERTA RESPINSA
+# MATCH HUD / OVERLAYS
+hud.half_time	PAUZA
+hud.full_time	FINAL
+hud.penalties	PENALTIURI
+hud.paused	PAUZAT
+hud.pause_resume_hint	space  reia
+hud.pause_quit_hint	ESC    iesi la meniu
+hud.goal	GOL!
+hud.throw_in	AUT
+hud.corner	CORNER
+hud.goal_kick	DEGAJARE
+hud.press_space	apasa space
+hud.team_home_fallback	GAZDA
+hud.team_away_fallback	OASPETE
+goal.type_penalty	(PEN)
+goal.type_own_goal	(AG)

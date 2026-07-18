@@ -136,6 +136,8 @@ public interface IMenuHost
     // Mirrors the F11 cycle: Windowed / Fullscreen Fill / Fullscreen Integer.
     string DisplayModeLabel { get; }
     void CycleDisplayMode();
+    // Persist the current UI language (Loc.Current) after the user changes it.
+    void OnLanguageChanged();
     // True exactly once after a NON-competition match returns to the menu.
     bool TakeFriendlyJustEnded();
 }

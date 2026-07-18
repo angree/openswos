@@ -51,9 +51,9 @@ public static class PitchFile
     public static int TileCount(int fileSize) => (fileSize - HeaderSize) / BytesPerTile;
 
     // Decode a decompressed SWCPICH*.MAP into a palette-index pixel grid sized
-    // [Rows*TileSize, Cols*TileSize] = [880, 672]. Cells with map-offset 0 leave the
-    // corresponding pixel block at value 0 (caller decides whether to treat that as
-    // grass green, transparent, or anything else).
+    // [Rows*TileSize, Cols*TileSize] = [880, 672]. Every cell references a real
+    // tile by byte-offset (offset 0 == tile #0, a real light-grass tile — NOT a
+    // transparent marker; see the note in the loop below).
     public static byte[,] Render(byte[] decompressed)
     {
         if (decompressed.Length < HeaderSize)
@@ -79,9 +79,12 @@ public static class PitchFile
                 uint tileByteOffset = BinaryPrimitives.ReadUInt32BigEndian(
                     decompressed.AsSpan(cellOffset, 4));
 
-                if (tileByteOffset == 0)
-                    continue;  // transparent / "no draw" cell — leave pixels at 0
-
+                // NOTE: offset 0 is NOT "transparent" — it is a valid reference to
+                // tile #0 (the first tile in the block). SWCPICH1-5 never use it in
+                // visible rows, but SWCPICH6 (training pitch) builds every mowed
+                // light stripe from tile-#0 columns; skipping them cut each stripe
+                // in half (untextured green gaps — user "dziwne pasy przeciete").
+                // Always draw the tile; the bounds check below still guards the read.
                 int tileFileOffset = HeaderSize + (int)tileByteOffset;
                 if (tileFileOffset + BytesPerTile > decompressed.Length)
                     throw new PitchFileException(

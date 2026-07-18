@@ -31,6 +31,18 @@ using OpenSwos.SwosVm;
 //   - Out-of-scope helpers are stubbed at file end.
 public static class PlayerActions
 {
+    // FAITHFUL BALL CONTROL (2026-07-18). The original expresses the CONTROL
+    // skill ONLY while dribbling: CalculateIfPlayerWinsBall nudges the ball ahead
+    // each odd tick by kBallSpeedDeltaWhenControlled[control] (a weak player pushes
+    // it too far and loses it) + a turn-tolerance break. A per-tick "pin" that
+    // glued the ball to every outfield carrier's feet (PlayerControlled.cs) was a
+    // NON-original compensating hack — it made control-0 and control-7 dribble
+    // identically. With this flag TRUE the outfield pin is OFF (faithful): the ball
+    // "runs away" from bad dribblers. The KEEPER pin stays on always (it IS
+    // canonical — updateBallWithControllingGoalkeeper). Flip to false to restore
+    // the old glued-ball behaviour if the un-pinned chase regresses.
+    public static bool FaithfulBallControl = true;
+
     // TeamGeneralInfo.wonTheBallTimer — swos.asm struct offset +138
     // (swos.h:399 names it `unkTimer`). "Team may not control the ball while
     // != 0" — the anti-re-steal lockout (duel loser 12 ticks, turn-dribble

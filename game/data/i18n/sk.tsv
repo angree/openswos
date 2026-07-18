@@ -1,0 +1,434 @@
+key	sk
+# COMMON
+common.back	SPAT
+common.continue	POKRACOVAT
+common.cancel	ZRUSIT
+common.ok	OK
+common.on	ZAP
+common.off	VYP
+common.na	N/A
+common.none	ZIADNY
+common.versus	V
+common.page	STRANA
+common.previous_page	PREDCH STRANA
+common.next_page	DALSIA STRANA
+common.no_career_data	ZIADNE DATA KARIERY
+common.no_squad_data	ZIADNE DATA KADRA
+common.player_not_available	HRAC NEDOSTUPNY
+common.player	HRAC
+common.budget	ROZPOCET
+common.sort	ZORADIT
+common.sort_by	ZORADIT PODLA
+common.value	HODNOTA
+common.skill	UROVEN
+common.age	VEK
+common.money_thousands_suffix	K
+common.money_millions_suffix	M
+# TABLE COLUMN HEADERS
+col.pos	POZ
+col.team	TIM
+col.name	MENO
+col.number	C
+col.number_hash	#
+col.p	Z
+col.w	V
+col.d	R
+col.l	P
+col.gf	VG
+col.ga	OG
+col.pts	B
+col.skl	ZR
+col.skill	UR
+col.pot	POT
+col.sta	KON
+col.form	F
+col.fit	FIT
+col.val	HOD
+col.nat	NAR
+col.club	KLUB
+col.price	CENA
+col.spec	SPEC
+col.quality	K
+col.wage	PLAT
+col.fee	POPL
+col.amount	SUMA
+col.exp	EXP
+col.skill_row	PR SK ST HL KO RY ZA
+# HOME
+home.title	O P E N   S W O S
+home.play_match	HRAT ZAPAS
+home.competitions	SUTAZE
+home.multiplayer	VIAC HRACOV
+home.team_setup	NASTAVENIE TIMU
+home.options	MOZNOSTI
+home.career	KARIERA
+home.exit	KONIEC
+home.credit	OD GRZEGORZ KORYCKI
+home.continue_prefix	POKRACOVAT:
+# QUIT
+quit.title	KONIEC
+quit.are_you_sure	STE SI ISTY?
+quit.quit_to_windows	UKONCIT DO WINDOWS
+quit.return_to_game	SPAT DO HRY
+# FRIENDLY
+friendly.title	PRIATELSKY ZAPAS
+friendly.home	DOMACI
+friendly.away	HOSTIA
+friendly.swap_teams	VYMENIT TIMY
+friendly.pitch	IHRISKO
+friendly.opponent	SUPER
+friendly.half_length	DLZKA POLCASU
+friendly.game_speed	RYCHLOST HRY
+friendly.kick_off	VYKOP
+friendly.context	PRIATELSKY
+# VERSUS
+versus.play	HRAT
+versus.view_result	ZOBRAZIT VYSLEDOK
+# STADIUM
+stadium.title	TIMY
+stadium.kick_off	VYKOP
+stadium.edit_lineup	UPRAVIT ZOSTAVU
+# OPTIONS
+opt.title	MOZNOSTI
+opt.page	STRANA
+opt.language	JAZYK
+opt.half_length	DLZKA POLCASU
+opt.game_speed	RYCHLOST HRY
+opt.opponent	SUPER
+opt.pitch	IHRISKO
+opt.skill_scaling	SKALOVANIE UROVNE
+opt.skill_scaling_hint	VERNE SWOS SKALOVANIE CENY HRACA
+opt.all_teams_equal	VSETKY TIMY ROVNAKE
+opt.all_teams_equal_hint	VYROVNA SILU TIMOV HRACOV
+opt.pre_match_menus	MENU PRED ZAPASOM
+opt.player_fatigue	UNAVA HRACOV
+opt.energy_bar	PRUH ENERGIE
+opt.music	HUDBA
+opt.music_hint	AMIGA / PC / VLASTNA HUDBA MENU
+opt.sound	ZVUK
+opt.sound_hint	PC ALEBO AMIGA ZVUKY V ZAPASE
+opt.display	ZOBRAZENIE
+opt.display_hint	F11 PREPINA  ALT+ENTER CELA OBRAZOVKA
+# OPTION VALUES
+val.pitch_none	(ZIADNE)
+val.pitch_random	NAHODNE
+val.opponent_ai	AI
+val.opponent_player2	HRAC 2  (WASD)
+val.opponent_demo	DEMO  (AI V AI)
+val.sound_amiga	AMIGA
+val.sound_pc	PC
+val.music_custom	VLASTNA
+val.music_off	VYP
+val.length_whole_match_seconds	%dS REALNE  (CELY ZAPAS)
+val.length_whole_match_minutes	%d MIN REALNE  (CELY ZAPAS)
+val.display_windowed	V OKNE
+val.display_full_fill	CELA VYPLN
+val.display_full_integer	CELA INT
+# LOCAL MULTIPLAYER
+mp.title	MIESTNA HRA VIAC HRACOV
+mp.controls_hint	HRAC 1: SIPKY+MEDZERNIK   HRAC 2: WASD+SHIFT
+mp.start	SPUSTIT ZAPAS 2 HRACOV
+# PICKERS
+pick.continent	KONTINENT
+pick.country	KRAJINA
+pick.your_team	VAS TIM
+pick.all_countries	VSETKY KRAJINY
+pick.all	VSETKY
+pick.select_country	VYBER KRAJINU
+pick.select_continent	VYBER KONTINENT
+pick.select_your_team	VYBER SVOJ TIM
+pick.home_team	DOMACI TIM
+pick.away_team	HOSTUJUCI TIM
+pick.nothing_to_choose	NIC NA VYBER
+pick.item	POLOZKA
+pick.more_down	VIAC v
+# DRAW CEREMONY
+draw.title_suffix	ZREB
+# PLAY AGAIN
+playagain.title	KONIEC ZAPASU
+playagain.play_again	HRAT ZNOVA
+playagain.exit	KONIEC
+# COMPETITIONS HUB
+comp.title	SUTAZE
+comp.new_league	NOVA LIGA
+comp.new_cup	NOVY POHAR
+comp.new_tournament	NOVY TURNAJ
+comp.preset_competition	HOTOVA SUTAZ
+comp.new_career	NOVA KARIERA
+comp.load_game	NACITAT HRU
+# LEAGUE / CUP / TOURNAMENT SETUP
+setup.league_title	NOVA LIGA
+setup.cup_title	NOVY POHAR
+setup.tournament_title	NOVY TURNAJ
+setup.size	VELKOST
+setup.teams_suffix	TIMOV
+setup.entrants	UCASTNICI
+setup.entrants_same_division	ROVNAKA DIVIZIA
+setup.entrants_same_nation	ROVNAKA KRAJINA
+setup.entrants_random	NAHODNE
+setup.rounds	KOLA
+setup.rounds_single	JEDNODUCHE
+setup.rounds_double	DVOJITE
+setup.groups	SKUPINY
+setup.groups_of_4_suffix	SKUPIN PO 4
+setup.create_league	VYTVORIT LIGU
+setup.create_cup	VYTVORIT POHAR
+setup.create_tournament	VYTVORIT TURNAJ
+# CAREER SETUP
+career.title	NOVA KARIERA
+career.blurb_seasons	LIGA A DOMACI POHAR KAZDU SEZONU
+career.blurb_promotion	VYHRAJ LIGU PRE POSTUP, POSLEDNY VYPADNE
+career.start	ZACAT KARIERU
+# MANAGER NAME ENTRY
+mgr.title	MENO MANAZERA
+mgr.hint	PISTE MENO   VLAVO/VPRAVO TITUL   ENTER OK   ESC ZRUSIT
+mgr.title_row	TITUL
+mgr.title_mr	PAN
+mgr.title_ms	PANI
+mgr.default_name	HRAC
+# COMPETITION DASHBOARD
+dash.play_next_match	HRAT DALSI ZAPAS
+dash.continue	POKRACOVAT
+dash.next_season	DALSIA SEZONA
+dash.table	TABULKA
+dash.fixtures	ZAPASY
+dash.squad	KADER
+dash.lineup	ZOSTAVA
+dash.transfers	PRESTUPY
+dash.staff	PERSONAL
+dash.scouting	SKAUTING
+dash.record	ZAZNAM
+dash.save_as	ULOZIT AKO
+dash.retire	SKONCIT
+dash.abandon	OPUSTIT
+dash.management_record	MANAZERSKY ZAZNAM
+dash.status_retired	SKONCIL
+dash.status_champions	MAJSTER:
+dash.status_eliminated	VYRADENY
+dash.offers_prefix	PONUKY
+dash.offers_unseen_mark	!
+# NEXT MATCH / VIEW RESULT
+next.title	DALSI ZAPAS
+result.title	KONIEC ZAPASU
+result.label	VYSLEDOK
+# MANAGEMENT RECORD
+mrec.title	MANAZERSKY ZAZNAM
+mrec.title_of_prefix	MANAZERSKY ZAZNAM
+mrec.career_over	KONIEC KARIERY
+mrec.season	SEZONA
+mrec.div	DIV
+mrec.trophies	TROFEJE
+mrec.none_yet	ZATIAL ZIADNE
+mrec.history	HISTORIA
+mrec.first_season	PRVA SEZONA PREBIEHA
+# RETIRE CONFIRM
+retire.title	SKONCIT
+retire.prompt	SKONCIT S MANAZOVANIM?
+retire.confirm	SKONCIT
+# PRESET COMPETITIONS
+preset.title	HOTOVA SUTAZ
+preset.blurb	SKUTOCNE SUTAZE SO SKUTOCNYMI UCASTNIKMI
+preset.european_cup	EUROPSKY POHAR
+preset.uefa_cup	POHAR UEFA
+preset.cup_winners_cup	POHAR VITAZOV POHAROV
+preset.world_cup	MAJSTROVSTVA SVETA
+preset.european_championship	MAJSTROVSTVA EUROPY
+preset.copa_america	COPA AMERICA
+preset.team_knockout_suffix	TIMOV VYRADOVACKA
+preset.groups_then_knockout_suffix	SKUPIN PO 4 POTOM VYRADOVACKA
+preset.create	VYTVORIT
+# SAVE AS / LOAD GAME
+save.title	ULOZIT AKO
+save.hint	PISTE NAZOV   ENTER OK   ESC ZRUSIT
+save.saved_as_prefix	ULOZENE AKO
+load.title	NACITAT HRU
+load.delete_mode	REZIM MAZANIA
+load.no_saved_games	ZIADNE ULOZENE HRY
+# STANDINGS / FIXTURES
+table.title	TABULKA
+table.group	SKUPINA
+fixtures.title	ZAPASY
+# TEAM SETUP
+teamcfg.title	NASTAVENIE TIMU
+teamcfg.team	TIM
+teamcfg.team_home_prefix	DOMACI
+teamcfg.team_away_prefix	HOSTIA
+teamcfg.switch_home_away	PREPNUT DOMACI / HOSTIA
+teamcfg.coach	TRENER
+# COMPETITION ENGINE
+stage.league	LIGA
+stage.group_prefix	SKUPINA
+stage.final	FINALE
+stage.semi_final	SEMIFINALE
+stage.quarter_final	STVRTFINALE
+stage.round_of_16	OSEMFINALE
+stage.round_of_32	1/16 FINALE
+stage.round_of_prefix	KOLO O
+stage.cup_prefix	POHAR
+round.league_round	LIGA - KOLO
+round.competition_complete	SUTAZ UKONCENA
+round.no_fixtures	ZIADNE ZAPASY
+status.no_player_team	ZIADNY TIM HRACA
+status.you_are_champion	STE MAJSTER
+status.you_are_prefix	STE
+status.you_are_unplaced	NIE STE UMIESTNENY
+status.you_were_eliminated	BOLI STE VYRADENY
+status.you_are_through	POSTUPUJETE DO DALSIEHO KOLA
+status.you_are_in_prefix	STE V
+status.you_are_in_the_prefix	STE V
+ord.st	.
+ord.nd	.
+ord.rd	.
+ord.th	.
+season.cup_winner	VITAZ
+season.cup_runner_up	FINALISTA
+season.cup_out_in_prefix	VYPADOL V
+season.cup_out	VYPADOL
+season.trophy_league	SEZONA %d MAJSTER LIGY
+season.trophy_cup	SEZONA %d VITAZ POHARA
+season.history_line	S%d: LIGA %s, POHAR %s
+season.history_retired	S%d: SKONCIL
+fixture.penalties_mark	P
+# CAREER SQUAD
+squad.title_suffix	KADER
+squad.default_club	KLUB
+squad.player_action	AKCIA HRACA
+squad.no_player_selected	ZIADNY HRAC VYBRANY
+squad.fit_injured	ZRA
+# PLAYER ACTION
+paction.value_prefix	HODNOTA
+paction.time_to_negotiate	CAS NA ROKOVANIE
+paction.take_off_list	STIAHNUT ZO ZOZNAMU
+paction.put_on_list	DAT NA PRESTUPOVY ZOZNAM
+paction.give_free_transfer	UVOLNIT ZADARMO
+paction.off_list_prefix	MIMO ZOZNAM
+paction.listed_prefix	NA ZOZNAME
+paction.list_full_prefix	ZOZNAM PLNY (MAX
+# FREE TRANSFER
+free.title	VOLNY PRESTUP
+free.confirm_prompt	UVOLNIT %s ZADARMO?
+free.release	UVOLNIT
+free.released_prefix	UVOLNENY
+free.squad_too_small	KADER PRILIS MALY
+free.release_failed	UVOLNENIE ZLYHALO
+# LINEUP EDITOR
+lineup.title	ZOSTAVA TIMU
+lineup.auto	AUTO
+lineup.hint	HORE/DOLE RIADOK   OK VYBER/VYMENA   ESC SPAT
+lineup.picked_prefix	VYBRANE
+lineup.picked_swap_hint	- STLAC RIADOK NA VYMENU
+lineup.unmarked_prefix	ODZNACENE
+lineup.slot_not_available	POZICIA NEDOSTUPNA
+lineup.goal_needs_keeper	BRANKA POTREBUJE BRANKARA
+lineup.swapped_prefix	VYMENENE
+lineup.swapped_and	A
+lineup.auto_restored	AUTO ZOSTAVA OBNOVENA
+lineup.auto_label	AUTO ZOSTAVA
+lineup.custom_label	VLASTNA ZOSTAVA
+lineup.slot	POZICIA
+lineup.slot_gk	BR
+lineup.slot_sub	NAH
+# STAFF
+staff.title	PERSONAL
+staff.coach	TRENER
+staff.fire_selected	PREPUSTIT VYBRANEHO
+staff.hire_coach	NAJAT TRENERA
+staff.training_focus	ZAMERANIE TRENINGU
+staff.no_coach_selected	ZIADNY TRENER VYBRANY
+staff.no_coaches	ZIADNI TRENERI
+# FIRE COACH
+firecoach.title	PREPUSTIT TRENERA
+firecoach.coach_not_available	TRENER NEDOSTUPNY
+firecoach.severance_prefix	ODSTUPNE
+firecoach.fire	PREPUSTIT
+firecoach.fired_prefix	PREPUSTENY
+# HIRE COACH
+hire.title	NAJAT TRENERA
+hire.candidate	KANDIDAT
+hire.hire	NAJAT
+hire.hired_prefix	NAJATY
+# TRAINING FOCUS
+focus.title	ZAMERANIE TRENINGU
+focus.toggle	PREPNUT ZAMERANIE
+focus.removed_prefix	ODOBRANE
+focus.focused_prefix	ZAMERANY
+focus.max_prefix	MAX
+focus.max_suffix	ZAMERANYCH HRACOV
+focus.mark	*
+# SCOUTING
+scout.title	SKAUTING
+scout.scout_player	SKAUTOVAT HRACA
+scout.improve_prefix	ZLEPSIT SKAUTING
+scout.maxed	SKAUTING NA MAXE
+scout.unavailable	SKAUTING NEDOSTUPNY
+scout.quality_prefix	KVALITA SKAUTA
+scout.no_watched	ZIADNI SLEDOVANI HRACI
+scout.scout_selected	SKAUTOVAT VYBRANEHO
+scout.scout_prefix	SKAUTOVAT
+scout.scouted_prefix	OSKAUTOVANY
+scout.cost_prefix	CENA
+scout.no_players_available	ZIADNI HRACI DOSTUPNI
+# TRANSFER MARKET
+market.title	PRESTUPOVY TRH
+market.max_price	MAX CENA
+market.buy_selected	KUPIT VYBRANEHO
+market.no_player_selected	ZIADNY HRAC VYBRANY
+market.free_agent	VOLNY HRAC
+market.club_fallback_prefix	KLUB
+market.price_any	VSETKY
+market.price_100k	<100K
+market.price_250k	<250K
+market.price_500k	<500K
+market.price_1m	<1M
+market.price_2m	<2M
+market.price_5m	<5M
+market.price_10m	<10M
+market.price_over_10m	>=10M
+# BUY / NEGOTIATION
+buy.title	KUPIT HRACA
+buy.asking_prefix	ZIADA
+buy.your_bid	VASA PONUKA
+buy.make_bid	PONUKNUT
+buy.club_unwilling	KLUB NECHCE KUPOVAT HRACOV
+buy.no_time	UZ NIE JE CAS NA ROKOVANIE
+buy.enter_a_bid	ZADAJTE PONUKU
+buy.not_enough_money	NEDOSTATOK PENAZI
+buy.bought_prefix	KUPENY
+buy.squad_full	KADER PLNY
+buy.transfer_failed	PRESTUP ZLYHAL
+buy.counter_prefix	PROTIPONUKA
+buy.rejected	PONUKA PRINIZKA - ODMIETNUTA
+# INCOMING OFFERS
+offers.title	PRESTUPOVE PONUKY
+offers.no_offers	ZIADNE PONUKY
+offers.offer	PONUKA
+offers.accept	PRIJAT
+offers.demand_more	ZIADAT VIAC
+offers.reject	ODMIETNUT
+offers.header_negotiate_prefix	CAS NA ROKOVANIE
+offers.header_sells	PREDAJE
+offers.not_available	PONUKA NEDOSTUPNA
+offers.sold_prefix	PREDANY
+offers.sold_for	ZA
+offers.squad_too_small	KADER PRILIS MALY
+offers.accept_failed	PRIJATIE ZLYHALO
+offers.improved_prefix	ZVYSENE NA
+offers.withdrawn	PONUKA STIAHNUTA
+offers.refused	ODMIETAJU PLATIT VIAC
+offers.rejected	PONUKA ODMIETNUTA
+# MATCH HUD / OVERLAYS
+hud.half_time	POLCAS
+hud.full_time	KONIEC ZAPASU
+hud.penalties	PENALTY
+hud.paused	POZASTAVENE
+hud.pause_resume_hint	medzernik  pokracovat
+hud.pause_quit_hint	ESC    ukoncit do menu
+hud.goal	GOL!
+hud.throw_in	VHADZOVANIE
+hud.corner	ROH
+hud.goal_kick	KOP OD BRANY
+hud.press_space	stlac medzernik
+hud.team_home_fallback	DOMACI
+hud.team_away_fallback	HOSTIA
+goal.type_penalty	(PEN)
+goal.type_own_goal	(VG)

@@ -576,13 +576,18 @@ public static class PlayerControlled
                 short pinOrdinal = Memory.ReadSignedWord(spriteAddr + SOffPlayerOrdinal);
                 if (pinOrdinal == 1)
                 {
+                    // Keeper glue is canonical (updateBallWithControllingGoalkeeper) — always on.
                     PlayerUpdate.UpdateBallWithControllingGoalkeeper(spriteAddr);
+                    s_pinControlledPerTick++;
                 }
-                else
+                else if (!PlayerActions.FaithfulBallControl)
                 {
+                    // Outfield per-tick pin = the non-original hack that masks the
+                    // CONTROL skill. OFF by default (FaithfulBallControl) so the ball
+                    // runs away from weak dribblers per CalculateIfPlayerWinsBall.
                     PlayerActions.UpdateControllingPlayer(spriteAddr);
+                    s_pinControlledPerTick++;
                 }
-                s_pinControlledPerTick++;
             }
         }
 
