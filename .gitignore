@@ -95,3 +95,9 @@ game/menu_shots_verify/
 game/menu_shots/
 /openswos_bg.png
 /openswos_icon.png
+
+# Local agent/worker/tooling scratch — never publish to GitHub
+.claude/
+_codex_worker/
+_research/
+CLAUDE.md
