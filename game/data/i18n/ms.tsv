@@ -432,3 +432,130 @@ hud.team_home_fallback	TUAN RUMAH
 hud.team_away_fallback	PELAWAT
 goal.type_penalty	(PEN)
 goal.type_own_goal	(GS)
+# S34 additions
+bench.coach	JURULATIH
+bench.coming_on	MASUK: {0}
+bench.fire_swap	TEMBAK PILIH+PILIH = TUKAR
+bench.formation	FORMASI
+bench.formation_colon	FORMASI:
+bench.help_leave	KIRI/KANAN TINGGAL BANGKU
+bench.help_select	ATAS/BWH PILIH  TEMBAK OK
+bench.hold_mark	TAHAN TEMBAK = TANDA PEMAIN
+bench.player_off	PEMAIN KELUAR:
+bench.sub_in_progress	PERTUKARAN BERJALAN...
+bench.swap_formation	TUKAR / FORMASI:
+bench.tag_inj	 CDR
+bench.tag_off	 [KLR]
+bench.tag_sub	 [TKR]
+bench.title	BANGKU - {0}
+bench.user	PENGGUNA {0}
+career.dash_div_season	DIV {0}  MUSIM {1}
+career.price_any	SEMUA
+career.rec_pwdl	P {0}   W {1}   D {2}   L {3}   GF {4}   GA {5}
+career.rec_season_div	MUSIM {0}  {1}  DIV {2}
+career.release_confirm	LEPASKAN {0} PERCUMA?
+career.skill_letters	PVHTCSF
+career.title_mr	EN
+career.title_ms	PN
+comp.competition_complete	PERTANDINGAN TAMAT
+comp.cup	PIALA
+comp.entrants_random	RAWAK
+comp.entrants_same_div	DIV SAMA
+comp.entrants_same_nation	NEGARA SAMA
+comp.league_round	LIGA - PUSINGAN {0}/{1}
+comp.name_career	KERJAYA
+comp.name_cup	PIALA
+comp.name_league	LIGA
+comp.name_tournament	KEJOHANAN
+comp.no_fixtures	TIADA JADUAL
+comp.no_player_team	TIADA PASUKAN PEMAIN
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	PIALA JUARA PIALA
+comp.preset_european_championship	KEJOHANAN EROPAH
+comp.preset_european_cup	PIALA EROPAH
+comp.preset_uefa_cup	PIALA UEFA
+comp.preset_world_cup	PIALA DUNIA
+comp.slot_finished	TAMAT
+comp.slot_no_team	TIADA PASUKAN
+comp.slot_round	PUSINGAN {0}/{1}
+comp.slot_winner	PEMENANG {0}
+comp.stage_final	AKHIR
+comp.stage_group	KUMPULAN
+comp.stage_league	LIGA
+comp.stage_quarter	SUKU AKHIR
+comp.stage_r16	PUSINGAN 16
+comp.stage_r32	PUSINGAN 32
+comp.stage_round_of	PUSINGAN
+comp.stage_semi	SEPARUH AKHIR
+comp.you_are_pos	ANDA {0}
+comp.you_champion	ANDA JUARA
+comp.you_eliminated	ANDA TERSINGKIR
+comp.you_in	ANDA DI {0}
+comp.you_in_the	ANDA DI {0}
+comp.you_through	ANDA MELEPASI KE PUSINGAN SETERUSNYA
+comp.you_unplaced	ANDA TANPA KEDUDUKAN
+firstrun.body	Data permainan SWOS tidak dijumpai.\n\nOpenSWOS perlu Sensible World of Soccer 96/97 (edisi Amiga).\nDua pilihan - kemudian mulakan semula permainan:\n\n  (a) Letak imej cakera liut Amiga (*.adf) ke:\n        {0}\n      OpenSWOS mengekstrak apa yang perlu pada mula seterusnya.\n\n  (b) Sudah ada fail permainan longgar (cth. pemasangan WHDLoad)?\n      Salin ke:\n        {1}\n\nPilihan: letak folder DATA PC (DOS) ke 'original_swos_pc/' untuk\nsenarai pasukan lebih besar sedikit - tak wajib, tak ubah grafik.\n\nEdisi SWOS lama (94/95 dsb.) TIDAK serasi.
+menu.team_coach_div	JURULATIH {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	ASIA
+nation.continent_europe	EROPAH
+nation.continent_north_america	AMERIKA UTARA
+nation.continent_oceania	OSEANIA
+nation.continent_south_america	AMERIKA SELATAN
+nav.hint_menu	ATAS/BAWAH PILIH   TEMBAK OK   ESC KEMBALI
+nav.hint_picker	ATAS/BAWAH SKROL   TEMBAK PILIH   ESC BATAL
+nav.hint_picker_cols	ATAS/BAWAH SKROL   KIRI/KANAN LAJUR   TEMBAK PILIH   ESC BATAL
+nav.hint_stepper	ATAS/BAWAH PILIH   KIRI/KANAN UBAH   TEMBAK OK   ESC KEMBALI
+nav.hint_table	ATAS/BAWAH BARIS   TEMBAK OK   ESC KEMBALI
+opt.commentator	KOMENTATOR
+opt.commentator_hint	KOMENTAR SUARA (BUNYI PC SAHAJA)
+opt.display_fullfill	ISI PENUH
+opt.display_fullinteger	INTEGER PENUH
+opt.display_unknown	?
+opt.display_windowed	TETINGKAP
+opt.len_min_whole	{0} MIN SEBENAR  (SEPANJANG PERLAWANAN)
+opt.len_sec_whole	{0}S SEBENAR  (SEPANJANG PERLAWANAN)
+opt.smoothing_sharp	TAJAM
+overlay.corner	SEPAK PENJURU
+overlay.fulltime	MASA PENUH
+overlay.fulltime_body	MASA PENUH\n\n{0}  {1} - {2}  {3}\n\ntekan space
+overlay.goal	GOL!
+overlay.goalkick	SEPAKAN GAWANG
+overlay.halftime	SEPARUH MASA
+overlay.paused	JEDA\n\nspace  sambung\nESC    keluar ke menu
+overlay.penalties	PENALTI
+overlay.throwin	BALING MASUK
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	PELAWAT
+result.home	TUAN RUMAH
+result.og	(GS)
+result.pen	(PEN)
+scout.notice_maxed	PENGINTIP MAKS
+scout.notice_no_money	DUIT TAK CUKUP
+scout.notice_player_unavailable	PEMAIN TIADA
+scout.notice_unavailable	PENGINTIP TIADA
+staff.notice_coach_unavailable	JURULATIH TIADA
+staff.notice_focus_full	FOKUS PENUH
+staff.notice_full	STAF PENUH
+staff.notice_no_money	DUIT TAK CUKUP
+staff.notice_player_unavailable	PEMAIN TIADA
+staff.notice_unavailable	STAF TIADA
+staff.spec_attack	SERANGAN
+staff.spec_defence	PERTAHANAN
+staff.spec_general	UMUM
+staff.spec_youth	REMAJA

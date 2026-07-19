@@ -32,9 +32,9 @@ public static class TeamData
     public const int OffPlayerHasBall              = 40;    // word — non-zero = this team's player controls ball
     public const int OffAllowedDirections          = 42;    // word
     // ball.cpp:2456 `readMemory(esi+44, 2)` — currentAllowedDirection.
-    public const int OffCurrentAllowedDirection    = 44;    // word — direction of kick at impact (or -1 = no spin allowed)
+    public const int OffCurrentAllowedDirection    = 44;    // word — LIVE held/joystick direction this frame (or -1 = no spin allowed)
     // ball.cpp:2333 `readMemory(esi+56, 2)` — controlledPlDirection.
-    public const int OffControlledPlDirection      = 56;    // word — joystick direction of controlling human (0..7)
+    public const int OffControlledPlDirection      = 56;    // word — direction recorded AT kick time (0..7)
     public const int OffDirection                  = 46;    // word
     public const int OffQuickFire                  = 48;    // byte
     public const int OffNormalFire                 = 49;    // byte

@@ -432,3 +432,130 @@ hud.team_home_fallback	HEIM
 hud.team_away_fallback	GAST
 goal.type_penalty	(ELF)
 goal.type_own_goal	(ET)
+# S34 additions
+bench.coach	TRAINER
+bench.coming_on	KOMMT: {0}
+bench.fire_swap	FEUER WAEHLEN+WAEHLEN = TAUSCH
+bench.formation	FORMATION
+bench.formation_colon	FORMATION:
+bench.help_leave	LINKS/RECHTS BANK VERLASSEN
+bench.help_select	HOCH/RUNTER WAEHLEN  FEUER OK
+bench.hold_mark	FEUER HALTEN = SPIELER MARKIEREN
+bench.player_off	SPIELER RAUS:
+bench.sub_in_progress	WECHSEL LAEUFT...
+bench.swap_formation	TAUSCH / FORMATION:
+bench.tag_inj	 VER
+bench.tag_off	 [AUS]
+bench.tag_sub	 [ERS]
+bench.title	BANK - {0}
+bench.user	SPIELER {0}
+career.dash_div_season	LIGA {0}  SAISON {1}
+career.price_any	ALLE
+career.rec_pwdl	SP {0}   S {1}   U {2}   N {3}   TF {4}   TG {5}
+career.rec_season_div	SAISON {0}  {1}  LIGA {2}
+career.release_confirm	{0} ABLOESEFREI ABGEBEN?
+career.skill_letters	PVHTCSF
+career.title_mr	HR
+career.title_ms	FR
+comp.competition_complete	WETTBEWERB BEENDET
+comp.cup	POKAL
+comp.entrants_random	ZUFALL
+comp.entrants_same_div	GLEICHE LIGA
+comp.entrants_same_nation	GLEICHES LAND
+comp.league_round	LIGA - RUNDE {0}/{1}
+comp.name_career	KARRIERE
+comp.name_cup	POKAL
+comp.name_league	LIGA
+comp.name_tournament	TURNIER
+comp.no_fixtures	KEINE SPIELE
+comp.no_player_team	KEIN SPIELERTEAM
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	POKALSIEGER-CUP
+comp.preset_european_championship	EUROPAMEISTERSCHAFT
+comp.preset_european_cup	EUROPAPOKAL
+comp.preset_uefa_cup	UEFA-POKAL
+comp.preset_world_cup	WELTMEISTERSCHAFT
+comp.slot_finished	BEENDET
+comp.slot_no_team	KEIN TEAM
+comp.slot_round	RUNDE {0}/{1}
+comp.slot_winner	SIEGER {0}
+comp.stage_final	FINALE
+comp.stage_group	GRUPPE
+comp.stage_league	LIGA
+comp.stage_quarter	VIERTELFINALE
+comp.stage_r16	ACHTELFINALE
+comp.stage_r32	SECHZEHNTELFINALE
+comp.stage_round_of	RUNDE DER
+comp.stage_semi	HALBFINALE
+comp.you_are_pos	DU BIST {0}
+comp.you_champion	DU BIST MEISTER
+comp.you_eliminated	DU BIST AUSGESCHIEDEN
+comp.you_in	DU BIST IN {0}
+comp.you_in_the	DU BIST IM {0}
+comp.you_through	DU BIST EINE RUNDE WEITER
+comp.you_unplaced	DU BIST UNPLATZIERT
+firstrun.body	Keine SWOS-Spieldaten gefunden.\n\nOpenSWOS braucht Sensible World of Soccer 96/97 (Amiga-Edition).\nZwei Moeglichkeiten - dann das Spiel neu starten:\n\n  (a) Amiga-Diskettenabbilder (*.adf) hier ablegen:\n        {0}\n      OpenSWOS entpackt beim naechsten Start das Noetige.\n\n  (b) Schon lose Spieldateien (z.B. eine WHDLoad-Installation)?\n      Diese hierhin kopieren:\n        {1}\n\nOptional: den PC-(DOS-)DATA-Ordner in 'original_swos_pc/' legen fuer eine\netwas groessere Teamliste - nicht noetig, aendert die Grafik nicht.\n\nAeltere SWOS-Ausgaben (94/95 usw.) sind NICHT kompatibel.
+menu.team_coach_div	TRAINER {0}   LIGA {1}
+menu.team_div	LIGA {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	ASIEN
+nation.continent_europe	EUROPA
+nation.continent_north_america	NORDAMERIKA
+nation.continent_oceania	OZEANIEN
+nation.continent_south_america	SUEDAMERIKA
+nav.hint_menu	HOCH/RUNTER WAEHLEN   FEUER OK   ESC ZURUECK
+nav.hint_picker	HOCH/RUNTER BLAETTERN   FEUER WAEHLEN   ESC ABBRECHEN
+nav.hint_picker_cols	HOCH/RUNTER BLAETTERN   LINKS/RECHTS SPALTE   FEUER WAEHLEN   ESC ABBRECHEN
+nav.hint_stepper	HOCH/RUNTER WAEHLEN   LINKS/RECHTS AENDERN   FEUER OK   ESC ZURUECK
+nav.hint_table	HOCH/RUNTER REIHE   FEUER OK   ESC ZURUECK
+opt.commentator	KOMMENTATOR
+opt.commentator_hint	GESPROCHENER KOMMENTAR (NUR PC-SOUND)
+opt.display_fullfill	VOLLBILD FUELLEN
+opt.display_fullinteger	VOLLBILD GANZZAHL
+opt.display_unknown	?
+opt.display_windowed	FENSTER
+opt.len_min_whole	{0} MIN ECHT  (GANZES SPIEL)
+opt.len_sec_whole	{0}S ECHT  (GANZES SPIEL)
+opt.smoothing_sharp	SCHARF
+overlay.corner	ECKE
+overlay.fulltime	SPIELENDE
+overlay.fulltime_body	SPIELENDE\n\n{0}  {1} - {2}  {3}\n\nleer druecken
+overlay.goal	TOR!
+overlay.goalkick	ABSTOSS
+overlay.halftime	HALBZEIT
+overlay.paused	PAUSE\n\nleer  weiter\nESC    zum menue
+overlay.penalties	ELFMETER
+overlay.throwin	EINWURF
+pos.a	A
+pos.d	V
+pos.gk	TW
+pos.lb	LV
+pos.lw	LA
+pos.m	M
+pos.none	--
+pos.rb	RV
+pos.rw	RA
+pos.unknown	?
+result.away	GAST
+result.home	HEIM
+result.og	(ET)
+result.pen	(ELF)
+scout.notice_maxed	SCOUTING MAXIMAL
+scout.notice_no_money	NICHT GENUG GELD
+scout.notice_player_unavailable	SPIELER NICHT VERFUEGBAR
+scout.notice_unavailable	SCOUTING NICHT MOEGLICH
+staff.notice_coach_unavailable	TRAINER NICHT VERFUEGBAR
+staff.notice_focus_full	FOKUS VOLL
+staff.notice_full	STAB VOLL
+staff.notice_no_money	NICHT GENUG GELD
+staff.notice_player_unavailable	SPIELER NICHT VERFUEGBAR
+staff.notice_unavailable	STAB NICHT VERFUEGBAR
+staff.spec_attack	ANGRIFF
+staff.spec_defence	ABWEHR
+staff.spec_general	ALLGEMEIN
+staff.spec_youth	JUGEND

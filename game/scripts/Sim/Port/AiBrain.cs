@@ -1638,12 +1638,15 @@ public static class AiBrain
         l_apply_left_spin_local:
             // 19244-19262 — D0 = (D1 - 1) & 7; A0 = AI_leftSpinTable.
             {
-                int d1Adj = (d1 - 1) & 7;
+                // Retail (updatePlayers.cpp:19289-19306) computes (D1-1)&7 but
+                // DISCARDS it, then adds the table delta to the UNMODIFIED D1.
+                // Kept here as a dead-but-documented parity note (dead in the asm too):
+                //   int d1Adj = (d1 - 1) & 7;
                 int a0Table = Memory.Addr.AI_leftSpinTable;
                 short ats2 = Memory.ReadSignedWord(a6TeamBase + TeamData.OffAiAfterTouchStrength);
                 int byteOff = ats2 << 1;
                 short delta = Memory.ReadSignedWord(a0Table + byteOff);
-                int newD1 = (d1Adj + delta) & 7;
+                int newD1 = (d1 + delta) & 7;
                 Memory.WriteWord(a6TeamBase + TeamData.OffCurrentAllowedDirection, newD1);
                 return;
             }
@@ -1651,12 +1654,15 @@ public static class AiBrain
         l_apply_right_spin_local:
             // 19264-19306 — D0 = (D1 + 1) & 7; A0 = AI_rotateRightTable.
             {
-                int d1Adj = (d1 + 1) & 7;
+                // Retail (updatePlayers.cpp:19289-19306) computes (D1+1)&7 but
+                // DISCARDS it, then adds the table delta to the UNMODIFIED D1.
+                // Kept here as a dead-but-documented parity note (dead in the asm too):
+                //   int d1Adj = (d1 + 1) & 7;
                 int a0Table = Memory.Addr.AI_rotateRightTable;
                 short ats2 = Memory.ReadSignedWord(a6TeamBase + TeamData.OffAiAfterTouchStrength);
                 int byteOff = ats2 << 1;
                 short delta = Memory.ReadSignedWord(a0Table + byteOff);
-                int newD1 = (d1Adj + delta) & 7;
+                int newD1 = (d1 + delta) & 7;
                 Memory.WriteWord(a6TeamBase + TeamData.OffCurrentAllowedDirection, newD1);
                 return;
             }

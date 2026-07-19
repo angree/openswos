@@ -432,3 +432,130 @@ hud.team_home_fallback	CASA
 hud.team_away_fallback	OSPITE
 goal.type_penalty	(RIG)
 goal.type_own_goal	(AUT)
+# S34 additions
+bench.coach	ALLENATORE
+bench.coming_on	ENTRA: {0}
+bench.fire_swap	TIRO SEL+SEL = SCAMBIA
+bench.formation	FORMAZIONE
+bench.formation_colon	FORMAZIONE:
+bench.help_leave	SX/DX ESCI PANCHINA
+bench.help_select	SU/GIU SEL  TIRO OK
+bench.hold_mark	TIENI TIRO = MARCA GIOCATORE
+bench.player_off	ESCE:
+bench.sub_in_progress	SOSTITUZIONE IN CORSO...
+bench.swap_formation	SCAMBIA / FORMAZIONE:
+bench.tag_inj	 INF
+bench.tag_off	 [FUO]
+bench.tag_sub	 [RIS]
+bench.title	PANCHINA - {0}
+bench.user	GIOCATORE {0}
+career.dash_div_season	DIV {0}  STAGIONE {1}
+career.price_any	QUALSIASI
+career.rec_pwdl	G {0}   V {1}   N {2}   P {3}   GF {4}   GS {5}
+career.rec_season_div	STAGIONE {0}  {1}  DIV {2}
+career.release_confirm	SVINCOLARE {0} GRATIS?
+career.skill_letters	PVHTCSF
+career.title_mr	SIG
+career.title_ms	SIGRA
+comp.competition_complete	COMPETIZIONE COMPLETATA
+comp.cup	COPPA
+comp.entrants_random	CASUALE
+comp.entrants_same_div	STESSA DIVISIONE
+comp.entrants_same_nation	STESSA NAZIONE
+comp.league_round	CAMPIONATO - GIORNATA {0}/{1}
+comp.name_career	CARRIERA
+comp.name_cup	COPPA
+comp.name_league	CAMPIONATO
+comp.name_tournament	TORNEO
+comp.no_fixtures	NESSUNA PARTITA
+comp.no_player_team	NESSUNA SQUADRA GIOCATORE
+comp.ord_nd	O
+comp.ord_rd	O
+comp.ord_st	O
+comp.ord_th	O
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	COPPA DELLE COPPE
+comp.preset_european_championship	CAMPIONATO EUROPEO
+comp.preset_european_cup	COPPA CAMPIONI
+comp.preset_uefa_cup	COPPA UEFA
+comp.preset_world_cup	COPPA DEL MONDO
+comp.slot_finished	CONCLUSA
+comp.slot_no_team	NESSUNA SQUADRA
+comp.slot_round	TURNO {0}/{1}
+comp.slot_winner	VINCITORE {0}
+comp.stage_final	FINALE
+comp.stage_group	GRUPPO
+comp.stage_league	CAMPIONATO
+comp.stage_quarter	QUARTI
+comp.stage_r16	OTTAVI
+comp.stage_r32	SEDICESIMI
+comp.stage_round_of	TURNO DA
+comp.stage_semi	SEMIFINALE
+comp.you_are_pos	SEI {0}
+comp.you_champion	SEI IL CAMPIONE
+comp.you_eliminated	SEI STATO ELIMINATO
+comp.you_in	SEI NEL {0}
+comp.you_in_the	SEI IN {0}
+comp.you_through	SEI PASSATO AL TURNO SUCCESSIVO
+comp.you_unplaced	SEI NON CLASSIFICATO
+firstrun.body	NESSUN DATO DI GIOCO SWOS TROVATO.\n\nOPENSWOS RICHIEDE SENSIBLE WORLD OF SOCCER 96/97 (EDIZIONE AMIGA).\nDUE OPZIONI - POI RIAVVIA IL GIOCO:\n\n  (A) METTI LE TUE IMMAGINI FLOPPY AMIGA (*.ADF) IN:\n        {0}\n      OPENSWOS ESTRAE CIO CHE SERVE AL PROSSIMO AVVIO.\n\n  (B) HAI GIA I FILE DI GIOCO SCIOLTI (ES. UNA INSTALLAZIONE WHDLOAD)?\n      COPIALI IN:\n        {1}\n\nOPZIONALE: METTI LA CARTELLA DATA DEL PC (DOS) IN 'ORIGINAL_SWOS_PC/' PER\nUNA LISTA SQUADRE UN PO PIU GRANDE - NON RICHIESTO, E NON CAMBIA LA GRAFICA.\n\nLE EDIZIONI SWOS PRECEDENTI (94/95 ECC.) NON SONO COMPATIBILI.
+menu.team_coach_div	ALLENATORE {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRICA
+nation.continent_asia	ASIA
+nation.continent_europe	EUROPA
+nation.continent_north_america	AMERICA DEL NORD
+nation.continent_oceania	OCEANIA
+nation.continent_south_america	AMERICA DEL SUD
+nav.hint_menu	SU/GIU SEL   TIRO OK   ESC INDIETRO
+nav.hint_picker	SU/GIU SCORRI   TIRO SEL   ESC ANNULLA
+nav.hint_picker_cols	SU/GIU SCORRI   SX/DX COLONNA   TIRO SEL   ESC ANNULLA
+nav.hint_stepper	SU/GIU SEL   SX/DX CAMBIA   TIRO OK   ESC INDIETRO
+nav.hint_table	SU/GIU RIGA   TIRO OK   ESC INDIETRO
+opt.commentator	TELECRONISTA
+opt.commentator_hint	TELECRONACA PARLATA (SOLO AUDIO PC)
+opt.display_fullfill	RIEMPI
+opt.display_fullinteger	INTERO
+opt.display_unknown	?
+opt.display_windowed	FINESTRA
+opt.len_min_whole	{0} MIN REALI  (PARTITA INTERA)
+opt.len_sec_whole	{0}S REALI  (PARTITA INTERA)
+opt.smoothing_sharp	NITIDO
+overlay.corner	CALCIO D'ANGOLO
+overlay.fulltime	FINE PARTITA
+overlay.fulltime_body	FINE PARTITA\n\n{0}  {1} - {2}  {3}\n\nPREMI SPAZIO
+overlay.goal	GOL!
+overlay.goalkick	RINVIO
+overlay.halftime	FINE PRIMO TEMPO
+overlay.paused	IN PAUSA\n\nSPACE  RIPRENDI\nESC    ESCI AL MENU
+overlay.penalties	RIGORI
+overlay.throwin	RIMESSA
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	OSPITE
+result.home	CASA
+result.og	(AUT)
+result.pen	(RIG)
+scout.notice_maxed	OSSERVATORI AL MASSIMO
+scout.notice_no_money	SOLDI INSUFFICIENTI
+scout.notice_player_unavailable	GIOCATORE NON DISPONIBILE
+scout.notice_unavailable	OSSERVATORI NON DISPONIBILI
+staff.notice_coach_unavailable	ALLENATORE NON DISPONIBILE
+staff.notice_focus_full	FOCUS PIENO
+staff.notice_full	STAFF PIENO
+staff.notice_no_money	SOLDI INSUFFICIENTI
+staff.notice_player_unavailable	GIOCATORE NON DISPONIBILE
+staff.notice_unavailable	STAFF NON DISPONIBILE
+staff.spec_attack	ATTACCO
+staff.spec_defence	DIFESA
+staff.spec_general	GENERALE
+staff.spec_youth	GIOVANILI

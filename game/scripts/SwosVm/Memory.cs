@@ -1631,6 +1631,25 @@ public static class Memory
         for (int i = 0; i < passSpin.Length; i++)
             WriteWord(Addr.kPassingSpinFactor + i * 2, passSpin[i]);
 
+        // AI after-touch delta tables — swos.asm:246182-246188. Consecutive
+        // SIGNED words at each declared table base (see Addr.AI_* @ 0x2410..).
+        // Read back via Memory.ReadSignedWord in AiBrain.cs's steer path, so
+        // the -999 long-kick sentinel round-trips as a signed 16-bit value.
+        // Without these the tables read all-zero → AI shots have no
+        // strength-graded curve / no loft.
+        short[] aiRandomRotate = { -32, 32 };        // AI_randomRotateTable
+        short[] aiLeftSpin     = { -1, -2, -3 };     // AI_leftSpinTable  (strength 0/1/2)
+        short[] aiRotateRight  = { 1, 2, 3 };        // AI_rotateRightTable
+        short[] aiLongKick     = { 0, -999, 4 };     // AI_longKickTable
+        for (int i = 0; i < aiRandomRotate.Length; i++)
+            WriteWord(Addr.AI_randomRotateTable + i * 2, aiRandomRotate[i]);
+        for (int i = 0; i < aiLeftSpin.Length; i++)
+            WriteWord(Addr.AI_leftSpinTable + i * 2, aiLeftSpin[i]);
+        for (int i = 0; i < aiRotateRight.Length; i++)
+            WriteWord(Addr.AI_rotateRightTable + i * 2, aiRotateRight[i]);
+        for (int i = 0; i < aiLongKick.Length; i++)
+            WriteWord(Addr.AI_longKickTable + i * 2, aiLongKick[i]);
+
         // Global game state — sane defaults. Real values pushed by Main.cs each
         // tick via SwosVm.Sync (when the port path is enabled).
         WriteWord(Addr.gameStatePl, 100);  // ST_GAME_IN_PROGRESS
@@ -1861,9 +1880,16 @@ public static class Memory
         {
             byte[] penaltyDiveRow =
             {
-                1, 0, 0, 4, 176, 0, 0, 4, 0, 1, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0,
-                7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 2, 0, 0,
-                0, 14, 0, 13, 0, 3, 0, 10, 0, 5, 0, 1, 0, 8, 0,
+                // 60 bytes / 30 words. The run of 7s must be SIXTEEN pairs — it was
+                // fifteen, which was 58 bytes and shifted every element from index 20
+                // on down one word, so element 21 (+42) read 0 instead of 2 and the
+                // keeper could NEVER cleanly claim a penalty save (always deflected
+                // loose → attacker taps into an open goal). Verified vs
+                // original-amiga-swos.asm:35574-35604 (sField_18) + swos.asm:246164.
+                1, 0, 0, 4, 176, 0, 0, 4, 0, 1,
+                7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0,
+                7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0,   // 16× 7
+                2, 0, 0, 0, 14, 0, 13, 0, 3, 0, 10, 0, 5, 0, 1, 0, 8, 0,
             };
             for (int i = 0; i < penaltyDiveRow.Length; i++)
                 WriteByte(Addr.dseg_17EECC + i, penaltyDiveRow[i]);

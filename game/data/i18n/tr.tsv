@@ -432,3 +432,130 @@ hud.team_home_fallback	EV SAHIBI
 hud.team_away_fallback	DEPLASMAN
 goal.type_penalty	(PEN)
 goal.type_own_goal	(KK)
+# S34 additions
+bench.coach	ANTRENOR
+bench.coming_on	GIRIYOR: {0}
+bench.fire_swap	ATES SEC+SEC = DEGIS
+bench.formation	DIZILIS
+bench.formation_colon	DIZILIS:
+bench.help_leave	SOL/SAG YEDEKTEN CIK
+bench.help_select	YUK/ASG SEC  ATES OK
+bench.hold_mark	BASILI TUT ATES = OYUNCU TUT
+bench.player_off	CIKAN:
+bench.sub_in_progress	DEGISIKLIK YAPILIYOR...
+bench.swap_formation	DEGIS / DIZILIS:
+bench.tag_inj	 SKT
+bench.tag_off	 [CIK]
+bench.tag_sub	 [DEG]
+bench.title	YEDEK - {0}
+bench.user	KULLANICI {0}
+career.dash_div_season	DIV {0}  SEZON {1}
+career.price_any	HEPSI
+career.rec_pwdl	P {0}   W {1}   D {2}   L {3}   GF {4}   GA {5}
+career.rec_season_div	SEZON {0}  {1}  DIV {2}
+career.release_confirm	{0} BEDAVA BIRAKILSIN MI?
+career.skill_letters	PVHTCSF
+career.title_mr	BAY
+career.title_ms	BYN
+comp.competition_complete	TURNUVA TAMAMLANDI
+comp.cup	KUPA
+comp.entrants_random	RASGELE
+comp.entrants_same_div	AYNI LIG
+comp.entrants_same_nation	AYNI ULKE
+comp.league_round	LIG - TUR {0}/{1}
+comp.name_career	KARIYER
+comp.name_cup	KUPA
+comp.name_league	LIG
+comp.name_tournament	TURNUVA
+comp.no_fixtures	MAC YOK
+comp.no_player_team	OYUNCU TAKIMI YOK
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	KUPA GALIPLERI KUPASI
+comp.preset_european_championship	AVRUPA SAMPIYONASI
+comp.preset_european_cup	AVRUPA KUPASI
+comp.preset_uefa_cup	UEFA KUPASI
+comp.preset_world_cup	DUNYA KUPASI
+comp.slot_finished	BITTI
+comp.slot_no_team	TAKIM YOK
+comp.slot_round	TUR {0}/{1}
+comp.slot_winner	GALIP {0}
+comp.stage_final	FINAL
+comp.stage_group	GRUP
+comp.stage_league	LIG
+comp.stage_quarter	CEYREK FINAL
+comp.stage_r16	SON 16
+comp.stage_r32	SON 32
+comp.stage_round_of	SON
+comp.stage_semi	YARI FINAL
+comp.you_are_pos	SIZ {0}
+comp.you_champion	SAMPIYON SIZSINIZ
+comp.you_eliminated	ELENDINIZ
+comp.you_in	{0} ICINDESINIZ
+comp.you_in_the	{0} ICINDESINIZ
+comp.you_through	BIR SONRAKI TURA CIKTINIZ
+comp.you_unplaced	SIRALANMADINIZ
+firstrun.body	SWOS oyun verisi bulunamadi.\n\nOpenSWOS Sensible World of Soccer 96/97 (Amiga surumu) gerektirir.\nIki secenek - sonra oyunu yeniden baslatin:\n\n  (a) Amiga disket imajlarini (*.adf) suraya birakin:\n        {0}\n      OpenSWOS sonraki baslangicta gerekeni cikarir.\n\n  (b) Ayri oyun dosyalariniz var mi (orn. WHDLoad kurulumu)?\n      Suraya kopyalayin:\n        {1}\n\nIstege bagli: PC (DOS) DATA klasorunu 'original_swos_pc/' icine koyun,\nbiraz daha genis takim listesi icin - gerekli degil, grafigi degistirmez.\n\nEski SWOS surumleri (94/95 vb.) UYUMLU DEGIL.
+menu.team_coach_div	ANTRENOR {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	ASYA
+nation.continent_europe	AVRUPA
+nation.continent_north_america	KUZEY AMERIKA
+nation.continent_oceania	OKYANUSYA
+nation.continent_south_america	GUNEY AMERIKA
+nav.hint_menu	YUKARI/ASAGI SEC   ATES OK   ESC GERI
+nav.hint_picker	YUKARI/ASAGI KAYDIR   ATES SEC   ESC IPTAL
+nav.hint_picker_cols	YUKARI/ASAGI KAYDIR   SOL/SAG SUTUN   ATES SEC   ESC IPTAL
+nav.hint_stepper	YUKARI/ASAGI SEC   SOL/SAG DEGIS   ATES OK   ESC GERI
+nav.hint_table	YUKARI/ASAGI SATIR   ATES OK   ESC GERI
+opt.commentator	SPIKER
+opt.commentator_hint	SESLI ANLATIM (SADECE PC SESI)
+opt.display_fullfill	TAM DOLDUR
+opt.display_fullinteger	TAM SAYI
+opt.display_unknown	?
+opt.display_windowed	PENCERE
+opt.len_min_whole	{0} DK GERCEK  (TUM MAC)
+opt.len_sec_whole	{0}S GERCEK  (TUM MAC)
+opt.smoothing_sharp	KESKIN
+overlay.corner	KORNER
+overlay.fulltime	MAC SONU
+overlay.fulltime_body	MAC SONU\n\n{0}  {1} - {2}  {3}\n\nbosluga bas
+overlay.goal	GOL!
+overlay.goalkick	KALE VURUSU
+overlay.halftime	DEVRE ARASI
+overlay.paused	DURAKLADI\n\nspace  devam\nESC    menuye don
+overlay.penalties	PENALTILAR
+overlay.throwin	TAC
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	DEPLASMAN
+result.home	EV SAHIBI
+result.og	(KK)
+result.pen	(PEN)
+scout.notice_maxed	GOZLEM DOLU
+scout.notice_no_money	PARA YETERSIZ
+scout.notice_player_unavailable	OYUNCU YOK
+scout.notice_unavailable	GOZLEM YOK
+staff.notice_coach_unavailable	ANTRENOR YOK
+staff.notice_focus_full	ODAK DOLU
+staff.notice_full	PERSONEL DOLU
+staff.notice_no_money	PARA YETERSIZ
+staff.notice_player_unavailable	OYUNCU YOK
+staff.notice_unavailable	PERSONEL YOK
+staff.spec_attack	HUCUM
+staff.spec_defence	SAVUNMA
+staff.spec_general	GENEL
+staff.spec_youth	GENCLIK

@@ -14,7 +14,11 @@ public sealed class PcAssetSource : IAssetSource
     public IEnumerable<TeamRecord> LoadAllTeams()
     {
         if (!Directory.Exists(_dataDir)) yield break;
-        foreach (string file in Directory.EnumerateFiles(_dataDir, "TEAM.*"))
+        // Case-insensitive: a DOS DATA folder copied off a FAT partition on Linux comes
+        // out lowercased (team.000 …), and an exact-case "TEAM.*" pattern finds NOTHING
+        // there even though the folder itself resolved fine.
+        foreach (string file in Directory.EnumerateFiles(
+                     _dataDir, "TEAM.*", DataPaths.CaseInsensitiveScan))
         {
             // TEAM.248 has a different (non-team) layout; TEAM.CUS would need a
             // separate "is_custom" tag — skip both for the baseline source.
@@ -26,8 +30,8 @@ public sealed class PcAssetSource : IAssetSource
 
     public IEnumerable<TeamRecord> LoadTeamsForNation(int nation)
     {
-        string file = Path.Combine(_dataDir, $"TEAM.{nation:D3}");
-        if (!File.Exists(file)) yield break;
+        string file = DataPaths.ResolveFile(_dataDir, $"TEAM.{nation:D3}");
+        if (file.Length == 0) yield break;
         foreach (var rec in ParseFile(file)) yield return rec;
     }
 

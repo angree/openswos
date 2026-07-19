@@ -432,3 +432,130 @@ hud.team_home_fallback	LOCAL
 hud.team_away_fallback	VISITANTE
 goal.type_penalty	(PEN)
 goal.type_own_goal	(PP)
+# S34 additions
+bench.coach	ENTRENADOR
+bench.coming_on	ENTRA: {0}
+bench.fire_swap	TIRO SEL+SEL = CAMBIA
+bench.formation	FORMACION
+bench.formation_colon	FORMACION:
+bench.help_leave	IZQ/DER SALIR BANQUILLO
+bench.help_select	ARR/ABA SEL  TIRO OK
+bench.hold_mark	MANTEN TIRO = MARCAR JUGADOR
+bench.player_off	SALE:
+bench.sub_in_progress	CAMBIO EN CURSO...
+bench.swap_formation	CAMBIO / FORMACION:
+bench.tag_inj	 LES
+bench.tag_off	 [FUE]
+bench.tag_sub	 [SUP]
+bench.title	BANQUILLO - {0}
+bench.user	JUGADOR {0}
+career.dash_div_season	DIV {0}  TEMPORADA {1}
+career.price_any	CUALQUIERA
+career.rec_pwdl	J {0}   G {1}   E {2}   P {3}   GF {4}   GC {5}
+career.rec_season_div	TEMPORADA {0}  {1}  DIV {2}
+career.release_confirm	LIBERAR {0} GRATIS?
+career.skill_letters	PVHTCSF
+career.title_mr	SR
+career.title_ms	SRA
+comp.competition_complete	COMPETICION COMPLETADA
+comp.cup	COPA
+comp.entrants_random	ALEATORIO
+comp.entrants_same_div	MISMA DIVISION
+comp.entrants_same_nation	MISMA NACION
+comp.league_round	LIGA - JORNADA {0}/{1}
+comp.name_career	CARRERA
+comp.name_cup	COPA
+comp.name_league	LIGA
+comp.name_tournament	TORNEO
+comp.no_fixtures	SIN PARTIDOS
+comp.no_player_team	SIN EQUIPO JUGADOR
+comp.ord_nd	O
+comp.ord_rd	O
+comp.ord_st	O
+comp.ord_th	O
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	RECOPA
+comp.preset_european_championship	EUROCOPA
+comp.preset_european_cup	COPA DE EUROPA
+comp.preset_uefa_cup	COPA UEFA
+comp.preset_world_cup	COPA DEL MUNDO
+comp.slot_finished	TERMINADA
+comp.slot_no_team	SIN EQUIPO
+comp.slot_round	RONDA {0}/{1}
+comp.slot_winner	GANADOR {0}
+comp.stage_final	FINAL
+comp.stage_group	GRUPO
+comp.stage_league	LIGA
+comp.stage_quarter	CUARTOS DE FINAL
+comp.stage_r16	OCTAVOS DE FINAL
+comp.stage_r32	DIECISEISAVOS
+comp.stage_round_of	RONDA DE
+comp.stage_semi	SEMIFINAL
+comp.you_are_pos	ERES {0}
+comp.you_champion	ERES EL CAMPEON
+comp.you_eliminated	FUISTE ELIMINADO
+comp.you_in	ESTAS EN {0}
+comp.you_in_the	ESTAS EN {0}
+comp.you_through	PASAS A LA SIGUIENTE RONDA
+comp.you_unplaced	SIN CLASIFICAR
+firstrun.body	NO SE ENCONTRARON DATOS DEL JUEGO SWOS.\n\nOPENSWOS NECESITA SENSIBLE WORLD OF SOCCER 96/97 (EDICION AMIGA).\nDOS OPCIONES - LUEGO REINICIA EL JUEGO:\n\n  (A) COLOCA TUS IMAGENES DE DISQUETE AMIGA (*.ADF) EN:\n        {0}\n      OPENSWOS EXTRAE LO NECESARIO AL PROXIMO INICIO.\n\n  (B) YA TIENES LOS ARCHIVOS DEL JUEGO (P.EJ. UNA INSTALACION WHDLOAD)?\n      COPIALOS EN:\n        {1}\n\nOPCIONAL: COLOCA LA CARPETA DATA DEL PC (DOS) EN 'ORIGINAL_SWOS_PC/' PARA\nUNA LISTA DE EQUIPOS UN POCO MAYOR - NO ES OBLIGATORIO, Y NO CAMBIA LOS GRAFICOS.\n\nLAS EDICIONES SWOS ANTERIORES (94/95 ETC.) NO SON COMPATIBLES.
+menu.team_coach_div	ENTRENADOR {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRICA
+nation.continent_asia	ASIA
+nation.continent_europe	EUROPA
+nation.continent_north_america	AMERICA DEL NORTE
+nation.continent_oceania	OCEANIA
+nation.continent_south_america	AMERICA DEL SUR
+nav.hint_menu	ARR/ABA SEL   TIRO OK   ESC ATRAS
+nav.hint_picker	ARR/ABA DESPLAZAR   TIRO SEL   ESC CANCELAR
+nav.hint_picker_cols	ARR/ABA DESPLAZAR   IZQ/DER COLUMNA   TIRO SEL   ESC CANCELAR
+nav.hint_stepper	ARR/ABA SEL   IZQ/DER CAMBIAR   TIRO OK   ESC ATRAS
+nav.hint_table	ARR/ABA FILA   TIRO OK   ESC ATRAS
+opt.commentator	COMENTARISTA
+opt.commentator_hint	COMENTARIO HABLADO (SOLO SONIDO PC)
+opt.display_fullfill	LLENAR
+opt.display_fullinteger	ENTERO
+opt.display_unknown	?
+opt.display_windowed	VENTANA
+opt.len_min_whole	{0} MIN REAL  (PARTIDO COMPLETO)
+opt.len_sec_whole	{0}S REAL  (PARTIDO COMPLETO)
+opt.smoothing_sharp	NITIDO
+overlay.corner	CORNER
+overlay.fulltime	FINAL
+overlay.fulltime_body	FINAL\n\n{0}  {1} - {2}  {3}\n\nPULSA ESPACIO
+overlay.goal	GOL!
+overlay.goalkick	SAQUE DE PUERTA
+overlay.halftime	DESCANSO
+overlay.paused	PAUSA\n\nSPACE  REANUDAR\nESC    SALIR AL MENU
+overlay.penalties	PENALTIS
+overlay.throwin	SAQUE DE BANDA
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	VISITANTE
+result.home	LOCAL
+result.og	(PP)
+result.pen	(PEN)
+scout.notice_maxed	OJEO AL MAXIMO
+scout.notice_no_money	DINERO INSUFICIENTE
+scout.notice_player_unavailable	JUGADOR NO DISPONIBLE
+scout.notice_unavailable	OJEO NO DISPONIBLE
+staff.notice_coach_unavailable	ENTRENADOR NO DISPONIBLE
+staff.notice_focus_full	ENFOQUE COMPLETO
+staff.notice_full	PERSONAL COMPLETO
+staff.notice_no_money	DINERO INSUFICIENTE
+staff.notice_player_unavailable	JUGADOR NO DISPONIBLE
+staff.notice_unavailable	PERSONAL NO DISPONIBLE
+staff.spec_attack	ATAQUE
+staff.spec_defence	DEFENSA
+staff.spec_general	GENERAL
+staff.spec_youth	JUVENIL

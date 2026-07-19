@@ -432,3 +432,130 @@ hud.team_home_fallback	GAZDA
 hud.team_away_fallback	OASPETE
 goal.type_penalty	(PEN)
 goal.type_own_goal	(AG)
+# S34 additions
+bench.coach	ANTRENOR
+bench.coming_on	INTRA: {0}
+bench.fire_swap	FOC SEL+SEL = SCHIMBA
+bench.formation	FORMATIE
+bench.formation_colon	FORMATIE:
+bench.help_leave	STANGA/DREAPTA IESI BANCA
+bench.help_select	SUS/JOS SEL  FOC OK
+bench.hold_mark	TINE FOC = MARCHEAZA JUCATOR
+bench.player_off	IESE:
+bench.sub_in_progress	SCHIMBARE IN CURS...
+bench.swap_formation	SCHIMB / FORMATIE:
+bench.tag_inj	 ACC
+bench.tag_off	 [IES]
+bench.tag_sub	 [REZ]
+bench.title	BANCA - {0}
+bench.user	JUCATOR {0}
+career.dash_div_season	DIV {0}  SEZON {1}
+career.price_any	ORICE
+career.rec_pwdl	J {0}   V {1}   E {2}   I {3}   GM {4}   GP {5}
+career.rec_season_div	SEZON {0}  {1}  DIV {2}
+career.release_confirm	ELIBEREZI {0} GRATUIT?
+career.skill_letters	PVHTCSF
+career.title_mr	DL
+career.title_ms	DNA
+comp.competition_complete	COMPETITIE INCHEIATA
+comp.cup	CUPA
+comp.entrants_random	ALEATOR
+comp.entrants_same_div	ACEEASI DIVIZIE
+comp.entrants_same_nation	ACEEASI NATIUNE
+comp.league_round	LIGA - ETAPA {0}/{1}
+comp.name_career	CARIERA
+comp.name_cup	CUPA
+comp.name_league	LIGA
+comp.name_tournament	TURNEU
+comp.no_fixtures	FARA MECIURI
+comp.no_player_team	FARA ECHIPA JUCATOR
+comp.ord_nd	-A
+comp.ord_rd	-A
+comp.ord_st	-A
+comp.ord_th	-A
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	CUPA CUPELOR
+comp.preset_european_championship	CAMPIONATUL EUROPEAN
+comp.preset_european_cup	CUPA EUROPEANA
+comp.preset_uefa_cup	CUPA UEFA
+comp.preset_world_cup	CUPA MONDIALA
+comp.slot_finished	INCHEIAT
+comp.slot_no_team	FARA ECHIPA
+comp.slot_round	RUNDA {0}/{1}
+comp.slot_winner	CASTIGATOR {0}
+comp.stage_final	FINALA
+comp.stage_group	GRUPA
+comp.stage_league	LIGA
+comp.stage_quarter	SFERT DE FINALA
+comp.stage_r16	OPTIMI
+comp.stage_r32	16-IMI
+comp.stage_round_of	RUNDA DE
+comp.stage_semi	SEMIFINALA
+comp.you_are_pos	ESTI {0}
+comp.you_champion	ESTI CAMPION
+comp.you_eliminated	AI FOST ELIMINAT
+comp.you_in	ESTI IN {0}
+comp.you_in_the	ESTI IN {0}
+comp.you_through	ESTI CALIFICAT IN RUNDA URMATOARE
+comp.you_unplaced	ESTI NECLASAT
+firstrun.body	NU S-AU GASIT DATE DE JOC SWOS.\n\nOPENSWOS ARE NEVOIE DE SENSIBLE WORLD OF SOCCER 96/97 (EDITIA AMIGA).\nDOUA OPTIUNI - APOI REPORNESTE JOCUL:\n\n  (A) PUNE IMAGINILE DE DISCHETA AMIGA (*.ADF) IN:\n        {0}\n      OPENSWOS EXTRAGE CE ARE NEVOIE LA URMATOAREA PORNIRE.\n\n  (B) AI DEJA FISIERELE DE JOC (DE EX. O INSTALARE WHDLOAD)?\n      COPIAZA-LE IN:\n        {1}\n\nOPTIONAL: PUNE FOLDERUL DATA AL PC-ULUI (DOS) IN 'ORIGINAL_SWOS_PC/' PENTRU\nO LISTA DE ECHIPE PUTIN MAI MARE - NU E OBLIGATORIU, SI NU SCHIMBA GRAFICA.\n\nEDITIILE SWOS ANTERIOARE (94/95 ETC.) NU SUNT COMPATIBILE.
+menu.team_coach_div	ANTRENOR {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRICA
+nation.continent_asia	ASIA
+nation.continent_europe	EUROPA
+nation.continent_north_america	AMERICA DE NORD
+nation.continent_oceania	OCEANIA
+nation.continent_south_america	AMERICA DE SUD
+nav.hint_menu	SUS/JOS SEL   FOC OK   ESC INAPOI
+nav.hint_picker	SUS/JOS DERULEAZA   FOC SEL   ESC ANULEAZA
+nav.hint_picker_cols	SUS/JOS DERULEAZA   STANGA/DREAPTA COLOANA   FOC SEL   ESC ANULEAZA
+nav.hint_stepper	SUS/JOS SEL   STANGA/DREAPTA SCHIMBA   FOC OK   ESC INAPOI
+nav.hint_table	SUS/JOS RAND   FOC OK   ESC INAPOI
+opt.commentator	COMENTATOR
+opt.commentator_hint	COMENTARIU VORBIT (DOAR SUNET PC)
+opt.display_fullfill	UMPLE
+opt.display_fullinteger	INTREG
+opt.display_unknown	?
+opt.display_windowed	FEREASTRA
+opt.len_min_whole	{0} MIN REAL  (MECI INTREG)
+opt.len_sec_whole	{0}S REAL  (MECI INTREG)
+opt.smoothing_sharp	CLAR
+overlay.corner	CORNER
+overlay.fulltime	FINAL
+overlay.fulltime_body	FINAL\n\n{0}  {1} - {2}  {3}\n\nAPASA SPACE
+overlay.goal	GOL!
+overlay.goalkick	DEGAJARE
+overlay.halftime	PAUZA
+overlay.paused	PAUZAT\n\nSPACE  RELUARE\nESC    IESI LA MENIU
+overlay.penalties	PENALTIURI
+overlay.throwin	AUT
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	OASPETE
+result.home	GAZDA
+result.og	(AG)
+result.pen	(PEN)
+scout.notice_maxed	SCOUTING LA MAXIM
+scout.notice_no_money	BANI INSUFICIENTI
+scout.notice_player_unavailable	JUCATOR INDISPONIBIL
+scout.notice_unavailable	SCOUTING INDISPONIBIL
+staff.notice_coach_unavailable	ANTRENOR INDISPONIBIL
+staff.notice_focus_full	FOCUS COMPLET
+staff.notice_full	STAFF COMPLET
+staff.notice_no_money	BANI INSUFICIENTI
+staff.notice_player_unavailable	JUCATOR INDISPONIBIL
+staff.notice_unavailable	STAFF INDISPONIBIL
+staff.spec_attack	ATAC
+staff.spec_defence	APARARE
+staff.spec_general	GENERAL
+staff.spec_youth	TINERET

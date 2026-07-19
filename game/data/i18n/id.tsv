@@ -432,3 +432,130 @@ hud.team_home_fallback	KANDANG
 hud.team_away_fallback	TANDANG
 goal.type_penalty	(PEN)
 goal.type_own_goal	(GB)
+# S34 additions
+bench.coach	PELATIH
+bench.coming_on	MASUK: {0}
+bench.fire_swap	TEMBAK PILIH+PILIH = TUKAR
+bench.formation	FORMASI
+bench.formation_colon	FORMASI:
+bench.help_leave	KIRI/KANAN TINGGAL BANGKU
+bench.help_select	ATAS/BWH PILIH  TEMBAK OK
+bench.hold_mark	TAHAN TEMBAK = TANDAI PEMAIN
+bench.player_off	PEMAIN KELUAR:
+bench.sub_in_progress	PERGANTIAN BERLANGSUNG...
+bench.swap_formation	TUKAR / FORMASI:
+bench.tag_inj	 CDR
+bench.tag_off	 [KLR]
+bench.tag_sub	 [GNT]
+bench.title	BANGKU - {0}
+bench.user	PENGGUNA {0}
+career.dash_div_season	DIV {0}  MUSIM {1}
+career.price_any	SEMUA
+career.rec_pwdl	P {0}   W {1}   D {2}   L {3}   GF {4}   GA {5}
+career.rec_season_div	MUSIM {0}  {1}  DIV {2}
+career.release_confirm	LEPAS {0} GRATIS?
+career.skill_letters	PVHTCSF
+career.title_mr	BPK
+career.title_ms	IBU
+comp.competition_complete	KOMPETISI SELESAI
+comp.cup	PIALA
+comp.entrants_random	ACAK
+comp.entrants_same_div	DIV SAMA
+comp.entrants_same_nation	NEGARA SAMA
+comp.league_round	LIGA - BABAK {0}/{1}
+comp.name_career	KARIR
+comp.name_cup	PIALA
+comp.name_league	LIGA
+comp.name_tournament	TURNAMEN
+comp.no_fixtures	TAK ADA JADWAL
+comp.no_player_team	TAK ADA TIM PEMAIN
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	PIALA JUARA PIALA
+comp.preset_european_championship	KEJUARAAN EROPA
+comp.preset_european_cup	PIALA EROPA
+comp.preset_uefa_cup	PIALA UEFA
+comp.preset_world_cup	PIALA DUNIA
+comp.slot_finished	SELESAI
+comp.slot_no_team	TAK ADA TIM
+comp.slot_round	BABAK {0}/{1}
+comp.slot_winner	PEMENANG {0}
+comp.stage_final	FINAL
+comp.stage_group	GRUP
+comp.stage_league	LIGA
+comp.stage_quarter	PEREMPAT FINAL
+comp.stage_r16	16 BESAR
+comp.stage_r32	32 BESAR
+comp.stage_round_of	BABAK
+comp.stage_semi	SEMIFINAL
+comp.you_are_pos	ANDA {0}
+comp.you_champion	ANDA JUARA
+comp.you_eliminated	ANDA TERSINGKIR
+comp.you_in	ANDA DI {0}
+comp.you_in_the	ANDA DI {0}
+comp.you_through	ANDA LOLOS KE BABAK BERIKUT
+comp.you_unplaced	ANDA TAK BERPERINGKAT
+firstrun.body	Data game SWOS tidak ditemukan.\n\nOpenSWOS butuh Sensible World of Soccer 96/97 (edisi Amiga).\nDua pilihan - lalu mulai ulang game:\n\n  (a) Taruh image floppy Amiga (*.adf) ke:\n        {0}\n      OpenSWOS mengekstrak yang diperlukan saat mulai berikutnya.\n\n  (b) Sudah punya file game lepas (misal instalasi WHDLoad)?\n      Salin ke:\n        {1}\n\nOpsional: taruh folder DATA PC (DOS) ke 'original_swos_pc/' untuk\ndaftar tim sedikit lebih besar - tidak wajib, dan tak mengubah grafik.\n\nEdisi SWOS lama (94/95 dll.) TIDAK kompatibel.
+menu.team_coach_div	PELATIH {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	ASIA
+nation.continent_europe	EROPA
+nation.continent_north_america	AMERIKA UTARA
+nation.continent_oceania	OSEANIA
+nation.continent_south_america	AMERIKA SELATAN
+nav.hint_menu	ATAS/BAWAH PILIH   TEMBAK OK   ESC KEMBALI
+nav.hint_picker	ATAS/BAWAH GULIR   TEMBAK PILIH   ESC BATAL
+nav.hint_picker_cols	ATAS/BAWAH GULIR   KIRI/KANAN KOLOM   TEMBAK PILIH   ESC BATAL
+nav.hint_stepper	ATAS/BAWAH PILIH   KIRI/KANAN UBAH   TEMBAK OK   ESC KEMBALI
+nav.hint_table	ATAS/BAWAH BARIS   TEMBAK OK   ESC KEMBALI
+opt.commentator	KOMENTATOR
+opt.commentator_hint	KOMENTAR SUARA (SUARA PC SAJA)
+opt.display_fullfill	ISI PENUH
+opt.display_fullinteger	INTEGER PENUH
+opt.display_unknown	?
+opt.display_windowed	JENDELA
+opt.len_min_whole	{0} MNT NYATA  (SELURUH LAGA)
+opt.len_sec_whole	{0}D NYATA  (SELURUH LAGA)
+opt.smoothing_sharp	TAJAM
+overlay.corner	SEPAK POJOK
+overlay.fulltime	WAKTU PENUH
+overlay.fulltime_body	WAKTU PENUH\n\n{0}  {1} - {2}  {3}\n\ntekan spasi
+overlay.goal	GOL!
+overlay.goalkick	SEPAK GAWANG
+overlay.halftime	TURUN MINUM
+overlay.paused	JEDA\n\nspace  lanjut\nESC    keluar ke menu
+overlay.penalties	ADU PENALTI
+overlay.throwin	LEMPARAN
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	TANDANG
+result.home	KANDANG
+result.og	(GB)
+result.pen	(PEN)
+scout.notice_maxed	SKAUT MAKS
+scout.notice_no_money	UANG TAK CUKUP
+scout.notice_player_unavailable	PEMAIN TAK TERSEDIA
+scout.notice_unavailable	SKAUT TAK TERSEDIA
+staff.notice_coach_unavailable	PELATIH TAK TERSEDIA
+staff.notice_focus_full	FOKUS PENUH
+staff.notice_full	STAF PENUH
+staff.notice_no_money	UANG TAK CUKUP
+staff.notice_player_unavailable	PEMAIN TAK TERSEDIA
+staff.notice_unavailable	STAF TAK TERSEDIA
+staff.spec_attack	SERANGAN
+staff.spec_defence	PERTAHANAN
+staff.spec_general	UMUM
+staff.spec_youth	MUDA

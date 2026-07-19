@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using OpenSwos.Menu;
 
 namespace OpenSwos.Competition.Career;
 
@@ -31,7 +32,7 @@ public static class Scouting
     /// </summary>
     public static bool TryScoutPlayer(CareerWorld? world, ushort clubId, int playerId, out string refusal)
     {
-        refusal = "PLAYER NOT AVAILABLE";
+        refusal = Loc.Tr("scout.notice_player_unavailable", "PLAYER NOT AVAILABLE");
         if (world?.Clubs is null || !world.Clubs.TryGetValue(clubId, out CareerClub? club) || club is null)
             return false;
         CareerPlayer? player = FindExternalPlayer(world, clubId, playerId);
@@ -40,10 +41,10 @@ public static class Scouting
         ScoutingState? existing = club.Scouting;
         int quality = Math.Clamp(existing?.ScoutQuality ?? 0, 0, 7);
         long cost = PlayerScoutingCost(quality);
-        if (club.Budget < cost) { refusal = "NOT ENOUGH MONEY"; return false; }
+        if (club.Budget < cost) { refusal = Loc.Tr("scout.notice_no_money", "NOT ENOUGH MONEY"); return false; }
         long remainingBudget;
         try { remainingBudget = checked(club.Budget - cost); }
-        catch (OverflowException) { refusal = "NOT ENOUGH MONEY"; return false; }
+        catch (OverflowException) { refusal = Loc.Tr("scout.notice_no_money", "NOT ENOUGH MONEY"); return false; }
 
         ScoutingState scouting = existing ?? new ScoutingState();
         List<int> watched = scouting.WatchedPlayerIds ??= new List<int>();
@@ -59,18 +60,18 @@ public static class Scouting
     /// <summary>Raises a club's scouting quality by one, capped at seven.</summary>
     public static bool TryImproveScoutQuality(CareerWorld? world, ushort clubId, out string refusal)
     {
-        refusal = "SCOUTING UNAVAILABLE";
+        refusal = Loc.Tr("scout.notice_unavailable", "SCOUTING UNAVAILABLE");
         if (world?.Clubs is null || !world.Clubs.TryGetValue(clubId, out CareerClub? club) || club is null)
             return false;
 
         ScoutingState? existing = club.Scouting;
         int quality = Math.Clamp(existing?.ScoutQuality ?? 0, 0, 7);
-        if (quality >= 7) { refusal = "SCOUTING MAXED"; return false; }
+        if (quality >= 7) { refusal = Loc.Tr("scout.notice_maxed", "SCOUTING MAXED"); return false; }
         long cost = ScoutUpgradeCost(quality);
-        if (club.Budget < cost) { refusal = "NOT ENOUGH MONEY"; return false; }
+        if (club.Budget < cost) { refusal = Loc.Tr("scout.notice_no_money", "NOT ENOUGH MONEY"); return false; }
         long remainingBudget;
         try { remainingBudget = checked(club.Budget - cost); }
-        catch (OverflowException) { refusal = "NOT ENOUGH MONEY"; return false; }
+        catch (OverflowException) { refusal = Loc.Tr("scout.notice_no_money", "NOT ENOUGH MONEY"); return false; }
 
         ScoutingState scouting = existing ?? new ScoutingState();
         scouting.ScoutQuality = quality + 1;

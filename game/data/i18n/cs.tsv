@@ -432,3 +432,130 @@ hud.team_home_fallback	DOMACI
 hud.team_away_fallback	HOSTE
 goal.type_penalty	(PEN)
 goal.type_own_goal	(VG)
+# S34 additions
+bench.coach	TRENER
+bench.coming_on	PRICHAZI: {0}
+bench.fire_swap	FIRE VYBER+VYBER = VYMENA
+bench.formation	FORMACE
+bench.formation_colon	FORMACE:
+bench.help_leave	VLEVO/VPRAVO OPUSTIT LAVICKU
+bench.help_select	NAHORU/DOLU VYBER  FIRE OK
+bench.hold_mark	DRZ FIRE = HLIDEJ HRACE
+bench.player_off	ODCHAZI:
+bench.sub_in_progress	STRIDANI PROBIHA...
+bench.swap_formation	VYMENA / FORMACE:
+bench.tag_inj	 ZRA
+bench.tag_off	 [VEN]
+bench.tag_sub	 [STR]
+bench.title	LAVICKA - {0}
+bench.user	HRAC {0}
+career.dash_div_season	DIV {0}  SEZONA {1}
+career.price_any	LIBOVOLNA
+career.rec_pwdl	Z {0}   V {1}   R {2}   P {3}   VG {4}   IG {5}
+career.rec_season_div	SEZONA {0}  {1}  DIV {2}
+career.release_confirm	UVOLNIT {0} ZDARMA?
+career.skill_letters	PRHOKSZ
+career.title_mr	P.
+career.title_ms	PANI
+comp.competition_complete	SOUTEZ DOKONCENA
+comp.cup	POHAR
+comp.entrants_random	NAHODNE
+comp.entrants_same_div	STEJNA DIVIZE
+comp.entrants_same_nation	STEJNY NAROD
+comp.league_round	LIGA - KOLO {0}/{1}
+comp.name_career	KARIERA
+comp.name_cup	POHAR
+comp.name_league	LIGA
+comp.name_tournament	TURNAJ
+comp.no_fixtures	ZADNE ZAPASY
+comp.no_player_team	ZADNY TYM HRACE
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	POHAR VITEZU POHARU
+comp.preset_european_championship	MISTROVSTVI EVROPY
+comp.preset_european_cup	POHAR MISTRU
+comp.preset_uefa_cup	POHAR UEFA
+comp.preset_world_cup	MISTROVSTVI SVETA
+comp.slot_finished	DOKONCENO
+comp.slot_no_team	ZADNY TYM
+comp.slot_round	KOLO {0}/{1}
+comp.slot_winner	VITEZ {0}
+comp.stage_final	FINALE
+comp.stage_group	SKUPINA
+comp.stage_league	LIGA
+comp.stage_quarter	CTVRTFINALE
+comp.stage_r16	KOLO 16
+comp.stage_r32	KOLO 32
+comp.stage_round_of	KOLO
+comp.stage_semi	SEMIFINALE
+comp.you_are_pos	JSTE {0}
+comp.you_champion	JSTE MISTR
+comp.you_eliminated	VYPADL JSTE
+comp.you_in	JSTE V {0}
+comp.you_in_the	JSTE V {0}
+comp.you_through	POSTUPUJETE DO DALSIHO KOLA
+comp.you_unplaced	BEZ UMISTENI
+firstrun.body	ZADNA DATA HRY SWOS.\n\nOPENSWOS POTREBUJE SENSIBLE WORLD OF SOCCER 96/97 (VERZE AMIGA).\nDVE MOZNOSTI - POTOM ZNOVU SPUST HRU:\n\n  (A) VLOZ AMIGA OBRAZY DISKET (*.adf) DO:\n        {0}\n      OPENSWOS ROZBALI POTREBNE SOUBORY PRI DALSIM SPUSTENI.\n\n  (B) UZ MAS VOLNE SOUBORY HRY (NAPR. INSTALACE WHDLOAD)?\n      ZKOPIRUJ JE DO:\n        {1}\n\nVOLITELNE: VLOZ PC (DOS) DATA SLOZKU DO 'original_swos_pc/' PRO\nTROCHU VETSI SEZNAM TYMU - NENI NUTNE A NEMENI GRAFIKU.\n\nSTARSI VERZE SWOS (94/95 ATD.) NEJSOU KOMPATIBILNI.
+menu.team_coach_div	TRENER {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	ASIE
+nation.continent_europe	EVROPA
+nation.continent_north_america	SEVERNI AMERIKA
+nation.continent_oceania	OCEANIE
+nation.continent_south_america	JIZNI AMERIKA
+nav.hint_menu	NAHORU/DOLU VYBER   FIRE OK   ESC ZPET
+nav.hint_picker	NAHORU/DOLU POSUN   FIRE VYBER   ESC ZRUSIT
+nav.hint_picker_cols	NAHORU/DOLU POSUN   VLEVO/VPRAVO SLOUPEC   FIRE VYBER   ESC ZRUSIT
+nav.hint_stepper	NAHORU/DOLU VYBER   VLEVO/VPRAVO ZMEN   FIRE OK   ESC ZPET
+nav.hint_table	NAHORU/DOLU RADEK   FIRE OK   ESC ZPET
+opt.commentator	KOMENTATOR
+opt.commentator_hint	MLUVENY KOMENTAR (POUZE PC ZVUK)
+opt.display_fullfill	VYPLNIT OBRAZOVKU
+opt.display_fullinteger	CELOCISELNE
+opt.display_unknown	?
+opt.display_windowed	V OKNE
+opt.len_min_whole	{0} MIN REAL  (CELY ZAPAS)
+opt.len_sec_whole	{0}S REAL  (CELY ZAPAS)
+opt.smoothing_sharp	OSTRE
+overlay.corner	ROH
+overlay.fulltime	KONEC ZAPASU
+overlay.fulltime_body	KONEC ZAPASU\n\n{0}  {1} - {2}  {3}\n\nstiskni mezernik
+overlay.goal	GOL!
+overlay.goalkick	KOP OD BRANY
+overlay.halftime	POLOCAS
+overlay.paused	PAUZA\n\nmezernik  pokracovat\nESC    zpet do menu
+overlay.penalties	PENALTY
+overlay.throwin	AUT
+pos.a	U
+pos.d	O
+pos.gk	BR
+pos.lb	LO
+pos.lw	LK
+pos.m	Z
+pos.none	--
+pos.rb	PO
+pos.rw	PK
+pos.unknown	?
+result.away	HOSTE
+result.home	DOMACI
+result.og	(VG)
+result.pen	(PEN)
+scout.notice_maxed	SKAUTING NA MAXIMU
+scout.notice_no_money	NEDOSTATEK PENEZ
+scout.notice_player_unavailable	HRAC NEDOSTUPNY
+scout.notice_unavailable	SKAUTING NEDOSTUPNY
+staff.notice_coach_unavailable	TRENER NEDOSTUPNY
+staff.notice_focus_full	FOKUS PLNY
+staff.notice_full	TRENERI PLNI
+staff.notice_no_money	NEDOSTATEK PENEZ
+staff.notice_player_unavailable	HRAC NEDOSTUPNY
+staff.notice_unavailable	TRENERI NEDOSTUPNI
+staff.spec_attack	UTOK
+staff.spec_defence	OBRANA
+staff.spec_general	OBECNY
+staff.spec_youth	MLADEZ

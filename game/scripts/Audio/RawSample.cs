@@ -1,6 +1,7 @@
 using Godot;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace OpenSwos.Audio;
 
@@ -84,8 +85,17 @@ public static class RawSample
         {
             var (dir, depth) = queue.Dequeue();
 
+            // Case-insensitive: "*.RAW" is an exact-case pattern on Linux/Android/R36S,
+            // so a lowercased sample tree (kickx.raw …) indexed as EMPTY and PC sound
+            // silently became unavailable — despite this class promising case-insensitive
+            // discovery. Filter by extension instead of trusting the glob.
             string[] files;
-            try { files = Directory.GetFiles(dir, "*.RAW"); }
+            try
+            {
+                files = Directory.GetFiles(dir, "*")
+                    .Where(f => f.EndsWith(".RAW", System.StringComparison.OrdinalIgnoreCase))
+                    .ToArray();
+            }
             catch { files = System.Array.Empty<string>(); }
             foreach (string f in files)
             {

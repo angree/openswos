@@ -126,6 +126,8 @@ public interface IMenuHost
     // skipped when cycling.
     string SoundSourceLabel { get; }
     void StepSoundSource(int delta);
+    string CommentatorLabel { get; }
+    void StepCommentator(int delta);
 
     // Front-end MUSIC source (AMIGA / PC / CUSTOM / OFF); unavailable sources
     // render as "X (N/A)" and are skipped when cycling.
@@ -136,6 +138,10 @@ public interface IMenuHost
     // Mirrors the F11 cycle: Windowed / Fullscreen Fill / Fullscreen Integer.
     string DisplayModeLabel { get; }
     void CycleDisplayMode();
+    // Picture smoothing (OFF / SHARP). Default OFF; auto-defaults to SHARP on a
+    // small handheld screen. Cycling it persists the choice.
+    string SmoothingLabel { get; }
+    void CycleSmoothing();
     // Persist the current UI language (Loc.Current) after the user changes it.
     void OnLanguageChanged();
     // True exactly once after a NON-competition match returns to the menu.

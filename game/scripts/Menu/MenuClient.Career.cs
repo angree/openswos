@@ -271,7 +271,7 @@ public sealed partial class MenuClient
         else
         {
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
-                Label = () => FitText("RELEASE " + (player.Name ?? "") + " FOR FREE?", false, 294) });
+                Label = () => FitText(string.Format(Loc.Tr("career.release_confirm", "RELEASE {0} FOR FREE?"), player.Name ?? ""), false, 294) });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false, Label = () => _transferNotice ?? "" });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Danger, Big = false,
                 Label = () => Loc.Tr("free.release", "RELEASE"), OnActivate = FreeTransferSelectedPlayer });
@@ -806,7 +806,7 @@ public sealed partial class MenuClient
             Coach coach = coaches[i];
             if (i == _staffSelectedIndex) BodyBox(s, panelX + 4, y - 1, panelW - 8, 7, MenuTheme.Style.Info, 21);
             CareerCell(s, coach.Name, name, y, specialty - name - 4, normal);
-            CareerCell(s, coach.Specialty, specialty, y, quality - specialty - 12, normal);
+            CareerCell(s, CompLoc.TrSpecialty(coach.Specialty), specialty, y, quality - specialty - 12, normal);
             CareerTableText(s, System.Math.Clamp(coach.Quality, 0, 7).ToString(), quality, y, normal, rightAlign: true);
             CareerTableText(s, FormatMoney(coach.Wage), wage, y, normal, rightAlign: true);
             y += 8;
@@ -835,7 +835,7 @@ public sealed partial class MenuClient
         {
             if (candidate.Slot == _staffCandidateIndex) BodyBox(s, panelX + 4, y - 1, panelW - 8, 7, MenuTheme.Style.Info, 21);
             CareerCell(s, candidate.Name, name, y, specialty - name - 4, normal);
-            CareerCell(s, candidate.Specialty, specialty, y, quality - specialty - 12, normal);
+            CareerCell(s, CompLoc.TrSpecialty(candidate.Specialty), specialty, y, quality - specialty - 12, normal);
             CareerTableText(s, candidate.Quality.ToString(), quality, y, normal, rightAlign: true);
             CareerTableText(s, FormatMoney(candidate.SigningFee), fee, y, normal, rightAlign: true);
             y += 8;
@@ -1228,7 +1228,7 @@ public sealed partial class MenuClient
     private void OpenScoutSortPicker()
     {
         var rows = new System.Collections.Generic.List<string>();
-        foreach (var m in kSortModes) rows.Add(m.Name);
+        foreach (var m in kSortModes) rows.Add(SortModeName(m.Mode));
         int cur = System.Array.FindIndex(kSortModes, m => m.Mode == _scoutingMarketSort);
         PushListPicker(Loc.Tr("common.sort_by", "SORT BY"), rows, cur < 0 ? 0 : cur, idx =>
         {
@@ -1339,7 +1339,7 @@ public sealed partial class MenuClient
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
                 Label = () => Loc.Tr("common.sort", "SORT"), Value = MarketSortLabel, OnActivate = OpenMarketSortPicker });
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-                Label = () => Loc.Tr("market.max_price", "MAX PRICE"), Value = () => kPriceFilters[_marketPriceFilter].Label,
+                Label = () => Loc.Tr("market.max_price", "MAX PRICE"), Value = () => _marketPriceFilter == 0 ? Loc.Tr("career.price_any", "ANY") : kPriceFilters[_marketPriceFilter].Label,
                 OnStep = StepMarketPriceFilter });
             var marketPlayerField = new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
                 Label = () => Loc.Tr("common.player", "PLAYER"), Value = MarketSelectedLabel, OnActivate = EnterTableSelectCurrent };
@@ -1430,6 +1430,14 @@ public sealed partial class MenuClient
         (TransferModel.SortAge, "AGE"),
     };
 
+    // Display-time name for a sort MODE (the stored mode int is never changed).
+    private static string SortModeName(int mode) => mode switch
+    {
+        TransferModel.SortEffectiveOverall => Loc.Tr("common.skill", "SKILL"),
+        TransferModel.SortAge => Loc.Tr("common.age", "AGE"),
+        _ => Loc.Tr("common.value", "VALUE"),
+    };
+
     // Transfer-market max-price bands. Each band is a half-open [Min, Max) range
     // matched against a player's asking price; ANY passes everything.
     private static readonly (string Label, long Min, long Max)[] kPriceFilters =
@@ -1458,7 +1466,7 @@ public sealed partial class MenuClient
     private void OpenMarketSortPicker()
     {
         var rows = new System.Collections.Generic.List<string>();
-        foreach (var m in kSortModes) rows.Add(m.Name);
+        foreach (var m in kSortModes) rows.Add(SortModeName(m.Mode));
         int cur = System.Array.FindIndex(kSortModes, m => m.Mode == _marketSort);
         PushListPicker(Loc.Tr("common.sort_by", "SORT BY"), rows, cur < 0 ? 0 : cur, idx =>
         {
@@ -2069,8 +2077,10 @@ public sealed partial class MenuClient
                 string dir = OpenSwos.Assets.DataPaths.AmigaGrafsDir();
                 if (dir.Length > 0)
                 {
-                    string path = System.IO.Path.Combine(dir, "CJCTEAM1.RAW");
-                    if (System.IO.File.Exists(path))
+                    // Case-insensitive resolve: case-SENSITIVE Linux/Android/R36S
+                    // filesystems may hold this as cjcteam1.raw. "" means absent.
+                    string path = OpenSwos.Assets.DataPaths.ResolveFile(dir, "CJCTEAM1.RAW");
+                    if (path.Length > 0)
                         _headAtlas = AmigaSpriteAtlas.Load(path);
                 }
             }
@@ -2323,8 +2333,10 @@ public sealed partial class MenuClient
     // Letters follow the fixed SWOS order P V H T C S F (P=passing,
     // V=shooting/velocity, H=heading, T=tackling, C=control, S=speed,
     // F=finishing). The three highest-valued skills are shown, highest first,
-    // ties broken by that fixed order — e.g. "CSV" or "PVF".
-    private static readonly char[] kSkillLetters = { 'P', 'V', 'H', 'T', 'C', 'S', 'F' };
+    // ties broken by that fixed order — e.g. "CSV" or "PVF". The letters are a
+    // DISPLAY glyph string keyed to the skill ORDER (never a stored value), so a
+    // translation supplies its 7 letters in that same fixed order.
+    private const string kSkillLettersEn = "PVHTCSF";
 
     private static string TopSkillLetters(System.ReadOnlySpan<int> skills)
     {
@@ -2335,8 +2347,10 @@ public sealed partial class MenuClient
             for (int j = i + 1; j < 7; j++)
                 if (skills[order[j]] > skills[order[i]])
                     (order[i], order[j]) = (order[j], order[i]);
+        string letters = Loc.Tr("career.skill_letters", kSkillLettersEn);
+        if (letters.Length < 7) letters = kSkillLettersEn;
         var sb = new System.Text.StringBuilder(3);
-        for (int i = 0; i < 3; i++) sb.Append(kSkillLetters[order[i]]);
+        for (int i = 0; i < 3; i++) sb.Append(letters[order[i]]);
         return sb.ToString();
     }
 

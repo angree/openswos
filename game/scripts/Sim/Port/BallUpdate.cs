@@ -1370,10 +1370,11 @@ public static class BallUpdate
     //   - holding into/away from kick direction also adjusts ball speed
     //
     // **Caller setup** (when porting kick handlers later):
-    //   - When player kicks: set TeamData.SpinTimer = 0, currentAllowedDirection
-    //     = kick direction (0..7 quantised, -1 if no spin allowed e.g.
-    //     headers/tackles), controlledPlDirection = current joystick dir.
-    //   - Each subsequent tick: update controlledPlDirection from joystick,
+    //   - When player kicks: set TeamData.SpinTimer = 0, controlledPlDirection
+    //     = kick direction recorded AT kick time (0..7 quantised, -1 if no spin
+    //     allowed e.g. headers/tackles), currentAllowedDirection = current LIVE
+    //     held/joystick direction.
+    //   - Each subsequent tick: update currentAllowedDirection from the joystick,
     //     call ApplyBallAfterTouch(topTeam_kicker).
     //   - Function self-terminates by setting spinTimer = -1 after 10 ticks.
     //

@@ -432,3 +432,130 @@ hud.team_home_fallback	KOTI
 hud.team_away_fallback	VIERAS
 goal.type_penalty	(RP)
 goal.type_own_goal	(OM)
+# S34 additions
+bench.coach	VALMENTAJA
+bench.coming_on	TULEE PELIIN: {0}
+bench.fire_swap	FIRE VALITSE+VALITSE = VAIHTO
+bench.formation	MUODOSTELMA
+bench.formation_colon	MUODOSTELMA:
+bench.help_leave	VAS/OIK POISTU PENKILTA
+bench.help_select	YLOS/ALAS VALITSE  FIRE OK
+bench.hold_mark	PIDA FIRE = MERKITSE PELAAJA
+bench.player_off	PELAAJA POIS:
+bench.sub_in_progress	VAIHTO KESKEN...
+bench.swap_formation	VAIHTO / MUODOSTELMA:
+bench.tag_inj	 LOU
+bench.tag_off	 [POIS]
+bench.tag_sub	 [VAR]
+bench.title	PENKKI - {0}
+bench.user	KAYTTAJA {0}
+career.dash_div_season	DIV {0}  KAUSI {1}
+career.price_any	KAIKKI
+career.rec_pwdl	O {0}   V {1}   T {2}   H {3}   TM {4}   PM {5}
+career.rec_season_div	KAUSI {0}  {1}  DIV {2}
+career.release_confirm	VAPAUTA {0} ILMAISEKSI?
+career.skill_letters	SNPTHLV
+career.title_mr	HRA
+career.title_ms	RVA
+comp.competition_complete	KILPAILU VALMIS
+comp.cup	CUP
+comp.entrants_random	SATUNNAINEN
+comp.entrants_same_div	SAMA SARJA
+comp.entrants_same_nation	SAMA MAA
+comp.league_round	LIIGA - KIERROS {0}/{1}
+comp.name_career	URA
+comp.name_cup	CUP
+comp.name_league	LIIGA
+comp.name_tournament	TURNAUS
+comp.no_fixtures	EI OTTELUITA
+comp.no_player_team	EI PELAAJAJOUKKUETTA
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	CUP-VOITTAJIEN CUP
+comp.preset_european_championship	EM-KISAT
+comp.preset_european_cup	EUROOPAN CUP
+comp.preset_uefa_cup	UEFA CUP
+comp.preset_world_cup	MM-KISAT
+comp.slot_finished	VALMIS
+comp.slot_no_team	EI JOUKKUETTA
+comp.slot_round	KIERROS {0}/{1}
+comp.slot_winner	VOITTAJA {0}
+comp.stage_final	FINAALI
+comp.stage_group	LOHKO
+comp.stage_league	LIIGA
+comp.stage_quarter	PUOLIVALIERA
+comp.stage_r16	NELJANNESVALIERA
+comp.stage_r32	KAHDEKSANNESVALIERA
+comp.stage_round_of	PARHAAT
+comp.stage_semi	VALIERA
+comp.you_are_pos	OLET {0}
+comp.you_champion	OLET MESTARI
+comp.you_eliminated	SINUT PUDOTETTIIN
+comp.you_in	OLET {0}
+comp.you_in_the	OLET {0}
+comp.you_through	OLET JATKOON SEURAAVALLE KIERROKSELLE
+comp.you_unplaced	OLET SIJOITTAMATTA
+firstrun.body	SWOS-pelidataa ei loytynyt.\n\nOpenSWOS tarvitsee Sensible World of Soccer 96/97 (Amiga-versio).\nKaksi vaihtoehtoa - kaynnista peli sitten uudelleen:\n\n  (a) Pudota Amiga-levykuvat (*.adf) kansioon:\n        {0}\n      OpenSWOS purkaa tarvittavat seuraavalla kaynnistyksella.\n\n  (b) Onko sinulla jo irralliset pelitiedostot (esim. WHDLoad-asennus)?\n      Kopioi ne kansioon:\n        {1}\n\nValinnainen: pudota PC:n (DOS) DATA-kansio kansioon 'original_swos_pc/'\nhieman laajempaa joukkuelistaa varten - ei pakollinen eika muuta grafiikkaa.\n\nVanhemmat SWOS-versiot (94/95 jne.) EIVAT ole yhteensopivia.
+menu.team_coach_div	VALMENTAJA {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKKA
+nation.continent_asia	AASIA
+nation.continent_europe	EUROOPPA
+nation.continent_north_america	POHJOIS-AMERIKKA
+nation.continent_oceania	OSEANIA
+nation.continent_south_america	ETELA-AMERIKKA
+nav.hint_menu	YLOS/ALAS VALITSE   FIRE OK   ESC TAKAISIN
+nav.hint_picker	YLOS/ALAS VIERITA   FIRE VALITSE   ESC PERUUTA
+nav.hint_picker_cols	YLOS/ALAS VIERITA   VAS/OIK SARAKE   FIRE VALITSE   ESC PERUUTA
+nav.hint_stepper	YLOS/ALAS VALITSE   VAS/OIK MUUTA   FIRE OK   ESC TAKAISIN
+nav.hint_table	YLOS/ALAS RIVI   FIRE OK   ESC TAKAISIN
+opt.commentator	SELOSTAJA
+opt.commentator_hint	PUHUTTU SELOSTUS (VAIN PC-AANI)
+opt.display_fullfill	KOKO TAYTTO
+opt.display_fullinteger	KOKO TARKKA
+opt.display_unknown	?
+opt.display_windowed	IKKUNA
+opt.len_min_whole	{0} MIN TODELL.  (KOKO OTTELU)
+opt.len_sec_whole	{0}S TODELL.  (KOKO OTTELU)
+opt.smoothing_sharp	TERAVA
+overlay.corner	KULMA
+overlay.fulltime	PELIN LOPPU
+overlay.fulltime_body	PELIN LOPPU\n\n{0}  {1} - {2}  {3}\n\npaina vali
+overlay.goal	MAALI!
+overlay.goalkick	MAALIPOTKU
+overlay.halftime	PUOLIAIKA
+overlay.paused	TAUKO\n\nvali  jatka\nESC    valikkoon
+overlay.penalties	RANGAISTUSPOTKUT
+overlay.throwin	SISAANHEITTO
+pos.a	H
+pos.d	P
+pos.gk	MV
+pos.lb	VP
+pos.lw	VL
+pos.m	K
+pos.none	--
+pos.rb	OP
+pos.rw	OL
+pos.unknown	?
+result.away	VIERAS
+result.home	KOTI
+result.og	(OM)
+result.pen	(RP)
+scout.notice_maxed	SKAUTTAUS MAKSIMISSA
+scout.notice_no_money	EI TARPEEKSI RAHAA
+scout.notice_player_unavailable	PELAAJAA EI SAATAVILLA
+scout.notice_unavailable	SKAUTTAUS EI KAYTOSSA
+staff.notice_coach_unavailable	VALMENTAJA EI SAATAVILLA
+staff.notice_focus_full	PAINOTUS TAYNNA
+staff.notice_full	HENKILOSTO TAYNNA
+staff.notice_no_money	EI TARPEEKSI RAHAA
+staff.notice_player_unavailable	PELAAJAA EI SAATAVILLA
+staff.notice_unavailable	HENKILOSTO EI KAYTOSSA
+staff.spec_attack	HYOKKAYS
+staff.spec_defence	PUOLUSTUS
+staff.spec_general	YLEINEN
+staff.spec_youth	NUORISO

@@ -432,3 +432,130 @@ hud.team_home_fallback	NYUMBANI
 hud.team_away_fallback	UGENINI
 goal.type_penalty	(PEN)
 goal.type_own_goal	(OG)
+# S34 additions
+bench.coach	KOCHI
+bench.coming_on	ANAINGIA: {0}
+bench.fire_swap	PIGA CHAGUA+CHAGUA = BADILISHA
+bench.formation	MPANGILIO
+bench.formation_colon	MPANGILIO:
+bench.help_leave	KUSHOTO/KULIA ONDOKA BENCHI
+bench.help_select	JUU/CHINI CHAGUA  PIGA OK
+bench.hold_mark	SHIKILIA PIGA = MARK MCHEZAJI
+bench.player_off	MCHEZAJI ATOKA:
+bench.sub_in_progress	UBADILISHAJI UNAENDELEA...
+bench.swap_formation	BADILISHA / MPANGILIO:
+bench.tag_inj	 JRH
+bench.tag_off	 [TOK]
+bench.tag_sub	 [BDL]
+bench.title	BENCHI - {0}
+bench.user	MTUMIAJI {0}
+career.dash_div_season	DIV {0}  MSIMU {1}
+career.price_any	YOYOTE
+career.rec_pwdl	P {0}   W {1}   D {2}   L {3}   GF {4}   GA {5}
+career.rec_season_div	MSIMU {0}  {1}  DIV {2}
+career.release_confirm	ACHIA {0} BURE?
+career.skill_letters	PVHTCSF
+career.title_mr	BW
+career.title_ms	BI
+comp.competition_complete	MASHINDANO YAMEISHA
+comp.cup	KOMBE
+comp.entrants_random	NASIBU
+comp.entrants_same_div	DIV MOJA
+comp.entrants_same_nation	TAIFA MOJA
+comp.league_round	LIGI - RAUNDI {0}/{1}
+comp.name_career	KAZI
+comp.name_cup	KOMBE
+comp.name_league	LIGI
+comp.name_tournament	MASHINDANO
+comp.no_fixtures	HAKUNA RATIBA
+comp.no_player_team	HAKUNA TIMU YAKO
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	KOMBE LA WASHINDI
+comp.preset_european_championship	MABINGWA WA ULAYA
+comp.preset_european_cup	KOMBE LA ULAYA
+comp.preset_uefa_cup	KOMBE LA UEFA
+comp.preset_world_cup	KOMBE LA DUNIA
+comp.slot_finished	IMEISHA
+comp.slot_no_team	HAKUNA TIMU
+comp.slot_round	RAUNDI {0}/{1}
+comp.slot_winner	MSHINDI {0}
+comp.stage_final	FAINALI
+comp.stage_group	KUNDI
+comp.stage_league	LIGI
+comp.stage_quarter	ROBO FAINALI
+comp.stage_r16	RAUNDI YA 16
+comp.stage_r32	RAUNDI YA 32
+comp.stage_round_of	RAUNDI YA
+comp.stage_semi	NUSU FAINALI
+comp.you_are_pos	UKO {0}
+comp.you_champion	WEWE BINGWA
+comp.you_eliminated	UMETOLEWA
+comp.you_in	UPO {0}
+comp.you_in_the	UPO KWENYE {0}
+comp.you_through	UMEPITA RAUNDI IJAYO
+comp.you_unplaced	HAUJAPANGWA
+firstrun.body	Data ya mchezo wa SWOS hayakupatikana.\n\nOpenSWOS inahitaji Sensible World of Soccer 96/97 (toleo la Amiga).\nNjia mbili - kisha anzisha upya mchezo:\n\n  (a) Weka picha za floppy za Amiga (*.adf) kwenye:\n        {0}\n      OpenSWOS itatoa inachohitaji wakati wa kuanza tena.\n\n  (b) Tayari una faili huru za mchezo (mfano usakinishaji wa WHDLoad)?\n      Nakili kwenye:\n        {1}\n\nHiari: weka folda ya DATA ya PC (DOS) kwenye 'original_swos_pc/' kwa\norodha kubwa kidogo ya timu - si lazima, na haibadilishi grafiki.\n\nMatoleo ya awali ya SWOS (94/95 n.k.) HAYAENDANI.
+menu.team_coach_div	KOCHI {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	ASIA
+nation.continent_europe	ULAYA
+nation.continent_north_america	AMERIKA KASKAZINI
+nation.continent_oceania	OSHENIA
+nation.continent_south_america	AMERIKA KUSINI
+nav.hint_menu	JUU/CHINI CHAGUA   PIGA OK   ESC RUDI
+nav.hint_picker	JUU/CHINI SOGEZA   PIGA CHAGUA   ESC GHAIRI
+nav.hint_picker_cols	JUU/CHINI SOGEZA   KUSHOTO/KULIA SAFU   PIGA CHAGUA   ESC GHAIRI
+nav.hint_stepper	JUU/CHINI CHAGUA   KUSHOTO/KULIA BADILI   PIGA OK   ESC RUDI
+nav.hint_table	JUU/CHINI MSTARI   PIGA OK   ESC RUDI
+opt.commentator	MTANGAZAJI
+opt.commentator_hint	MAELEZO YA SAUTI (SAUTI YA PC TU)
+opt.display_fullfill	JAZA KAMILI
+opt.display_fullinteger	INTEJA KAMILI
+opt.display_unknown	?
+opt.display_windowed	DIRISHA
+opt.len_min_whole	{0} DAK HALISI  (MECHI NZIMA)
+opt.len_sec_whole	{0}S HALISI  (MECHI NZIMA)
+opt.smoothing_sharp	KALI
+overlay.corner	KONA
+overlay.fulltime	MUDA KAMILI
+overlay.fulltime_body	MUDA KAMILI\n\n{0}  {1} - {2}  {3}\n\nbonyeza spas
+overlay.goal	GOLI!
+overlay.goalkick	MATEKO YA GOLI
+overlay.halftime	MAPUMZIKO
+overlay.paused	SIMAMA\n\nspace  endelea\nESC    toka menu
+overlay.penalties	MIKWAJU
+overlay.throwin	KUTUPA NDANI
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	UGENINI
+result.home	NYUMBANI
+result.og	(OG)
+result.pen	(PEN)
+scout.notice_maxed	UPELELEZI KAMILI
+scout.notice_no_money	HELA HAITOSHI
+scout.notice_player_unavailable	MCHEZAJI HAYUPO
+scout.notice_unavailable	UPELELEZI HAUPO
+staff.notice_coach_unavailable	KOCHI HAYUPO
+staff.notice_focus_full	MAKINI IMEJAA
+staff.notice_full	WAFANYAKAZI WAMEJAA
+staff.notice_no_money	HELA HAITOSHI
+staff.notice_player_unavailable	MCHEZAJI HAYUPO
+staff.notice_unavailable	WAFANYAKAZI HAWAPO
+staff.spec_attack	MASHAMBULIZI
+staff.spec_defence	ULINZI
+staff.spec_general	UJUMLA
+staff.spec_youth	VIJANA

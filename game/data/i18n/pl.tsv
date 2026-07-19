@@ -432,3 +432,130 @@ hud.team_home_fallback	GOSPODARZE
 hud.team_away_fallback	GOSCIE
 goal.type_penalty	(KARNY)
 goal.type_own_goal	(SAM)
+# S34 additions
+bench.coach	TRENER
+bench.coming_on	WCHODZI: {0}
+bench.fire_swap	OGIEN WYBOR+WYBOR = ZAMIANA
+bench.formation	USTAWIENIE
+bench.formation_colon	USTAWIENIE:
+bench.help_leave	LEWO/PRAWO OPUSC LAWKE
+bench.help_select	GORA/DOL WYBIERZ  OGIEN OK
+bench.hold_mark	PRZYTRZYMAJ OGIEN = KRYJ ZAWODNIKA
+bench.player_off	SCHODZI:
+bench.sub_in_progress	ZMIANA W TOKU...
+bench.swap_formation	ZAMIANA / USTAWIENIE:
+bench.tag_inj	 KON
+bench.tag_off	 [ZDJ]
+bench.tag_sub	 [ZMN]
+bench.title	LAWKA - {0}
+bench.user	GRACZ {0}
+career.dash_div_season	DYW {0}  SEZON {1}
+career.price_any	DOWOLNA
+career.rec_pwdl	M {0}   Z {1}   R {2}   P {3}   BZ {4}   BS {5}
+career.rec_season_div	SEZON {0}  {1}  DYW {2}
+career.release_confirm	ZWOLNIC {0} ZA DARMO?
+career.skill_letters	PSGOKSW
+career.title_mr	PAN
+career.title_ms	PANI
+comp.competition_complete	ROZGRYWKI ZAKONCZONE
+comp.cup	PUCHAR
+comp.entrants_random	LOSOWO
+comp.entrants_same_div	TA SAMA LIGA
+comp.entrants_same_nation	TEN SAM KRAJ
+comp.league_round	LIGA - KOLEJKA {0}/{1}
+comp.name_career	KARIERA
+comp.name_cup	PUCHAR
+comp.name_league	LIGA
+comp.name_tournament	TURNIEJ
+comp.no_fixtures	BRAK MECZOW
+comp.no_player_team	BRAK DRUZYNY GRACZA
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	PUCHAR ZDOBYWCOW PUCHAROW
+comp.preset_european_championship	MISTRZOSTWA EUROPY
+comp.preset_european_cup	PUCHAR EUROPY
+comp.preset_uefa_cup	PUCHAR UEFA
+comp.preset_world_cup	MISTRZOSTWA SWIATA
+comp.slot_finished	ZAKONCZONE
+comp.slot_no_team	BRAK DRUZYNY
+comp.slot_round	RUNDA {0}/{1}
+comp.slot_winner	ZWYCIEZCA {0}
+comp.stage_final	FINAL
+comp.stage_group	GRUPA
+comp.stage_league	LIGA
+comp.stage_quarter	CWIERCFINAL
+comp.stage_r16	1/8 FINALU
+comp.stage_r32	1/16 FINALU
+comp.stage_round_of	RUNDA
+comp.stage_semi	POLFINAL
+comp.you_are_pos	JESTES {0}
+comp.you_champion	JESTES MISTRZEM
+comp.you_eliminated	ODPADLES
+comp.you_in	JESTES W {0}
+comp.you_in_the	JESTES W {0}
+comp.you_through	AWANSUJESZ DO NASTEPNEJ RUNDY
+comp.you_unplaced	BEZ MIEJSCA
+firstrun.body	BRAK DANYCH GRY SWOS.\n\nOPENSWOS WYMAGA SENSIBLE WORLD OF SOCCER 96/97 (WERSJA AMIGA).\nDWIE OPCJE - POTEM URUCHOM GRE PONOWNIE:\n\n  (A) WRZUC OBRAZY DYSKIETEK AMIGA (*.adf) DO:\n        {0}\n      OPENSWOS WYPAKUJE POTRZEBNE PLIKI PRZY NASTEPNYM STARCIE.\n\n  (B) MASZ JUZ LUZNE PLIKI GRY (NP. INSTALACJA WHDLOAD)?\n      SKOPIUJ JE DO:\n        {1}\n\nOPCJONALNIE: WRZUC FOLDER PC (DOS) DATA DO 'original_swos_pc/' ABY MIEC\nNIECO WIEKSZA LISTE DRUZYN - NIE JEST WYMAGANE I NIE ZMIENIA GRAFIKI.\n\nWCZESNIEJSZE WERSJE SWOS (94/95 ITD.) NIE SA ZGODNE.
+menu.team_coach_div	TRENER {0}   DYW {1}
+menu.team_div	DYW {0}
+menu.versus	  V
+nation.continent_africa	AFRYKA
+nation.continent_asia	AZJA
+nation.continent_europe	EUROPA
+nation.continent_north_america	AMERYKA POLNOCNA
+nation.continent_oceania	OCEANIA
+nation.continent_south_america	AMERYKA POLUDNIOWA
+nav.hint_menu	GORA/DOL WYBIERZ   OGIEN OK   ESC POWROT
+nav.hint_picker	GORA/DOL PRZEWIN   OGIEN WYBIERZ   ESC ANULUJ
+nav.hint_picker_cols	GORA/DOL PRZEWIN   LEWO/PRAWO KOLUMNA   OGIEN WYBIERZ   ESC ANULUJ
+nav.hint_stepper	GORA/DOL WYBIERZ   LEWO/PRAWO ZMIEN   OGIEN OK   ESC POWROT
+nav.hint_table	GORA/DOL WIERSZ   OGIEN OK   ESC POWROT
+opt.commentator	KOMENTATOR
+opt.commentator_hint	KOMENTARZ GLOSOWY (TYLKO DZWIEK PC)
+opt.display_fullfill	WYPELNIJ EKRAN
+opt.display_fullinteger	SKALA CALKOWITA
+opt.display_unknown	?
+opt.display_windowed	W OKNIE
+opt.len_min_whole	{0} MIN REAL  (CALY MECZ)
+opt.len_sec_whole	{0}S REAL  (CALY MECZ)
+opt.smoothing_sharp	OSTRE
+overlay.corner	ROZNY
+overlay.fulltime	KONIEC MECZU
+overlay.fulltime_body	KONIEC MECZU\n\n{0}  {1} - {2}  {3}\n\nnacisnij spacje
+overlay.goal	GOL!
+overlay.goalkick	WYKOP OD BRAMKI
+overlay.halftime	PRZERWA
+overlay.paused	PAUZA\n\nspacja  wznow\nESC    wyjscie do menu
+overlay.penalties	KARNE
+overlay.throwin	WRZUT
+pos.a	N
+pos.d	O
+pos.gk	BR
+pos.lb	LO
+pos.lw	LS
+pos.m	P
+pos.none	--
+pos.rb	PO
+pos.rw	PS
+pos.unknown	?
+result.away	GOSCIE
+result.home	GOSPODARZE
+result.og	(SAM)
+result.pen	(KARNY)
+scout.notice_maxed	SKAUTING MAX
+scout.notice_no_money	ZA MALO PIENIEDZY
+scout.notice_player_unavailable	ZAWODNIK NIEDOSTEPNY
+scout.notice_unavailable	SKAUTING NIEDOSTEPNY
+staff.notice_coach_unavailable	TRENER NIEDOSTEPNY
+staff.notice_focus_full	FOKUS PELNY
+staff.notice_full	SZTAB PELNY
+staff.notice_no_money	ZA MALO PIENIEDZY
+staff.notice_player_unavailable	ZAWODNIK NIEDOSTEPNY
+staff.notice_unavailable	SZTAB NIEDOSTEPNY
+staff.spec_attack	ATAK
+staff.spec_defence	OBRONA
+staff.spec_general	OGOLNY
+staff.spec_youth	MLODZIEZ

@@ -432,3 +432,130 @@ hud.team_home_fallback	DOMACIN
 hud.team_away_fallback	GOST
 goal.type_penalty	(PEN)
 goal.type_own_goal	(AG)
+# S34 additions
+bench.coach	TRENER
+bench.coming_on	ULAZI: {0}
+bench.fire_swap	FIRE ODABIR+ODABIR = ZAMJENA
+bench.formation	FORMACIJA
+bench.formation_colon	FORMACIJA:
+bench.help_leave	LIJEVO/DESNO NAPUSTI KLUPU
+bench.help_select	GORE/DOLJE ODABIR  FIRE OK
+bench.hold_mark	DRZI FIRE = CUVAJ IGRACA
+bench.player_off	IZLAZI:
+bench.sub_in_progress	IZMJENA U TIJEKU...
+bench.swap_formation	ZAMJENA / FORMACIJA:
+bench.tag_inj	 OZL
+bench.tag_off	 [VAN]
+bench.tag_sub	 [ZAM]
+bench.title	KLUPA - {0}
+bench.user	IGRAC {0}
+career.dash_div_season	LIGA {0}  SEZONA {1}
+career.price_any	BILO KOJA
+career.rec_pwdl	O {0}   P {1}   N {2}   I {3}   ZG {4}   PG {5}
+career.rec_season_div	SEZONA {0}  {1}  LIGA {2}
+career.release_confirm	OTPUSTITI {0} BESPLATNO?
+career.skill_letters	DBGOKUZ
+career.title_mr	G.
+career.title_ms	GDA
+comp.competition_complete	NATJECANJE ZAVRSENO
+comp.cup	KUP
+comp.entrants_random	NASUMICNO
+comp.entrants_same_div	ISTA LIGA
+comp.entrants_same_nation	ISTA DRZAVA
+comp.league_round	LIGA - KOLO {0}/{1}
+comp.name_career	KARIJERA
+comp.name_cup	KUP
+comp.name_league	LIGA
+comp.name_tournament	TURNIR
+comp.no_fixtures	NEMA MECEVA
+comp.no_player_team	NEMA IGRACEVE EKIPE
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	KUP POBJEDNIKA KUPOVA
+comp.preset_european_championship	EUROPSKO PRVENSTVO
+comp.preset_european_cup	KUP PRVAKA
+comp.preset_uefa_cup	UEFA KUP
+comp.preset_world_cup	SVJETSKO PRVENSTVO
+comp.slot_finished	ZAVRSENO
+comp.slot_no_team	NEMA EKIPE
+comp.slot_round	KOLO {0}/{1}
+comp.slot_winner	POBJEDNIK {0}
+comp.stage_final	FINALE
+comp.stage_group	SKUPINA
+comp.stage_league	LIGA
+comp.stage_quarter	CETVRTFINALE
+comp.stage_r16	OSMINA FINALA
+comp.stage_r32	SESNAESTINA FINALA
+comp.stage_round_of	RUNDA
+comp.stage_semi	POLUFINALE
+comp.you_are_pos	TI SI {0}
+comp.you_champion	TI SI PRVAK
+comp.you_eliminated	ISPAO SI
+comp.you_in	U {0} SI
+comp.you_in_the	U {0} SI
+comp.you_through	PROLAZIS U SLJEDECU RUNDU
+comp.you_unplaced	BEZ PLASMANA
+firstrun.body	NEMA PODATAKA SWOS IGRE.\n\nOPENSWOS TREBA SENSIBLE WORLD OF SOCCER 96/97 (AMIGA IZDANJE).\nDVIJE OPCIJE - ZATIM PONOVNO POKRENI IGRU:\n\n  (A) UBACI AMIGA SLIKE DISKETA (*.adf) U:\n        {0}\n      OPENSWOS RASPAKIRA STO TREBA PRI SLJEDECEM POKRETANJU.\n\n  (B) VEC IMAS RASUTE DATOTEKE IGRE (NPR. WHDLOAD INSTALACIJA)?\n      KOPIRAJ IH U:\n        {1}\n\nOPCIONALNO: UBACI PC (DOS) DATA MAPU U 'original_swos_pc/' ZA\nNESTO VECI POPIS EKIPA - NIJE NUZNO I NE MIJENJA GRAFIKU.\n\nRANIJA SWOS IZDANJA (94/95 ITD.) NISU KOMPATIBILNA.
+menu.team_coach_div	TRENER {0}   LIGA {1}
+menu.team_div	LIGA {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	AZIJA
+nation.continent_europe	EUROPA
+nation.continent_north_america	SJEVERNA AMERIKA
+nation.continent_oceania	OKEANIJA
+nation.continent_south_america	JUZNA AMERIKA
+nav.hint_menu	GORE/DOLJE ODABIR   FIRE OK   ESC NAZAD
+nav.hint_picker	GORE/DOLJE POMAK   FIRE ODABERI   ESC ODUSTANI
+nav.hint_picker_cols	GORE/DOLJE POMAK   LIJEVO/DESNO STUPAC   FIRE ODABERI   ESC ODUSTANI
+nav.hint_stepper	GORE/DOLJE ODABIR   LIJEVO/DESNO PROMIJENI   FIRE OK   ESC NAZAD
+nav.hint_table	GORE/DOLJE RED   FIRE OK   ESC NAZAD
+opt.commentator	KOMENTATOR
+opt.commentator_hint	GOVORNI KOMENTAR (SAMO PC ZVUK)
+opt.display_fullfill	POPUNI EKRAN
+opt.display_fullinteger	CJELOBROJNO
+opt.display_unknown	?
+opt.display_windowed	U PROZORU
+opt.len_min_whole	{0} MIN STVARNO  (CIJELI MEC)
+opt.len_sec_whole	{0}S STVARNO  (CIJELI MEC)
+opt.smoothing_sharp	OSTRO
+overlay.corner	KORNER
+overlay.fulltime	KRAJ MECA
+overlay.fulltime_body	KRAJ MECA\n\n{0}  {1} - {2}  {3}\n\npritisni razmak
+overlay.goal	GOL!
+overlay.goalkick	UDARAC S VRATA
+overlay.halftime	POLUVRIJEME
+overlay.paused	PAUZA\n\nrazmak  nastavi\nESC    izlaz u izbornik
+overlay.penalties	PENALI
+overlay.throwin	UBACIVANJE
+pos.a	N
+pos.d	B
+pos.gk	VR
+pos.lb	LB
+pos.lw	LK
+pos.m	V
+pos.none	--
+pos.rb	DB
+pos.rw	DK
+pos.unknown	?
+result.away	GOST
+result.home	DOMACIN
+result.og	(AG)
+result.pen	(PEN)
+scout.notice_maxed	SKAUTIRANJE MAX
+scout.notice_no_money	NEMA DOVOLJNO NOVCA
+scout.notice_player_unavailable	IGRAC NEDOSTUPAN
+scout.notice_unavailable	SKAUTIRANJE NEDOSTUPNO
+staff.notice_coach_unavailable	TRENER NEDOSTUPAN
+staff.notice_focus_full	FOKUS PUN
+staff.notice_full	STOZER PUN
+staff.notice_no_money	NEMA DOVOLJNO NOVCA
+staff.notice_player_unavailable	IGRAC NEDOSTUPAN
+staff.notice_unavailable	STOZER NEDOSTUPAN
+staff.spec_attack	NAPAD
+staff.spec_defence	OBRANA
+staff.spec_general	OPCENITO
+staff.spec_youth	MLADI

@@ -1,3 +1,5 @@
+using OpenSwos.Menu;
+
 namespace OpenSwos.Assets;
 
 // Country names + continent grouping for TEAM.* nation indices, extracted from
@@ -134,5 +136,19 @@ public static class NationNames
         => nation >= 0 && nation < kNations.Length ? kNations[nation].Continent : 0;
 
     public static string ContinentName(int c)
-        => c >= 0 && c < kContinents.Length ? kContinents[c] : $"CONTINENT {c}";
+    {
+        string en = c >= 0 && c < kContinents.Length ? kContinents[c] : $"CONTINENT {c}";
+        // Display-time only: the stored continent CODE (int c) is unchanged; we
+        // translate solely the rendered name. English is the identity fallback.
+        return c switch
+        {
+            0 => Loc.Tr("nation.continent_europe", en),
+            1 => Loc.Tr("nation.continent_africa", en),
+            2 => Loc.Tr("nation.continent_south_america", en),
+            3 => Loc.Tr("nation.continent_north_america", en),
+            4 => Loc.Tr("nation.continent_asia", en),
+            5 => Loc.Tr("nation.continent_oceania", en),
+            _ => en,
+        };
+    }
 }

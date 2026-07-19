@@ -432,3 +432,130 @@ hud.team_home_fallback	CASA
 hud.team_away_fallback	FORA
 goal.type_penalty	(PEN)
 goal.type_own_goal	(AG)
+# S34 additions
+bench.coach	TREINADOR
+bench.coming_on	ENTRA: {0}
+bench.fire_swap	TIRO SEL+SEL = TROCA
+bench.formation	FORMACAO
+bench.formation_colon	FORMACAO:
+bench.help_leave	ESQ/DIR SAIR BANCO
+bench.help_select	CIMA/BAIXO SEL  TIRO OK
+bench.hold_mark	SEGURA TIRO = MARCAR JOGADOR
+bench.player_off	SAI:
+bench.sub_in_progress	SUBSTITUICAO EM CURSO...
+bench.swap_formation	TROCA / FORMACAO:
+bench.tag_inj	 LES
+bench.tag_off	 [FOR]
+bench.tag_sub	 [SUP]
+bench.title	BANCO - {0}
+bench.user	JOGADOR {0}
+career.dash_div_season	DIV {0}  EPOCA {1}
+career.price_any	QUALQUER
+career.rec_pwdl	J {0}   V {1}   E {2}   D {3}   GM {4}   GS {5}
+career.rec_season_div	EPOCA {0}  {1}  DIV {2}
+career.release_confirm	LIBERTAR {0} GRATIS?
+career.skill_letters	PVHTCSF
+career.title_mr	SR
+career.title_ms	SRA
+comp.competition_complete	COMPETICAO CONCLUIDA
+comp.cup	TACA
+comp.entrants_random	ALEATORIO
+comp.entrants_same_div	MESMA DIVISAO
+comp.entrants_same_nation	MESMA NACAO
+comp.league_round	LIGA - JORNADA {0}/{1}
+comp.name_career	CARREIRA
+comp.name_cup	TACA
+comp.name_league	LIGA
+comp.name_tournament	TORNEIO
+comp.no_fixtures	SEM JOGOS
+comp.no_player_team	SEM EQUIPA JOGADOR
+comp.ord_nd	O
+comp.ord_rd	O
+comp.ord_st	O
+comp.ord_th	O
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	TACA DAS TACAS
+comp.preset_european_championship	CAMPEONATO EUROPEU
+comp.preset_european_cup	TACA DOS CAMPEOES
+comp.preset_uefa_cup	TACA UEFA
+comp.preset_world_cup	CAMPEONATO DO MUNDO
+comp.slot_finished	TERMINADA
+comp.slot_no_team	SEM EQUIPA
+comp.slot_round	RONDA {0}/{1}
+comp.slot_winner	VENCEDOR {0}
+comp.stage_final	FINAL
+comp.stage_group	GRUPO
+comp.stage_league	LIGA
+comp.stage_quarter	QUARTOS FINAL
+comp.stage_r16	OITAVOS
+comp.stage_r32	16 AVOS
+comp.stage_round_of	RONDA DE
+comp.stage_semi	MEIA FINAL
+comp.you_are_pos	ESTAS EM {0}
+comp.you_champion	ES O CAMPEAO
+comp.you_eliminated	FOSTE ELIMINADO
+comp.you_in	ESTAS NO {0}
+comp.you_in_the	ESTAS NA {0}
+comp.you_through	PASSAS A PROXIMA RONDA
+comp.you_unplaced	SEM CLASSIFICACAO
+firstrun.body	NAO FORAM ENCONTRADOS DADOS DO JOGO SWOS.\n\nOPENSWOS PRECISA DE SENSIBLE WORLD OF SOCCER 96/97 (EDICAO AMIGA).\nDUAS OPCOES - DEPOIS REINICIE O JOGO:\n\n  (A) COLOQUE AS SUAS IMAGENS DE DISQUETE AMIGA (*.ADF) EM:\n        {0}\n      OPENSWOS EXTRAI O NECESSARIO NO PROXIMO ARRANQUE.\n\n  (B) JA TEM OS FICHEIROS DO JOGO (P.EX. UMA INSTALACAO WHDLOAD)?\n      COPIE-OS PARA:\n        {1}\n\nOPCIONAL: COLOQUE A PASTA DATA DO PC (DOS) EM 'ORIGINAL_SWOS_PC/' PARA\nUMA LISTA DE EQUIPAS UM POUCO MAIOR - NAO E OBRIGATORIO, E NAO ALTERA OS GRAFICOS.\n\nAS EDICOES SWOS ANTERIORES (94/95 ETC.) NAO SAO COMPATIVEIS.
+menu.team_coach_div	TREINADOR {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRICA
+nation.continent_asia	ASIA
+nation.continent_europe	EUROPA
+nation.continent_north_america	AMERICA DO NORTE
+nation.continent_oceania	OCEANIA
+nation.continent_south_america	AMERICA DO SUL
+nav.hint_menu	CIMA/BAIXO SEL   TIRO OK   ESC VOLTAR
+nav.hint_picker	CIMA/BAIXO DESLOCAR   TIRO SEL   ESC CANCELAR
+nav.hint_picker_cols	CIMA/BAIXO DESLOCAR   ESQ/DIR COLUNA   TIRO SEL   ESC CANCELAR
+nav.hint_stepper	CIMA/BAIXO SEL   ESQ/DIR MUDAR   TIRO OK   ESC VOLTAR
+nav.hint_table	CIMA/BAIXO LINHA   TIRO OK   ESC VOLTAR
+opt.commentator	COMENTADOR
+opt.commentator_hint	COMENTARIO FALADO (SO SOM PC)
+opt.display_fullfill	PREENCHER
+opt.display_fullinteger	INTEIRO
+opt.display_unknown	?
+opt.display_windowed	JANELA
+opt.len_min_whole	{0} MIN REAL  (JOGO INTEIRO)
+opt.len_sec_whole	{0}S REAL  (JOGO INTEIRO)
+opt.smoothing_sharp	NITIDO
+overlay.corner	CANTO
+overlay.fulltime	FIM DE JOGO
+overlay.fulltime_body	FIM DE JOGO\n\n{0}  {1} - {2}  {3}\n\nPRIME ESPACO
+overlay.goal	GOLO!
+overlay.goalkick	PONTAPE DE BALIZA
+overlay.halftime	INTERVALO
+overlay.paused	EM PAUSA\n\nSPACE  RETOMAR\nESC    SAIR PARA MENU
+overlay.penalties	PENALTIS
+overlay.throwin	LANCAMENTO
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	FORA
+result.home	CASA
+result.og	(AG)
+result.pen	(PEN)
+scout.notice_maxed	OBSERVACAO NO MAXIMO
+scout.notice_no_money	DINHEIRO INSUFICIENTE
+scout.notice_player_unavailable	JOGADOR INDISPONIVEL
+scout.notice_unavailable	OBSERVACAO INDISPONIVEL
+staff.notice_coach_unavailable	TREINADOR INDISPONIVEL
+staff.notice_focus_full	FOCO COMPLETO
+staff.notice_full	EQUIPA TECNICA CHEIA
+staff.notice_no_money	DINHEIRO INSUFICIENTE
+staff.notice_player_unavailable	JOGADOR INDISPONIVEL
+staff.notice_unavailable	EQUIPA TECNICA INDISPONIVEL
+staff.spec_attack	ATAQUE
+staff.spec_defence	DEFESA
+staff.spec_general	GERAL
+staff.spec_youth	JUVENIL

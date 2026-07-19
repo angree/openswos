@@ -253,17 +253,30 @@ public static class CdSfxImport
                 string name = (q1 >= 0 && q2 > q1)
                     ? line.Substring(q1 + 1, q2 - q1 - 1)
                     : line.Substring(4).Trim().Split(' ')[0];
-                string cand = Path.IsPathRooted(name) ? name : Path.Combine(dir, name);
-                if (File.Exists(cand)) return cand;
+                // Case-insensitive: the name comes from the USER's cue sheet text, which
+                // very often disagrees in case with the actual file (different rippers,
+                // later renames). An exact-case miss here killed CD SFX *and* the menu
+                // music on Linux/Android for people whose image was perfectly fine.
+                if (Path.IsPathRooted(name))
+                {
+                    if (File.Exists(name)) return name;
+                    string rooted = DataPaths.ResolveFile(
+                        Path.GetDirectoryName(name) ?? "", Path.GetFileName(name));
+                    if (rooted.Length > 0) return rooted;
+                    continue;
+                }
+                string cand = DataPaths.ResolveFile(dir, name);
+                if (cand.Length > 0) return cand;
             }
         }
         catch { /* fall through */ }
 
-        // Fallback: same-basename .img / .bin next to the cue.
+        // Fallback: same-basename .img / .bin next to the cue (any case).
         foreach (string alt in new[] { ".img", ".bin" })
         {
-            string cand = Path.Combine(dir, Path.GetFileNameWithoutExtension(cue) + alt);
-            if (File.Exists(cand)) return cand;
+            string cand = DataPaths.ResolveFile(
+                dir, Path.GetFileNameWithoutExtension(cue) + alt);
+            if (cand.Length > 0) return cand;
         }
         return "";
     }

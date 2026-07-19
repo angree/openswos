@@ -432,3 +432,130 @@ hud.team_home_fallback	HEMMA
 hud.team_away_fallback	BORTA
 goal.type_penalty	(STR)
 goal.type_own_goal	(SJM)
+# S34 additions
+bench.coach	TRANARE
+bench.coming_on	KOMMER IN: {0}
+bench.fire_swap	ELD VALJ+VALJ = BYT
+bench.formation	FORMATION
+bench.formation_colon	FORMATION:
+bench.help_leave	VANSTER/HOGER LAMNA BANK
+bench.help_select	UPP/NED VALJ  ELD OK
+bench.hold_mark	HALL ELD = MARKERA SPELARE
+bench.player_off	SPELARE UT:
+bench.sub_in_progress	BYTE PAGAR...
+bench.swap_formation	BYT / FORMATION:
+bench.tag_inj	 SKA
+bench.tag_off	 [UT]
+bench.tag_sub	 [AVB]
+bench.title	BANK - {0}
+bench.user	ANVANDARE {0}
+career.dash_div_season	DIV {0}  SASONG {1}
+career.price_any	ALLA
+career.rec_pwdl	S {0}   V {1}   O {2}   F {3}   GM {4}   IM {5}
+career.rec_season_div	SASONG {0}  {1}  DIV {2}
+career.release_confirm	SLAPP {0} GRATIS?
+career.skill_letters	PFNTKSA
+career.title_mr	HERR
+career.title_ms	FRU
+comp.competition_complete	TAVLING KLAR
+comp.cup	CUP
+comp.entrants_random	SLUMP
+comp.entrants_same_div	SAMMA DIVISION
+comp.entrants_same_nation	SAMMA LAND
+comp.league_round	LIGA - OMGANG {0}/{1}
+comp.name_career	KARRIAR
+comp.name_cup	CUP
+comp.name_league	LIGA
+comp.name_tournament	TURNERING
+comp.no_fixtures	INGA MATCHER
+comp.no_player_team	INGET SPELARLAG
+comp.ord_nd	:A
+comp.ord_rd	:E
+comp.ord_st	:A
+comp.ord_th	:E
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	CUPVINNARCUPEN
+comp.preset_european_championship	EUROPAMASTERSKAPET
+comp.preset_european_cup	EUROPACUPEN
+comp.preset_uefa_cup	UEFA-CUPEN
+comp.preset_world_cup	VARLDSMASTERSKAPET
+comp.slot_finished	KLAR
+comp.slot_no_team	INGET LAG
+comp.slot_round	OMGANG {0}/{1}
+comp.slot_winner	VINNARE {0}
+comp.stage_final	FINAL
+comp.stage_group	GRUPP
+comp.stage_league	LIGA
+comp.stage_quarter	KVARTSFINAL
+comp.stage_r16	ATTONDELSFINAL
+comp.stage_r32	SEXTONDELSFINAL
+comp.stage_round_of	OMGANG AV
+comp.stage_semi	SEMIFINAL
+comp.you_are_pos	DU AR {0}
+comp.you_champion	DU AR MASTARE
+comp.you_eliminated	DU BLEV UTSLAGEN
+comp.you_in	DU AR I {0}
+comp.you_in_the	DU AR I {0}
+comp.you_through	DU AR VIDARE TILL NASTA OMGANG
+comp.you_unplaced	DU AR OPLACERAD
+firstrun.body	Ingen SWOS-speldata hittades.\n\nOpenSWOS behover Sensible World of Soccer 96/97 (Amiga-utgavan).\nTva alternativ - starta sedan om spelet:\n\n  (a) Lagg dina Amiga-floppybilder (*.adf) i:\n        {0}\n      OpenSWOS extraherar det som behovs vid nasta start.\n\n  (b) Har du redan de losa spelfilerna (t.ex. en WHDLoad-installation)?\n      Kopiera dem till:\n        {1}\n\nValfritt: lagg PC-mappen (DOS) DATA i 'original_swos_pc/' for en\nnagot storre laglista - inte nodvandigt, och det andrar inte grafiken.\n\nTidigare SWOS-utgavor (94/95 osv.) ar INTE kompatibla.
+menu.team_coach_div	TRANARE {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	ASIEN
+nation.continent_europe	EUROPA
+nation.continent_north_america	NORDAMERIKA
+nation.continent_oceania	OCEANIEN
+nation.continent_south_america	SYDAMERIKA
+nav.hint_menu	UPP/NER VALJ   ELD OK   ESC TILLBAKA
+nav.hint_picker	UPP/NER BLADDRA   ELD VALJ   ESC AVBRYT
+nav.hint_picker_cols	UPP/NER BLADDRA   VANSTER/HOGER KOLUMN   ELD VALJ   ESC AVBRYT
+nav.hint_stepper	UPP/NER VALJ   VANSTER/HOGER ANDRA   ELD OK   ESC TILLBAKA
+nav.hint_table	UPP/NER RAD   ELD OK   ESC TILLBAKA
+opt.commentator	KOMMENTATOR
+opt.commentator_hint	TALAD KOMMENTAR (ENDAST PC-LJUD)
+opt.display_fullfill	FULL FYLL
+opt.display_fullinteger	FULL HELTAL
+opt.display_unknown	?
+opt.display_windowed	FONSTER
+opt.len_min_whole	{0} MIN RIKTIG  (HELA MATCHEN)
+opt.len_sec_whole	{0}S RIKTIG  (HELA MATCHEN)
+opt.smoothing_sharp	SKARP
+overlay.corner	HORNA
+overlay.fulltime	FULLTID
+overlay.fulltime_body	FULLTID\n\n{0}  {1} - {2}  {3}\n\ntryck mellanslag
+overlay.goal	MAL!
+overlay.goalkick	INSPARK
+overlay.halftime	HALVTID
+overlay.paused	PAUSAT\n\nmellanslag  fortsatt\nESC    avsluta till meny
+overlay.penalties	STRAFFAR
+overlay.throwin	INKAST
+pos.a	A
+pos.d	B
+pos.gk	MV
+pos.lb	VB
+pos.lw	VY
+pos.m	M
+pos.none	--
+pos.rb	HB
+pos.rw	HY
+pos.unknown	?
+result.away	BORTA
+result.home	HEMMA
+result.og	(SJM)
+result.pen	(STR)
+scout.notice_maxed	SCOUTING MAX
+scout.notice_no_money	INTE NOG PENGAR
+scout.notice_player_unavailable	SPELARE EJ TILLGANGLIG
+scout.notice_unavailable	SCOUTING EJ TILLGANGLIG
+staff.notice_coach_unavailable	TRANARE EJ TILLGANGLIG
+staff.notice_focus_full	FOKUS FULLT
+staff.notice_full	PERSONAL FULLT
+staff.notice_no_money	INTE NOG PENGAR
+staff.notice_player_unavailable	SPELARE EJ TILLGANGLIG
+staff.notice_unavailable	PERSONAL EJ TILLGANGLIG
+staff.spec_attack	ANFALL
+staff.spec_defence	FORSVAR
+staff.spec_general	ALLMAN
+staff.spec_youth	UNGDOM

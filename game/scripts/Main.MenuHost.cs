@@ -119,7 +119,9 @@ public partial class Main : OpenSwos.Menu.IMenuHost
 
     // ---- length --------------------------------------------------------------
     string OpenSwos.Menu.IMenuHost.LengthLabel =>
-        TotalMatchSeconds < 60 ? $"{TotalMatchSeconds}S REAL  (WHOLE MATCH)" : $"{TotalMatchSeconds / 60} MIN REAL  (WHOLE MATCH)";
+        TotalMatchSeconds < 60
+            ? string.Format(OpenSwos.Menu.Loc.Tr("opt.len_sec_whole", "{0}S REAL  (WHOLE MATCH)"), TotalMatchSeconds)
+            : string.Format(OpenSwos.Menu.Loc.Tr("opt.len_min_whole", "{0} MIN REAL  (WHOLE MATCH)"), TotalMatchSeconds / 60);
 
     void OpenSwos.Menu.IMenuHost.StepLength(int delta)
     {
@@ -362,12 +364,47 @@ public partial class Main : OpenSwos.Menu.IMenuHost
 
     void OpenSwos.Menu.IMenuHost.StepSoundSource(int delta)
     {
-        // Only two sources — cycling toggles to the OTHER one, but only if it is
-        // available (otherwise the unavailable option is skipped and we stay put).
+        // Only two sources — cycling ALWAYS toggles to the other one. It used to refuse
+        // when the other source was unavailable, which made this a DEAD BUTTON: with no
+        // PC files installed the row could not be moved off PC at all, and the player
+        // just got silence with no explanation. The label marks an unavailable choice
+        // "(N/A)" and ResolveSoundSource still degrades to whatever exists at match
+        // start, so letting the preference move is safe and far less confusing.
+        _soundSource = _soundSource == OpenSwos.Audio.MatchAudio.SoundSource.Pc
+            ? OpenSwos.Audio.MatchAudio.SoundSource.Amiga
+            : OpenSwos.Audio.MatchAudio.SoundSource.Pc;
+        SaveSettings();
+    }
+
+    /// <summary>
+    /// Point the SOUND preference at a source that actually exists. Called once after
+    /// settings load, when asset availability is finally known. Without this a fresh
+    /// install defaults to PC, and a player with only Amiga files gets NO match sound
+    /// until they find the option themselves — the common case, since PC sound needs
+    /// the CD. Only moves the preference when the current pick is unusable and the
+    /// other one works, so an explicit choice is never overridden silently.
+    /// </summary>
+    private void NormalizeSoundSource()
+    {
+        if (SoundSourceAvailable(_soundSource)) return;
         var other = _soundSource == OpenSwos.Audio.MatchAudio.SoundSource.Pc
             ? OpenSwos.Audio.MatchAudio.SoundSource.Amiga
             : OpenSwos.Audio.MatchAudio.SoundSource.Pc;
-        if (SoundSourceAvailable(other)) _soundSource = other;
+        if (!SoundSourceAvailable(other)) return;
+        GD.Print($"[Audio] SOUND preference {_soundSource} unavailable -> auto-selected {other}.");
+        _soundSource = other;
+        SaveSettings();
+    }
+
+    // OPTIONS "COMMENTATOR" row — ON / OFF. Silences spoken commentary even on
+    // PC sound (see MatchAudio.CommentatorEnabled, applied at match start).
+    string OpenSwos.Menu.IMenuHost.CommentatorLabel =>
+        _commentator ? OpenSwos.Menu.Loc.Tr("common.on", "ON") : OpenSwos.Menu.Loc.Tr("common.off", "OFF");
+
+    void OpenSwos.Menu.IMenuHost.StepCommentator(int delta)
+    {
+        // Two-state toggle — any delta flips it.
+        _commentator = !_commentator;
         SaveSettings();
     }
 
@@ -440,6 +477,17 @@ public partial class Main : OpenSwos.Menu.IMenuHost
     string OpenSwos.Menu.IMenuHost.DisplayModeLabel => DisplayModeToLabel(_displayMode);
 
     void OpenSwos.Menu.IMenuHost.CycleDisplayMode() => CycleDisplayModeInternal();
+
+    // OPTIONS "SMOOTHING" row — OFF / SHARP. Flips the root viewport present
+    // filter (see ApplySmoothing) and persists the choice.
+    string OpenSwos.Menu.IMenuHost.SmoothingLabel =>
+        _smoothing ? OpenSwos.Menu.Loc.Tr("opt.smoothing_sharp", "SHARP") : OpenSwos.Menu.Loc.Tr("common.off", "OFF");
+    void OpenSwos.Menu.IMenuHost.CycleSmoothing()
+    {
+        _smoothing = !_smoothing;
+        ApplySmoothing();
+        SaveSettings();
+    }
 
     // Persist the UI language after the user picks it in OPTIONS.
     void OpenSwos.Menu.IMenuHost.OnLanguageChanged() => SaveSettings();

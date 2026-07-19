@@ -16,7 +16,11 @@ public sealed class AmigaAssetSource : IAssetSource
     public IEnumerable<TeamRecord> LoadAllTeams()
     {
         if (!Directory.Exists(_dataDir)) yield break;
-        foreach (string file in Directory.EnumerateFiles(_dataDir, "TEAM.*"))
+        // Case-insensitive: on Linux/Android/R36S a "TEAM.*" pattern would miss a
+        // lowercased set (team.000 …), which is exactly what a DOS install copied
+        // off a FAT partition looks like — folder found, yet ZERO teams loaded.
+        foreach (string file in Directory.EnumerateFiles(
+                     _dataDir, "TEAM.*", DataPaths.CaseInsensitiveScan))
         {
             foreach (var rec in ParseFile(file)) yield return rec;
         }
@@ -24,8 +28,8 @@ public sealed class AmigaAssetSource : IAssetSource
 
     public IEnumerable<TeamRecord> LoadTeamsForNation(int nation)
     {
-        string file = Path.Combine(_dataDir, $"TEAM.{nation:D3}");
-        if (!File.Exists(file)) yield break;
+        string file = DataPaths.ResolveFile(_dataDir, $"TEAM.{nation:D3}");
+        if (file.Length == 0) yield break;
         foreach (var rec in ParseFile(file)) yield return rec;
     }
 

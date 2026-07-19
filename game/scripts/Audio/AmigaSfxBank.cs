@@ -55,13 +55,28 @@ public static class AmigaSfxBank
     private const int RateWhistle = 16574; // instr 40
     private const int RateCrowd = 10462;   // instr 36 (near-miss "oooh")
     private const int RateCrowdDelayed = 12445; // instr 36, delayed reaction (asm 17963)
-    private const int RateBed = 8000;      // instr 1 (ambient crowd bed; rate not in
-                                           // the pattern data — approximate loop pitch)
+    // The bed rate IS in the pattern data after all — song 1 (patterns 1+2) plays instr
+    // 1 on two detuned channels, notes $46/$18 -> periods 214/226 -> 16574/15694 Hz. The
+    // old 8000 guess pitched the bed more than an octave down, and instr 1 is already the
+    // quietest sample in the bank (peak 28/128), so the crowd was an inaudible rumble —
+    // reported as "the Amiga version has no crowd at all".
+    // We play ONE bed layer. The original runs a second, detuned copy at 15694 Hz on
+    // another channel, which thickens the crowd; reproducing that needs a second mixer
+    // voice wired through the same fade/boost envelope, so it is left for later rather
+    // than bolted onto the path we are currently repairing.
+    private const int RateBed = 16574;     // instr 1, song 1 channel A
     private const int RateChant = 16000;   // instrs 60/61/63/67 (~15.7-16.6 kHz)
+
+    // Crowd ROAR (song 6): the real goal / penalty / half-end / full-time cheer. Two
+    // looping layers. Instr 36 is NOT this — it appears only in the near-miss and
+    // delayed-reaction patterns, i.e. it is exclusively the disappointed "ooooh".
+    private const int RateCheer = 16574;   // instr 28, song 6 pattern 20
+    private const int RateCheer2 = 27928;  // instr 27, song 6 pattern 21
 
     // Instrument indices used in-match (asm 17759, 17963, 17988; pattern tables).
     private const int InstrKick = 34, InstrPass = 32, InstrBounce = 51, InstrPost = 8,
                       InstrKeeper = 35, InstrWhistle = 40, InstrCrowd = 36, InstrBed = 1;
+    private const int InstrCheer = 28, InstrCheer2 = 27;
     private static readonly int[] ChantInstruments = { 60, 61, 63, 67 };
 
     // ── discovery ─────────────────────────────────────────────────────────────
@@ -84,6 +99,19 @@ public static class AmigaSfxBank
     {
         Probe();
         return s_available;
+    }
+
+    /// <summary>
+    /// Drop the cached probe so the next <see cref="Available"/> re-scans the disk.
+    /// Must be called after an import writes new files: the probe result is cached for
+    /// the process lifetime, so a bank that was incomplete at boot would stay reported
+    /// as missing even once the extraction that fixes it has just run.
+    /// </summary>
+    public static void InvalidateProbe()
+    {
+        s_probed = false;
+        s_available = false;
+        s_sng = ""; s_in1 = ""; s_in2 = "";
     }
 
     private static void Probe()
@@ -196,9 +224,9 @@ public static class AmigaSfxBank
         var set = new AmigaSampleSet { InstrumentCount = liveCount };
 
         int mapped = 0;
-        AudioStreamWav? Build(int idx, int rate, bool loop)
+        AudioStreamWav? Build(int idx, int rate, bool loop, int repeats = 1, float fadeTail = 0f)
         {
-            var w = BuildWav(bank, instr, idx, rate, loop);
+            var w = BuildWav(bank, instr, idx, rate, loop, repeats, fadeTail);
             if (w != null) mapped++;
             return w;
         }
@@ -210,9 +238,18 @@ public static class AmigaSfxBank
         set.Post = Build(InstrPost, RatePost, false);
         set.KeeperCatch = Build(InstrKeeper, RateKeeper, false);
         set.Whistle = Build(InstrWhistle, RateWhistle, false);
-        set.CrowdOooh = Build(InstrCrowd, RateCrowd, false);
-        set.CrowdOohDelayed = Build(InstrCrowd, RateCrowdDelayed, false);
+        // Crowd reactions: instr 36 ends hot, and the original fades it out via ramp 10
+        // (sustain 0) plus an explicit RELease. Bake that decay so it stops sounding
+        // chopped off.
+        set.CrowdOooh = Build(InstrCrowd, RateCrowd, false, 1, 0.35f);
+        set.CrowdOohDelayed = Build(InstrCrowd, RateCrowdDelayed, false, 1, 0.35f);
         set.CrowdBed = Build(InstrBed, RateBed, true);
+
+        // The real goal/penalty/full-time roar (song 6). Each slice is only ~0.38 s and
+        // the original loops it under an envelope for roughly three seconds, so bake
+        // repetitions plus a decay tail rather than looping forever.
+        set.Cheer = Build(InstrCheer, RateCheer, false, 7, 0.35f);
+        set.Cheer2 = Build(InstrCheer2, RateCheer2, false, 7, 0.35f);
 
         set.Chants = new AudioStreamWav?[ChantInstruments.Length];
         for (int c = 0; c < ChantInstruments.Length; c++)
@@ -226,7 +263,19 @@ public static class AmigaSfxBank
 
     // Slice one instrument's one-shot region out of the bank and wrap it as an
     // AudioStreamWav. `loop` loops the whole buffer (crowd bed + chants).
-    private static AudioStreamWav? BuildWav(byte[] bank, Instrument[] instr, int idx, int rate, bool loop)
+    //
+    // `repeats` bakes N copies of the slice back-to-back, and `fadeTail` fades that
+    // final buffer linearly to silence over the last fraction of its length.
+    // Together they stand in for the module's volume ramp, which this port does not
+    // interpret: SFX.SNG carries an ADSR-ish ramp per instrument (the +0x0C field) and
+    // the patterns issue an explicit RELease. Ignoring it meant every crowd reaction
+    // played at flat volume and then stopped dead ON A HOT SAMPLE — instr 36's last
+    // 100 bytes average |amp| 24/128 — which is audible as a hard chop at the end of
+    // every shot reaction. Baking the decay into the PCM fixes it without a streaming
+    // envelope. Likewise the original HOLDS looping crowd instruments for seconds;
+    // `repeats` reproduces that duration for a one-shot playback.
+    private static AudioStreamWav? BuildWav(byte[] bank, Instrument[] instr, int idx, int rate,
+                                            bool loop, int repeats = 1, float fadeTail = 0f)
     {
         if (idx < 0 || idx >= instr.Length) return null;
         var it = instr[idx];
@@ -236,8 +285,22 @@ public static class AmigaSfxBank
         int len = 2 * it.OneShotLength;
         if (start < 0 || len <= 0 || start + len > bank.Length) return null;
 
-        var data = new byte[len];
-        System.Array.Copy(bank, start, data, 0, len);   // 8-bit signed, AS-IS
+        if (repeats < 1) repeats = 1;
+        var data = new byte[len * repeats];
+        for (int r = 0; r < repeats; r++)
+            System.Array.Copy(bank, start, data, r * len, len);   // 8-bit signed, AS-IS
+
+        if (fadeTail > 0f)
+        {
+            // Samples are 8-bit SIGNED; scale toward 0, not toward 0x80.
+            int fadeLen = (int)(data.Length * Mathf.Clamp(fadeTail, 0f, 1f));
+            int fadeStart = data.Length - fadeLen;
+            for (int i = fadeStart; i < data.Length; i++)
+            {
+                float g = 1f - (i - fadeStart) / (float)Mathf.Max(1, fadeLen);
+                data[i] = (byte)(sbyte)Mathf.RoundToInt((sbyte)data[i] * g);
+            }
+        }
 
         var wav = new AudioStreamWav
         {
@@ -311,7 +374,9 @@ public sealed class AmigaSampleSet
     public AudioStreamWav? Pass, Bounce, Post, KeeperCatch, Whistle;
     public AudioStreamWav? CrowdOooh;      // near-miss reaction (instr 36 @ 10462)
     public AudioStreamWav? CrowdOohDelayed; // delayed reaction (instr 36 @ 12445, +10 ticks)
-    public AudioStreamWav? CrowdBed;       // looped ambient bed (instr 1)
+    public AudioStreamWav? CrowdBed;       // looped ambient bed (instr 1 @ 16574)
+    public AudioStreamWav? Cheer;          // GOAL roar, song 6 (instr 28 @ 16574)
+    public AudioStreamWav? Cheer2;         // roar upper layer, song 6 (instr 27 @ 27928)
     public AudioStreamWav?[] Chants = System.Array.Empty<AudioStreamWav?>();  // 4 looped chants
 
     public int InstrumentCount;   // live (non-dead) instruments parsed

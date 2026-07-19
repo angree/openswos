@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text.Json;
 using Godot;
+using OpenSwos.Menu;
 
 namespace OpenSwos.Competition;
 
@@ -201,16 +202,17 @@ public static class CompetitionStore
         if (state.Finished)
         {
             progress = state.Champion >= 0 && state.Champion < state.Teams.Count
-                ? $"WINNER {state.Teams[state.Champion].Name}"
-                : "FINISHED";
+                ? string.Format(Loc.Tr("comp.slot_winner", "WINNER {0}"), state.Teams[state.Champion].Name)
+                : Loc.Tr("comp.slot_finished", "FINISHED");
         }
         else
         {
-            progress = $"ROUND {state.CurrentRound + 1}/{state.TotalRounds}";
+            progress = string.Format(
+                Loc.Tr("comp.slot_round", "ROUND {0}/{1}"), state.CurrentRound + 1, state.TotalRounds);
         }
         string team = state.PlayerTeam >= 0 && state.PlayerTeam < state.Teams.Count
             ? state.Teams[state.PlayerTeam].Name
-            : "NO TEAM";
+            : Loc.Tr("comp.slot_no_team", "NO TEAM");
         return $"{state.Name} - {progress} - {team}";
     }
 }

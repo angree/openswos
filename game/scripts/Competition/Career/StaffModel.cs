@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using OpenSwos.Menu;
 
 namespace OpenSwos.Competition.Career;
 
@@ -57,21 +58,21 @@ public static class StaffModel
     /// <summary>Attempts an atomic hire from the current season's deterministic offers.</summary>
     public static bool TryHire(CareerWorld? world, ushort clubId, int candidateSlot, out string refusal)
     {
-        refusal = "STAFF UNAVAILABLE";
+        refusal = Loc.Tr("staff.notice_unavailable", "STAFF UNAVAILABLE");
         if (world?.Clubs is null || !world.Clubs.TryGetValue(clubId, out CareerClub? club) || club is null)
             return false;
-        if (club.Coaches is null) { refusal = "STAFF UNAVAILABLE"; return false; }
-        if (club.Coaches.Count >= MaximumCoaches) { refusal = "STAFF FULL"; return false; }
+        if (club.Coaches is null) { refusal = Loc.Tr("staff.notice_unavailable", "STAFF UNAVAILABLE"); return false; }
+        if (club.Coaches.Count >= MaximumCoaches) { refusal = Loc.Tr("staff.notice_full", "STAFF FULL"); return false; }
 
         List<CoachHireCandidate> candidates = HireCandidates(world, clubId);
         CoachHireCandidate? candidate = candidates.Find(item => item.Slot == candidateSlot);
-        if (candidate is null) { refusal = "COACH NOT AVAILABLE"; return false; }
-        if (club.Budget < candidate.SigningFee) { refusal = "NOT ENOUGH MONEY"; return false; }
-        if (world.NextPlayerId == int.MaxValue) { refusal = "STAFF UNAVAILABLE"; return false; }
+        if (candidate is null) { refusal = Loc.Tr("staff.notice_coach_unavailable", "COACH NOT AVAILABLE"); return false; }
+        if (club.Budget < candidate.SigningFee) { refusal = Loc.Tr("staff.notice_no_money", "NOT ENOUGH MONEY"); return false; }
+        if (world.NextPlayerId == int.MaxValue) { refusal = Loc.Tr("staff.notice_unavailable", "STAFF UNAVAILABLE"); return false; }
 
         long remainingBudget;
         try { remainingBudget = checked(club.Budget - candidate.SigningFee); }
-        catch (OverflowException) { refusal = "NOT ENOUGH MONEY"; return false; }
+        catch (OverflowException) { refusal = Loc.Tr("staff.notice_no_money", "NOT ENOUGH MONEY"); return false; }
 
         club.Coaches.Add(new Coach
         {
@@ -89,17 +90,17 @@ public static class StaffModel
     /// <summary>Fires one current coach and charges a half-wage severance.</summary>
     public static bool TryFire(CareerWorld? world, ushort clubId, int coachId, out string refusal)
     {
-        refusal = "COACH NOT AVAILABLE";
+        refusal = Loc.Tr("staff.notice_coach_unavailable", "COACH NOT AVAILABLE");
         if (world?.Clubs is null || !world.Clubs.TryGetValue(clubId, out CareerClub? club) || club?.Coaches is null)
             return false;
 
         Coach? coach = club.Coaches.Find(item => item is not null && item.Id == coachId);
         if (coach is null) return false;
         long severance = Math.Max(0L, coach.Wage) / 2L;
-        if (club.Budget < severance) { refusal = "NOT ENOUGH MONEY"; return false; }
+        if (club.Budget < severance) { refusal = Loc.Tr("staff.notice_no_money", "NOT ENOUGH MONEY"); return false; }
         long remainingBudget;
         try { remainingBudget = checked(club.Budget - severance); }
-        catch (OverflowException) { refusal = "NOT ENOUGH MONEY"; return false; }
+        catch (OverflowException) { refusal = Loc.Tr("staff.notice_no_money", "NOT ENOUGH MONEY"); return false; }
 
         club.Coaches.Remove(coach);
         club.Budget = remainingBudget;
@@ -110,7 +111,7 @@ public static class StaffModel
     /// <summary>Adds or removes a squad player from the manually chosen training focus.</summary>
     public static bool TryToggleTrainingFocus(CareerWorld? world, ushort clubId, int playerId, out string refusal)
     {
-        refusal = "PLAYER NOT AVAILABLE";
+        refusal = Loc.Tr("staff.notice_player_unavailable", "PLAYER NOT AVAILABLE");
         if (world?.Clubs is null || !world.Clubs.TryGetValue(clubId, out CareerClub? club) || club?.Squad is null)
             return false;
         if (!club.Squad.Exists(player => player is not null && player.Id == playerId && player.ClubId == clubId))
@@ -123,7 +124,7 @@ public static class StaffModel
             refusal = "";
             return true;
         }
-        if (focus.Count >= MaximumTrainingFocus) { refusal = "FOCUS FULL"; return false; }
+        if (focus.Count >= MaximumTrainingFocus) { refusal = Loc.Tr("staff.notice_focus_full", "FOCUS FULL"); return false; }
 
         focus.Add(playerId);
         refusal = "";

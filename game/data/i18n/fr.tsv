@@ -432,3 +432,130 @@ hud.team_home_fallback	DOMICILE
 hud.team_away_fallback	EXTERIEUR
 goal.type_penalty	(PEN)
 goal.type_own_goal	(CSC)
+# S34 additions
+bench.coach	COACH
+bench.coming_on	ENTRE: {0}
+bench.fire_swap	TIR SEL+SEL = ECHANGE
+bench.formation	FORMATION
+bench.formation_colon	FORMATION:
+bench.help_leave	GAUCHE/DROITE QUITTER BANC
+bench.help_select	HAUT/BAS SELEC  TIR OK
+bench.hold_mark	MAINTENIR TIR = MARQUER JOUEUR
+bench.player_off	SORT:
+bench.sub_in_progress	REMPLACEMENT EN COURS...
+bench.swap_formation	ECHANGE / FORMATION:
+bench.tag_inj	 BLE
+bench.tag_off	 [SOR]
+bench.tag_sub	 [REM]
+bench.title	BANC - {0}
+bench.user	JOUEUR {0}
+career.dash_div_season	DIV {0}  SAISON {1}
+career.price_any	TOUS
+career.rec_pwdl	J {0}   G {1}   N {2}   P {3}   BP {4}   BC {5}
+career.rec_season_div	SAISON {0}  {1}  DIV {2}
+career.release_confirm	LIBERER {0} GRATUITEMENT?
+career.skill_letters	PVHTCSF
+career.title_mr	M
+career.title_ms	MME
+comp.competition_complete	COMPETITION TERMINEE
+comp.cup	COUPE
+comp.entrants_random	ALEATOIRE
+comp.entrants_same_div	MEME DIVISION
+comp.entrants_same_nation	MEME NATION
+comp.league_round	LIGUE - JOURNEE {0}/{1}
+comp.name_career	CARRIERE
+comp.name_cup	COUPE
+comp.name_league	LIGUE
+comp.name_tournament	TOURNOI
+comp.no_fixtures	AUCUN MATCH
+comp.no_player_team	PAS D'EQUIPE JOUEUR
+comp.ord_nd	E
+comp.ord_rd	E
+comp.ord_st	ER
+comp.ord_th	E
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	COUPE DES COUPES
+comp.preset_european_championship	CHAMPIONNAT D'EUROPE
+comp.preset_european_cup	COUPE D'EUROPE
+comp.preset_uefa_cup	COUPE UEFA
+comp.preset_world_cup	COUPE DU MONDE
+comp.slot_finished	TERMINE
+comp.slot_no_team	AUCUNE EQUIPE
+comp.slot_round	TOUR {0}/{1}
+comp.slot_winner	VAINQUEUR {0}
+comp.stage_final	FINALE
+comp.stage_group	GROUPE
+comp.stage_league	LIGUE
+comp.stage_quarter	QUART DE FINALE
+comp.stage_r16	HUITIEMES
+comp.stage_r32	SEIZIEMES
+comp.stage_round_of	TOUR DE
+comp.stage_semi	DEMI-FINALE
+comp.you_are_pos	VOUS ETES {0}
+comp.you_champion	VOUS ETES CHAMPION
+comp.you_eliminated	VOUS ETES ELIMINE
+comp.you_in	VOUS ETES DANS {0}
+comp.you_in_the	VOUS ETES EN {0}
+comp.you_through	VOUS PASSEZ AU TOUR SUIVANT
+comp.you_unplaced	VOUS N'ETES PAS CLASSE
+firstrun.body	AUCUNE DONNEE DE JEU SWOS TROUVEE.\n\nOPENSWOS A BESOIN DE SENSIBLE WORLD OF SOCCER 96/97 (EDITION AMIGA).\nDEUX OPTIONS - PUIS REDEMARREZ LE JEU:\n\n  (A) DEPOSEZ VOS IMAGES DE DISQUETTE AMIGA (*.ADF) DANS:\n        {0}\n      OPENSWOS EXTRAIT CE QU'IL FAUT AU PROCHAIN DEMARRAGE.\n\n  (B) VOUS AVEZ DEJA LES FICHIERS DE JEU (P.EX. INSTALLATION WHDLOAD)?\n      COPIEZ-LES DANS:\n        {1}\n\nOPTIONNEL: DEPOSEZ LE DOSSIER DATA DU PC (DOS) DANS 'ORIGINAL_SWOS_PC/' POUR\nUNE LISTE D'EQUIPES UN PEU PLUS GRANDE - NON REQUIS, ET NE CHANGE PAS LES GRAPHISMES.\n\nLES EDITIONS SWOS ANTERIEURES (94/95 ETC.) NE SONT PAS COMPATIBLES.
+menu.team_coach_div	COACH {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIQUE
+nation.continent_asia	ASIE
+nation.continent_europe	EUROPE
+nation.continent_north_america	AMERIQUE DU NORD
+nation.continent_oceania	OCEANIE
+nation.continent_south_america	AMERIQUE DU SUD
+nav.hint_menu	HAUT/BAS SELEC   TIR OK   ESC RETOUR
+nav.hint_picker	HAUT/BAS DEFILER   TIR SELEC   ESC ANNULER
+nav.hint_picker_cols	HAUT/BAS DEFILER   GAUCHE/DROITE COLONNE   TIR SELEC   ESC ANNULER
+nav.hint_stepper	HAUT/BAS SELEC   GAUCHE/DROITE CHANGER   TIR OK   ESC RETOUR
+nav.hint_table	HAUT/BAS LIGNE   TIR OK   ESC RETOUR
+opt.commentator	COMMENTATEUR
+opt.commentator_hint	COMMENTAIRE PARLE (SON PC UNIQUEMENT)
+opt.display_fullfill	REMPLIR
+opt.display_fullinteger	ENTIER
+opt.display_unknown	?
+opt.display_windowed	FENETRE
+opt.len_min_whole	{0} MIN REEL  (MATCH ENTIER)
+opt.len_sec_whole	{0}S REEL  (MATCH ENTIER)
+opt.smoothing_sharp	NET
+overlay.corner	CORNER
+overlay.fulltime	FIN DU MATCH
+overlay.fulltime_body	FIN DU MATCH\n\n{0}  {1} - {2}  {3}\n\nAPPUYEZ SUR ESPACE
+overlay.goal	BUT!
+overlay.goalkick	SIX METRES
+overlay.halftime	MI-TEMPS
+overlay.paused	PAUSE\n\nSPACE  REPRENDRE\nESC    QUITTER AU MENU
+overlay.penalties	TIRS AU BUT
+overlay.throwin	TOUCHE
+pos.a	A
+pos.d	D
+pos.gk	GK
+pos.lb	LB
+pos.lw	LW
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RW
+pos.unknown	?
+result.away	EXTERIEUR
+result.home	DOMICILE
+result.og	(CSC)
+result.pen	(PEN)
+scout.notice_maxed	RECRUTEMENT AU MAX
+scout.notice_no_money	PAS ASSEZ D'ARGENT
+scout.notice_player_unavailable	JOUEUR INDISPONIBLE
+scout.notice_unavailable	RECRUTEMENT INDISPONIBLE
+staff.notice_coach_unavailable	COACH INDISPONIBLE
+staff.notice_focus_full	FOCUS COMPLET
+staff.notice_full	STAFF COMPLET
+staff.notice_no_money	PAS ASSEZ D'ARGENT
+staff.notice_player_unavailable	JOUEUR INDISPONIBLE
+staff.notice_unavailable	STAFF INDISPONIBLE
+staff.spec_attack	ATTAQUE
+staff.spec_defence	DEFENSE
+staff.spec_general	GENERAL
+staff.spec_youth	JEUNES

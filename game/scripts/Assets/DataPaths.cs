@@ -58,23 +58,57 @@ public static class DataPaths
     //
     // On Android 13+ the app's user:// dir (Android/data/org.openswos.game/files)
     // is UNREACHABLE by third-party file managers, so users cannot drop their SWOS
-    // files there. We therefore ALSO look in — and prefer — public external storage,
-    // where a file manager (and all-files access) CAN write. These bases are checked
-    // FIRST on Android and are completely inert on every other platform.
+    // files there. We therefore ALSO look in — and prefer — the app's own
+    // Android/media/<package> directory. CRUCIAL: an app can freely read/write its
+    // own Android/media/<pkg> tree with NO storage permission at all (the Android
+    // 13/14 SAF lockdown targets Android/data + Android/obb, NOT Android/media), and
+    // on-device file managers + USB/MTP CAN still browse it. This lets us ship with
+    // ZERO storage permissions (no scary "all files access" prompt) while keeping a
+    // user-reachable drop folder. Checked FIRST on Android; inert on every other OS.
+    // SOURCE (drop) folders the user puts files into. These MUST live somewhere a
+    // file manager can actually write, which in practice means public storage —
+    // Download first. Reading NON-MEDIA files (.adf) from here requires all-files
+    // access on Android 11+ (READ_EXTERNAL_STORAGE only covers media since 11 and is
+    // inert on 13+), which is why the permission still exists. Replacing it properly
+    // means a SAF folder picker, not another path.
     private static readonly string[] AndroidExternalBases =
     {
         "/storage/emulated/0/Download/OpenSWOS",
         "/storage/emulated/0/OpenSWOS",
     };
 
+    // Additional SEARCH-only base: the app's own Android/media tree. Readable and
+    // writable with no permission at all, but many file managers/OEMs make it awkward
+    // for users to drop files into, so it is never advertised as THE drop folder —
+    // it just means files found there still work.
+    private static readonly string[] AndroidSecondaryBases =
+    {
+        "/storage/emulated/0/Android/media/org.openswos.game/OpenSWOS",
+    };
+
     /// <summary>True when running on Android (feature flag OR OS name).</summary>
     public static bool IsAndroid() => OS.HasFeature("android") || OS.GetName() == "Android";
 
-    /// <summary>Public external-storage bases (Android only; empty elsewhere).</summary>
+    /// <summary>
+    /// Bases we may WRITE to. DELIBERATELY EMPTY on Android: extraction output must go
+    /// to the app-private dir (user://), which always works and needs no permission.
+    /// Writing into public storage was the fragile part — a failed write there used to
+    /// leave a half-extracted tree the user could not even see.
+    /// </summary>
+    public static IEnumerable<string> AndroidWritableBaseRoots()
+    {
+        yield break;
+    }
+
+    /// <summary>
+    /// Bases we SEARCH for user-supplied files, in priority order: the public drop
+    /// folders first, then the app's own Android/media tree (Android only).
+    /// </summary>
     public static IEnumerable<string> AndroidExternalBaseRoots()
     {
         if (!IsAndroid()) yield break;
         foreach (string b in AndroidExternalBases) yield return b;
+        foreach (string b in AndroidSecondaryBases) yield return b;
     }
 
     /// <summary>Directory of the running executable (empty when it can't be determined).</summary>
@@ -89,7 +123,7 @@ public static class DataPaths
     /// <summary>Recursive-search roots for extracted / loose game files, in priority order.</summary>
     public static IEnumerable<string> OutputSearchRoots()
     {
-        // Android public storage first — the only place a file manager can reach.
+        // App-owned Android/media folder first — file-manager-reachable, no permission.
         foreach (string b in AndroidExternalBaseRoots())
             yield return Path.Combine(b, OutputFolderName);
         string exeDir = ExeDir();
@@ -136,7 +170,7 @@ public static class DataPaths
 
     private static string PreferredPath(string folder)
     {
-        // On Android the ONLY user-reachable location is public external storage,
+        // On Android the user-reachable location is the app's Android/media folder,
         // so the hint must point there (not at the unreachable user:// dir).
         if (IsAndroid())
             return Path.Combine(AndroidExternalBases[0], folder);
@@ -153,10 +187,11 @@ public static class DataPaths
     /// </summary>
     public static string FirstWritableRoot(string folder)
     {
-        // Android: prefer public external storage so extraction output lands where a
-        // file manager can see it. Only works once all-files access is granted; if not,
-        // CanWrite fails and we fall back to user:// (still functional, just hidden).
-        foreach (string b in AndroidExternalBaseRoots())
+        // Android: this loop is intentionally empty (see AndroidWritableBaseRoots) so we
+        // fall straight through to user:// — the app-private dir, which is always
+        // writable and needs no permission. Extraction output belongs there; only the
+        // SOURCE files the user supplies live in public storage.
+        foreach (string b in AndroidWritableBaseRoots())
         {
             string ext = Path.Combine(b, folder);
             if (CanWrite(ext)) return ext;
@@ -174,26 +209,27 @@ public static class DataPaths
     // ── Android startup ──────────────────────────────────────────────────────
 
     /// <summary>
-    /// Android-only startup hook. Fires the runtime permission request (routes to the
-    /// all-files-access settings screen on 11+ when MANAGE_EXTERNAL_STORAGE is in the
-    /// manifest, or the classic dialog on ≤12), then best-effort creates the public
-    /// drop folders under <c>/storage/emulated/0/Download/OpenSWOS</c> so users can find
-    /// them in a file manager. Also (re)creates the <c>user://</c> fallback folders so
-    /// the app is never left with NO import folders. Every step is silent on failure and
-    /// this whole method is a no-op on non-Android platforms.
+    /// Android-only startup hook. Requests storage access, then best-effort creates the
+    /// public drop folders (<c>Download/OpenSWOS/...</c>) so users can find them in a file
+    /// manager, plus the <c>user://</c> folders so import never has zero targets.
+    /// <para>
+    /// The permission is unavoidable while the drop folder lives in public storage:
+    /// reading a NON-MEDIA file (.adf) by path needs all-files access on Android 11+
+    /// (READ_EXTERNAL_STORAGE covers only media since 11, and is inert on 13+). The grant
+    /// is ASYNCHRONOUS, so the very first boot runs unpermissioned — callers must re-scan
+    /// once <see cref="HasStorageAccess"/> flips instead of demanding an app restart.
+    /// </para>
+    /// Every step is silent on failure; no-op off Android.
     /// </summary>
     public static void AndroidStartupInit()
     {
         if (!IsAndroid()) return;
 
-        // Ask for storage access. On Android 11+ with MANAGE_EXTERNAL_STORAGE declared,
-        // Godot routes this to the "All files access" settings screen; on ≤12 it shows
-        // the standard READ/WRITE_EXTERNAL_STORAGE runtime dialog.
         try { OS.RequestPermissions(); } catch { /* not fatal */ }
 
         string[] subs = { InputFolderName, OutputFolderName, PcInputFolderName };
 
-        // Public external-storage folders (need all-files access to succeed).
+        // Public drop folders (need the grant to succeed; harmless no-op without it).
         foreach (string b in AndroidExternalBases)
             foreach (string sub in subs)
                 TryMakeDir(b + "/" + sub);
@@ -202,6 +238,22 @@ public static class DataPaths
         // (fixes the report that NO import folders existed on Android).
         foreach (string sub in subs)
             TryMakeDir("user://" + sub);
+    }
+
+    /// <summary>
+    /// True when the public drop folders are actually reachable right now. Used to detect
+    /// the moment an asynchronous all-files grant lands, so import can be retried without
+    /// making the user restart the app. A permission-denied directory reports itself as
+    /// "does not exist", so reachability IS the permission test. Always true off Android.
+    /// </summary>
+    public static bool HasStorageAccess()
+    {
+        if (!IsAndroid()) return true;
+        foreach (string b in AndroidExternalBases)
+        {
+            try { if (Directory.Exists(b)) return true; } catch { /* denied */ }
+        }
+        return false;
     }
 
     // Best-effort recursive mkdir via Godot's DirAccess (handles both absolute OS paths
@@ -254,11 +306,64 @@ public static class DataPaths
         return "";
     }
 
-    private static bool HasFile(string dir, string file)
+    // ── Case-insensitive resolution ──────────────────────────────────────────
+    //
+    // Linux, Android and the R36S handheld all use case-SENSITIVE filesystems;
+    // Windows does not. Every lookup of a SWOS data file therefore has to be
+    // case-insensitive, because the casing is whatever the USER's copy happens to
+    // have: a WHDLoad/hard-disk install, a non-retail ADF, or — very commonly — a
+    // DOS install copied off a FAT partition on Linux, which lowercases 8.3 names
+    // (team.000, cjcteam1.raw). Matching exact case is why "no SWOS data" was
+    // reported on Linux/Android by users whose files were in exactly the right
+    // place. This never reproduces on a Windows dev machine.
+
+    /// <summary>
+    /// Resolve <paramref name="name"/> inside <paramref name="dir"/> ignoring case, and
+    /// return its REAL path (the actual on-disk casing) so callers can open it directly.
+    /// Returns "" when absent. Exact case is tried first, so Windows costs nothing.
+    /// </summary>
+    public static string ResolveFile(string dir, string name)
     {
-        try { return File.Exists(Path.Combine(dir, file)); }
-        catch { return false; }
+        if (string.IsNullOrEmpty(dir) || string.IsNullOrEmpty(name)) return "";
+        try
+        {
+            string exact = Path.Combine(dir, name);
+            if (File.Exists(exact)) return exact;
+
+            foreach (string hit in Directory.EnumerateFiles(dir, name, CaseInsensitiveScan))
+                return hit;
+        }
+        catch { /* unreadable / denied */ }
+        return "";
     }
+
+    /// <summary>
+    /// Case-insensitive sibling-directory lookup (e.g. the Amiga <c>data/</c> folder,
+    /// which a non-retail dump may store as <c>DATA/</c>). "" when absent.
+    /// </summary>
+    public static string ResolveDir(string parent, string name)
+    {
+        if (string.IsNullOrEmpty(parent) || string.IsNullOrEmpty(name)) return "";
+        try
+        {
+            string exact = Path.Combine(parent, name);
+            if (Directory.Exists(exact)) return exact;
+
+            foreach (string hit in Directory.EnumerateDirectories(parent, name, CaseInsensitiveScan))
+                return hit;
+        }
+        catch { /* unreadable / denied */ }
+        return "";
+    }
+
+    /// <summary>Shared options for every case-insensitive probe in the project.</summary>
+    internal static EnumerationOptions CaseInsensitiveScan => new()
+    {
+        MatchCasing = MatchCasing.CaseInsensitive,
+        IgnoreInaccessible = true,
+    };
+
+    private static bool HasFile(string dir, string file) => ResolveFile(dir, file).Length > 0;
 
     // Search all original_swos_files roots for a dir matching `match`; "" if none.
     private static string SearchOutputRoots(System.Func<string, bool> match)
@@ -317,15 +422,16 @@ public static class DataPaths
             string? parent = Path.GetDirectoryName(grafs);
             if (!string.IsNullOrEmpty(parent))
             {
-                string sibling = Path.Combine(parent, "data");
-                if (HasFile(sibling, AmigaDataKey)) return sibling;
+                // Case-insensitive: a non-retail dump may store DATA/ or Data/.
+                string sibling = ResolveDir(parent, "data");
+                if (sibling.Length > 0 && HasFile(sibling, AmigaDataKey)) return sibling;
             }
         }
 
         // General recursive fallback: any RNC-compressed TEAM.000 (Amiga TEAM.* are
         // RNC-packed; PC's are raw). POOLPLYR.DAT exists in BOTH the Amiga and PC data
         // folders, so it cannot discriminate — compression is the reliable marker.
-        string hit = SearchOutputRoots(d => IsRnc(Path.Combine(d, AmigaDataKey)));
+        string hit = SearchOutputRoots(d => IsRnc(ResolveFile(d, AmigaDataKey)));
         if (hit.Length > 0) return hit;
 
         // Dev fallback — exact direct path.
@@ -345,11 +451,11 @@ public static class DataPaths
         // empty, and the menu refused to start.)
 
         // 1) The dedicated OPTIONAL folder for the PC (DOS) DATA — preferred.
-        string pc = SearchPcRoots(d => HasFile(d, PcDataKey) && !IsRnc(Path.Combine(d, PcDataKey)));
+        string pc = SearchPcRoots(d => HasFile(d, PcDataKey) && !IsRnc(ResolveFile(d, PcDataKey)));
         if (pc.Length > 0) return pc;
 
         // 2) Back-compat: PC DATA dropped into the general original_swos_files/ tree.
-        string hit = SearchOutputRoots(d => HasFile(d, PcDataKey) && !IsRnc(Path.Combine(d, PcDataKey)));
+        string hit = SearchOutputRoots(d => HasFile(d, PcDataKey) && !IsRnc(ResolveFile(d, PcDataKey)));
         if (hit.Length > 0) return hit;
 
         // Dev fallback — exact direct path.

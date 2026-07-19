@@ -432,3 +432,130 @@ hud.team_home_fallback	HJEMME
 hud.team_away_fallback	UDE
 goal.type_penalty	(STR)
 goal.type_own_goal	(SELV)
+# S34 additions
+bench.coach	TRAENER
+bench.coming_on	KOMMER IND: {0}
+bench.fire_swap	FYR VAELG+VAELG = BYT
+bench.formation	FORMATION
+bench.formation_colon	FORMATION:
+bench.help_leave	VENSTRE/HOJRE FORLAD BAENK
+bench.help_select	OP/NED VAELG  FYR OK
+bench.hold_mark	HOLD FYR = MARKER SPILLER
+bench.player_off	SPILLER UD:
+bench.sub_in_progress	UDSKIFTNING I GANG...
+bench.swap_formation	BYT / FORMATION:
+bench.tag_inj	 SKD
+bench.tag_off	 [UD]
+bench.tag_sub	 [RES]
+bench.title	BAENK - {0}
+bench.user	BRUGER {0}
+career.dash_div_season	DIV {0}  SAESON {1}
+career.price_any	ALLE
+career.rec_pwdl	K {0}   V {1}   U {2}   T {3}   MF {4}   MI {5}
+career.rec_season_div	SAESON {0}  {1}  DIV {2}
+career.release_confirm	FRIGIV {0} GRATIS?
+career.skill_letters	AFHTKSA
+career.title_mr	HR
+career.title_ms	FR
+comp.competition_complete	TURNERING FAERDIG
+comp.cup	POKAL
+comp.entrants_random	TILFAELDIG
+comp.entrants_same_div	SAMME DIVISION
+comp.entrants_same_nation	SAMME NATION
+comp.league_round	LIGA - RUNDE {0}/{1}
+comp.name_career	KARRIERE
+comp.name_cup	POKAL
+comp.name_league	LIGA
+comp.name_tournament	TURNERING
+comp.no_fixtures	INGEN KAMPE
+comp.no_player_team	INTET SPILLERHOLD
+comp.ord_nd	.
+comp.ord_rd	.
+comp.ord_st	.
+comp.ord_th	.
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	POKALVINDERNES CUP
+comp.preset_european_championship	EM
+comp.preset_european_cup	EUROPA CUP
+comp.preset_uefa_cup	UEFA CUP
+comp.preset_world_cup	VM
+comp.slot_finished	FAERDIG
+comp.slot_no_team	INTET HOLD
+comp.slot_round	RUNDE {0}/{1}
+comp.slot_winner	VINDER {0}
+comp.stage_final	FINALE
+comp.stage_group	GRUPPE
+comp.stage_league	LIGA
+comp.stage_quarter	KVARTFINALE
+comp.stage_r16	SIDSTE 16
+comp.stage_r32	SIDSTE 32
+comp.stage_round_of	SIDSTE
+comp.stage_semi	SEMIFINALE
+comp.you_are_pos	DU ER {0}
+comp.you_champion	DU ER MESTER
+comp.you_eliminated	DU BLEV ELIMINERET
+comp.you_in	DU ER I {0}
+comp.you_in_the	DU ER I {0}
+comp.you_through	DU ER VIDERE TIL NAESTE RUNDE
+comp.you_unplaced	DU ER UPLACERET
+firstrun.body	Ingen SWOS-spildata fundet.\n\nOpenSWOS kraever Sensible World of Soccer 96/97 (Amiga-udgaven).\nTo muligheder - genstart derefter spillet:\n\n  (a) Laeg dine Amiga-floppybilleder (*.adf) i:\n        {0}\n      OpenSWOS udtraekker det nodvendige ved naeste start.\n\n  (b) Har du allerede de lose spilfiler (f.eks. en WHDLoad-installation)?\n      Kopier dem til:\n        {1}\n\nValgfrit: laeg PC-mappen (DOS) DATA i 'original_swos_pc/' for en\nlidt storre holdliste - ikke pakraevet, og det aendrer ikke grafikken.\n\nTidligere SWOS-udgaver (94/95 osv.) er IKKE kompatible.
+menu.team_coach_div	TRAENER {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	ASIEN
+nation.continent_europe	EUROPA
+nation.continent_north_america	NORDAMERIKA
+nation.continent_oceania	OCEANIEN
+nation.continent_south_america	SYDAMERIKA
+nav.hint_menu	OP/NED VAELG   FYR OK   ESC TILBAGE
+nav.hint_picker	OP/NED RUL   FYR VAELG   ESC ANNULLER
+nav.hint_picker_cols	OP/NED RUL   VENSTRE/HOJRE KOLONNE   FYR VAELG   ESC ANNULLER
+nav.hint_stepper	OP/NED VAELG   VENSTRE/HOJRE SKIFT   FYR OK   ESC TILBAGE
+nav.hint_table	OP/NED RAEKKE   FYR OK   ESC TILBAGE
+opt.commentator	KOMMENTATOR
+opt.commentator_hint	TALT KOMMENTAR (KUN PC-LYD)
+opt.display_fullfill	FULD FYLD
+opt.display_fullinteger	FULD HELTAL
+opt.display_unknown	?
+opt.display_windowed	VINDUE
+opt.len_min_whole	{0} MIN REEL  (HELE KAMPEN)
+opt.len_sec_whole	{0}S REEL  (HELE KAMPEN)
+opt.smoothing_sharp	SKARP
+overlay.corner	HJORNE
+overlay.fulltime	FULD TID
+overlay.fulltime_body	FULD TID\n\n{0}  {1} - {2}  {3}\n\ntryk mellemrum
+overlay.goal	MAL!
+overlay.goalkick	MALSPARK
+overlay.halftime	HALVLEG
+overlay.paused	PAUSE\n\nmellemrum  fortsaet\nESC    afslut til menu
+overlay.penalties	STRAFFESPARK
+overlay.throwin	INDKAST
+pos.a	A
+pos.d	B
+pos.gk	MM
+pos.lb	VB
+pos.lw	VK
+pos.m	M
+pos.none	--
+pos.rb	HB
+pos.rw	HK
+pos.unknown	?
+result.away	UDE
+result.home	HJEMME
+result.og	(SELV)
+result.pen	(STR)
+scout.notice_maxed	SPEJDNING MAX
+scout.notice_no_money	IKKE NOK PENGE
+scout.notice_player_unavailable	SPILLER UTILGAENGELIG
+scout.notice_unavailable	SPEJDNING UTILGAENGELIG
+staff.notice_coach_unavailable	TRAENER UTILGAENGELIG
+staff.notice_focus_full	FOKUS FULDT
+staff.notice_full	STAB FULD
+staff.notice_no_money	IKKE NOK PENGE
+staff.notice_player_unavailable	SPILLER UTILGAENGELIG
+staff.notice_unavailable	STAB UTILGAENGELIG
+staff.spec_attack	ANGREB
+staff.spec_defence	FORSVAR
+staff.spec_general	GENEREL
+staff.spec_youth	UNGDOM

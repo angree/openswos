@@ -1774,6 +1774,11 @@ public static class GameLoop
     // Source: external/swos-port/src/game/gameLoop.cpp:2074.
     public static void FirstHalfJustEnded()
     {
+        // OpenSWOS enhancement (not in the original): half-time recovery. The ~15 min
+        // break restores a flat fraction of each player's lost energy — fires exactly
+        // once here, the first frame the clock crosses 45:00. See PlayerEnergy.
+        PlayerEnergy.RecoverAtHalfTime();
+
         // gameLoop.cpp:2076 — mov hideBall, 0.
         Memory.WriteWord(Memory.Addr.hideBall, 0);
         // gameLoop.cpp:2077 — mov stoppageEventTimer, 275.

@@ -108,6 +108,14 @@ public sealed partial class MenuClient
     private int _heldTicks;
     private bool _dirty;
 
+    // Post-open grace: when a screen / picker / table-select is opened we set this
+    // to a few ticks; while it is >0 a ui_cancel is IGNORED. This defends against
+    // a "cancel lands 1 frame after open" double-action (seen on the R36S where
+    // gptokeyb fired synthetic keys alongside the native pad). Decremented once
+    // per Tick(). Purely additive — desktop/Android see at most a 3-tick delay
+    // before BACK works on a freshly-opened screen.
+    private int _openGraceTicks;
+
     // ---- competition session state -------------------------------------------
     // The single active competition (lazily loaded from CompetitionStore) and
     // the fixture the player is currently out playing (null between matches).
@@ -270,6 +278,7 @@ public sealed partial class MenuClient
         // Screens that want the inline table as their default focus (lineup
         // editor) drop straight into it, so the 16 slot rows are live on entry.
         if (s.AutoTableSelect && s.TableSelect is { } ts && ts.Count() > 0) EnterTableSelect(s);
+        _openGraceTicks = 3;
         _dirty = true;
     }
 
@@ -604,17 +613,17 @@ public sealed partial class MenuClient
         {
             string hint;
             if (_tableSelect is not null)
-                hint = _tableSelect.Hint ?? "UP/DOWN ROW   FIRE OK   ESC BACK";
+                hint = _tableSelect.Hint ?? Loc.Tr("nav.hint_table", "UP/DOWN ROW   FIRE OK   ESC BACK");
             else if (_listPicker is not null)
                 hint = _listPicker.Columns > 1
-                ? "UP/DOWN SCROLL   LEFT/RIGHT COLUMN   FIRE SELECT   ESC CANCEL"
-                : "UP/DOWN SCROLL   FIRE SELECT   ESC CANCEL";
+                ? Loc.Tr("nav.hint_picker_cols", "UP/DOWN SCROLL   LEFT/RIGHT COLUMN   FIRE SELECT   ESC CANCEL")
+                : Loc.Tr("nav.hint_picker", "UP/DOWN SCROLL   FIRE SELECT   ESC CANCEL");
             else
             {
                 bool hasStepper = s.Entries.Exists(e => e.Kind == EntryKind.Option && e.OnActivate is null);
                 hint = hasStepper
-                    ? "UP/DOWN SELECT   LEFT/RIGHT CHANGE   FIRE OK   ESC BACK"
-                    : "UP/DOWN SELECT   FIRE OK   ESC BACK";
+                    ? Loc.Tr("nav.hint_stepper", "UP/DOWN SELECT   LEFT/RIGHT CHANGE   FIRE OK   ESC BACK")
+                    : Loc.Tr("nav.hint_menu", "UP/DOWN SELECT   FIRE OK   ESC BACK");
             }
             SetText(_footerSpr, hint, false, Align.Center, 0, _vh - 11, _vw, 10, new Color(0.55f, 0.6f, 0.72f));
         }
@@ -705,6 +714,7 @@ public sealed partial class MenuClient
         PollFriendlyEnd();
 
         if (!Active) return;
+        if (_openGraceTicks > 0) _openGraceTicks--;   // post-open cancel grace
         EnsureTitleNodes();
         var s = Current;
 
@@ -831,9 +841,9 @@ public sealed partial class MenuClient
             else if (selIsPicker) sel!.OnActivate?.Invoke();
             else if (sel is { Kind: EntryKind.Option }) { sel.OnStep?.Invoke(+1); _dirty = true; }
         }
-
-        // BACK — pop a screen.
-        if (JP("ui_cancel")) Pop();
+        // BACK — pop a screen. `else if` so a single tick can never both accept
+        // (open) and cancel (close); grace ignores a cancel just after an open.
+        else if (_openGraceTicks == 0 && JP("ui_cancel")) Pop();
 
         // cursor flash cadence
         _cursorFrame++;
@@ -1394,6 +1404,7 @@ public sealed partial class MenuClient
             OnPick = onPick,
             OnCancel = onCancel,
         };
+        _openGraceTicks = 3;   // ignore a cancel that lands 1 frame after opening
         var s = new MenuScreen { Title = title, BodyReserve = _vh };   // list owns the whole body
         s.Body = client => client.DrawListPickerBody(s);
         _listPickerScreen = s;
@@ -1461,7 +1472,10 @@ public sealed partial class MenuClient
     private void TickListPicker()
     {
         var lp = _listPicker!;
-        if (JP("ui_cancel")) { CancelPicker(); return; }
+        // Read accept up-front so cancel can be made mutually exclusive with it
+        // (never both in one tick); grace ignores a cancel just after an open.
+        bool accept = JP("ui_accept");
+        if (!accept && _openGraceTicks == 0 && JP("ui_cancel")) { CancelPicker(); return; }
         int n = lp.Rows.Count;
         if (n == 0) return;
 
@@ -1490,7 +1504,7 @@ public sealed partial class MenuClient
             { lp.Selected = System.Math.Min(n - 1, lp.Selected + lp.ColRows); _dirty = true; }
         }
 
-        if (JP("ui_accept")) ConfirmPicker();
+        if (accept) ConfirmPicker();
     }
 
     // Original-SWOS selector body: a grid of TILES (each item is its own filled,
@@ -1607,6 +1621,7 @@ public sealed partial class MenuClient
         if (cfg is null || cfg.Count() == 0) return;
         _tableSelect = cfg;
         _tableSelectScreen = s;
+        _openGraceTicks = 3;   // ignore a cancel that lands 1 frame after opening
         // Park the menu cursor on the bound field so exiting returns there.
         int fi = cfg.Field is null ? -1 : s.Entries.IndexOf(cfg.Field);
         if (fi >= 0) s.Selected = fi;
@@ -1625,7 +1640,10 @@ public sealed partial class MenuClient
     private void TickTableSelect()
     {
         var ts = _tableSelect!;
-        if (JP("ui_cancel"))
+        // Read accept (FIRE) up-front so cancel is mutually exclusive with it in a
+        // single tick; grace ignores a cancel that lands just after an open.
+        bool accept = JP("ui_accept");
+        if (!accept && _openGraceTicks == 0 && JP("ui_cancel"))
         {
             // ESC: default returns to the entry column (keeping selection); an
             // OnCancel override (lineup editor) leaves the whole screen instead.
@@ -1662,7 +1680,7 @@ public sealed partial class MenuClient
             if (next != cur) { ts.SetIndex(next); _dirty = true; }
         }
 
-        if (JP("ui_accept"))
+        if (accept)
         {
             if (ts.StayOnConfirm) { ts.OnConfirm?.Invoke(); _dirty = true; }
             else { var confirm = ts.OnConfirm; ExitTableSelect(); confirm?.Invoke(); }
@@ -1977,10 +1995,19 @@ public sealed partial class MenuClient
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
             Label = () => Loc.Tr("opt.sound_hint", "PC OR AMIGA IN-MATCH SOUNDS") });
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
+            Label = () => Loc.Tr("opt.commentator", "COMMENTATOR"), Value = () => _host.CommentatorLabel, OnStep = d => _host.StepCommentator(d) });
+        s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
+            Label = () => Loc.Tr("opt.commentator_hint", "SPOKEN COMMENTARY (PC SOUND ONLY)") });
+        s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
             Label = () => Loc.Tr("opt.display", "DISPLAY"), Value = () => _host.DisplayModeLabel,
             OnStep = _ => _host.CycleDisplayMode() });
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
             Label = () => Loc.Tr("opt.display_hint", "F11 CYCLES  ALT+ENTER TOGGLES FULLSCREEN") });
+        s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
+            Label = () => Loc.Tr("opt.smoothing", "SMOOTHING"), Value = () => _host.SmoothingLabel,
+            OnStep = _ => _host.CycleSmoothing() });
+        s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
+            Label = () => Loc.Tr("opt.smoothing_hint", "SOFTEN UPSCALE ON SMALL SCREENS") });
     }
 
     // ======================================================================
@@ -2051,7 +2078,26 @@ public sealed partial class MenuClient
     }
 
     private static string CompTitle(CompetitionState c)
-        => c.Career is not null ? $"{c.Name} S{c.Career.Season}" : c.Name;
+        => c.Career is not null ? $"{TrCompName(c.Name)} S{c.Career.Season}" : TrCompName(c.Name);
+
+    // Display-time translation of a PERSISTED English competition name (comp.Name
+    // stays English in storage / logic; this only maps it for the screen title).
+    // Covers the generic kinds and the six preset competitions; unknown names
+    // (custom league/cup names) fall through untranslated.
+    private static string TrCompName(string n) => n switch
+    {
+        "LEAGUE" => Loc.Tr("comp.name_league", "LEAGUE"),
+        "CUP" => Loc.Tr("comp.name_cup", "CUP"),
+        "TOURNAMENT" => Loc.Tr("comp.name_tournament", "TOURNAMENT"),
+        "CAREER" => Loc.Tr("comp.name_career", "CAREER"),
+        "EUROPEAN CUP" => Loc.Tr("comp.preset_european_cup", "EUROPEAN CUP"),
+        "UEFA CUP" => Loc.Tr("comp.preset_uefa_cup", "UEFA CUP"),
+        "CUP WINNERS CUP" => Loc.Tr("comp.preset_cup_winners_cup", "CUP WINNERS CUP"),
+        "WORLD CUP" => Loc.Tr("comp.preset_world_cup", "WORLD CUP"),
+        "EUROPEAN CHAMPIONSHIP" => Loc.Tr("comp.preset_european_championship", "EUROPEAN CHAMPIONSHIP"),
+        "COPA AMERICA" => Loc.Tr("comp.preset_copa_america", "COPA AMERICA"),
+        _ => n,
+    };
 
     private void OpenSavedCompetition()
     {
@@ -2544,7 +2590,7 @@ public sealed partial class MenuClient
 
     private MenuScreen BuildDrawCeremony(string stage, int round)
     {
-        var s = new MenuScreen { Title = stage + " " + Loc.Tr("draw.title_suffix", "DRAW"), BodyReserve = 72 };
+        var s = new MenuScreen { Title = CompLoc.TrStage(stage) + " " + Loc.Tr("draw.title_suffix", "DRAW"), BodyReserve = 72 };
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.PlayPrimary, Big = true,
             Label = () => Loc.Tr("common.continue", "CONTINUE"), OnActivate = () => Pop() });
         s.Body = client => client.DrawDrawCeremonyBody(s, stage, round);
@@ -2564,7 +2610,7 @@ public sealed partial class MenuClient
             if (f.Round != round || f.Stage != stage) continue;
             if (y + 8 > bottom) break;
             bool mine = f.HomeTeam == c.PlayerTeam || f.AwayTeam == c.PlayerTeam;
-            BodyText(s, $"{TeamShort(c, f.HomeTeam, 15)}  V  {TeamShort(c, f.AwayTeam, 15)}",
+            BodyText(s, $"{TeamShort(c, f.HomeTeam, 15)}{Loc.Tr("menu.versus", "  V  ")}{TeamShort(c, f.AwayTeam, 15)}",
                 false, 60, y, mine ? gold : normal);
             y += 8;
         }
@@ -2580,7 +2626,7 @@ public sealed partial class MenuClient
             Label = () => Loc.Tr("setup.size", "SIZE"), Value = () => kLeagueSizes[_leagueSizeIdx] + " " + Loc.Tr("setup.teams_suffix", "TEAMS"),
             OnStep = d => _leagueSizeIdx = StepIdx(_leagueSizeIdx, d, kLeagueSizes.Length) });
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-            Label = () => Loc.Tr("setup.entrants", "ENTRANTS"), Value = () => kEntrantModes[_entrantsMode],
+            Label = () => Loc.Tr("setup.entrants", "ENTRANTS"), Value = () => Loc.Tr(_entrantsMode switch { 0 => "comp.entrants_same_div", 1 => "comp.entrants_same_nation", _ => "comp.entrants_random" }, kEntrantModes[_entrantsMode]),
             OnStep = d => _entrantsMode = StepIdx(_entrantsMode, d, kEntrantModes.Length) });
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
             Label = () => Loc.Tr("setup.rounds", "ROUNDS"), Value = () => _leagueRoundsIdx == 0 ? Loc.Tr("setup.rounds_single", "SINGLE") : Loc.Tr("setup.rounds_double", "DOUBLE"),
@@ -2611,7 +2657,7 @@ public sealed partial class MenuClient
             Label = () => Loc.Tr("setup.size", "SIZE"), Value = () => kCupSizes[_cupSizeIdx] + " " + Loc.Tr("setup.teams_suffix", "TEAMS"),
             OnStep = d => _cupSizeIdx = StepIdx(_cupSizeIdx, d, kCupSizes.Length) });
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-            Label = () => Loc.Tr("setup.entrants", "ENTRANTS"), Value = () => kEntrantModes[_entrantsMode],
+            Label = () => Loc.Tr("setup.entrants", "ENTRANTS"), Value = () => Loc.Tr(_entrantsMode switch { 0 => "comp.entrants_same_div", 1 => "comp.entrants_same_nation", _ => "comp.entrants_random" }, kEntrantModes[_entrantsMode]),
             OnStep = d => _entrantsMode = StepIdx(_entrantsMode, d, kEntrantModes.Length) });
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.PlayPrimary, Big = true,
             Label = () => Loc.Tr("setup.create_cup", "CREATE CUP"), OnActivate = CreateCupNow });
@@ -2638,7 +2684,7 @@ public sealed partial class MenuClient
             Label = () => Loc.Tr("setup.groups", "GROUPS"), Value = () => kTournamentGroups[_tournamentGroupsIdx] + " " + Loc.Tr("setup.groups_of_4_suffix", "GROUPS OF 4"),
             OnStep = d => _tournamentGroupsIdx = StepIdx(_tournamentGroupsIdx, d, kTournamentGroups.Length) });
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Option, Style = MenuTheme.Style.Value,
-            Label = () => Loc.Tr("setup.entrants", "ENTRANTS"), Value = () => kEntrantModes[_entrantsMode],
+            Label = () => Loc.Tr("setup.entrants", "ENTRANTS"), Value = () => Loc.Tr(_entrantsMode switch { 0 => "comp.entrants_same_div", 1 => "comp.entrants_same_nation", _ => "comp.entrants_random" }, kEntrantModes[_entrantsMode]),
             OnStep = d => _entrantsMode = StepIdx(_entrantsMode, d, kEntrantModes.Length) });
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.PlayPrimary, Big = true,
             Label = () => Loc.Tr("setup.create_tournament", "CREATE TOURNAMENT"), OnActivate = CreateTournamentNow });
@@ -2722,7 +2768,7 @@ public sealed partial class MenuClient
         PushNameEntry(Loc.Tr("mgr.title", "MANAGER NAME"), Loc.Tr("mgr.default_name", "PLAYER"), 14,
             Loc.Tr("mgr.hint", "TYPE NAME   LEFT/RIGHT TITLE   ENTER OK   ESC CANCEL"),
             name => CreateCareerNow(name.Length == 0 ? Loc.Tr("mgr.default_name", "PLAYER") : name, kManagerTitles[_mgrTitleIdx]),
-            sideRow: () => Loc.Tr("mgr.title_row", "TITLE") + "  " + kManagerTitles[_mgrTitleIdx],
+            sideRow: () => Loc.Tr("mgr.title_row", "TITLE") + "  " + Loc.Tr(_mgrTitleIdx == 0 ? "career.title_mr" : "career.title_ms", kManagerTitles[_mgrTitleIdx]),
             onSide: _ => { _mgrTitleIdx ^= 1; _dirty = true; });
     }
 
@@ -2885,7 +2931,7 @@ public sealed partial class MenuClient
             ? () => Push(BuildLineupEditor())
             : null;
         Push(BuildVersus(Loc.Tr("next.title", "NEXT MATCH"),
-            () => $"{c.Name}  {CompetitionEngine.RoundLabel(c)}",
+            () => $"{TrCompName(c.Name)}  {CompetitionEngine.RoundLabel(c)}",
             () => TeamShort(c, fx.HomeTeam, 20),
             () => TeamShort(c, fx.AwayTeam, 20),
             null,
@@ -3062,9 +3108,9 @@ public sealed partial class MenuClient
             p++; gf += mine; ga += theirs;
             if (mine > theirs) w++; else if (mine == theirs) d++; else l++;
         }
-        BodyText(s, $"SEASON {career.Season}  {TeamShort(c, c.PlayerTeam, 16)}  DIV {career.Division + 1}", false, x, y, head);
+        BodyText(s, string.Format(Loc.Tr("career.rec_season_div", "SEASON {0}  {1}  DIV {2}"), career.Season, TeamShort(c, c.PlayerTeam, 16), career.Division + 1), false, x, y, head);
         y += 9;
-        BodyText(s, $"P {p}   W {w}   D {d}   L {l}   GF {gf}   GA {ga}", false, x, y, normal);
+        BodyText(s, string.Format(Loc.Tr("career.rec_pwdl", "P {0}   W {1}   D {2}   L {3}   GF {4}   GA {5}"), p, w, d, l, gf, ga), false, x, y, normal);
         y += 12;
 
         // (2) trophies — the last four, oldest of those first
@@ -3130,7 +3176,7 @@ public sealed partial class MenuClient
         {
             var preset = p;   // capture per-iteration
             s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.PlaySecondary, Big = false,
-                Label = () => preset.Name, OnActivate = () => OpenPresetSetup(preset) });
+                Label = () => TrCompName(preset.Name), OnActivate = () => OpenPresetSetup(preset) });
         }
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Button, Style = MenuTheme.Style.Plain, Big = false,
             Label = () => Loc.Tr("common.back", "BACK"), OnActivate = () => Pop() });
@@ -3190,7 +3236,7 @@ public sealed partial class MenuClient
     {
         var p = _preset;
         if (p is null) return BuildPresetList();
-        var s = new MenuScreen { Title = p.Name };
+        var s = new MenuScreen { Title = TrCompName(p.Name) };
         s.Entries.Add(new MenuEntry { Kind = EntryKind.Label, Big = false,
             Label = () => p.Kind == CompetitionKind.Cup
                 ? $"{p.Size} {Loc.Tr("preset.team_knockout_suffix", "TEAM KNOCKOUT")}"
@@ -3340,7 +3386,7 @@ public sealed partial class MenuClient
 
         if (c.Career is not null)
         {
-            string extra = $"DIV {c.Career.Division + 1}  SEASON {c.Career.Season}";
+            string extra = string.Format(Loc.Tr("career.dash_div_season", "DIV {0}  SEASON {1}"), c.Career.Division + 1, c.Career.Season);
             // Manager identity (title + name) when a name has been entered
             // (name entry itself arrives in a later wave — omit while empty).
             string mgrName = (c.Career.ManagerName ?? "").Trim();
@@ -3441,7 +3487,7 @@ public sealed partial class MenuClient
         foreach (var f in c.Fixtures)
         {
             if (f.Round != round) continue;
-            if (shown == 0 && f.Stage.Length > 0) { BodyText(s, f.Stage, false, x, y, head); y += 9; }
+            if (shown == 0 && f.Stage.Length > 0) { BodyText(s, CompLoc.TrStage(f.Stage), false, x, y, head); y += 9; }
             bool mine = f.HomeTeam == c.PlayerTeam || f.AwayTeam == c.PlayerTeam;
             BodyText(s, FixtureLine(c, f), false, x, y, mine ? gold : normal);
             y += 8;
@@ -3465,7 +3511,7 @@ public sealed partial class MenuClient
         }
         if (c.Kind == CompetitionKind.Tournament)
         {
-            BodyText(s, stage, false, 22, y, new Color(0.7f, 0.85f, 1f));
+            BodyText(s, CompLoc.TrStage(stage), false, 22, y, new Color(0.7f, 0.85f, 1f));
             y += 9;
         }
         DrawTableRows(s, c, CompetitionEngine.Table(c, stage), 22, y, (_vh - 14 - y - 9) / 8);
@@ -3499,7 +3545,7 @@ public sealed partial class MenuClient
         for (int i = start; i < mine.Count && i - start < maxRows; i++)
         {
             var f = mine[i];
-            BodyText(s, f.Stage + "  " + FixtureLine(c, f), false, 22, y, f.Played ? played : upcoming);
+            BodyText(s, CompLoc.TrStage(f.Stage) + "  " + FixtureLine(c, f), false, 22, y, f.Played ? played : upcoming);
             y += 8;
         }
     }
@@ -3556,7 +3602,9 @@ public sealed partial class MenuClient
         // panel header: coach + division on the left, kit swatches on the right.
         var head = new Color(0.7f, 0.85f, 1f);
         string coach = (t.Coach ?? "").Trim().TrimEnd('\0');
-        string info = string.IsNullOrEmpty(coach) ? $"DIV {t.Division + 1}" : $"COACH {coach}   DIV {t.Division + 1}";
+        string info = string.IsNullOrEmpty(coach)
+            ? string.Format(Loc.Tr("menu.team_div", "DIV {0}"), t.Division + 1)
+            : string.Format(Loc.Tr("menu.team_coach_div", "COACH {0}   DIV {1}"), coach, t.Division + 1);
         BodyText(s, info, false, col1, panelY + 4, head);
         int sw = 11, gap = 3, kx = panelX + panelW - (sw + gap) * 3 - 4, ky = panelY + 3;
         DrawKitStrip(s, kx, ky, sw, t.HomeKit);

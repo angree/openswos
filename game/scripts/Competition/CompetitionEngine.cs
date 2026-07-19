@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using OpenSwos.Menu;
 
 namespace OpenSwos.Competition;
 
@@ -363,14 +364,17 @@ public static class CompetitionEngine
     public static string RoundLabel(CompetitionState state)
     {
         var f = NextFixture(state);
-        if (f is null) return state.Finished ? "COMPETITION COMPLETE" : "NO FIXTURES";
+        if (f is null) return state.Finished
+            ? Loc.Tr("comp.competition_complete", "COMPETITION COMPLETE")
+            : Loc.Tr("comp.no_fixtures", "NO FIXTURES");
         if (f.Stage == "LEAGUE")
         {
             List<int> leagueRounds = DistinctStageRounds(state, "LEAGUE");
             int idx = leagueRounds.IndexOf(f.Round) + 1;
-            return $"LEAGUE - ROUND {idx}/{leagueRounds.Count}";
+            return string.Format(
+                Loc.Tr("comp.league_round", "LEAGUE - ROUND {0}/{1}"), idx, leagueRounds.Count);
         }
-        return f.Stage;
+        return CompLoc.TrStage(f.Stage);
     }
 
     /// True while the player still has a current-or-future fixture: an
@@ -421,23 +425,25 @@ public static class CompetitionEngine
     public static string PlayerSummary(CompetitionState state)
     {
         int p = state.PlayerTeam;
-        if (p < 0 || p >= state.Teams.Count) return "NO PLAYER TEAM";
-        if (state.Finished && state.Champion == p) return "YOU ARE THE CHAMPION";
+        if (p < 0 || p >= state.Teams.Count) return Loc.Tr("comp.no_player_team", "NO PLAYER TEAM");
+        if (state.Finished && state.Champion == p) return Loc.Tr("comp.you_champion", "YOU ARE THE CHAMPION");
 
         if (state.Kind == CompetitionKind.League || state.Kind == CompetitionKind.Career)
         {
             var table = Table(state, "LEAGUE");
             for (int i = 0; i < table.Count; i++)
-                if (table[i].Team == p) return "YOU ARE " + Ordinal(i + 1);
-            return "YOU ARE UNPLACED";
+                if (table[i].Team == p)
+                    return string.Format(Loc.Tr("comp.you_are_pos", "YOU ARE {0}"), CompLoc.Ordinal(i + 1));
+            return Loc.Tr("comp.you_unplaced", "YOU ARE UNPLACED");
         }
 
         // Cup / tournament.
-        if (!IsPlayerAlive(state)) return "YOU WERE ELIMINATED";
+        if (!IsPlayerAlive(state)) return Loc.Tr("comp.you_eliminated", "YOU WERE ELIMINATED");
         var next = NextPlayerFixture(state);
-        if (next is null) return "YOU ARE THROUGH TO THE NEXT ROUND";
-        if (next.Stage.StartsWith("GROUP", StringComparison.Ordinal)) return "YOU ARE IN " + next.Stage;
-        return "YOU ARE IN THE " + next.Stage;
+        if (next is null) return Loc.Tr("comp.you_through", "YOU ARE THROUGH TO THE NEXT ROUND");
+        if (next.Stage.StartsWith("GROUP", StringComparison.Ordinal))
+            return string.Format(Loc.Tr("comp.you_in", "YOU ARE IN {0}"), CompLoc.TrStage(next.Stage));
+        return string.Format(Loc.Tr("comp.you_in_the", "YOU ARE IN THE {0}"), CompLoc.TrStage(next.Stage));
     }
 
     // ==================================================================

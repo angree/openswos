@@ -31,6 +31,11 @@ public partial class MatchAudio : Node
     /// mid-match.</summary>
     public static SoundSource Source = SoundSource.Pc;
 
+    /// <summary>OPTIONS "COMMENTATOR" toggle. When false the spoken-commentary
+    /// engine is silenced even on PC sound (Amiga never has commentary anyway).
+    /// Applied to CommentaryEngine at match start via LoadPcSamples().</summary>
+    public static bool CommentatorEnabled = true;
+
     /// <summary>True when the core PC pitch SFX are discoverable (SOUND OPTIONS).</summary>
     public static bool PcAvailable() => RawSample.PcAvailable();
 
@@ -200,7 +205,7 @@ public partial class MatchAudio : Node
 
     private void LoadPcSamples()
     {
-        _comments.SetEnabled(true);
+        _comments.SetEnabled(CommentatorEnabled);
         int loaded = 0, missing = 0;
         void Track(AudioStreamWav? s) { if (s != null) loaded++; else missing++; }
 
@@ -402,13 +407,20 @@ public partial class MatchAudio : Node
         else PlayOneShot(_missGoal, VolMiss);
     }
 
-    // Goal cheer — the original layers a multi-channel "song 6" of crowd windows
-    // (instrs 10-19,23,27-30,44). APPROXIMATED here with the instr 36 crowd swell
-    // at full volume + a brief crowd-bed volume boost (see _Process).
+    // Goal cheer — the original's "song 6" roar: instr 28 @ 16574 layered with instr 27
+    // @ 27928, both looped under an envelope for ~3 s.
+    //
+    // This USED to play CrowdOooh (instr 36) — but instr 36 appears only in the
+    // near-miss and delayed-reaction patterns: it is exclusively the DISAPPOINTED
+    // "ooooh". So every goal was announced with the sound of a crowd groaning at a
+    // miss, and a goal and a miss were literally the same sample. Song 6 is the actual
+    // cheer, and is what the original also fires on a penalty award, at half time and
+    // at full time.
     private void AmigaGoalCheer()
     {
         if (_amigaSet == null) return;
-        PlayOneShot(_amigaSet.CrowdOooh, VolGoal);
+        PlayOneShot(_amigaSet.Cheer, VolGoal);
+        PlayOneShot(_amigaSet.Cheer2, VolGoal * 7 / 10);   // upper layer, quieter
         _bedBoostSeconds = BedBoostDuration;
         _crowdReactionTicks = CrowdReactionWindow;
     }
@@ -452,6 +464,20 @@ public partial class MatchAudio : Node
     {
         int g1 = Memory.ReadWord(Memory.Addr.team1TotalGoals);
         int g2 = Memory.ReadWord(Memory.Addr.team2TotalGoals);
+
+        // Amiga has no separate win/lose/draw crowd samples — the original fires the
+        // same song-6 roar at full time as it does at a goal. Without this branch the
+        // Amiga path was SILENT at the final whistle: _cheer/_homeWinl/_booWhisl are
+        // only ever loaded by LoadPcSamples.
+        if (_source == SoundSource.Amiga)
+        {
+            if (_amigaSet != null)
+            {
+                PlayOneShot(_amigaSet.Cheer, VolEndCrowd);
+                PlayOneShot(_amigaSet.Cheer2, VolEndCrowd * 7 / 10);
+            }
+            return;   // no spoken commentary on Amiga
+        }
 
         // comments.cpp:115-127 — draw → cheer, team2 losing → homewinl (home
         // fans cheer), team1 losing → boowhisl (home fans boo).

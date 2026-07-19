@@ -284,6 +284,13 @@ public partial class Main : Node2D
     private int _stickFinger = -1, _fireFinger = -1;
     private Vector2 _stickAnchor;
     private bool _touchPauseRequested;
+
+    // Discrete UI presses raised by the touch overlay outside the menus. The sim polls
+    // the HELD _touchFire flag, but the pause and full-time screens wait on an
+    // edge-triggered ui_accept / ui_cancel that previously only a keyboard could send —
+    // leaving a touch-only device unable to quit a match or dismiss the result screen.
+    private bool _touchAcceptRequested;
+    private bool _touchCancelRequested;
     // User toggle: hide the on-screen d-pad/fire/pause (e.g. when using a Bluetooth
     // pad). The small toggle icon itself stays visible. Persisted as "touchOverlay"
     // (default true on touchscreens). Instant, no restart.
@@ -294,8 +301,14 @@ public partial class Main : Node2D
     // Touch capture zones. Defaults reproduce the pre-#231 behaviour exactly
     // (left half = stick, fire = the drawn circle only); the Android expand path
     // widens them to "whole bar + grace strip" in LayoutTouchOverlay.
-    private float _tStickZoneMaxX = ViewportWidth * RenderScale / 2f;   // 576
+    private float _tStickZoneMaxX = ViewportWidth * MatchScale / 2f;   // 576
     private float _tFireZoneMinX = float.MaxValue;
+
+    // Menu variants of the two zones. In a match the zones are padded by a grace strip
+    // so a thumb need not be precise; menus must NOT be padded, because the strip
+    // reached over the option rows' "<" / ">" arrows and consumed those taps.
+    private float _tMenuStickZoneMaxX = ViewportWidth * MatchScale / 2f;
+    private float _tMenuFireZoneMinX = float.MaxValue;
     // Cached glyph textures for the top-right slot: PAUSE in match, BACK in menu.
     private ImageTexture? _pauseTex, _backTex;
     // === Android on-screen d-pad → MENU navigation (touch) =====================
@@ -331,10 +344,31 @@ public partial class Main : Node2D
     private bool _androidSim;               // desktop dev flag: --android-sim WxH
     private Vector2I _androidSimSize = new Vector2I(2400, 1080);
     private float _barW;                    // width of ONE side bar, in content units
-    private float _vpW = ViewportWidth * RenderScale;   // current root viewport width (content units)
+    private float _vpW = ViewportWidth * MatchScale;   // current root viewport width (content units)
     private CanvasLayer? _barsLayer;        // Layer 3: black side bars (above HUD, below overlay)
     private ColorRect? _barLeft, _barRight;
     private CanvasLayer? _hudLayer;         // kept so the expand offset can be re-applied on resize
+
+    // OPTIONS "SMOOTHING" (picture smoothing). Cheap by design: it only flips the
+    // ROOT viewport's default canvas texture filter Nearest<->Linear. Under the
+    // "viewport" stretch mode the design-res (1152x816) image is presented to the
+    // window with that filter, so Linear gives a smooth final downscale to small
+    // handheld screens (640x480) — with ZERO extra passes and ZERO extra shaded
+    // pixels (net-neutral GPU fill). Per-node TextureFilter=Nearest overrides on
+    // the in-world sprites are untouched, so source art stays crisp (no atlas
+    // bleed) and OFF is byte-identical to before. Default OFF. See ApplySmoothing.
+    private bool _smoothing = false;
+    // OPTIONS "COMMENTATOR" toggle (default ON). Silences the spoken-commentary
+    // engine even on PC sound; applied to MatchAudio.CommentatorEnabled at match
+    // start. When the settings key is ABSENT, LoadSettings leaves this ON.
+    private bool _commentator = true;
+
+    // Android: set when we bailed out to the first-run screen while storage access was
+    // still missing. The all-files grant arrives ASYNCHRONOUSLY (the user leaves for a
+    // system settings screen and comes back), so we watch for it and reboot the scene
+    // ourselves instead of telling the user to kill and reopen the app.
+    private bool _awaitingStorageGrant;
+    private int _storageGrantPollTicks;
     // Below this bar width the bars are too thin to hold a thumb stick (near-4:3
     // tablet) — the overlay then falls back to its original on-content positions.
     private const float BarMinWidth = 70f;
@@ -442,6 +476,10 @@ public partial class Main : Node2D
             // Native handhelds -> fullscreen fill; the --small-screen flag on a desktop -> 640x480 window for testing.
             _displayMode = smallByScreen ? DisplayMode.FullscreenFill : DisplayMode.Windowed;
         }
+        // Render mode (task: fast match render for handhelds). FastRender/MatchScale
+        // are resolved at static-init; log them so a device run confirms the mode.
+        GD.Print($"Render mode: FastRender={FastRender} MatchScale={MatchScale} " +
+                 $"(match native {ViewportWidth * MatchScale}x{ViewportHeight * MatchScale}; menu native {ViewportWidth * HiResScale}x{ViewportHeight * HiResScale})");
 
         // --- Touch UI (Android) + perf-log detection ---
         // A real touchscreen (DisplayServer.IsTouchscreenAvailable) OR the --touch
@@ -538,6 +576,12 @@ public partial class Main : Node2D
         DataPaths.AndroidStartupInit();
 
         AmigaImporter.EnsureImported();
+
+        // Asset availability is only knowable AFTER extraction, so the persisted SOUND
+        // preference is re-pointed here rather than in LoadSettings. A player with Amiga
+        // files but no PC CD would otherwise boot on the PC default and hear nothing.
+        NormalizeSoundSource();
+
         string grafsDir = DataPaths.AmigaGrafsDir();
 
         // Scan disk for available pitch variants (canonical: 1..6, but the extracted set
@@ -545,8 +589,10 @@ public partial class Main : Node2D
         for (int i = 1; i <= 6; i++)
         {
             if (grafsDir.Length == 0) break;
-            string p = System.IO.Path.Combine(grafsDir, $"SWCPICH{i}.MAP");
-            if (System.IO.File.Exists(p)) _availablePitches.Add(i);
+            // Case-insensitive resolve: Linux/Android/R36S filesystems are case-SENSITIVE
+            // and a user's copy may be lowercased (swcpich1.map). "" means absent.
+            string p = DataPaths.ResolveFile(grafsDir, $"SWCPICH{i}.MAP");
+            if (p.Length > 0) _availablePitches.Add(i);
         }
         if (_availablePitches.Count == 0)
         {
@@ -568,9 +614,9 @@ public partial class Main : Node2D
         // Load player atlas (un-recoloured) and full PC team list. Menu picks which two
         // teams the recolour pipeline runs against; ApplyMatchSetup wires the textures.
         string atlasPath = grafsDir.Length > 0
-            ? System.IO.Path.Combine(grafsDir, "CJCTEAM1.RAW")
+            ? DataPaths.ResolveFile(grafsDir, "CJCTEAM1.RAW")
             : "";
-        if (atlasPath.Length == 0 || !System.IO.File.Exists(atlasPath))
+        if (atlasPath.Length == 0)
         {
             GD.Print("Amiga graphics not found — skipping visual render");
             ShowFirstRunMessage();
@@ -584,15 +630,15 @@ public partial class Main : Node2D
 
             // Goalkeeper sheet — holds the dive/catch bands (bug #155). Optional:
             // when missing the keeper falls back to outfield-frame poses.
-            string goalieAtlasPath = System.IO.Path.Combine(grafsDir, "CJCTEAMG.RAW");
-            if (System.IO.File.Exists(goalieAtlasPath))
+            string goalieAtlasPath = DataPaths.ResolveFile(grafsDir, "CJCTEAMG.RAW");
+            if (goalieAtlasPath.Length > 0)
             {
                 _goalieBaseAtlas = AmigaSpriteAtlas.Load(goalieAtlasPath);
                 GD.Print("Loaded Amiga goalkeeper atlas (CJCTEAMG)");
             }
             else
             {
-                GD.PrintErr($"Goalkeeper atlas not found at {goalieAtlasPath} — keeper dive frames unavailable");
+                GD.PrintErr($"Goalkeeper atlas not found at {System.IO.Path.Combine(grafsDir, "CJCTEAMG.RAW")} — keeper dive frames unavailable");
             }
 
             // Team list for the menu / competitions. PC (≈1730 teams) is preferred
@@ -755,9 +801,9 @@ public partial class Main : Node2D
             _camera = new Camera2D
             {
                 AnchorMode = Camera2D.AnchorModeEnum.DragCenter,
-                // Native viewport is design ×RenderScale; the match world is
+                // Native viewport is design ×MatchScale; the match world is
                 // authored in design pixels, so zoom the camera to fill it 1:1.
-                Zoom = new Vector2(RenderScale, RenderScale),
+                Zoom = new Vector2(MatchScale, MatchScale),
                 // Bounds match the original's camera clip window: world x in [0, 672],
                 // world y in [16, 848] — external/swos-port/src/game/pitch/pitch.cpp:376-398
                 // (clipPitch clamps the view top to kSwosPatternSize=16 and the bottom to
@@ -785,9 +831,9 @@ public partial class Main : Node2D
             // bounding box of non-transparent pixels so the SWOS per-frame anchor (1, 3)
             // applies to the real ball image, same dimensions as PC ball sprites
             // 1179-1182 (4×4, center (1,3) — swos-port spriteDatabase.h).
-            string ballAtlasPath = System.IO.Path.Combine(grafsDir, "CJCBITS.RAW");
+            string ballAtlasPath = DataPaths.ResolveFile(grafsDir, "CJCBITS.RAW");
             Image ballImg;
-            if (System.IO.File.Exists(ballAtlasPath))
+            if (ballAtlasPath.Length > 0)
             {
                 var bitsAtlas = AmigaSpriteAtlas.Load(ballAtlasPath);
                 CreateGoalOverlays(bitsAtlas);
@@ -864,11 +910,11 @@ public partial class Main : Node2D
             // MATCH HUD layer: the score/timer/overlay labels, SWOS-charset result
             // panel, bench panel and on-ball player-name banner are all authored in
             // 384×272 (ViewportWidth/Height) design space and MUST keep their ×3
-            // on-screen size — so they live on their own CanvasLayer at RenderScale,
+            // on-screen size — so they live on their own CanvasLayer at MatchScale,
             // NOT on the ×2 menu layer. Layer=1 keeps the HUD above the menu (the
             // two are mutually exclusive by game state anyway).
             var hud = new CanvasLayer { Layer = 1 };
-            hud.Transform = Transform2D.Identity.Scaled(new Vector2(RenderScale, RenderScale));
+            hud.Transform = Transform2D.Identity.Scaled(new Vector2(MatchScale, MatchScale));
             AddChild(hud);
             _hudLayer = hud;
 
@@ -877,13 +923,13 @@ public partial class Main : Node2D
             // SWOS glyphs (NEAREST) instead of anti-aliased TTF. Missing asset
             // just leaves those HUD elements blank rather than crashing.
             {
-                string charsetPath = System.IO.Path.Combine(grafsDir, "CHARSET.RAW");
-                if (System.IO.File.Exists(charsetPath))
+                string charsetPath = DataPaths.ResolveFile(grafsDir, "CHARSET.RAW");
+                if (charsetPath.Length > 0)
                 {
                     try { _font = OpenSwos.Assets.SwosFont.Load(charsetPath); }
                     catch (System.Exception ex) { GD.PrintErr($"SwosFont load failed: {ex.Message}"); }
                 }
-                else GD.PrintErr($"CHARSET.RAW not found at {charsetPath} — HUD text disabled");
+                else GD.PrintErr($"CHARSET.RAW not found at {System.IO.Path.Combine(grafsDir, "CHARSET.RAW")} — HUD text disabled");
             }
 
             // OpenSWOS SWOS-styled front-end. Built on the ×2 menu CanvasLayer;
@@ -913,6 +959,10 @@ public partial class Main : Node2D
                 ApplyExpandLayout();
             }
 
+            // Picture-smoothing (OPTIONS "SMOOTHING") — apply the loaded/auto
+            // setting to the root viewport's present filter. No-op when OFF.
+            ApplySmoothing();
+
             _scoreLabel = new Label
             {
                 Text = "0 - 0",
@@ -938,7 +988,7 @@ public partial class Main : Node2D
                 Text = "",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                // Size to the DESIGN viewport, not screen anchors: the ×RenderScale
+                // Size to the DESIGN viewport, not screen anchors: the ×MatchScale
                 // layer transform would otherwise resolve anchors against 1152×816
                 // and then scale again, overshooting.
                 Position = new Vector2(0, 0),
@@ -3797,12 +3847,36 @@ public partial class Main : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+        // Fast mode only: keep the native root-viewport size in step with the app
+        // state (MENU 1152×816 crisp ↔ MATCH/PAUSED 768×544). One idempotent
+        // comparison catches ALL _appState transitions (match start, half/full
+        // time result, pause, ESC-to-menu, quit) without touching each site. When
+        // FastRender is false this never runs, so desktop/Android are untouched.
+        if (FastRender) MaybeUpdateContentSize();
+
+        // Android first-run: the storage grant lands asynchronously. Poll ~twice a second
+        // and reboot the scene as soon as it appears, so the user never has to restart
+        // the app by hand (the old behaviour: permanent "no SWOS data" until relaunch).
+        if (_awaitingStorageGrant && ++_storageGrantPollTicks >= 30)
+        {
+            _storageGrantPollTicks = 0;
+            if (OpenSwos.Assets.DataPaths.HasStorageAccess())
+            {
+                _awaitingStorageGrant = false;
+                GD.Print("[Main] Storage access granted — reloading to import game data.");
+                GetTree().ReloadCurrentScene();
+                return;
+            }
+        }
+
         // Menu music follows the app state (start on menu, hard-stop on match,
         // resume on return). No-op headless (node never created).
         UpdateMenuMusic();
 
-        bool acceptPressed = Input.IsActionJustPressed(A_UiAccept);
-        bool cancelPressed = Input.IsActionJustPressed(A_UiCancel);
+        bool acceptPressed = Input.IsActionJustPressed(A_UiAccept) || _touchAcceptRequested;
+        bool cancelPressed = Input.IsActionJustPressed(A_UiCancel) || _touchCancelRequested;
+        _touchAcceptRequested = false;
+        _touchCancelRequested = false;
         bool pausePressed  = Input.IsActionJustPressed(A_SwosPause) || _touchPauseRequested; // "P" / touch pause icon
         _touchPauseRequested = false;
 
@@ -4946,6 +5020,9 @@ public partial class Main : Node2D
         // (deterministic — never flipped mid-match). Energy itself is always
         // tracked (bar shows drain regardless).
         OpenSwos.Sim.Port.PlayerEnergy.EffectEnabled = _fatigueSim || _competitionMatchPending;
+        // Normalize the per-tick fatigue drain to the selected match length so a
+        // 3-min and a 10-min match end at the SAME tiredness (ref = 3-min-per-half).
+        OpenSwos.Sim.Port.PlayerEnergy.SetMatchLength(TotalMatchSeconds);
 
         // 3a'. resetResult (result.cpp:104-118) — the original calls it at match
         // init; our Result scorer arrays are C# STATICS that survive Memory.Init,
@@ -5071,6 +5148,7 @@ public partial class Main : Node2D
         // Resolve the SOUND preference (PC/AMIGA) against availability and hand it
         // to MatchAudio BEFORE OnMatchInit locks it in for the match.
         OpenSwos.Audio.MatchAudio.Source = ResolveSoundSource();
+        OpenSwos.Audio.MatchAudio.CommentatorEnabled = _commentator;
         OpenSwos.Audio.MatchAudio.Instance?.OnMatchInit();
     }
 
@@ -5253,7 +5331,9 @@ public partial class Main : Node2D
         // OR-ed in AFTER SetJoystickState (which rewrites the event dword).
         // The event flows: ic_pl1Events → InputControls.UpdateTeamControls →
         // team.secondaryFire → Bench.UpdateNonBenchControls → bench opens.
-        if (Input.IsKeyPressed(Key.B))
+        // Pad-only handhelds have no keyboard: JoyButton.Y (device 0) also opens
+        // the bench. Y is free in-match (A=fire, B=cancel, Start=pause).
+        if (Input.IsKeyPressed(Key.B) || Input.IsJoyButtonPressed(0, JoyButton.Y))
         {
             int ev1 = OpenSwos.SwosVm.Memory.ReadSignedDword(OpenSwos.SwosVm.Memory.Addr.ic_pl1Events);
             ev1 |= (int)OpenSwos.Sim.Port.InputControls.GameControlEvents.kGameEventBench;
@@ -5478,7 +5558,9 @@ public partial class Main : Node2D
             InputMap.ActionAddEvent(action, new InputEventJoypadButton { ButtonIndex = b });
         }
         AddBtn("ui_accept", JoyButton.A);
-        AddBtn("ui_accept", JoyButton.Start);
+        // Start is the PAUSE button (same path as keyboard "P"), NOT a second
+        // confirm — binding it to ui_accept caused an in-match SHOOT on handhelds.
+        AddBtn("swos_pause", JoyButton.Start);
         AddBtn("ui_cancel", JoyButton.B);
         AddBtn("ui_up", JoyButton.DpadUp);
         AddBtn("ui_down", JoyButton.DpadDown);
@@ -5511,6 +5593,69 @@ public partial class Main : Node2D
         bars.AddChild(_barRight);
     }
 
+    // === Picture smoothing (OPTIONS "SMOOTHING") ===============================
+    // Flip the root viewport's default present filter. Nearest = original harsh
+    // pixel-perfect scaling (default); Linear = smoothed downscale for small
+    // handheld screens. No extra render pass — this only changes how the already-
+    // rendered viewport image is sampled when presented, so it's GPU-free.
+    private void ApplySmoothing()
+    {
+        if (DisplayServer.GetName() == "headless") return;
+        var vp = GetViewport();
+        if (vp is null) return;
+        vp.CanvasItemDefaultTextureFilter = _smoothing
+            ? Viewport.DefaultCanvasItemTextureFilter.Linear
+            : Viewport.DefaultCanvasItemTextureFilter.Nearest;
+    }
+
+    // Heuristic used ONLY to pick the first-run default for SMOOTHING when the
+    // settings file has no "smoothing" key: a retro handheld. Two signals — the
+    // launcher can export OPENSWOS_HANDHELD=1, or the physical screen is small
+    // (<= 640x480). Never forces the option; the user can still flip it.
+    private static bool DetectHandheld()
+    {
+        var env = System.Environment.GetEnvironmentVariable("OPENSWOS_HANDHELD");
+        if (env == "1" || env == "true") return true;
+        if (DisplayServer.GetName() == "headless") return false;
+        try
+        {
+            var sz = DisplayServer.ScreenGetSize(DisplayServer.WindowGetCurrentScreen());
+            if (sz.X > 0 && sz.Y > 0 && sz.X <= 640 && sz.Y <= 480) return true;
+        }
+        catch { /* display probe unavailable — treat as non-handheld */ }
+        return false;
+    }
+
+    // Picks the render mode ONCE at static-init, from the SAME signals _Ready uses
+    // to set _smallScreen (plus the OPENSWOS_HANDHELD launcher env, which
+    // DetectHandheld also honours). The R36S/handheld Linux build is tagged
+    // "handheld" (export_presets.cfg) and trips this UNCONDITIONALLY; `--small-screen`
+    // lets a desktop emulate it. Escape hatch: OPENSWOS_FAST=0 forces the HIGH-RES
+    // path even on a handheld (e.g. to A/B the slowdown). Guarded because engine
+    // services may still be mid-init the first time the class is touched — on any
+    // failure we fall back to HIGH-RES so desktop/Android are never affected.
+    private static bool ComputeFastRender()
+    {
+        try
+        {
+            var force = System.Environment.GetEnvironmentVariable("OPENSWOS_FAST");
+            if (force == "0" || force == "false") return false;   // escape hatch: pin hi-res
+            if (force == "1" || force == "true") return true;     // (symmetry) force fast
+            if (OS.HasFeature("handheld")) return true;
+            var env = System.Environment.GetEnvironmentVariable("OPENSWOS_HANDHELD");
+            if (env == "1" || env == "true") return true;
+            foreach (var a in OS.GetCmdlineArgs())
+                if (a == "--small-screen") return true;
+            if (DisplayServer.GetName() != "headless")
+            {
+                var scr = DisplayServer.ScreenGetSize();
+                if (scr.X > 0 && scr.X <= 720 && scr.Y > 0 && scr.Y <= 576) return true;
+            }
+        }
+        catch { /* engine services not ready — default to HIGH-RES */ }
+        return false;
+    }
+
     // Recomputes the bar width and re-applies the centring offset. Called once at
     // boot and on every root-viewport resize (orientation change / window resize).
     private void ApplyExpandLayout()
@@ -5521,16 +5666,16 @@ public partial class Main : Node2D
         var vis = root.GetVisibleRect().Size;
         if (vis.X <= 0f || vis.Y <= 0f) return;
 
-        const float contentW = ViewportWidth * RenderScale;   // 1152
+        float contentW = ViewportWidth * MatchScale;   // 1152 hi / 768 fast (not const: MatchScale is mode-dependent)
         _vpW = vis.X;
         float extra = _vpW - contentW;
-        // Quantise the bar to a whole multiple of RenderScale. This is what makes
+        // Quantise the bar to a whole multiple of MatchScale. This is what makes
         // the centre region PIXEL-IDENTICAL to Keep mode: the camera-limit widening
-        // below is then _barW / RenderScale EXACTLY (no rounding), so the camera
+        // below is then _barW / MatchScale EXACTLY (no rounding), so the camera
         // clamps at precisely the same world coordinate it does in Keep mode. Any
         // 1-2 px remainder is absorbed by the right bar's width, which is computed
         // from the remainder rather than mirrored from the left.
-        _barW = extra > 0f ? Mathf.Floor(extra / 2f / RenderScale) * RenderScale : 0f;
+        _barW = extra > 0f ? Mathf.Floor(extra / 2f / MatchScale) * MatchScale : 0f;
         _barsHostControls = _barW >= BarMinWidth;
 
         // (a) MATCH WORLD — camera limits only. The camera is DragCenter, so its
@@ -5545,7 +5690,7 @@ public partial class Main : Node2D
         // becomes visible past the old limits is exactly what the bars mask.
         if (_camera is not null)
         {
-            int worldExtra = (int)(_barW / RenderScale);   // exact: _barW is a multiple of RenderScale
+            int worldExtra = (int)(_barW / MatchScale);   // exact: _barW is a multiple of MatchScale
             _camera.LimitLeft  = PitchOffsetX - worldExtra;
             _camera.LimitRight = PitchOffsetX + PitchWidth + worldExtra;
         }
@@ -5556,7 +5701,7 @@ public partial class Main : Node2D
         if (_uiLayer is not null)
             _uiLayer.Transform = new Transform2D(0f, new Vector2(MenuScale, MenuScale), 0f, new Vector2(_barW, 0f));
         if (_hudLayer is not null)
-            _hudLayer.Transform = new Transform2D(0f, new Vector2(RenderScale, RenderScale), 0f, new Vector2(_barW, 0f));
+            _hudLayer.Transform = new Transform2D(0f, new Vector2(MatchScale, MatchScale), 0f, new Vector2(_barW, 0f));
         _menuClient?.SetPresentationOffsetX(_barW);
         // _menuBgImage lives on the ui layer, so it inherits the _barW centring
         // via _uiLayer.Transform above — no separate offset needed.
@@ -5594,8 +5739,8 @@ public partial class Main : Node2D
     private void LayoutTouchOverlay()
     {
         if (_touchOverlay is null) return;
-        const float contentW = ViewportWidth * RenderScale;    // 1152
-        const float contentH = ViewportHeight * RenderScale;   // 816
+        float contentW = ViewportWidth * MatchScale;    // 1152 hi / 768 fast (not const: MatchScale is mode-dependent)
+        float contentH = ViewportHeight * MatchScale;   // 816 hi / 544 fast
         float grace = contentW / 6f;                           // 192
         float rightBarX = _barW + contentW;
         float rightBarW = Mathf.Max(0f, _vpW - rightBarX);
@@ -5609,6 +5754,10 @@ public partial class Main : Node2D
             // Generous zones: whole bar + grace strip into the game area.
             _tStickZoneMaxX = _barW + grace;
             _tFireZoneMinX  = rightBarX - grace;
+            // Menus use the BARE bar (no grace strip): the strip overlapped the ">"
+            // arrows of option rows and stole those taps as "confirm".
+            _tMenuStickZoneMaxX = _barW;
+            _tMenuFireZoneMinX  = rightBarX;
             _tPauseHalf = 34f;
             _tToggleHalf = 34f;
         }
@@ -5621,6 +5770,9 @@ public partial class Main : Node2D
             _tToggleCenter = new Vector2(50f, 40f) + new Vector2(_barW, 0f);
             _tStickZoneMaxX = _barW + contentW / 2f;
             _tFireZoneMinX  = float.MaxValue;    // circle-only hit test, as on desktop
+            // No bars here, so there is no strip to trim — menus reuse the same zones.
+            _tMenuStickZoneMaxX = _tStickZoneMaxX;
+            _tMenuFireZoneMinX  = _tFireZoneMinX;
             _tPauseHalf = 24f;
             _tToggleHalf = 24f;
         }
@@ -5775,7 +5927,12 @@ public partial class Main : Node2D
     private void UpdateTouchOverlayVisibility()
     {
         if (_touchOverlay is null) return;
-        bool inMatch = _touchUi && _appState == AppState.Match;
+        // PAUSED counts as "in match" for the overlay. It used to be excluded, which
+        // hid the whole pad the instant the player paused — and since quitting to menu
+        // needs a SECOND press, a touch-only device was then stuck in the match with no
+        // reachable control at all. The pad must stay up to deliver that second press.
+        bool paused  = _appState == AppState.Paused;
+        bool inMatch = _touchUi && (_appState == AppState.Match || paused);
         bool inMenu  = _touchUi && _appState == AppState.Menu;
         bool overlayCtx = inMatch || inMenu;
         bool controls = overlayCtx && _touchOverlayOn;
@@ -5785,8 +5942,9 @@ public partial class Main : Node2D
         if (_tPause is not null)
         {
             _tPause.Visible = controls;
-            // BACK '<' in menus, PAUSE bars in a match.
-            var want = inMenu ? _backTex : _pauseTex;
+            // BACK '<' in menus AND while paused (there it means "quit to menu"),
+            // PAUSE bars during play.
+            var want = (inMenu || paused) ? _backTex : _pauseTex;
             if (want is not null && _tPause.Texture != want) _tPause.Texture = want;
         }
         // Toggle icon is always available whenever the overlay context is live;
@@ -5821,11 +5979,19 @@ public partial class Main : Node2D
             }
             // The remaining zones only exist while the controls are shown.
             if (!_touchOverlayOn) return;
+            // While PAUSED the two buttons change meaning, because the pause overlay is
+            // a confirm prompt ("resume / quit to menu") that a touch device previously
+            // had no way to answer: the pad was hidden and nothing produced ui_cancel
+            // outside the menus, so the match was inescapable. Pause icon = QUIT,
+            // FIRE = RESUME, mirroring the ESC / SPACE keys the overlay advertises.
+            bool pausedNow = _appState == AppState.Paused;
+
             // Pause icon (top-right square).
             if (Mathf.Abs(pos.X - _tPauseCenter.X) <= _tPauseHalf &&
                 Mathf.Abs(pos.Y - _tPauseCenter.Y) <= _tPauseHalf)
             {
-                _touchPauseRequested = true;
+                if (pausedNow) _touchCancelRequested = true;
+                else _touchPauseRequested = true;
                 return;
             }
             // Fire: the drawn circle, or (Android bars path) anywhere in the right
@@ -5833,6 +5999,13 @@ public partial class Main : Node2D
             // desktop/--touch keeps the circle-only test.
             if (pos.DistanceTo(_tFireCenter) <= _tFireRadius || pos.X >= _tFireZoneMinX)
             {
+                // Every fire tap also raises a discrete ACCEPT. The sim polls the held
+                // _touchFire flag, but the PAUSED and FULL TIME screens wait on an
+                // edge-triggered ui_accept that no touch path produced — so full time
+                // could not be dismissed on a phone either (FullTime is a match PHASE,
+                // not an AppState, so it is not covered by the paused check above).
+                _touchAcceptRequested = true;
+                if (pausedNow) return;          // no stray kick when un-pausing
                 _fireFinger = index;
                 _touchFire = true;
                 return;
@@ -5952,14 +6125,25 @@ public partial class Main : Node2D
             _menuBackPulse = true;
             return true;
         }
-        // CONFIRM (the drawn circle, or the right bar + grace strip) → ui_accept.
-        if (pos.DistanceTo(_tFireCenter) <= _tFireRadius || pos.X >= _tFireZoneMinX)
+        // CONFIRM (the drawn circle, or the right bar) → ui_accept.
+        //
+        // NOTE the deliberate use of the BARE bar edge here instead of the padded
+        // _tFireZoneMinX. In a match the zones get a ~192px grace strip so a thumb
+        // does not have to be precise; in MENUS that strip reached far enough into the
+        // content to swallow the ">" arrow of every option row. Tapping an arrow was
+        // therefore consumed as "confirm" on the SELECTED row — which, right after
+        // entering OPTIONS, is the page pager, so tapping "SOUND >" silently flipped
+        // to the other options page instead of changing the value. Menus are read at
+        // leisure and their rows are tappable directly, so precision costs nothing here.
+        if (pos.DistanceTo(_tFireCenter) <= _tFireRadius || pos.X >= _tMenuFireZoneMinX)
         {
             _menuConfirmPulse = true;
             return true;
         }
-        // d-pad zone (left bar / left half) → anchor where the finger lands.
-        if (pos.X < _tStickZoneMaxX)
+        // d-pad zone (left bar / left half) → anchor where the finger lands. Bare bar
+        // in menus, for the same reason as CONFIRM above: the padded zone ate the left
+        // edge of every row's label box, turning those taps into dead d-pad anchors.
+        if (pos.X < _tMenuStickZoneMaxX)
         {
             _menuStickFinger = index;
             _stickAnchor = pos;
@@ -6859,12 +7043,12 @@ public partial class Main : Node2D
         // Header — TeamGame.teamName sits 20 bytes before players[0]
         // (swos.h:296 header layout: name at +22, players at +42).
         string teamName = teamGame != 0 ? ReadVmAscii(teamGame - 20, 17) : "";
-        _benchRows.Add(($"BENCH - {teamName}", false));
+        _benchRows.Add((string.Format(OpenSwos.Menu.Loc.Tr("bench.title", "BENCH - {0}"), teamName), false));
 
         if (OpenSwos.Sim.Port.Bench.SubstituteInProgress())
         {
             _benchRows.Add(("", false));
-            _benchRows.Add(("SUBSTITUTION IN PROGRESS...", false));
+            _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.sub_in_progress", "SUBSTITUTION IN PROGRESS..."), false));
         }
         else switch (state)
         {
@@ -6872,23 +7056,23 @@ public partial class Main : Node2D
             {
                 // drawBench: coach row + 5 substitutes (players[11..15]).
                 int arrow = OpenSwos.Sim.Port.Bench.GetBenchPlayerIndex();
-                _benchRows.Add(("COACH", arrow == 0));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.coach", "COACH"), arrow == 0));
                 for (int i = 1; i <= OpenSwos.Sim.Port.Bench.kMaxSubstitutes; i++)
                 {
                     int infoAddr = teamGame + (i + 10) * OpenSwos.Sim.Port.TeamDataLoader.PlayerInfoSize;
                     _benchRows.Add((FormatBenchPlayerRow(infoAddr), arrow == i));
                 }
                 _benchRows.Add(("", false));
-                _benchRows.Add(("UP/DN SELECT  FIRE OK", false));
-                _benchRows.Add(("LEFT/RIGHT LEAVE BENCH", false));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.help_select", "UP/DN SELECT  FIRE OK"), false));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.help_leave", "LEFT/RIGHT LEAVE BENCH"), false));
                 break;
             }
             case OpenSwos.Sim.Port.Bench.kBenchStateAboutToSubstitute:
             {
                 int enterIdx = OpenSwos.Sim.Port.Bench.PlayerToEnterGameIndex();
                 int enterAddr = teamGame + enterIdx * OpenSwos.Sim.Port.TeamDataLoader.PlayerInfoSize;
-                _benchRows.Add(($"COMING ON: {FormatBenchPlayerRow(enterAddr)}", false));
-                _benchRows.Add(("PLAYER OFF:", false));
+                _benchRows.Add((string.Format(OpenSwos.Menu.Loc.Tr("bench.coming_on", "COMING ON: {0}"), FormatBenchPlayerRow(enterAddr)), false));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.player_off", "PLAYER OFF:"), false));
                 int ord = OpenSwos.Sim.Port.Bench.PlayerToBeSubstitutedIndex();
                 for (int i = 0; i < 11; i++)
                 {
@@ -6899,7 +7083,7 @@ public partial class Main : Node2D
             }
             case OpenSwos.Sim.Port.Bench.kBenchStateFormationMenu:
             {
-                _benchRows.Add(("FORMATION:", false));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.formation_colon", "FORMATION:"), false));
                 int sel = OpenSwos.Sim.Port.Bench.GetSelectedFormationEntry();
                 for (int i = 0; i < OpenSwos.Sim.Port.Bench.kNumFormationEntries; i++)
                 {
@@ -6908,17 +7092,17 @@ public partial class Main : Node2D
                     string name = ReadVmAscii(
                         OpenSwos.SwosVm.Memory.Addr.teamTacticsPool
                         + i * OpenSwos.Sim.Port.TacticsLoader.TacticsStructSize, 9);
-                    if (string.IsNullOrWhiteSpace(name)) name = $"USER {(char)('A' + (i - 12))}";
+                    if (string.IsNullOrWhiteSpace(name)) name = string.Format(OpenSwos.Menu.Loc.Tr("bench.user", "USER {0}"), (char)('A' + (i - 12)));
                     _benchRows.Add((name, sel == i));
                 }
                 break;
             }
             case OpenSwos.Sim.Port.Bench.kBenchStateMarkingPlayers:
             {
-                _benchRows.Add(("SWAP / FORMATION:", false));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.swap_formation", "SWAP / FORMATION:"), false));
                 int ord = OpenSwos.Sim.Port.Bench.PlayerToBeSubstitutedIndex();
                 int selPos = OpenSwos.Sim.Port.Bench.GetBenchMenuSelectedPlayer();
-                _benchRows.Add(("FORMATION", ord < 0));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.formation", "FORMATION"), ord < 0));
                 for (int i = 1; i < 11; i++)
                 {
                     int pos = OpenSwos.Sim.Port.Bench.GetBenchPlayerPosition(i);
@@ -6927,8 +7111,8 @@ public partial class Main : Node2D
                     _benchRows.Add((marker + FormatBenchPlayerRow(infoAddr), ord == i));
                 }
                 _benchRows.Add(("", false));
-                _benchRows.Add(("FIRE PICK+PICK = SWAP", false));
-                _benchRows.Add(("HOLD FIRE = MARK PLAYER", false));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.fire_swap", "FIRE PICK+PICK = SWAP"), false));
+                _benchRows.Add((OpenSwos.Menu.Loc.Tr("bench.hold_mark", "HOLD FIRE = MARK PLAYER"), false));
                 break;
             }
         }
@@ -7109,18 +7293,23 @@ public partial class Main : Node2D
             playerInfoAddr + OpenSwos.Sim.Port.TeamDataLoader.OffCards);
         byte subFlag = OpenSwos.SwosVm.Memory.ReadByte(
             playerInfoAddr + OpenSwos.Sim.Port.TeamDataLoader.OffSubstituted);
-        string tag = cards >= 2 ? " [OFF]" : (subFlag != 0 || pos == -1) ? " [SUB]" : "";
+        string tag = cards >= 2 ? OpenSwos.Menu.Loc.Tr("bench.tag_off", " [OFF]")
+                   : (subFlag != 0 || pos == -1) ? OpenSwos.Menu.Loc.Tr("bench.tag_sub", " [SUB]") : "";
         // task #190 — flag injured players so the user knows who to sub.
-        if (_benchInjuredShirts.Contains(shirt)) tag += " INJ";
+        if (_benchInjuredShirts.Contains(shirt)) tag += OpenSwos.Menu.Loc.Tr("bench.tag_inj", " INJ");
         return $"{shirt,2} {name,-14} {PositionCode(pos)}{tag}";
     }
 
     // swos.playerPositionsStringTable equivalent (PlayerPosition, swos.h:149-160).
+    // Position codes are keyed for translation but MUST preserve the 2-char
+    // visual width/padding (trailing spaces are significant for column layout).
     private static string PositionCode(int position) => position switch
     {
-        0 => "GK", 1 => "RB", 2 => "LB", 3 => "D ",
-        4 => "RW", 5 => "LW", 6 => "M ", 7 => "A ",
-        -1 => "--", _ => "? ",
+        0 => OpenSwos.Menu.Loc.Tr("pos.gk", "GK"), 1 => OpenSwos.Menu.Loc.Tr("pos.rb", "RB"),
+        2 => OpenSwos.Menu.Loc.Tr("pos.lb", "LB"), 3 => OpenSwos.Menu.Loc.Tr("pos.d", "D "),
+        4 => OpenSwos.Menu.Loc.Tr("pos.rw", "RW"), 5 => OpenSwos.Menu.Loc.Tr("pos.lw", "LW"),
+        6 => OpenSwos.Menu.Loc.Tr("pos.m", "M "), 7 => OpenSwos.Menu.Loc.Tr("pos.a", "A "),
+        -1 => OpenSwos.Menu.Loc.Tr("pos.none", "--"), _ => OpenSwos.Menu.Loc.Tr("pos.unknown", "? "),
     };
 
     // Reads a null-terminated ASCII string of at most maxLen chars from VM memory.
@@ -7164,7 +7353,7 @@ public partial class Main : Node2D
     // DESIGN space stays 384×272 — all match/menu layout math is authored at
     // this resolution. The root viewport is now the NATIVE 1152×816 (=×3), so
     // the match world (Camera2D.Zoom) and the UI CanvasLayer transform each
-    // scale design coords up by RenderScale to fill it 1:1.
+    // scale design coords up by MatchScale to fill it 1:1.
     // Cached StringName action ids for the HOT per-tick input paths (_PhysicsProcess
     // + TickSwosPort run at 70 Hz). Passing string literals to Input.IsAction*
     // implicitly allocates a StringName each call — cache them once instead.
@@ -7172,18 +7361,54 @@ public partial class Main : Node2D
         A_UiLeft = "ui_left", A_UiRight = "ui_right", A_UiAccept = "ui_accept",
         A_UiCancel = "ui_cancel", A_SwosPause = "swos_pause";
 
-    private const int ViewportWidth  = 384;  // design width  (native = ×RenderScale) — MATCH HUD space
-    private const int ViewportHeight = 272;  // design height (native = ×RenderScale) — MATCH HUD space
-    private const int RenderScale    = 3;    // native viewport = 1152×816 = design ×3 (match world + HUD)
-    // The menu/tables front-end lives at ×2 instead of ×3 (user preference: the
-    // ×2 charset reads crisper + more compact than ×3). Same native 1152×816
-    // viewport, so the menu's design space is native/2 = 576×408. The match HUD
-    // stays at ×3 on its own `hud` CanvasLayer (see _Ready) so it never shrinks.
+    private const int ViewportWidth  = 384;  // design width  (native = ×scale) — MATCH HUD space
+    private const int ViewportHeight = 272;  // design height (native = ×scale) — MATCH HUD space
+
+    // === Render mode: HIGH-RES (desktop/Android) vs FAST (640×480 handheld) ====
+    // The match & menu are AUTHORED in fixed design spaces (384×272 match,
+    // 576×408 menu); the scale only sets how many NATIVE pixels those design
+    // spaces rasterise to. The native buffer is then presented to the window.
+    //
+    // The native size is PER-STATE (ContentSizeForState) so the two states keep
+    // the pixel density each one wants:
+    //   MENU   always native 1152×816 (=×HiResScale), MenuScale a const 2 →
+    //          the 576×408 bitmap charset front-end stays PIXEL-CRISP and
+    //          BYTE-IDENTICAL to today, in both modes.
+    //   MATCH  native = ViewportWidth×MatchScale (& PAUSED, which presents the
+    //          match image). HIGH-RES ×3 = 1152×816 (unchanged). FAST ×2 = 768×544:
+    //          ~1:1 with a 640×480 screen, so the present is ONE gentle downscale
+    //          (768→640) instead of the wasteful 1152→640 supersample — far fewer
+    //          pixels shaded (≈418k vs 940k) fixes the Mali-G31 match slowdown, and
+    //          the near-unity ratio + LINEAR present (SMOOTHING default-on for
+    //          handhelds, see LoadSettings) fixes the harsh scaling.
+    //
+    // The VISIBLE gameplay area is identical in both modes — ViewportWidth/Height
+    // (the design space) never change; only match pixel DENSITY does. On
+    // desktop/Android FastRender is false, so MatchScale==HiResScale==3 and BOTH
+    // ContentSizeForState branches are 1152×816 → byte-identical, no behaviour
+    // change. FastRender is resolved once at static-init (static readonly resolves
+    // before instance field initializers, so every `… * MatchScale` field below
+    // sees the final value).
+    private const int HiResScale = 3;   // MENU + high-res match: native = design ×3 = 1152×816
+    private static readonly bool FastRender = ComputeFastRender();
+    private static readonly int MatchScale = FastRender ? 2 : HiResScale;  // 2 → 768×544 fast, 3 → 1152×816 hi
+
+    // Menu/tables front-end: FIXED 576×408 design space, const ×2 into the always-
+    // 1152×816 MENU viewport — kept exactly as before so menu rendering never
+    // changes. The match HUD instead lives at ×MatchScale on its own `hud`
+    // CanvasLayer (see _Ready).
     private const int MenuScale          = 2;
-    private const int MenuViewportWidth  = ViewportWidth  * RenderScale / MenuScale;  // 576
-    private const int MenuViewportHeight = ViewportHeight * RenderScale / MenuScale;  // 408
+    private const int MenuViewportWidth  = ViewportWidth  * HiResScale / MenuScale;  // 576
+    private const int MenuViewportHeight = ViewportHeight * HiResScale / MenuScale;  // 408
     private const int ResultVgaToViewportX = (ViewportWidth - 320) / 2;  // 32
     private const int ResultVgaToViewportY = ViewportHeight - 200;       // 72
+
+    // Native root-viewport size for the CURRENT app state (see the render-mode
+    // note above). MENU stays hi-res so the front-end is crisp; MATCH/PAUSED use
+    // MatchScale. When FastRender is false both branches are 1152×816 (identical).
+    private Vector2I ContentSizeForState() => _appState == AppState.Menu
+        ? new Vector2I(ViewportWidth * HiResScale, ViewportHeight * HiResScale)   // 1152×816
+        : new Vector2I(ViewportWidth * MatchScale, ViewportHeight * MatchScale);  // 768×544 fast / 1152×816 hi
 
     // Alignment for charset text sprites (mirrors drawText / drawTextRightAligned
     // / drawTextCentered in text.cpp).
@@ -7286,8 +7511,8 @@ public partial class Main : Node2D
         // drawTeamNames (result.cpp:238-246): y = kTeamNameY(182)+off, BIG font;
         // team1 right-aligned ENDING at kLeftMargin(128), team2 left-aligned at
         // kRightMargin(192).
-        string home = (_allTeams.Count > _homeTeamIndex) ? _allTeams[_homeTeamIndex].Name : "HOME";
-        string away = (_allTeams.Count > _awayTeamIndex) ? _allTeams[_awayTeamIndex].Name : "AWAY";
+        string home = (_allTeams.Count > _homeTeamIndex) ? _allTeams[_homeTeamIndex].Name : OpenSwos.Menu.Loc.Tr("result.home", "HOME");
+        string away = (_allTeams.Count > _awayTeamIndex) ? _allTeams[_awayTeamIndex].Name : OpenSwos.Menu.Loc.Tr("result.away", "AWAY");
         int nameY = OpenSwos.Sim.Port.Result.kTeamNameY + off + ResultVgaToViewportY;
         SetText(_resultPanelTeam1, home, true, TextAlign.Right,
             OpenSwos.Sim.Port.Result.kLeftMargin + ResultVgaToViewportX, nameY, kWhiteText);
@@ -7316,8 +7541,8 @@ public partial class Main : Node2D
         // kResultAfterTheGame(26), centred at kResultX(160), floating 10 px
         // above the strip (kPeriodEndSpriteY = 157).
         int gs = OpenSwos.SwosVm.Memory.ReadSignedWord(OpenSwos.SwosVm.Memory.Addr.gameState);
-        string tag = gs == OpenSwos.Sim.Port.Result.kGameStateResultOnHalftime ? "HALF TIME"
-                   : gs == OpenSwos.Sim.Port.Result.kGameStateResultAfterTheGame ? "FULL TIME" : "";
+        string tag = gs == OpenSwos.Sim.Port.Result.kGameStateResultOnHalftime ? OpenSwos.Menu.Loc.Tr("overlay.halftime", "HALF TIME")
+                   : gs == OpenSwos.Sim.Port.Result.kGameStateResultAfterTheGame ? OpenSwos.Menu.Loc.Tr("overlay.fulltime", "FULL TIME") : "";
         SetText(_resultPanelTag, tag, true, TextAlign.Center,
             OpenSwos.Sim.Port.Result.kResultX + ResultVgaToViewportX,
             OpenSwos.Sim.Port.Result.kPeriodEndSpriteY + off + ResultVgaToViewportY, kWhiteText);
@@ -7414,8 +7639,8 @@ public partial class Main : Node2D
         if (goal.TimeDigit1 != 0) sb.Append((char)('0' + goal.TimeDigit1));
         if (goal.TimeDigit2 != 0) sb.Append((char)('0' + goal.TimeDigit2));
         sb.Append((char)('0' + goal.TimeDigit3));
-        if (goal.Type == 1) sb.Append("(PEN)");           // GoalType::kPenalty
-        else if (goal.Type == 2) sb.Append("(OG)");       // GoalType::kOwnGoal
+        if (goal.Type == 1) sb.Append(OpenSwos.Menu.Loc.Tr("result.pen", "(PEN)"));           // GoalType::kPenalty
+        else if (goal.Type == 2) sb.Append(OpenSwos.Menu.Loc.Tr("result.og", "(OG)"));       // GoalType::kOwnGoal
         return sb.ToString();
     }
 
@@ -7442,25 +7667,25 @@ public partial class Main : Node2D
     private string OverlayText()
     {
         if (_appState == AppState.Paused)
-            return "PAUSED\n\nspace  resume\nESC    quit to menu";
+            return OpenSwos.Menu.Loc.Tr("overlay.paused", "PAUSED\n\nspace  resume\nESC    quit to menu");
         // SWOS-port penalty shootout banner — port has no dedicated MatchPhase
         // yet, so when playingPenalties=1 (updateGoals.cpp:48) we overlay a
         // banner on whatever phase is active. Hides during the PAUSED branch
         // above so the resume hint stays readable.
         if (_useSwosPort && _swosPortPenaltiesActive)
-            return "PENALTIES";
+            return OpenSwos.Menu.Loc.Tr("overlay.penalties", "PENALTIES");
         return _match.Phase switch
         {
             // BUG #158: original SWOS shows NO pre-kickoff overlay — the
             // "READY?" text here was a leftover placeholder. Removed so
             // PreKickoff renders a clean pitch like the original.
             MatchPhase.PreKickoff => "",
-            MatchPhase.PostGoal => "GOAL!",
-            MatchPhase.HalfTime => "HALF TIME",
+            MatchPhase.PostGoal => OpenSwos.Menu.Loc.Tr("overlay.goal", "GOAL!"),
+            MatchPhase.HalfTime => OpenSwos.Menu.Loc.Tr("overlay.halftime", "HALF TIME"),
             MatchPhase.FullTime => FullTimeOverlay(),
-            MatchPhase.ThrowIn => "THROW-IN",
-            MatchPhase.CornerKick => "CORNER",
-            MatchPhase.GoalKick => "GOAL KICK",
+            MatchPhase.ThrowIn => OpenSwos.Menu.Loc.Tr("overlay.throwin", "THROW-IN"),
+            MatchPhase.CornerKick => OpenSwos.Menu.Loc.Tr("overlay.corner", "CORNER"),
+            MatchPhase.GoalKick => OpenSwos.Menu.Loc.Tr("overlay.goalkick", "GOAL KICK"),
             _ => "",
         };
     }
@@ -7470,10 +7695,11 @@ public partial class Main : Node2D
         // SWOS full-time shows scoreline + scorers (already rendered by the
         // result panel); the old kicks/possession stat lines were a dead legacy
         // overlay and were removed (task #183).
-        string home = (_allTeams.Count > _homeTeamIndex) ? _allTeams[_homeTeamIndex].Name : "HOME";
-        string away = (_allTeams.Count > _awayTeamIndex) ? _allTeams[_awayTeamIndex].Name : "AWAY";
-        return $"FULL TIME\n\n{home}  {_match.ScorePlayer} - {_match.ScoreOpponent}  {away}\n\n" +
-               $"press space";
+        string home = (_allTeams.Count > _homeTeamIndex) ? _allTeams[_homeTeamIndex].Name : OpenSwos.Menu.Loc.Tr("result.home", "HOME");
+        string away = (_allTeams.Count > _awayTeamIndex) ? _allTeams[_awayTeamIndex].Name : OpenSwos.Menu.Loc.Tr("result.away", "AWAY");
+        return string.Format(
+            OpenSwos.Menu.Loc.Tr("overlay.fulltime_body", "FULL TIME\n\n{0}  {1} - {2}  {3}\n\npress space"),
+            home, _match.ScorePlayer, _match.ScoreOpponent, away);
     }
 
     // === Phase transitions ===
@@ -7859,29 +8085,96 @@ public partial class Main : Node2D
 
         var label = new Label
         {
-            Text =
+            Text = string.Format(OpenSwos.Menu.Loc.Tr("firstrun.body",
                 "No SWOS game data found.\n\n" +
                 "OpenSWOS needs Sensible World of Soccer 96/97 (Amiga edition).\n" +
                 "Two options — then restart the game:\n\n" +
                 "  (a) Drop your Amiga floppy images (*.adf) into:\n" +
-                $"        {inDir}\n" +
+                "        {0}\n" +
                 "      OpenSWOS extracts what it needs on the next start.\n\n" +
                 "  (b) Already have the loose game files (e.g. a WHDLoad install)?\n" +
                 "      Copy them into:\n" +
-                $"        {outDir}\n\n" +
+                "        {1}\n\n" +
                 "Optional: drop the PC (DOS) DATA folder into 'original_swos_pc/' for a\n" +
                 "slightly larger team list — not required, and it doesn't change graphics.\n\n" +
-                "Earlier SWOS editions (94/95 etc.) are NOT compatible.",
+                "Earlier SWOS editions (94/95 etc.) are NOT compatible."),
+                inDir, outDir),
             HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Top,
             AutowrapMode = TextServer.AutowrapMode.WordSmart,
-            Position = new Vector2(0, 0),
-            Size = new Vector2(MenuViewportWidth, MenuViewportHeight),
+            Position = new Vector2(0, 6),
+            Size = new Vector2(MenuViewportWidth, MenuViewportHeight - 96),
             Modulate = Colors.White,
         };
         layer.AddChild(label);
 
+        // Diagnostics block. Deliberately ON SCREEN, not just in the log: on Android and
+        // the R36S there is no console the user can reach, so without this a failure is
+        // indistinguishable from any other and gets reported as "it doesn't work". This
+        // is small, dim, bottom-aligned — ignorable for anyone whose game just works,
+        // and photographable for anyone who needs to report a problem.
+        string diag = BuildFirstRunDiagnostics();
+        if (diag.Length > 0)
+        {
+            var diagLabel = new Label
+            {
+                Text = diag,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                Position = new Vector2(6, MenuViewportHeight - 92),
+                Size = new Vector2(MenuViewportWidth - 12, 88),
+                Modulate = new Color(0.65f, 0.85f, 0.65f, 1f),
+            };
+            diagLabel.AddThemeFontSizeOverride("font_size", 10);
+            layer.AddChild(diagLabel);
+        }
+
         GD.Print("[Main] First-run message shown — no SWOS data available.");
+
+        // If the only thing missing is the (asynchronous) storage grant, poll for it so
+        // the game can come up by itself the moment the user allows access.
+        _awaitingStorageGrant = OpenSwos.Assets.DataPaths.IsAndroid()
+                                && !OpenSwos.Assets.DataPaths.HasStorageAccess();
+        if (_awaitingStorageGrant)
+            GD.Print("[Main] Waiting for storage access — will retry import automatically.");
+    }
+
+    // Builds the on-screen diagnostics shown under the first-run help. Everything here
+    // answers ONE question for a user reporting a problem: "which step failed?" —
+    // platform, whether storage was readable, which folders were scanned and what was
+    // found in each, and which of the two required things (graphics / teams) is missing.
+    private string BuildFirstRunDiagnostics()
+    {
+        var sb = new System.Text.StringBuilder();
+        try
+        {
+            sb.Append("DIAGNOSTICS (photograph this if reporting a problem)\n");
+            sb.Append($"platform: {OS.GetName()}");
+            if (OpenSwos.Assets.DataPaths.IsAndroid())
+                sb.Append($"  storage readable: "
+                          + (OpenSwos.Assets.DataPaths.HasStorageAccess() ? "YES" : "NO"));
+            sb.Append('\n');
+
+            string report = AmigaImporter.DiagnosticReport;
+            if (report.Length > 0) sb.Append(report).Append('\n');
+
+            // Which of the two hard requirements is actually unmet.
+            string grafs = OpenSwos.Assets.DataPaths.AmigaGrafsDir();
+            string adata = OpenSwos.Assets.DataPaths.AmigaDataDir();
+            string pdata = OpenSwos.Assets.DataPaths.PcDataDir();
+            sb.Append("graphics: ").Append(grafs.Length > 0 ? grafs : "NOT FOUND");
+            sb.Append("\nteams: ");
+            if (adata.Length > 0) sb.Append("amiga ").Append(adata);
+            else if (pdata.Length > 0) sb.Append("pc ").Append(pdata);
+            else sb.Append("NOT FOUND");
+        }
+        catch (System.Exception ex)
+        {
+            // Diagnostics must never be the thing that breaks the error screen.
+            return "DIAGNOSTICS unavailable: " + ex.Message;
+        }
+        return sb.ToString();
     }
 
     // Replaces (or creates) the pitch background sprite from SWCPICH{idx}.MAP. Called by
@@ -7890,12 +8183,12 @@ public partial class Main : Node2D
     {
         string grafsDir = DataPaths.AmigaGrafsDir();
         string pitchPath = grafsDir.Length > 0
-            ? System.IO.Path.Combine(grafsDir, $"SWCPICH{idx}.MAP")
+            ? DataPaths.ResolveFile(grafsDir, $"SWCPICH{idx}.MAP")
             : "";
 
-        if (pitchPath.Length == 0 || !System.IO.File.Exists(pitchPath))
+        if (pitchPath.Length == 0)
         {
-            GD.PrintErr($"Pitch variant {idx} not found at {pitchPath}");
+            GD.PrintErr($"Pitch variant {idx} not found in {(grafsDir.Length > 0 ? grafsDir : "<no grafs dir>")}");
             if (_pitchSprite is null) BuildPlaceholderPitch();
             return;
         }
@@ -8187,6 +8480,20 @@ public partial class Main : Node2D
     // (never ExclusiveFullscreen) so the desktop resolution/icon layout is never
     // disturbed. Scale stays Viewport+Keep (project stretch mode); only the
     // stretch flips Fractional (fill) vs Integer (pixel-perfect). No-op headless.
+    // FAST MODE ONLY (caller gates on FastRender). Re-applies the per-state native
+    // size when the app state has flipped MENU↔MATCH. Idempotent: no-op unless the
+    // target size actually differs, so it's cheap to call every physics tick.
+    // Headless-guarded. This is the single choke point that keeps ContentScaleSize
+    // correct across all 18 `_appState = …` transition sites.
+    private void MaybeUpdateContentSize()
+    {
+        if (DisplayServer.GetName() == "headless") return;
+        var win = GetWindow();
+        if (win is null) return;
+        var want = ContentSizeForState();
+        if (win.ContentScaleSize != want) win.ContentScaleSize = want;
+    }
+
     private void ApplyDisplayMode()
     {
         try
@@ -8203,7 +8510,11 @@ public partial class Main : Node2D
             win.ContentScaleAspect = _expandMode
                 ? Window.ContentScaleAspectEnum.Expand
                 : Window.ContentScaleAspectEnum.Keep;
-            win.ContentScaleSize = new Vector2I(ViewportWidth * RenderScale, ViewportHeight * RenderScale);
+            // PER-STATE native size (see ContentSizeForState): MENU stays hi-res so
+            // the front-end is crisp; MATCH/PAUSED use the (possibly fast) MatchScale.
+            // The per-tick idempotent check in MaybeUpdateContentSize() re-applies
+            // this on every state transition when FastRender is on.
+            win.ContentScaleSize = ContentSizeForState();
 
             switch (_displayMode)
             {
@@ -8230,10 +8541,10 @@ public partial class Main : Node2D
     // OPTIONS-row + F11 share this label / cycle (exposed via IMenuHost).
     private static string DisplayModeToLabel(DisplayMode m) => m switch
     {
-        DisplayMode.Windowed => "WINDOWED",
-        DisplayMode.FullscreenFill => "FULL FILL",
-        DisplayMode.FullscreenInteger => "FULL INTEGER",
-        _ => "?",
+        DisplayMode.Windowed => OpenSwos.Menu.Loc.Tr("opt.display_windowed", "WINDOWED"),
+        DisplayMode.FullscreenFill => OpenSwos.Menu.Loc.Tr("opt.display_fullfill", "FULL FILL"),
+        DisplayMode.FullscreenInteger => OpenSwos.Menu.Loc.Tr("opt.display_fullinteger", "FULL INTEGER"),
+        _ => OpenSwos.Menu.Loc.Tr("opt.display_unknown", "?"),
     };
 
     // === Settings persistence ==================================================
@@ -8295,6 +8606,15 @@ public partial class Main : Node2D
             var mTouchOv = System.Text.RegularExpressions.Regex.Match(text,
                 "\"touchOverlay\"\\s*:\\s*(true|false)");
             if (mTouchOv.Success) _touchOverlayOn = mTouchOv.Groups[1].Value == "true";
+            // Picture smoothing (OPTIONS "SMOOTHING"). Default OFF so desktop /
+            // Android are visually unchanged. When the key is ABSENT (fresh
+            // settings) we auto-default to SHARP on a small handheld screen so
+            // retro devices look nicer out of the box — the user can still turn
+            // it off in OPTIONS (which then writes the key and pins the choice).
+            var mSmooth = System.Text.RegularExpressions.Regex.Match(text,
+                "\"smoothing\"\\s*:\\s*(true|false)");
+            if (mSmooth.Success) _smoothing = mSmooth.Groups[1].Value == "true";
+            else if (DetectHandheld()) { _smoothing = true; GD.Print("Settings: smoothing auto-defaulted to SMOOTH/LINEAR (handheld) — pairs with the fast render mode's near-1:1 downscale"); }
             // UI language (2-letter code, e.g. "en"/"pl"); default English.
             var mLang = System.Text.RegularExpressions.Regex.Match(text,
                 "\"language\"\\s*:\\s*\"([a-z]{2})\"");
@@ -8329,6 +8649,11 @@ public partial class Main : Node2D
                     : OpenSwos.Audio.MatchAudio.SoundSource.Pc;
                 GD.Print($"Settings loaded: soundSource = {_soundSource}");
             }
+            // Commentator (spoken commentary) toggle. Default ON; when the key is
+            // ABSENT we leave it ON (existing installs keep commentary).
+            var mComm = System.Text.RegularExpressions.Regex.Match(text,
+                "\"commentator\"\\s*:\\s*(true|false)");
+            if (mComm.Success) _commentator = mComm.Groups[1].Value == "true";
             // Front-end menu music: "amiga" / "pc" / "custom" / "off". When the
             // key is ABSENT the field keeps its AMIGA default (fresh settings →
             // AMIGA). Resolved against availability at play time.
@@ -8375,6 +8700,8 @@ public partial class Main : Node2D
                 (_fatigueSim ? "true" : "false") +
                 ",\"touchOverlay\":" +
                 (_touchOverlayOn ? "true" : "false") +
+                ",\"smoothing\":" +
+                (_smoothing ? "true" : "false") +
                 ",\"displayMode\":\"" +
                 (_displayMode switch
                 {
@@ -8384,6 +8711,8 @@ public partial class Main : Node2D
                 }) + "\"" +
                 ",\"soundSource\":\"" +
                 (_soundSource == OpenSwos.Audio.MatchAudio.SoundSource.Amiga ? "amiga" : "pc") + "\"" +
+                ",\"commentator\":" +
+                (_commentator ? "true" : "false") +
                 ",\"menuMusic\":\"" +
                 (_menuMusic switch {
                     OpenSwos.Audio.MenuMusic.MusicSource.Pc => "pc",

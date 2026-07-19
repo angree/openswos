@@ -36,7 +36,7 @@ public static class PlayerEnergy
     // the accumulator reaches `divisor`. effort 100 keeps the integer math coarse
     // enough that the stamina spread below stays smooth.
     private const int kMoveEffort    = 100;  // outfield
-    private const int kKeeperEffort  = 20;   // keeper drains ~5x slower
+    private const int kKeeperEffort  = 10;   // keeper drains ~10x slower (mostly stationary; user: keeper tires less from movement, more from catches)
     // Stamina→drain (durability). divisor = (kStaminaFloor + stamina) * kDivisorScale;
     // higher divisor = slower drain = more durability. Tuned to the user's spec:
     //   - stamina-7 vs stamina-1 durability ratio = 1.67:
@@ -46,9 +46,25 @@ public static class PlayerEnergy
     private const int kStaminaFloor  = 8;
     private const int kDivisorScale  = 24;
 
+    // Match-length normalization. Without this a 10-min match tires players ~3x
+    // more than a 3-min one (simply more ticks). We scale the per-tick drain
+    // divisor by match length so the TOTAL fatigue arc — how spent players are by
+    // full time — is the SAME regardless of the selected match length. Reference =
+    // a 3-min-per-half match (360s total), left unchanged; longer matches drain
+    // slower per tick, shorter matches faster, so both end at the same tiredness.
+    // Set once at match setup (Main.cs), so the sim tick stays deterministic.
+    private const int kRefMatchSeconds = 360;
+    private static int _lenNum = 1, _lenDen = 1;   // divisor *= _lenNum/_lenDen
+    public static void SetMatchLength(int totalMatchSeconds)
+    {
+        if (totalMatchSeconds <= 0) { _lenNum = 1; _lenDen = 1; return; }
+        _lenNum = totalMatchSeconds;
+        _lenDen = kRefMatchSeconds;
+    }
+
     // Reset before a new match's team load. Energy itself is (re)seeded per
     // player by SeedSlot during TeamDataLoader.WritePlayerInfos.
-    public static void ResetForNewMatch() { EffectEnabled = false; }
+    public static void ResetForNewMatch() { EffectEnabled = false; _lenNum = 1; _lenDen = 1; }
 
     // Seed one physical sprite slot (0..21) at match start from the player's
     // career stamina (0..7) and carried between-match fatigue (0..100).
@@ -81,6 +97,8 @@ public static class PlayerEnergy
 
         int stamina = OpenSwos.SwosVm.Memory.ReadByte(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffStamina);
         int divisor = (kStaminaFloor + System.Math.Clamp(stamina, 0, 7)) * kDivisorScale;   // flattened stamina spread
+        divisor = divisor * _lenNum / _lenDen;   // normalize total drain to match length (see SetMatchLength)
+        if (divisor < 1) divisor = 1;
 
         int acc = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergyAcc) + effort;
         int energy = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
@@ -132,6 +150,35 @@ public static class PlayerEnergy
             OpenSwos.SwosVm.PlayerSprite.Base(globalSlot) + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
     }
 
+    // ---- half-time recovery --------------------------------------------------
+    // Players are NOT equally spent coming out for the second half — the ~15 min
+    // break gives real recovery. Each player recovers a FLAT FRACTION OF WHAT THEY
+    // LOST (their deficit), the SAME fraction for everyone — deliberately NOT
+    // scaled by stamina. Rationale (user): stamina already helps twice (higher
+    // starting HP via SeedSlot + slower drain via the durability divisor), so a
+    // fitter player lost LESS and therefore recovers less in absolute terms and
+    // comes out fresher on his own — adding a stamina bonus on the recovery % too
+    // would be double-dipping. Recovering only a fraction of the deficit (not to
+    // full) keeps players from being 100% fresh again after 45 minutes.
+    //   recovered = (Max - energy) * kHalfTimeRecoverPct / 100
+    // Deterministic (NO Rng — lockstep-safe), integer-only. Always runs so the
+    // energy bar reflects the break, exactly like DrainSlot; the speed EFFECT
+    // stays gated on EffectEnabled elsewhere.
+    private const int kHalfTimeRecoverPct = 40;   // recover 40% of the LOST energy, flat for all
+    public static void RecoverAtHalfTime()
+    {
+        for (int gslot = 0; gslot < OpenSwos.SwosVm.PlayerSprite.TotalSlots; gslot++)
+        {
+            int b = OpenSwos.SwosVm.PlayerSprite.Base(gslot);
+            int energy = OpenSwos.SwosVm.Memory.ReadWord(b + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
+            if (energy <= 0 || energy >= Max) continue;   // uninit / already full: nothing to do
+            int recovered = (Max - energy) * kHalfTimeRecoverPct / 100;   // fraction of the deficit
+            energy = System.Math.Min(Max, energy + recovered);
+            OpenSwos.SwosVm.Memory.WriteWord(b + OpenSwos.SwosVm.PlayerSprite.OffEnergy, energy);
+            OpenSwos.SwosVm.Memory.WriteWord(b + OpenSwos.SwosVm.PlayerSprite.OffEnergyAcc, 0);  // fresh accumulator
+        }
+    }
+
     // ---- event drains (RNG) --------------------------------------------------
     // These consume the DETERMINISTIC sim Rng (same stream as duels/injuries), so
     // they stay lockstep-safe: both netplay peers share the fixed per-match
@@ -150,14 +197,16 @@ public static class PlayerEnergy
         OpenSwos.SwosVm.Memory.WriteWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy, energy);
     }
 
-    // A keeper tires per ball caught/held: a random 1..3% of current energy (user
-    // spec). This is the keeper's main fatigue source (they barely move).
+    // A keeper tires per ball caught/held: a random 2..4% of current energy (user
+    // spec, raised from 1..3). This is the keeper's main fatigue source (they barely
+    // move, and kKeeperEffort is now low) — it only bites him under a real siege of
+    // shots, which is the intent.
     public static void DrainOnKeeperCatch(int spriteAddr)
     {
         if (!EffectEnabled) return;
         int energy = OpenSwos.SwosVm.Memory.ReadWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy);
         if (energy <= 0) return;
-        int pct = 1 + (Rng.NextByte() % 3);   // 1..3
+        int pct = 2 + (Rng.NextByte() % 3);   // 2..4
         energy = System.Math.Max(0, energy - energy * pct / 100);
         OpenSwos.SwosVm.Memory.WriteWord(spriteAddr + OpenSwos.SwosVm.PlayerSprite.OffEnergy, energy);
     }

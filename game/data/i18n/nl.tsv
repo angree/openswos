@@ -432,3 +432,130 @@ hud.team_home_fallback	THUIS
 hud.team_away_fallback	UIT
 goal.type_penalty	(PEN)
 goal.type_own_goal	(EG)
+# S34 additions
+bench.coach	COACH
+bench.coming_on	KOMT: {0}
+bench.fire_swap	VUUR KIES+KIES = WISSEL
+bench.formation	FORMATIE
+bench.formation_colon	FORMATIE:
+bench.help_leave	LINKS/RECHTS BANK VERLATEN
+bench.help_select	OMHOOG/OMLAAG KIES  VUUR OK
+bench.hold_mark	VUUR VASTHOUDEN = SPELER MARKEREN
+bench.player_off	SPELER ERUIT:
+bench.sub_in_progress	WISSEL BEZIG...
+bench.swap_formation	WISSEL / FORMATIE:
+bench.tag_inj	 GEB
+bench.tag_off	 [UIT]
+bench.tag_sub	 [SUB]
+bench.title	BANK - {0}
+bench.user	SPELER {0}
+career.dash_div_season	DIV {0}  SEIZOEN {1}
+career.price_any	ALLE
+career.rec_pwdl	G {0}   W {1}   GL {2}   V {3}   DV {4}   DT {5}
+career.rec_season_div	SEIZOEN {0}  {1}  DIV {2}
+career.release_confirm	{0} GRATIS VRIJLATEN?
+career.skill_letters	PVHTCSF
+career.title_mr	DHR
+career.title_ms	MEVR
+comp.competition_complete	COMPETITIE VOLTOOID
+comp.cup	BEKER
+comp.entrants_random	WILLEKEURIG
+comp.entrants_same_div	ZELFDE DIVISIE
+comp.entrants_same_nation	ZELFDE LAND
+comp.league_round	LIGA - RONDE {0}/{1}
+comp.name_career	CARRIERE
+comp.name_cup	BEKER
+comp.name_league	LIGA
+comp.name_tournament	TOERNOOI
+comp.no_fixtures	GEEN WEDSTRIJDEN
+comp.no_player_team	GEEN SPELERTEAM
+comp.ord_nd	DE
+comp.ord_rd	DE
+comp.ord_st	STE
+comp.ord_th	DE
+comp.preset_copa_america	COPA AMERICA
+comp.preset_cup_winners_cup	BEKERWINNAARS CUP
+comp.preset_european_championship	EUROPEES KAMPIOENSCHAP
+comp.preset_european_cup	EUROPACUP
+comp.preset_uefa_cup	UEFA CUP
+comp.preset_world_cup	WERELDBEKER
+comp.slot_finished	VOLTOOID
+comp.slot_no_team	GEEN TEAM
+comp.slot_round	RONDE {0}/{1}
+comp.slot_winner	WINNAAR {0}
+comp.stage_final	FINALE
+comp.stage_group	GROEP
+comp.stage_league	LIGA
+comp.stage_quarter	KWARTFINALE
+comp.stage_r16	LAATSTE 16
+comp.stage_r32	LAATSTE 32
+comp.stage_round_of	LAATSTE
+comp.stage_semi	HALVE FINALE
+comp.you_are_pos	JIJ BENT {0}
+comp.you_champion	JIJ BENT KAMPIOEN
+comp.you_eliminated	JIJ BENT UITGESCHAKELD
+comp.you_in	JIJ ZIT IN {0}
+comp.you_in_the	JIJ ZIT IN DE {0}
+comp.you_through	JIJ BENT DOOR NAAR DE VOLGENDE RONDE
+comp.you_unplaced	JIJ BENT ONGEPLAATST
+firstrun.body	Geen SWOS-speldata gevonden.\n\nOpenSWOS heeft Sensible World of Soccer 96/97 (Amiga-editie) nodig.\nTwee opties - herstart daarna het spel:\n\n  (a) Zet je Amiga-diskette-images (*.adf) in:\n        {0}\n      OpenSWOS pakt bij de volgende start uit wat nodig is.\n\n  (b) Heb je al losse spelbestanden (bijv. een WHDLoad-installatie)?\n      Kopieer ze naar:\n        {1}\n\nOptioneel: zet de PC-(DOS-)DATA-map in 'original_swos_pc/' voor een\niets grotere teamlijst - niet vereist, en verandert de graphics niet.\n\nEerdere SWOS-edities (94/95 enz.) zijn NIET compatibel.
+menu.team_coach_div	COACH {0}   DIV {1}
+menu.team_div	DIV {0}
+menu.versus	  V
+nation.continent_africa	AFRIKA
+nation.continent_asia	AZIE
+nation.continent_europe	EUROPA
+nation.continent_north_america	NOORD-AMERIKA
+nation.continent_oceania	OCEANIE
+nation.continent_south_america	ZUID-AMERIKA
+nav.hint_menu	OMHOOG/OMLAAG KIES   VUUR OK   ESC TERUG
+nav.hint_picker	OMHOOG/OMLAAG SCROLLEN   VUUR KIES   ESC ANNULEER
+nav.hint_picker_cols	OMHOOG/OMLAAG SCROLLEN   LINKS/RECHTS KOLOM   VUUR KIES   ESC ANNULEER
+nav.hint_stepper	OMHOOG/OMLAAG KIES   LINKS/RECHTS WIJZIG   VUUR OK   ESC TERUG
+nav.hint_table	OMHOOG/OMLAAG RIJ   VUUR OK   ESC TERUG
+opt.commentator	COMMENTATOR
+opt.commentator_hint	GESPROKEN COMMENTAAR (ALLEEN PC-GELUID)
+opt.display_fullfill	VOLLEDIG VULLEN
+opt.display_fullinteger	VOLLEDIG INTEGER
+opt.display_unknown	?
+opt.display_windowed	VENSTER
+opt.len_min_whole	{0} MIN ECHT  (HELE MATCH)
+opt.len_sec_whole	{0}S ECHT  (HELE MATCH)
+opt.smoothing_sharp	SCHERP
+overlay.corner	CORNER
+overlay.fulltime	EINDE
+overlay.fulltime_body	EINDE\n\n{0}  {1} - {2}  {3}\n\ndruk spatie
+overlay.goal	GOAL!
+overlay.goalkick	DOELTRAP
+overlay.halftime	RUST
+overlay.paused	GEPAUZEERD\n\nspatie  hervat\nESC    naar menu
+overlay.penalties	STRAFSCHOPPEN
+overlay.throwin	INGOOI
+pos.a	A
+pos.d	V
+pos.gk	GK
+pos.lb	LB
+pos.lw	LV
+pos.m	M
+pos.none	--
+pos.rb	RB
+pos.rw	RV
+pos.unknown	?
+result.away	UIT
+result.home	THUIS
+result.og	(EG)
+result.pen	(PEN)
+scout.notice_maxed	SCOUTING MAX
+scout.notice_no_money	NIET GENOEG GELD
+scout.notice_player_unavailable	SPELER NIET BESCHIKBAAR
+scout.notice_unavailable	SCOUTING ONBESCHIKBAAR
+staff.notice_coach_unavailable	COACH NIET BESCHIKBAAR
+staff.notice_focus_full	FOCUS VOL
+staff.notice_full	STAF VOL
+staff.notice_no_money	NIET GENOEG GELD
+staff.notice_player_unavailable	SPELER NIET BESCHIKBAAR
+staff.notice_unavailable	STAF ONBESCHIKBAAR
+staff.spec_attack	AANVAL
+staff.spec_defence	VERDEDIGING
+staff.spec_general	ALGEMEEN
+staff.spec_youth	JEUGD

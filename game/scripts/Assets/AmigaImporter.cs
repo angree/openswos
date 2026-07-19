@@ -26,11 +26,38 @@ public static class AmigaImporter
     /// <summary>Absolute path of the OUTPUT folder (set once EnsureImported has run).</summary>
     public static string OutputFolder { get; private set; } = "";
 
+    // ── User-facing diagnostics ──────────────────────────────────────────────
+    //
+    // When import fails the user sees "no SWOS data" and has NO idea why: wrong
+    // folder? unreadable? files present but not matched? On Android and the R36S
+    // handheld there is no console to check either. So we record exactly what was
+    // searched and what was found, and the first-run screen prints it — the user can
+    // photograph that screen and send it, and the cause is immediately obvious.
+    private static readonly List<string> ScanLog = new();
+
+    /// <summary>
+    /// Human-readable report of the last import attempt: every folder searched, how many
+    /// .adf were found in each, and whether a folder was missing or unreadable. Shown
+    /// on the first-run screen so a user can report a precise cause instead of "it
+    /// doesn't work". Empty before <see cref="EnsureImported"/> has run.
+    /// </summary>
+    public static string DiagnosticReport => ScanLog.Count == 0
+        ? ""
+        : string.Join("\n", ScanLog);
+
+    private static void Diag(string line)
+    {
+        ScanLog.Add(line);
+        GD.Print("[AmigaImporter] " + line);
+    }
+
     // Version / usage text shown to the user (HOW_TO file + README + on-screen).
     private const string RequiredVersionText =
         "Sensible World of Soccer 96/97 - Amiga edition.\r\n" +
-        "Two floppy disk images (.adf). Any filenames are fine; OpenSWOS scans every\r\n" +
-        ".adf and finds the files it needs (only disk 2 is used, but include both).\r\n" +
+        "BOTH floppy disk images (.adf) are required. Any filenames are fine, and\r\n" +
+        "capitalisation does not matter; OpenSWOS scans every .adf and takes what it\r\n" +
+        "needs. Disk 2 holds the graphics and teams, DISK 1 HOLDS SFX.IN2 - without\r\n" +
+        "disk 1 the game runs but has NO Amiga sound at all.\r\n" +
         "Earlier SWOS editions (94/95 etc.) are NOT compatible.\r\n" +
         "WHDLoad/hard-disk installs: if your game files are loose in a folder, copy\r\n" +
         "them into original_swos_files/ instead. (.hdf/.lha hard-file images are not\r\n" +
@@ -47,28 +74,63 @@ public static class AmigaImporter
         InputFolder = DataPaths.PreferredInputPath();
         OutputFolder = DataPaths.PreferredOutputPath();
 
-        if (DataPaths.HasAmigaGraphics())
+        // Import is complete only when BOTH the graphics and the sound files are
+        // present. Gating on graphics alone meant a partial import could never be
+        // finished: extract disk 2 (graphics + SFX.SNG/IN1), and the game would from
+        // then on short-circuit here forever — so adding the missing disk 1 later
+        // (which carries SFX.IN2, and therefore ALL Amiga sound) did nothing at all,
+        // with no hint as to why. Re-scanning is cheap and idempotent.
+        bool haveGfx = DataPaths.HasAmigaGraphics();
+        bool haveSfx = OpenSwos.Audio.AmigaSfxBank.Available();
+        if (haveGfx && haveSfx)
             return true;
 
-        GD.Print("[AmigaImporter] No SWOS graphics found — scanning for *.adf to import…");
+        GD.Print("[AmigaImporter] Import incomplete — scanning for *.adf to import…");
+
+        // Case-INSENSITIVE match: on Android/Linux a plain "*.adf" pattern is
+        // case-sensitive, so DISK1.ADF / Swos.Adf were silently never found even
+        // though the docs promise "any filenames are fine".
+        var scanOpts = new EnumerationOptions
+        {
+            RecurseSubdirectories = true,
+            MatchCasing = MatchCasing.CaseInsensitive,
+            IgnoreInaccessible = true,
+        };
+
+        ScanLog.Clear();
+        if (DataPaths.IsAndroid() && !DataPaths.HasStorageAccess())
+            Diag("STORAGE ACCESS DENIED - allow it, the game retries by itself.");
+        if (haveGfx && !haveSfx)
+            Diag("graphics OK but Amiga SOUND incomplete - SFX.IN2 is on DISK 1, "
+                 + "so BOTH .adf are needed for sound.");
 
         var adfs = new List<string>();
         foreach (string dir in DataPaths.InputSearchRoots())
         {
             try
             {
-                if (!Directory.Exists(dir)) continue;
-                foreach (string f in Directory.GetFiles(dir, "*.adf", SearchOption.AllDirectories))
+                if (!Directory.Exists(dir))
+                {
+                    // NOTE: a permission-denied directory also reports "does not
+                    // exist", so say both — this is the most confusing failure of all.
+                    Diag($"- missing or unreadable: {dir}");
+                    continue;
+                }
+                int before = adfs.Count;
+                foreach (string f in Directory.GetFiles(dir, "*.adf", scanOpts))
                     adfs.Add(f);
+                Diag($"- {adfs.Count - before} .adf in {dir}");
             }
             catch (System.Exception ex)
             {
-                GD.PrintErr($"[AmigaImporter] Could not scan '{dir}': {ex.Message}");
+                Diag($"- ERROR reading {dir}: {ex.Message}");
             }
         }
 
         if (adfs.Count == 0)
-            GD.Print("[AmigaImporter] No *.adf files found in any input folder.");
+            Diag("=> found NO .adf anywhere (any capitalisation is accepted).");
+        else
+            Diag($"=> found {adfs.Count} .adf total, extracting...");
 
         string outRoot = adfs.Count > 0 ? DataPaths.FirstWritableRoot(DataPaths.OutputFolderName) : "";
         if (adfs.Count > 0 && outRoot.Length == 0)
@@ -85,6 +147,11 @@ public static class AmigaImporter
                 GD.PrintErr($"[AmigaImporter] Failed to extract '{adf}': {ex.Message}");
             }
         }
+
+        // Extraction just wrote new files; the sound bank's availability probe is cached
+        // for the process lifetime, so drop it or the freshly-extracted SFX would still
+        // report as missing (and the SOUND option would stay stuck on an unusable pick).
+        if (adfs.Count > 0) OpenSwos.Audio.AmigaSfxBank.InvalidateProbe();
 
         bool ok = DataPaths.HasAmigaGraphics();
         if (ok)
@@ -150,8 +217,18 @@ public static class AmigaImporter
             string outRoot = DataPaths.FirstWritableRoot(DataPaths.OutputFolderName);
             // OPTIONAL PC (DOS) DATA folder — created empty so the user can discover it.
             string pcRoot = DataPaths.FirstWritableRoot(DataPaths.PcInputFolderName);
-            if (inRoot.Length > 0) InputFolder = inRoot;
-            if (outRoot.Length > 0) OutputFolder = outRoot;
+
+            // These strings are shown to the user as "drop your files HERE". Only adopt
+            // the writable root when it is somewhere the user can actually reach. On
+            // Android FirstWritableRoot can fall back to user:// (app-private, invisible
+            // to every file manager) — displaying that told users to put files in a
+            // place they cannot open, on the exact screen explaining what to do.
+            bool inReachable = inRoot.Length > 0
+                && (!DataPaths.IsAndroid() || inRoot == DataPaths.PreferredInputPath());
+            bool outReachable = outRoot.Length > 0
+                && (!DataPaths.IsAndroid() || outRoot == DataPaths.PreferredOutputPath());
+            if (inReachable) InputFolder = inRoot;
+            if (outReachable) OutputFolder = outRoot;
 
             if (inRoot.Length > 0)
             {
